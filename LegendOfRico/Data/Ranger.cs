@@ -1,6 +1,6 @@
 namespace DefaultNamespace;
 
-public class Ranger
+public class Ranger : Character
 {
     
 }
