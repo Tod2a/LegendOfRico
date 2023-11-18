@@ -1,6 +1,6 @@
 namespace DefaultNamespace;
 
-enum TypeOfArmor
+public enum TypeOfArmor
 {
     Light,
     Medium,

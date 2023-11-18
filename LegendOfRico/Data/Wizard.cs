@@ -1,4 +1,4 @@
-﻿namespace LegendOfRico.Data
+﻿namespace DefaultNamespace
 {
     public class Wizard : Character
     {

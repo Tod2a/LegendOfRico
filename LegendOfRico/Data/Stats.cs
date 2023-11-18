@@ -1,6 +1,6 @@
-namespace LegendOfRico.Data;
+namespace DefaultNamespace;
 
-enum Stats
+public enum Stats
 {
     Strength,
     Dexterity,

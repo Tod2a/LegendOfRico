@@ -1,4 +1,4 @@
-namespace LegendOfRico.Data;
+namespace DefaultNamespace;
 
 public abstract class Character
 {

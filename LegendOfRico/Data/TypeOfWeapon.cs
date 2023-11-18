@@ -1,6 +1,6 @@
 namespace DefaultNamespace;
 
-enum TypeOfWeapon
+public enum TypeOfWeapon
 {
     Melee,
     Ranged,
