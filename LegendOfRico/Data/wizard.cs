@@ -1,6 +1,6 @@
 ﻿namespace LegendOfRico.Data
 {
-    public class wizard: Character
+    public class Wizard: Character
     {
         public Weapon[] WeaponsMastery { get; private set; }
         //coucou petite peruche
