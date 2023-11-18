@@ -8,7 +8,7 @@ public abstract class Character
     public Dictionary<Stats, int> Statistics { get; private set; }
     public int Armor { get; private set; }
 
-    public CreateCharacter
+    public void CreateCharacter()
     {
         //To be defined
     }
