@@ -1,4 +1,4 @@
-namespace DefaultNamespace;
+namespace LegendOfRico.Data;
 
 public abstract class Weapon : Item
 {
