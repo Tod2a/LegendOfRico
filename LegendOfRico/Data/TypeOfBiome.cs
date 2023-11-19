@@ -5,5 +5,6 @@ public enum TypeOfBiome
     Forest,
     Graveyard,
     Village,
+    Desert,
     AbandonedVillage
 }

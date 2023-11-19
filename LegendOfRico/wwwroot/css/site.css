@@ -66,3 +66,22 @@ a, .btn-link {
     .blazor-error-boundary::after {
         content: "An error has occurred."
     }
+
+.Map ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+}
+
+.Map li {
+    box-sizing: border-box; /* Inclure la bordure et le padding dans la largeur et la hauteur */
+    width: 100%;
+    padding-top: 100%;
+    position: relative;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    border: 1px solid black;
+}

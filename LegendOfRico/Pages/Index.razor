@@ -1,9 +1,41 @@
 ﻿@page "/"
+@using LegendOfRico.Data
 
-<PageTitle>Index</PageTitle>
+<PageTitle>The legend of Rico</PageTitle>
 
-<h1>Hello, world!</h1>
+<h1>The legend of Rico</h1>
 
-Welcome to your new app.
+<div class="Map">
+    <ul>
+        @foreach (var square in YourMap)
+        {
+            <li style="background-image: url('@square.SquareBiome.ImageUrl')">Test</li>
+        }
+    </ul>
+</div>
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+
+@code{
+    //création des monstres
+    public static Undead Skeleton = new Undead{Name = "Skeleton" };
+
+
+    // création des pool de monstres
+    public static Undead[] PoolOfGraveyardTest = { Skeleton, Skeleton };
+
+
+    //création des différents Biomes
+    public static Biomes Foret = new Biomes { BiomeType = TypeOfBiome.Forest, MonsterPool = PoolOfGraveyardTest, ImageUrl = "img/biomes/foret.jpg" };
+
+    // création de la map
+    List<Square> YourMap;
+    Square classicForet;
+
+    protected override void OnInitialized()
+    {
+        // Initialisation de YourMap ici
+        classicForet = new Square { SquareBiome = Foret, ChanceToTriggerFight = 0.0, HasNPC = false, HasQuestTarget = false };
+
+        YourMap = new List<Square> { classicForet, classicForet, classicForet, classicForet };
+    }
+}

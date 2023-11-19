@@ -2,6 +2,7 @@ namespace LegendOfRico.Data;
 
 public class Biomes
 {
-    public TypeOfBiome BiomeType { get; private set; }
-    public Monster[] MonsterPool { get; private set; }
+    public TypeOfBiome BiomeType { get; set; }
+    public Monster[] MonsterPool { get; set; }
+    public string ImageUrl {  get; set; }
 }
