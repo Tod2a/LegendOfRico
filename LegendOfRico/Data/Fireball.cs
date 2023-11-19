@@ -1,0 +1,27 @@
+namespace LegendOfRico.Data;
+
+public class Fireball : Spells
+{
+    public override string SpellName => "Fireball";
+    public override int MaxNumberOfUses => 10;
+    public override int MinValue => 10;
+    public override int MaxValue => 30;
+    public TypeOfDamage SpellType = TypeOfDamage.Fire;
+    public double CritChance = 0.05;
+    public double BurnChance = 0.2;
+
+    public void UseSpell(Monster target)
+    {
+        int DamageRoll = (new Random()).Next(MinValue, MaxValue + 1);
+        target.TakeDamage(DamageRoll);
+        if ((new Random()).NextDouble() <= CritChance)
+        {
+            DamageRoll *= 2;
+        }
+        if ((new Random()).NextDouble() <= BurnChance)
+        {
+            target.Burnt();
+        }
+        target.TakeDamage(DamageRoll);
+    }
+}

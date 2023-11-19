@@ -2,8 +2,8 @@
 {
     public class Fighter: Character
     {
-        public Weapon[] WeaponMastery {  get; private set; }
+        public override TypeOfWeapon[] WeaponMastery { get; } = new[] { TypeOfWeapon.Axe, TypeOfWeapon.Sword };
 
-        public TypeOfArmor ArmorMastery { get; } = TypeOfArmor.Heavy;
+        public override TypeOfArmor ArmorMastery { get; } = TypeOfArmor.Heavy;
     }
 }
