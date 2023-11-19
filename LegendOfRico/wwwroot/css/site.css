@@ -67,21 +67,25 @@ a, .btn-link {
         content: "An error has occurred."
     }
 
-.Map ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+.Map table {
+    border-collapse: collapse;
+    border-spacing: 0;
 }
 
-.Map li {
-    box-sizing: border-box; /* Inclure la bordure et le padding dans la largeur et la hauteur */
-    width: 100%;
-    padding-top: 100%;
+.Map td {
+    box-sizing: border-box;
+    /* Taille des carré modifiable */
+    width: 100px;
+    height: 100px;
+    padding: 0;
     position: relative;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center center;
-    border: 1px solid black;
+    border: 1px solid #000;
 }
+
+    .Map td div {
+        width: 100%;
+        height: 100%;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }

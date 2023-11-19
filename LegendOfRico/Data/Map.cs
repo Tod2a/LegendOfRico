@@ -2,8 +2,8 @@
 {
     public class Map
     {
-        public Square[][] MapLayout { get; private set; }
-        public int MapLevel { get; private set; }
+        public Square[][] MapLayout { get; set; }
+        public int MapLevel { get; set; }
         public void LevelUpMap()
         {
             //A definir.

@@ -5,37 +5,64 @@
 
 <h1>The legend of Rico</h1>
 
-<div class="Map">
-    <ul>
-        @foreach (var square in YourMap)
-        {
-            <li style="background-image: url('@square.SquareBiome.ImageUrl')">Test</li>
-        }
-    </ul>
-</div>
+<table border="1" class="Map">
+    @foreach (var row in gameMap.MapLayout)
+    {
+        <tr>
+            @foreach (var square in row)
+            {
+                <td>
+                    <div style="background-image: url('@square.SquareBiome.ImageUrl');"></div>
+                </td>
+            }
+        </tr>
+    }
+</table>
 
 
 @code{
     //création des monstres
-    public static Undead Skeleton = new Undead{Name = "Skeleton" };
+    public static Undead skeleton = new Undead{Name = "Skeleton" };
 
 
     // création des pool de monstres
-    public static Undead[] PoolOfGraveyardTest = { Skeleton, Skeleton };
+    public static Undead[] poolOfGraveyardTest = { skeleton, skeleton };
 
 
     //création des différents Biomes
-    public static Biomes Foret = new Biomes { BiomeType = TypeOfBiome.Forest, MonsterPool = PoolOfGraveyardTest, ImageUrl = "img/biomes/foret.jpg" };
 
-    // création de la map
-    List<Square> YourMap;
-    Square classicForet;
+    public static Biomes forest = new Biomes { BiomeType = TypeOfBiome.Forest, MonsterPool = poolOfGraveyardTest, ImageUrl = "img/biomes/foret.jpg" };
+    public static Biomes desert = new Biomes { BiomeType = TypeOfBiome.Desert, MonsterPool = poolOfGraveyardTest, ImageUrl = "img/biomes/desert.jpg" };
+    public static Biomes village = new Biomes { BiomeType = TypeOfBiome.Village, MonsterPool = poolOfGraveyardTest, ImageUrl = "img/biomes/village.jpg" };
+    public static Biomes ruinedVillage = new Biomes { BiomeType = TypeOfBiome.AbandonedVillage, MonsterPool = poolOfGraveyardTest, ImageUrl = "img/biomes/ruine.jpg" };
+    public static Biomes graveyard = new Biomes { BiomeType = TypeOfBiome.Graveyard, MonsterPool = poolOfGraveyardTest, ImageUrl = "img/biomes/cimetiere.jpg" };
 
-    protected override void OnInitialized()
+    //création des squares
+
+    public static Square classicForet = new Square { SquareBiome = forest, ChanceToTriggerFight = 0.0, HasNPC = false, HasQuestTarget = false };
+    public static Square classicDesert = new Square { SquareBiome = desert, ChanceToTriggerFight = 0.0, HasNPC = false, HasQuestTarget = false };
+    public static Square classicVillage = new Square { SquareBiome = village, ChanceToTriggerFight = 0.0, HasNPC = false, HasQuestTarget = false };
+    public static Square classicRuined = new Square { SquareBiome = ruinedVillage, ChanceToTriggerFight = 0.0, HasNPC = false, HasQuestTarget = false };
+    public static Square classicGraveyard = new Square { SquareBiome = graveyard, ChanceToTriggerFight = 0.0, HasNPC = false, HasQuestTarget = false };
+
+    //création de la map
+
+    public Map gameMap = new Map { MapLevel = 1, MapLayout = CreateMapLayout() };
+
+    //assignation des Squares
+
+    private static Square[][] CreateMapLayout()
     {
-        // Initialisation de YourMap ici
-        classicForet = new Square { SquareBiome = Foret, ChanceToTriggerFight = 0.0, HasNPC = false, HasQuestTarget = false };
 
-        YourMap = new List<Square> { classicForet, classicForet, classicForet, classicForet };
+        Square[][] mapLayout = new Square[4][];
+
+        mapLayout[0] = new Square[] { classicGraveyard, classicGraveyard, classicVillage, classicRuined, classicRuined, classicGraveyard, classicForet, classicForet, classicForet, classicGraveyard };
+        mapLayout[1] = new Square[] { classicDesert, classicForet, classicVillage, classicForet, classicForet, classicRuined, classicDesert, classicForet, classicForet, classicForet };
+        mapLayout[2] = new Square[] { classicDesert, classicDesert, classicForet, classicForet, classicVillage, classicForet, classicRuined, classicForet, classicForet, classicGraveyard };
+        mapLayout[3] = new Square[] { classicRuined, classicDesert, classicDesert, classicForet, classicForet, classicForet, classicForet, classicVillage, classicGraveyard, classicGraveyard };
+
+        return mapLayout;
+       
     }
+    
 }
