@@ -1,8 +1,10 @@
+using System.ComponentModel;
+
 namespace LegendOfRico.Data;
 
-public abstract class Character
+public abstract class Character : INotifyPropertyChanged
 {
-    public string Name { get; private set; }
+    public string Name { get; set; }
     public int Level { get; private set; } = 1;
     public int MaxHitPoints { get; private set; }
     public int CurrentHitPoints { get; private set; }
@@ -13,6 +15,35 @@ public abstract class Character
     public Item[] Inventory { get; private set; }
     public abstract TypeOfWeapon[] WeaponMastery { get; }
     public abstract TypeOfArmor ArmorMastery { get; }
+    private int positionI = 10; // Valeur par défaut
+
+    public int PositionI
+    {
+        get { return positionI; }
+        private set
+        {
+            if (value != positionI)
+            {
+                positionI = value;
+                OnPropertyChanged(nameof(PositionI));
+            }
+        }
+    }
+    private int positionJ = 10; 
+
+    public int PositionJ
+    {
+        get { return positionJ; }
+        private set
+        {
+            if (value != positionJ)
+            {
+                positionJ = value;
+                OnPropertyChanged(nameof(PositionJ));
+            }
+        }
+    }
+    public string MapSprite {  get; set; }
 
     public void CreateCharacter()
     {
@@ -40,5 +71,45 @@ public abstract class Character
         {
             CurrentHitPoints += HealAmount;
         }
+    }
+
+    public void GoUp()
+    {
+        if (PositionI > 0)
+        {
+            PositionI--;
+        }
+    }
+
+    public void GoDown()
+    {
+        if (PositionI < 19)
+        {
+            PositionI++;
+        }
+    }
+
+    public void GoLeft()
+    {
+        if (PositionJ > 0)
+        {
+            PositionJ--;
+        }
+    }
+
+    public void GoRight()
+    {
+        if (PositionJ < 19)
+        {
+            PositionJ++;
+        }
+    }
+
+    //gestion du changement des propriété lorsqu'on se déplace sur la carte
+    public event PropertyChangedEventHandler PropertyChanged;
+
+    protected virtual void OnPropertyChanged(string propertyName)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

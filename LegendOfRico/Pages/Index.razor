@@ -6,14 +6,26 @@
 <h1>The legend of Rico</h1>
 
 <table border="1" class="Map">
-    @foreach (var row in gameMap.MapLayout)
+    @for(int i = startI; i < maxI; i++)
     {
         <tr>
-            @foreach (var square in row)
+            @for (int j = startJ; j < maxJ; j++)
             {
-                <td>
-                    <div style="background-image: url('@square.SquareBiome.ImageUrl');"></div>
-                </td>
+                @if (i == PersoTest.PositionI && j == PersoTest.PositionJ)
+                {
+                    <td>
+                        <div style="background-image: url('@gameMap.MapLayout[i][j].SquareBiome.ImageUrl');">
+                            <img src="@PersoTest.MapSprite" alt="Image PersoTest" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                        </div>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <div style="background-image: url('@gameMap.MapLayout[i][j].SquareBiome.ImageUrl');"></div>
+                    </td>
+                }
+               
             }
         </tr>
     }
@@ -21,6 +33,51 @@
 
 
 @code{
+    //création d'un personnage test pour la map, création et gestion des personnages encore à définir
+    public static Wizard PersoTest = new Wizard {Name = "Destructor", MapSprite = "img/character/test.jpg" };
+    //création des variables d'affichage de map
+    private int startI;
+    private int maxI;
+    private int startJ;
+    private int maxJ;
+
+    protected override void OnInitialized()
+    {
+        UpdateMapDisplay();
+
+        base.OnInitialized();
+    }
+
+    private void UpdateMapDisplay()
+    {
+        startI = PersoTest.PositionI - 4;
+        maxI = PersoTest.PositionI + 5;
+        startJ = PersoTest.PositionJ - 4;
+        maxJ = PersoTest.PositionJ + 5;
+    }
+
+    //Problème lié à cette fonction qui ne reconnait pas les touches du clavier apparement
+    private void HandleKeyDown(KeyboardEventArgs e)
+    {
+        Console.WriteLine($"Key pressed: {e.Key}");
+        switch (e.Key)
+        {
+            case "ArrowLeft":
+                PersoTest.GoLeft();
+                break;
+            case "ArrowRight":
+                PersoTest.GoRight();
+                break;
+            case "ArrowUp":
+                PersoTest.GoUp();
+                break;
+            case "ArrowDown":
+                PersoTest.GoDown();
+                break;
+        }
+        UpdateMapDisplay();
+    }
+
     //création des monstres
     public static Undead skeleton = new Undead{Name = "Skeleton" };
 
@@ -54,13 +111,13 @@
     private static Square[][] CreateMapLayout()
     {
 
-        Square[][] mapLayout = new Square[4][];
+        Square[][] mapLayout = new Square[20][];
 
-        mapLayout[0] = new Square[] { classicGraveyard, classicGraveyard, classicVillage, classicRuined, classicRuined, classicGraveyard, classicForet, classicForet, classicForet, classicGraveyard };
-        mapLayout[1] = new Square[] { classicDesert, classicForet, classicVillage, classicForet, classicForet, classicRuined, classicDesert, classicForet, classicForet, classicForet };
-        mapLayout[2] = new Square[] { classicDesert, classicDesert, classicForet, classicForet, classicVillage, classicForet, classicRuined, classicForet, classicForet, classicGraveyard };
-        mapLayout[3] = new Square[] { classicRuined, classicDesert, classicDesert, classicForet, classicForet, classicForet, classicForet, classicVillage, classicGraveyard, classicGraveyard };
-
+        for (int i = 0; i < 20; i++)
+        {
+            mapLayout[i] = new Square[] { classicGraveyard, classicGraveyard, classicVillage, classicRuined, classicRuined, classicGraveyard, classicForet, classicForet, classicForet, classicGraveyard, classicGraveyard, classicGraveyard, classicVillage, classicRuined, classicRuined, classicGraveyard, classicForet, classicForet, classicForet, classicGraveyard };
+        }
+        //, classicGraveyard, classicGraveyard, classicVillage, classicRuined, classicRuined, classicGraveyard, classicForet, classicForet, classicForet, classicGraveyard
         return mapLayout;
        
     }
