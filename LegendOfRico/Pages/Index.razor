@@ -2,7 +2,7 @@
 @using LegendOfRico.Data
 
 <PageTitle>The legend of Rico</PageTitle>
-
+<div @onkeydown="HandleKeyDown" @onkeydown:preventDefault=true tabindex="0">
 <h1 class="gameTitle">The legend of Rico</h1>
 <div class="displayGame">
     <div class="gameMenu">
@@ -11,10 +11,10 @@
     </div>
     <div class="mapDisplay">
     <table border="1" class="Map">
-        @for(int i = startI; i < maxI; i++)
+        @for(int i = gameMap.StartI; i < gameMap.MaxI; i++)
         {
             <tr>
-            @for (int j = startJ; j < maxJ; j++)
+            @for (int j = gameMap.StartJ; j < gameMap.MaxJ; j++)
             {
                 @if (i == PersoTest.PositionI && j == PersoTest.PositionJ)
                 {
@@ -37,35 +37,23 @@
     </table>
     </div>
 </div>
+</div>
 
 @code{
     //création d'un personnage test pour la map, création et gestion des personnages encore à définir
     public static Wizard PersoTest = new Wizard {Name = "Destructor", MapSprite = "img/character/test.jpg" };
-    //création des variables d'affichage de map
-    private int startI;
-    private int maxI;
-    private int startJ;
-    private int maxJ;
 
     protected override void OnInitialized()
     {
-        UpdateMapDisplay();
+        gameMap.UpdateMapDisplay(PersoTest);
 
         base.OnInitialized();
     }
 
-    private void UpdateMapDisplay()
-    {
-        startI = PersoTest.PositionI - 4;
-        maxI = PersoTest.PositionI + 5;
-        startJ = PersoTest.PositionJ - 4;
-        maxJ = PersoTest.PositionJ + 5;
-    }
-
-    //Problème lié à cette fonction qui ne reconnait pas les touches du clavier apparement
+    //Fonction de gestion des bouton clavier
     private void HandleKeyDown(KeyboardEventArgs e)
     {
-        Console.WriteLine($"Key pressed: {e.Key}");
+        
         switch (e.Key)
         {
             case "ArrowLeft":
@@ -81,7 +69,7 @@
                 PersoTest.GoDown();
                 break;
         }
-        UpdateMapDisplay();
+        gameMap.UpdateMapDisplay(PersoTest);
     }
 
     //création des monstres

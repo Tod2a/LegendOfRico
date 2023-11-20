@@ -15,7 +15,7 @@ public abstract class Character : INotifyPropertyChanged
     public Item[] Inventory { get; private set; }
     public abstract TypeOfWeapon[] WeaponMastery { get; }
     public abstract TypeOfArmor ArmorMastery { get; }
-    private int positionI = 10; // Valeur par défaut
+    private int positionI = 10; 
 
     public int PositionI
     {
@@ -105,7 +105,7 @@ public abstract class Character : INotifyPropertyChanged
         }
     }
 
-    //gestion du changement des propriété lorsqu'on se déplace sur la carte
+    //gestion du changement des propriété lorsqu'on se déplace sur la carte, permet de réactualiser la carte lors d'un mouvement
     public event PropertyChangedEventHandler PropertyChanged;
 
     protected virtual void OnPropertyChanged(string propertyName)
