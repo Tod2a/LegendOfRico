@@ -3,12 +3,17 @@
 
 <PageTitle>The legend of Rico</PageTitle>
 
-<h1>The legend of Rico</h1>
-
-<table border="1" class="Map">
-    @for(int i = startI; i < maxI; i++)
-    {
-        <tr>
+<h1 class="gameTitle">The legend of Rico</h1>
+<div class="displayGame">
+    <div class="gameMenu">
+    <p>Personnage: @PersoTest.Name</p>
+    <p>Position: [@PersoTest.PositionI][@PersoTest.PositionJ]@gameMap.MapLayout[PersoTest.PositionI][PersoTest.PositionJ].Name</p>
+    </div>
+    <div class="mapDisplay">
+    <table border="1" class="Map">
+        @for(int i = startI; i < maxI; i++)
+        {
+            <tr>
             @for (int j = startJ; j < maxJ; j++)
             {
                 @if (i == PersoTest.PositionI && j == PersoTest.PositionJ)
@@ -27,10 +32,11 @@
                 }
                
             }
-        </tr>
-    }
-</table>
-
+            </tr>
+        }
+    </table>
+    </div>
+</div>
 
 @code{
     //création d'un personnage test pour la map, création et gestion des personnages encore à définir
@@ -96,11 +102,11 @@
 
     //création des squares
 
-    public static Square classicForet = new Square { SquareBiome = forest, ChanceToTriggerFight = 0.0, HasNPC = false, HasQuestTarget = false };
-    public static Square classicDesert = new Square { SquareBiome = desert, ChanceToTriggerFight = 0.0, HasNPC = false, HasQuestTarget = false };
-    public static Square classicVillage = new Square { SquareBiome = village, ChanceToTriggerFight = 0.0, HasNPC = false, HasQuestTarget = false };
-    public static Square classicRuined = new Square { SquareBiome = ruinedVillage, ChanceToTriggerFight = 0.0, HasNPC = false, HasQuestTarget = false };
-    public static Square classicGraveyard = new Square { SquareBiome = graveyard, ChanceToTriggerFight = 0.0, HasNPC = false, HasQuestTarget = false };
+    public static Square classicForet = new Square { SquareBiome = forest, Name = "classicForet", ChanceToTriggerFight = 0.0, HasNPC = false, HasQuestTarget = false };
+    public static Square classicDesert = new Square { SquareBiome = desert, Name = "classicDesert", ChanceToTriggerFight = 0.0, HasNPC = false, HasQuestTarget = false };
+    public static Square classicVillage = new Square { SquareBiome = village, Name = "classicVillage", ChanceToTriggerFight = 0.0, HasNPC = false, HasQuestTarget = false };
+    public static Square classicRuined = new Square { SquareBiome = ruinedVillage, Name = "classicRuined", ChanceToTriggerFight = 0.0, HasNPC = false, HasQuestTarget = false };
+    public static Square classicGraveyard = new Square { SquareBiome = graveyard, Name = "classicGraveyard", ChanceToTriggerFight = 0.0, HasNPC = false, HasQuestTarget = false };
 
     //création de la map
 

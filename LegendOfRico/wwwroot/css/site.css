@@ -95,6 +95,30 @@ a, .btn-link {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 50%; /* Ajustez la largeur selon vos besoins */
-    height: 50%; /* Ajustez la hauteur selon vos besoins */
+    width: 50%; 
+    height: 50%; 
+}
+
+.displayGame {
+    display: flex;
+}
+
+.gameMenu {
+    flex: 1;
+    background-color: #777777;
+    padding: 10px;
+    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.mapDisplay {
+    flex: 4; 
+    margin-left: 2em;
+}
+
+.gameTitle {
+    text-align:center;
 }
