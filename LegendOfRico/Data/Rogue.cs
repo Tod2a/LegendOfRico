@@ -6,7 +6,20 @@ public class Rogue : Character
     public override TypeOfArmor ArmorMastery { get; } = TypeOfArmor.Medium;
     public void Steal(Monster target)
     {
-        // a defnir
+       if (target.MonsterType == TypeOfMonster.Humanoid)
+        {
+            Random chance = new Random();
+            int a = chance.Next(1,10);
+
+            if (a <= 6 )
+            {
+                // vole reussi
+            }
+            else
+            {
+                // vole raté
+            }
+        }
     }
 
     
