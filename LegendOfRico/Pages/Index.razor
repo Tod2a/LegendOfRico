@@ -76,17 +76,31 @@
     public static Undead skeleton = new Undead{Name = "Skeleton" };
 
 
-    // création des pool de monstres
-    public static Undead[] poolOfGraveyardTest = { skeleton, skeleton };
+    // création des pool de monstres contenu des pool encore à définir mais divers pool déjà créés pour faire la map
+    public static Undead[] poolOfForest = { skeleton, skeleton };
+    public static Undead[] poolOfDesert = { skeleton, skeleton };
+    public static Undead[] poolOfVillage = { skeleton, skeleton };
+    public static Undead[] poolOfRuined = { skeleton, skeleton };
+    public static Undead[] poolOfGraveyard = { skeleton, skeleton };
+    public static Undead[] bossOfForest = { skeleton, skeleton };
+    public static Undead[] bossOfDesert = { skeleton, skeleton };
+    public static Undead[] bossOfVillage = { skeleton, skeleton };
+    public static Undead[] bossOfRuined = { skeleton, skeleton };
+    public static Undead[] bossOfGraveyard = { skeleton, skeleton };
 
 
     //création des différents Biomes
 
-    public static Biomes forest = new Biomes { BiomeType = TypeOfBiome.Forest, MonsterPool = poolOfGraveyardTest, ImageUrl = "img/biomes/foret.jpg" };
-    public static Biomes desert = new Biomes { BiomeType = TypeOfBiome.Desert, MonsterPool = poolOfGraveyardTest, ImageUrl = "img/biomes/desert.jpg" };
-    public static Biomes village = new Biomes { BiomeType = TypeOfBiome.Village, MonsterPool = poolOfGraveyardTest, ImageUrl = "img/biomes/village.jpg" };
-    public static Biomes ruinedVillage = new Biomes { BiomeType = TypeOfBiome.AbandonedVillage, MonsterPool = poolOfGraveyardTest, ImageUrl = "img/biomes/ruine.jpg" };
-    public static Biomes graveyard = new Biomes { BiomeType = TypeOfBiome.Graveyard, MonsterPool = poolOfGraveyardTest, ImageUrl = "img/biomes/cimetiere.jpg" };
+    public static Biomes forest = new Biomes { BiomeType = TypeOfBiome.Forest, MonsterPool = poolOfForest, ImageUrl = "img/biomes/foret.jpg" };
+    public static Biomes desert = new Biomes { BiomeType = TypeOfBiome.Desert, MonsterPool = poolOfDesert, ImageUrl = "img/biomes/desert.jpg" };
+    public static Biomes village = new Biomes { BiomeType = TypeOfBiome.Village, MonsterPool = poolOfVillage, ImageUrl = "img/biomes/village.jpg" };
+    public static Biomes ruinedVillage = new Biomes { BiomeType = TypeOfBiome.AbandonedVillage, MonsterPool = poolOfRuined, ImageUrl = "img/biomes/ruine.jpg" };
+    public static Biomes graveyard = new Biomes { BiomeType = TypeOfBiome.Graveyard, MonsterPool = poolOfGraveyard, ImageUrl = "img/biomes/cimetiere.jpg" };
+    public static Biomes bossForest = new Biomes { BiomeType = TypeOfBiome.Forest, MonsterPool = bossOfForest, ImageUrl = "img/biomes/foret.jpg" };
+    public static Biomes bossDesert = new Biomes { BiomeType = TypeOfBiome.Desert, MonsterPool = bossOfDesert, ImageUrl = "img/biomes/desert.jpg" };
+    public static Biomes bossVillage = new Biomes { BiomeType = TypeOfBiome.Village, MonsterPool = bossOfVillage, ImageUrl = "img/biomes/village.jpg" };
+    public static Biomes bossRuinedVillage = new Biomes { BiomeType = TypeOfBiome.AbandonedVillage, MonsterPool = bossOfRuined, ImageUrl = "img/biomes/ruine.jpg" };
+    public static Biomes bossGraveyard = new Biomes { BiomeType = TypeOfBiome.Graveyard, MonsterPool = bossOfGraveyard, ImageUrl = "img/biomes/cimetiere.jpg" };
 
     //création des squares classic
 
@@ -95,6 +109,11 @@
     public static Square classicVillage = new Square { SquareBiome = village, Name = "classicVillage", ChanceToTriggerFight = 0.0, HasNPC = false, HasQuestTarget = false };
     public static Square classicRuined = new Square { SquareBiome = ruinedVillage, Name = "classicRuined", ChanceToTriggerFight = 0.0, HasNPC = false, HasQuestTarget = false };
     public static Square classicGraveyard = new Square { SquareBiome = graveyard, Name = "classicGraveyard", ChanceToTriggerFight = 0.0, HasNPC = false, HasQuestTarget = false };
+    public static Square squareBossForest = new Square { SquareBiome = forest, Name = "bossForet", ChanceToTriggerFight = 0.0, HasNPC = false, HasQuestTarget = false };
+    public static Square squareBossDesert = new Square { SquareBiome = desert, Name = "bossDesert", ChanceToTriggerFight = 0.0, HasNPC = false, HasQuestTarget = false };
+    public static Square squareBossVillage = new Square { SquareBiome = village, Name = "bossVillage", ChanceToTriggerFight = 0.0, HasNPC = false, HasQuestTarget = false };
+    public static Square squareBossRuined = new Square { SquareBiome = ruinedVillage, Name = "bossRuined", ChanceToTriggerFight = 0.0, HasNPC = false, HasQuestTarget = false };
+    public static Square squareBossGraveyard = new Square { SquareBiome = graveyard, Name = "bossGraveyard", ChanceToTriggerFight = 0.0, HasNPC = false, HasQuestTarget = false };
 
     //création de villes
 
@@ -108,20 +127,20 @@
 
     private static Square[][] CreateMapLayout()
     {
-        Square[][] mapLayout = new Square[300][];
+        Square[][] mapLayout = new Square[500][];
 
-        for (int i = 0; i < 300; i++)
+        for (int i = 0; i < 500; i++)
         {
-            mapLayout[i] = new Square[300];
+            mapLayout[i] = new Square[500];
 
-            for (int j = 0; j < 300; j++)
+            for (int j = 0; j < 500; j++)
             {
                 mapLayout[i][j] = classicForest;
             }
         }
 
         //ajout de la ville de départ astrub
-        mapLayout[150][150] = astrubVillage;
+        mapLayout[250][250] = astrubVillage;
 
         return mapLayout;
     }
