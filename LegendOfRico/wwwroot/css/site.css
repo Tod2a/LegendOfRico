@@ -1,5 +1,24 @@
 @import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
+/*permet annuler la mise en page de base du navigateur qui affichait une bordure noire autour des elements*/ 
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.layoutGame {
+    outline: none;
+}
+
+body {
+    background-image: url('../img/layout/fondSite.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
@@ -105,7 +124,10 @@ a, .btn-link {
 
 .gameMenu {
     flex: 1;
-    background-color: #777777;
+    background-image: url("../img/layout/fondBois.jpg");
+    background-size: cover;
+    background-position: center;
+    color: #996515;
     padding: 10px;
     box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
@@ -113,6 +135,24 @@ a, .btn-link {
     align-items: center;
     flex-direction: column;
     margin-left: 2em;
+    border: 5px solid #8b4513;
+}
+
+.gameMenu p {
+   padding: 10px; 
+   margin: 0; 
+   border-bottom: 1px solid #000;
+   text-align: center;
+}
+
+.gameMenu button {
+        
+    background-color: #4CAF50; 
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .mapDisplay {
@@ -121,5 +161,16 @@ a, .btn-link {
 }
 
 .gameTitle {
-    text-align:center;
+    text-align: center;
+    margin-inline: auto;
+    position: relative;
+    width: 60%;
+    padding-top: 0.9em;
+    padding-bottom: 0.9em;
+    background-image: url("../img/layout/fondBois.jpg");
+    background-size: cover;
+    background-position: center;
+    color: #b8860b;
+    text-align: center;
+    border: 5px solid #8b4513;
 }

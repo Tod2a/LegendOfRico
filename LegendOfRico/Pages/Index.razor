@@ -2,8 +2,8 @@
 @using LegendOfRico.Data
 
 <PageTitle>The legend of Rico</PageTitle>
-<div @onkeydown="HandleKeyDown" @onkeydown:preventDefault=true tabindex="0">
 <h1 class="gameTitle">The legend of Rico</h1>
+<div class="layoutGame" @onkeydown="HandleKeyDown" @onkeydown:preventDefault=true tabindex="0">
 <div class="displayGame">
     <div class="gameMenu">
     <p>Personnage: @PersoTest.Name</p>
@@ -53,7 +53,7 @@
     //Fonction de gestion des bouton clavier
     private void HandleKeyDown(KeyboardEventArgs e)
     {
-        
+
         switch (e.Key)
         {
             case "ArrowLeft":
@@ -88,13 +88,17 @@
     public static Biomes ruinedVillage = new Biomes { BiomeType = TypeOfBiome.AbandonedVillage, MonsterPool = poolOfGraveyardTest, ImageUrl = "img/biomes/ruine.jpg" };
     public static Biomes graveyard = new Biomes { BiomeType = TypeOfBiome.Graveyard, MonsterPool = poolOfGraveyardTest, ImageUrl = "img/biomes/cimetiere.jpg" };
 
-    //création des squares
+    //création des squares classic
 
-    public static Square classicForet = new Square { SquareBiome = forest, Name = "classicForet", ChanceToTriggerFight = 0.0, HasNPC = false, HasQuestTarget = false };
+    public static Square classicForest = new Square { SquareBiome = forest, Name = "classicForet", ChanceToTriggerFight = 0.0, HasNPC = false, HasQuestTarget = false };
     public static Square classicDesert = new Square { SquareBiome = desert, Name = "classicDesert", ChanceToTriggerFight = 0.0, HasNPC = false, HasQuestTarget = false };
     public static Square classicVillage = new Square { SquareBiome = village, Name = "classicVillage", ChanceToTriggerFight = 0.0, HasNPC = false, HasQuestTarget = false };
     public static Square classicRuined = new Square { SquareBiome = ruinedVillage, Name = "classicRuined", ChanceToTriggerFight = 0.0, HasNPC = false, HasQuestTarget = false };
     public static Square classicGraveyard = new Square { SquareBiome = graveyard, Name = "classicGraveyard", ChanceToTriggerFight = 0.0, HasNPC = false, HasQuestTarget = false };
+
+    //création de villes
+
+    public static Square astrubVillage = new Square { SquareBiome = village, Name = "Astrub", ChanceToTriggerFight = 0.0, HasNPC = false, HasQuestTarget = false };
 
     //création de la map
 
@@ -104,16 +108,22 @@
 
     private static Square[][] CreateMapLayout()
     {
+        Square[][] mapLayout = new Square[300][];
 
-        Square[][] mapLayout = new Square[20][];
-
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < 300; i++)
         {
-            mapLayout[i] = new Square[] { classicGraveyard, classicGraveyard, classicVillage, classicRuined, classicRuined, classicGraveyard, classicForet, classicForet, classicForet, classicGraveyard, classicGraveyard, classicGraveyard, classicVillage, classicRuined, classicRuined, classicGraveyard, classicForet, classicForet, classicForet, classicGraveyard };
+            mapLayout[i] = new Square[300];
+
+            for (int j = 0; j < 300; j++)
+            {
+                mapLayout[i][j] = classicForest;
+            }
         }
-        //, classicGraveyard, classicGraveyard, classicVillage, classicRuined, classicRuined, classicGraveyard, classicForet, classicForet, classicForet, classicGraveyard
+
+        //ajout de la ville de départ astrub
+        mapLayout[150][150] = astrubVillage;
+
         return mapLayout;
-       
     }
     
 }

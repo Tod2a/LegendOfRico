@@ -15,7 +15,7 @@ public abstract class Character : INotifyPropertyChanged
     public Item[] Inventory { get; private set; }
     public abstract TypeOfWeapon[] WeaponMastery { get; }
     public abstract TypeOfArmor ArmorMastery { get; }
-    private int positionI = 10; 
+    private int positionI = 150; 
 
     public int PositionI
     {
@@ -29,7 +29,7 @@ public abstract class Character : INotifyPropertyChanged
             }
         }
     }
-    private int positionJ = 10; 
+    private int positionJ = 150; 
 
     public int PositionJ
     {
@@ -83,7 +83,7 @@ public abstract class Character : INotifyPropertyChanged
 
     public void GoDown()
     {
-        if (PositionI < 19)
+        if (PositionI < 299)
         {
             PositionI++;
         }
@@ -99,7 +99,7 @@ public abstract class Character : INotifyPropertyChanged
 
     public void GoRight()
     {
-        if (PositionJ < 19)
+        if (PositionJ < 299)
         {
             PositionJ++;
         }

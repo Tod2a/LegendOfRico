@@ -23,8 +23,8 @@
             MaxJ = PersoTest.PositionJ + 5;
             if (StartI<0) { StartI = 0; }
             if (StartJ < 0) { StartJ = 0; }
-            if (MaxI > 20) { MaxI = 20; }
-            if (MaxJ > 20) { MaxJ = 20; }
+            if (MaxI > 300) { MaxI = 300; }
+            if (MaxJ > 300) { MaxJ = 300; }
         }
     }
 }
