@@ -41,7 +41,7 @@
 
 @code{
     //création d'un personnage test pour la map, création et gestion des personnages encore à définir
-    public static Wizard PersoTest = new Wizard {Name = "Destructor", MapSprite = "img/character/test.png" };
+    public static Wizard PersoTest = new Wizard {Name = "Destructor", MapSprite = "img/character/spriteWizard.png" };
 
     protected override void OnInitialized()
     {
@@ -101,9 +101,9 @@
 
     //création des différents Biomes
 
-    public static Biomes forest = new Biomes { BiomeType = TypeOfBiome.Forest, MonsterPool = poolOfForest, ImageUrl = "img/biomes/foret.jpg" };
-    public static Biomes forest1 = new Biomes { BiomeType = TypeOfBiome.Forest, MonsterPool = poolOfForest, ImageUrl = "img/biomes/foret1.jpg" };
-    public static Biomes forest2 = new Biomes { BiomeType = TypeOfBiome.Forest, MonsterPool = poolOfForest, ImageUrl = "img/biomes/foret2.jpg" };
+    public static Biomes forest = new Biomes { BiomeType = TypeOfBiome.Forest, MonsterPool = poolOfForest, ImageUrl = "img/biomes/foret.png" };
+    public static Biomes forest1 = new Biomes { BiomeType = TypeOfBiome.Forest, MonsterPool = poolOfForest, ImageUrl = "img/biomes/foret1.png" };
+    public static Biomes forest2 = new Biomes { BiomeType = TypeOfBiome.Forest, MonsterPool = poolOfForest, ImageUrl = "img/biomes/foret2.png" };
     public static Biomes desert = new Biomes { BiomeType = TypeOfBiome.Desert, MonsterPool = poolOfDesert, ImageUrl = "img/biomes/desert.jpg" };
     public static Biomes village = new Biomes { BiomeType = TypeOfBiome.Village, MonsterPool = poolOfVillage, ImageUrl = "img/biomes/village.jpg" };
     public static Biomes ruinedVillage = new Biomes { BiomeType = TypeOfBiome.AbandonedVillage, MonsterPool = poolOfRuined, ImageUrl = "img/biomes/ruine.jpg" };
