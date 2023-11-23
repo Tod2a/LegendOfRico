@@ -130,21 +130,21 @@
                 {
                     if (j % 3 == 0 && i % 3 == 0)
                     {
-                        mapLayout[i][j] = new Square { SquareBiome = forest2, Name = "Foret Tranquille", ChanceToTriggerFight = 0.0, HasNPC = false, HasQuestTarget = false };
+                        mapLayout[i][j] = new Square { SquareBiome = plain2, Name = "Plaine tranquille", ChanceToTriggerFight = 0.0, HasNPC = false, HasQuestTarget = false };
                     }
                     else if (j % 3 == 0 && i % 4 == 0)
                     {
-                        mapLayout[i][j] = new Square { SquareBiome = forest, Name = "Foret Tranquille", ChanceToTriggerFight = 0.0, HasNPC = false, HasQuestTarget = false }; 
+                        mapLayout[i][j] = new Square { SquareBiome = plain, Name = "Plaine Tranquille", ChanceToTriggerFight = 0.0, HasNPC = false, HasQuestTarget = false }; 
                     }
                     else
                     {
-                        mapLayout[i][j] = new Square { SquareBiome = forest1, Name = "Foret Tranquille", ChanceToTriggerFight = 0.0, HasNPC = false, HasQuestTarget = false }; 
+                        mapLayout[i][j] = new Square { SquareBiome = plain1, Name = "Plaine Tranquille", ChanceToTriggerFight = 0.0, HasNPC = false, HasQuestTarget = false }; 
                     }
                 }
             }
 
             //ajout de la ville de départ astrub
-            mapLayout[250][250] = astrubVillage;
+            mapLayout[250][250] = new Square { SquareBiome = village, Name = "Astrub", ChanceToTriggerFight = 0.0, HasNPC = false, HasQuestTarget = false };
 
             return mapLayout;
         }
