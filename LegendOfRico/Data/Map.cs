@@ -134,191 +134,7 @@
 
 
 
-
-
-            //création de la foret de Sherloop qui habrite un des 4 boss du jeu
-            for (int i = 0; i < 150;  i++)
-            {
-                for (int j = 0;j < 150; j++)
-                {
-                    if (j % 3 == 0 && i % 3 == 0)
-                    {
-                        mapLayout[i][j] = new Square {SquareBiome = forest2, Name = "Forêt de Sherloop", ChanceToTriggerFight = 0.1 };
-                    }
-                    else if (j % 3 == 0 && i % 4 == 0)
-                    {
-                        mapLayout[i][j] = new Square {SquareBiome = forest, Name = "Forêt de Sherloop", ChanceToTriggerFight = 0.1 };
-                    }
-                    else
-                    {
-                        mapLayout[i][j] = new Square {SquareBiome = forest1, Name = "Forêt de Sherloop", ChanceToTriggerFight = 0.1 };
-                    }
-                }
-            }
-            //zone dangereuse de cette forêt
-            for (int i = 20; i < 80; i++)
-            {
-                for (int j = 10; j < 65; j++)
-                {
-                    mapLayout[i][j] = new Square { SquareBiome = forest3, Name = "Forêt de Sherloop", ChanceToTriggerFight = 0.5 };
-                }
-            }
-            //deuxieme zone dangereuse de cette forêt
-            for (int i = 90; i < 110; i++)
-            {
-                for (int j = 110; j < 142; j++)
-                {
-                    mapLayout[i][j] = new Square { SquareBiome = forest3, Name = "Forêt de Sherloop", ChanceToTriggerFight = 0.5 };
-                }
-            }
-            //zone de boss de la forêt
-            mapLayout[72][53] = new Square { SquareBiome = bossForest, Name = "Forêt de Sherloop", ChanceToTriggerFight = 1.0 };
-
-
-
-
-
-
-
-            //création du désert Dune eternelle (référence à zelda et roi lion POG) qui habrite un des 4 boss du jeu
-            for (int i = 349; i < 500; i++)
-            {
-                for (int j = 349; j < 500; j++)
-                {
-                    if (j % 3 == 0 && i % 3 == 0)
-                    {
-                        mapLayout[i][j] = new Square {SquareBiome = desert2, Name = "La dune éternelle", ChanceToTriggerFight = 0.1 };
-                    }
-                    else if (j % 3 == 0 && i % 4 == 0)
-                    {
-                        mapLayout[i][j] = new Square {SquareBiome = desert, Name = "La dune éternelle", ChanceToTriggerFight = 0.1 };
-                    }
-                    else
-                    {
-                        mapLayout[i][j] = new Square {SquareBiome = desert1, Name = "La dune éternelle", ChanceToTriggerFight = 0.1 };
-                    }
-                }
-            }
-            //zone dangereuse de ce désert
-            for (int i = 359; i < 372; i++)
-            {
-                for (int j = 352; j < 369; j++)
-                {
-                    mapLayout[i][j] = new Square { SquareBiome = desert3, Name = "La dune éternelle", ChanceToTriggerFight = 0.5 };
-                }
-            }
-            //deuxieme zone dangereuse de ce desert
-            for (int i = 398; i < 431; i++)
-            {
-                for (int j = 354; j < 365; j++)
-                {
-                    mapLayout[i][j] = new Square { SquareBiome = desert3, Name = "La dune éternelle", ChanceToTriggerFight = 0.5 };
-                }
-            }
-            //troisieme zone dangereuse de ce desert
-            for (int i = 357; i < 378; i++)
-            {
-                for (int j = 378; j < 403; j++)
-                {
-                    mapLayout[i][j] = new Square { SquareBiome = desert3, Name = "La dune éternelle", ChanceToTriggerFight = 0.5 };
-                }
-            }
-            //quatrieme zone dangereuse de ce desert
-            for (int i = 469; i < 498; i++)
-            {
-                for (int j = 476; j < 496; j++)
-                {
-                    mapLayout[i][j] = new Square { SquareBiome = desert3, Name = "La dune éternelle", ChanceToTriggerFight = 0.5 };
-                }
-            }
-            //zone de boss de ce desert
-            mapLayout[499][499] = new Square { SquareBiome = bossDesert, Name = "Le scorpion éternel", ChanceToTriggerFight = 1.0 };
-
-
-
-
-
-            //création de l'ancienne cité de joy bean qui habrite un des 4 boss du jeu
-            for (int i = 349; i < 500; i++)
-            {
-                for (int j = 0; j < 150; j++)
-                {
-                    if (j % 3 == 0 && i % 3 == 0)
-                    {
-                        mapLayout[i][j] = new Square {SquareBiome = ruinedVillage2, Name = "l'ancienne cité de Joy Bean", ChanceToTriggerFight = 0.1 };
-                    }
-                    else if (j % 3 == 0 && i % 4 == 0)
-                    {
-                        mapLayout[i][j] = new Square {SquareBiome = ruinedVillage, Name = "l'ancienne cité de Joy Bean", ChanceToTriggerFight = 0.1 };
-                    }
-                    else
-                    {
-                        mapLayout[i][j] = new Square {SquareBiome = ruinedVillage1, Name = "l'ancienne cité de jJoy Bean", ChanceToTriggerFight = 0.1 };
-                    }
-                }
-            }
-            //zone dangereuse de cette cité en ruine
-            for (int i = 420; i < 468; i++)
-            {
-                for (int j = 56; j < 98; j++)
-                {
-                    mapLayout[i][j] = new Square { SquareBiome = ruinedVillage3, Name = "l'ancienne cité de Joy Bean", ChanceToTriggerFight = 0.5 };
-                }
-            }
-            //deuxieme zone dangereuse de cette cité en ruine
-            for (int i = 357; i < 376; i++)
-            {
-                for (int j = 120; j < 135; j++)
-                {
-                    mapLayout[i][j] = new Square { SquareBiome = ruinedVillage3, Name = "l'ancienne cité de Joy Bean", ChanceToTriggerFight = 0.5 };
-                }
-            }
-            //zone de boss de cette cité en ruine
-            mapLayout[428][58] = new Square { SquareBiome = bossRuinedVillage, Name = "Le grand Joy Bean", ChanceToTriggerFight = 1.0 };
-
-
-
-
-
-            //création du Cimetière des tontaton qui habrite un des 4 boss du jeu
-            for (int i = 0; i < 150; i++)
-            {
-                for (int j = 349; j < 500; j++)
-                {
-                    if (j % 3 == 0 && i % 3 == 0)
-                    {
-                        mapLayout[i][j] = new Square {SquareBiome = graveyard2, Name = "Cimetière des tontaton", ChanceToTriggerFight = 0.1 };
-                    }
-                    else if (j % 3 == 0 && i % 4 == 0)
-                    {
-                        mapLayout[i][j] = new Square {SquareBiome = graveyard, Name = "Cimetière des tontaton", ChanceToTriggerFight = 0.1  };
-                    }
-                    else
-                    {
-                        mapLayout[i][j] = new Square {SquareBiome = graveyard1, Name = "Cimetière des tontaton", ChanceToTriggerFight = 0.1 };
-                    }
-                }
-            }
-            //zone dangereuse de ce cimetière
-            for (int i = 20; i < 60; i++)
-            {
-                for (int j = 390; j < 435; j++)
-                {
-                    mapLayout[i][j] = new Square { SquareBiome = graveyard3, Name = "Cimetière des tontaton", ChanceToTriggerFight = 0.5 };
-                }
-            }
-            //deuxieme zone dangereuse de ce cimetiere
-            for (int i = 90; i < 110; i++)
-            {
-                for (int j = 369; j < 385; j++)
-                {
-                    mapLayout[i][j] = new Square { SquareBiome = graveyard3, Name = "Cimetière des tontaton", ChanceToTriggerFight = 0.5 };
-                }
-            }
-            //zone de boss du cimetière
-            mapLayout[36][401] = new Square { SquareBiome = bossGraveyard, Name = "Chef tontaton revenu", ChanceToTriggerFight = 1.0 };
-
-
+         
 
             //ajout d'une ruine au nord de la map
 
@@ -566,6 +382,190 @@
                     }
                 }
             }
+
+            //création des 4 zones importantes du jeu, celles des 4 boss
+
+            //création de la foret de Sherloop qui habrite un des 4 boss du jeu
+            for (int i = 0; i < 150; i++)
+            {
+                for (int j = 0; j < 150; j++)
+                {
+                    if (j % 3 == 0 && i % 3 == 0)
+                    {
+                        mapLayout[i][j] = new Square { SquareBiome = forest2, Name = "Forêt de Sherloop", ChanceToTriggerFight = 0.1 };
+                    }
+                    else if (j % 3 == 0 && i % 4 == 0)
+                    {
+                        mapLayout[i][j] = new Square { SquareBiome = forest, Name = "Forêt de Sherloop", ChanceToTriggerFight = 0.1 };
+                    }
+                    else
+                    {
+                        mapLayout[i][j] = new Square { SquareBiome = forest1, Name = "Forêt de Sherloop", ChanceToTriggerFight = 0.1 };
+                    }
+                }
+            }
+            //zone dangereuse de cette forêt
+            for (int i = 20; i < 80; i++)
+            {
+                for (int j = 10; j < 65; j++)
+                {
+                    mapLayout[i][j] = new Square { SquareBiome = forest3, Name = "Forêt de Sherloop", ChanceToTriggerFight = 0.5 };
+                }
+            }
+            //deuxieme zone dangereuse de cette forêt
+            for (int i = 90; i < 110; i++)
+            {
+                for (int j = 110; j < 142; j++)
+                {
+                    mapLayout[i][j] = new Square { SquareBiome = forest3, Name = "Forêt de Sherloop", ChanceToTriggerFight = 0.5 };
+                }
+            }
+            //zone de boss de la forêt
+            mapLayout[72][53] = new Square { SquareBiome = bossForest, Name = "Forêt de Sherloop", ChanceToTriggerFight = 1.0 };
+
+
+
+
+
+
+
+            //création du désert Dune eternelle (référence à zelda et roi lion POG) qui habrite un des 4 boss du jeu
+            for (int i = 349; i < 500; i++)
+            {
+                for (int j = 349; j < 500; j++)
+                {
+                    if (j % 3 == 0 && i % 3 == 0)
+                    {
+                        mapLayout[i][j] = new Square { SquareBiome = desert2, Name = "La dune éternelle", ChanceToTriggerFight = 0.1 };
+                    }
+                    else if (j % 3 == 0 && i % 4 == 0)
+                    {
+                        mapLayout[i][j] = new Square { SquareBiome = desert, Name = "La dune éternelle", ChanceToTriggerFight = 0.1 };
+                    }
+                    else
+                    {
+                        mapLayout[i][j] = new Square { SquareBiome = desert1, Name = "La dune éternelle", ChanceToTriggerFight = 0.1 };
+                    }
+                }
+            }
+            //zone dangereuse de ce désert
+            for (int i = 359; i < 372; i++)
+            {
+                for (int j = 352; j < 369; j++)
+                {
+                    mapLayout[i][j] = new Square { SquareBiome = desert3, Name = "La dune éternelle", ChanceToTriggerFight = 0.5 };
+                }
+            }
+            //deuxieme zone dangereuse de ce desert
+            for (int i = 398; i < 431; i++)
+            {
+                for (int j = 354; j < 365; j++)
+                {
+                    mapLayout[i][j] = new Square { SquareBiome = desert3, Name = "La dune éternelle", ChanceToTriggerFight = 0.5 };
+                }
+            }
+            //troisieme zone dangereuse de ce desert
+            for (int i = 357; i < 378; i++)
+            {
+                for (int j = 378; j < 403; j++)
+                {
+                    mapLayout[i][j] = new Square { SquareBiome = desert3, Name = "La dune éternelle", ChanceToTriggerFight = 0.5 };
+                }
+            }
+            //quatrieme zone dangereuse de ce desert
+            for (int i = 469; i < 498; i++)
+            {
+                for (int j = 476; j < 496; j++)
+                {
+                    mapLayout[i][j] = new Square { SquareBiome = desert3, Name = "La dune éternelle", ChanceToTriggerFight = 0.5 };
+                }
+            }
+            //zone de boss de ce desert
+            mapLayout[499][499] = new Square { SquareBiome = bossDesert, Name = "Le scorpion éternel", ChanceToTriggerFight = 1.0 };
+
+
+
+
+
+            //création de l'ancienne cité de joy bean qui habrite un des 4 boss du jeu
+            for (int i = 349; i < 500; i++)
+            {
+                for (int j = 0; j < 150; j++)
+                {
+                    if (j % 3 == 0 && i % 3 == 0)
+                    {
+                        mapLayout[i][j] = new Square { SquareBiome = ruinedVillage2, Name = "l'ancienne cité de Joy Bean", ChanceToTriggerFight = 0.1 };
+                    }
+                    else if (j % 3 == 0 && i % 4 == 0)
+                    {
+                        mapLayout[i][j] = new Square { SquareBiome = ruinedVillage, Name = "l'ancienne cité de Joy Bean", ChanceToTriggerFight = 0.1 };
+                    }
+                    else
+                    {
+                        mapLayout[i][j] = new Square { SquareBiome = ruinedVillage1, Name = "l'ancienne cité de jJoy Bean", ChanceToTriggerFight = 0.1 };
+                    }
+                }
+            }
+            //zone dangereuse de cette cité en ruine
+            for (int i = 420; i < 468; i++)
+            {
+                for (int j = 56; j < 98; j++)
+                {
+                    mapLayout[i][j] = new Square { SquareBiome = ruinedVillage3, Name = "l'ancienne cité de Joy Bean", ChanceToTriggerFight = 0.5 };
+                }
+            }
+            //deuxieme zone dangereuse de cette cité en ruine
+            for (int i = 357; i < 376; i++)
+            {
+                for (int j = 120; j < 135; j++)
+                {
+                    mapLayout[i][j] = new Square { SquareBiome = ruinedVillage3, Name = "l'ancienne cité de Joy Bean", ChanceToTriggerFight = 0.5 };
+                }
+            }
+            //zone de boss de cette cité en ruine
+            mapLayout[428][58] = new Square { SquareBiome = bossRuinedVillage, Name = "Le grand Joy Bean", ChanceToTriggerFight = 1.0 };
+
+
+
+
+
+            //création du Cimetière des tontaton qui habrite un des 4 boss du jeu
+            for (int i = 0; i < 150; i++)
+            {
+                for (int j = 349; j < 500; j++)
+                {
+                    if (j % 3 == 0 && i % 3 == 0)
+                    {
+                        mapLayout[i][j] = new Square { SquareBiome = graveyard2, Name = "Cimetière des tontaton", ChanceToTriggerFight = 0.1 };
+                    }
+                    else if (j % 3 == 0 && i % 4 == 0)
+                    {
+                        mapLayout[i][j] = new Square { SquareBiome = graveyard, Name = "Cimetière des tontaton", ChanceToTriggerFight = 0.1 };
+                    }
+                    else
+                    {
+                        mapLayout[i][j] = new Square { SquareBiome = graveyard1, Name = "Cimetière des tontaton", ChanceToTriggerFight = 0.1 };
+                    }
+                }
+            }
+            //zone dangereuse de ce cimetière
+            for (int i = 20; i < 60; i++)
+            {
+                for (int j = 390; j < 435; j++)
+                {
+                    mapLayout[i][j] = new Square { SquareBiome = graveyard3, Name = "Cimetière des tontaton", ChanceToTriggerFight = 0.5 };
+                }
+            }
+            //deuxieme zone dangereuse de ce cimetiere
+            for (int i = 90; i < 110; i++)
+            {
+                for (int j = 369; j < 385; j++)
+                {
+                    mapLayout[i][j] = new Square { SquareBiome = graveyard3, Name = "Cimetière des tontaton", ChanceToTriggerFight = 0.5 };
+                }
+            }
+            //zone de boss du cimetière
+            mapLayout[36][401] = new Square { SquareBiome = bossGraveyard, Name = "Chef tontaton revenu", ChanceToTriggerFight = 1.0 };
 
             // ajout des différents villages
 
