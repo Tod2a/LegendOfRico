@@ -34,6 +34,10 @@
 
         // création des pool de monstres, 4 pools par biomes, trois en fonction du niveau de la map et un pour les boss
         //contenu des pool encore à définir mais divers pool déjà créés pour faire la map
+        //plaine
+        public static Monster[] poolOfPlain = { skeleton, skeleton };
+        public static Monster[] poolOfMediumPlain = { skeleton, skeleton };
+        public static Monster[] poolOfHardPlain = { skeleton, skeleton };
         //forêt
         public static Monster[] poolOfForest = { skeleton, skeleton };
         public static Monster[] poolOfMediumForest = { skeleton, skeleton };
@@ -59,8 +63,12 @@
         public static Monster[] poolOfMediumVillage = { skeleton, skeleton };
         public static Monster[] poolOfHardVillage = { skeleton, skeleton };
         public static Monster[] bossOfVillage = { skeleton, skeleton };
-    
+
         //création des différents Biomes 3 par types pour les différentes images et un pour les boss sauf pour le village ou il n'en faut pas 3 pour les images
+        //Plaine
+        public static Biomes plain = new Biomes { BiomeType = TypeOfBiome.Plain, MonsterPool = poolOfPlain, ImageUrl = "img/biomes/plaine.png" };
+        public static Biomes plain1 = new Biomes { BiomeType = TypeOfBiome.Plain, MonsterPool = poolOfPlain, ImageUrl = "img/biomes/plaine1.png" };
+        public static Biomes plain2 = new Biomes { BiomeType = TypeOfBiome.Plain, MonsterPool = poolOfPlain, ImageUrl = "img/biomes/plaine2.png" };
         //forêt
         public static Biomes forest = new Biomes { BiomeType = TypeOfBiome.Forest, MonsterPool = poolOfForest, ImageUrl = "img/biomes/foret.png" };
         public static Biomes forest1 = new Biomes { BiomeType = TypeOfBiome.Forest, MonsterPool = poolOfForest, ImageUrl = "img/biomes/foret1.png" };
@@ -89,7 +97,7 @@
         
         
 
-        //création des squares classic
+        //création des squares classic à supprimer après
 
         public static Square classicForest = new Square { SquareBiome = forest, Name = "classicForet", ChanceToTriggerFight = 0.0, HasNPC = false, HasQuestTarget = false };
         public static Square classicForest1 = new Square { SquareBiome = forest1, Name = "classicForet", ChanceToTriggerFight = 0.0, HasNPC = false, HasQuestTarget = false };
@@ -108,7 +116,7 @@
 
         public static Square astrubVillage = new Square { SquareBiome = village, Name = "Astrub", ChanceToTriggerFight = 0.0, HasNPC = false, HasQuestTarget = false };
 
-        //assignation des Squares
+        //fonction de création de la map qui retourne une matrice de 500 sur 500 remplies de squares et qui sera appellée dans le paramère mapLayout
 
         private static Square[][] CreateMapLayout()
         {
@@ -122,15 +130,15 @@
                 {
                     if (j % 3 == 0 && i % 3 == 0)
                     {
-                        mapLayout[i][j] = classicForest2;
+                        mapLayout[i][j] = new Square { SquareBiome = forest2, Name = "Foret Tranquille", ChanceToTriggerFight = 0.0, HasNPC = false, HasQuestTarget = false };
                     }
                     else if (j % 3 == 0 && i % 4 == 0)
                     {
-                        mapLayout[i][j] = classicForest;
+                        mapLayout[i][j] = new Square { SquareBiome = forest, Name = "Foret Tranquille", ChanceToTriggerFight = 0.0, HasNPC = false, HasQuestTarget = false }; 
                     }
                     else
                     {
-                        mapLayout[i][j] = classicForest1;
+                        mapLayout[i][j] = new Square { SquareBiome = forest1, Name = "Foret Tranquille", ChanceToTriggerFight = 0.0, HasNPC = false, HasQuestTarget = false }; 
                     }
                 }
             }
