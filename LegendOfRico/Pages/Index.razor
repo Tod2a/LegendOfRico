@@ -1,57 +1,75 @@
 ﻿@page "/"
 @using LegendOfRico.Data
 
+
 <PageTitle>The legend of Rico</PageTitle>
 <h1 class="gameTitle">The legend of Rico</h1>
-<div class="layoutGame" @onkeydown="HandleKeyDown" @onkeydown:preventDefault=true tabindex="0">
-<div class="displayGame">
-    <div class="gameMenu">
-    <p>Personnage: @PersoTest.Name</p>
-    <p>Position: [@PersoTest.PositionI][@PersoTest.PositionJ]@gameMap.MapLayout[PersoTest.PositionI][PersoTest.PositionJ].Name</p>
+@if (game.ShowConnection == true)
+{
+    <div class="displayGame">
+        <div class="gameMenu">
+            <button @onclick="() => Game.SwitchForm(game)">Switch</button>
+        </div>
+        <div class="intro">
+
+        </div>
     </div>
-    <div class="mapDisplay">
-    <table border="1" class="Map">
-        @for(int i = gameMap.StartI; i < gameMap.MaxI; i++)
-        {
-            <tr>
-            @for (int j = gameMap.StartJ; j < gameMap.MaxJ; j++)
+} 
+else if (game.ShowGame == true)
+{
+    <div class="layoutGame" @onkeydown="HandleKeyDown" @onkeydown:preventDefault=true tabindex="0">
+    <div class="displayGame">
+        <div class="gameMenu">
+        <p>Personnage: @game.Player.Name</p>
+        <p>Position: [@game.Player.PositionI][@game.Player.PositionJ]@game.GameMap.MapLayout[game.Player.PositionI][game.Player.PositionJ].Name</p>
+                <button @onclick="() => Game.SwitchForm(game)">Switch</button>
+        </div>
+        <div class="mapDisplay">
+        <table border="1" class="Map">
+            @for(int i = game.GameMap.StartI; i < game.GameMap.MaxI; i++)
             {
-                @if (i == PersoTest.PositionI && j == PersoTest.PositionJ)
+                <tr>
+                @for (int j = game.GameMap.StartJ; j < game.GameMap.MaxJ; j++)
                 {
-                    <td>
-                        <div style="background-image: url('@gameMap.MapLayout[i][j].SquareBiome.ImageUrl');">
-                            <img src="@PersoTest.MapSprite" alt="Image PersoTest" class="character-image">
-                        </div>
-                    </td>
+                    @if (i == game.Player.PositionI && j == game.Player.PositionJ)
+                    {
+                        <td>
+                            <div style="background-image: url('@game.GameMap.MapLayout[i][j].SquareBiome.ImageUrl');">
+                                <img src="@game.Player.MapSprite" alt="Image Player" class="character-image">
+                            </div>
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            <div style="background-image: url('@game.GameMap.MapLayout[i][j].SquareBiome.ImageUrl');"></div>
+                        </td>
+                    }
+                   
                 }
-                else
-                {
-                    <td>
-                        <div style="background-image: url('@gameMap.MapLayout[i][j].SquareBiome.ImageUrl');"></div>
-                    </td>
-                }
-               
+                </tr>
             }
-            </tr>
-        }
-    </table>
+        </table>
+        </div>
     </div>
-</div>
-</div>
+    </div>
+}
 
 @code{
+        
+
     //création d'un personnage test pour la map, création et gestion des personnages encore à définir
     public static Wizard PersoTest = new Wizard {Name = "Destructor", MapSprite = "img/character/spriteWizard.png" };
+       
+    //création du jeu 
 
-    //création de la map
-
-    public Map gameMap = new Map { MapLevel = 1 };
+    public Game game = new Game { Player = PersoTest };
 
     //modification de la fonction de blazor pour ajouter l'update de l'affichage de la map en fonctiond de l'emplacement du personnage
 
     protected override void OnInitialized()
     {
-        gameMap.UpdateMapDisplay(PersoTest);
+        game.GameMap.UpdateMapDisplay(game.Player);
 
         base.OnInitialized();
     }
@@ -63,20 +81,22 @@
         switch (e.Key)
         {
             case "ArrowLeft":
-                PersoTest.GoLeft();
+                game.Player.GoLeft();
                 break;
             case "ArrowRight":
-                PersoTest.GoRight();
+                game.Player.GoRight();
                 break;
             case "ArrowUp":
-                PersoTest.GoUp();
+                game.Player.GoUp();
                 break;
             case "ArrowDown":
-                PersoTest.GoDown();
+                game.Player.GoDown();
                 break;
         }
-        gameMap.UpdateMapDisplay(PersoTest);
+        game.GameMap.UpdateMapDisplay(game.Player);
     }
+
+    
 
  
     

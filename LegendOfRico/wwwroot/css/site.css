@@ -155,6 +155,12 @@ a, .btn-link {
     cursor: pointer;
 }
 
+.intro {
+    flex: 4;
+    margin-left: 2em;
+    border: 2px solid #8b4513;
+}
+
 .mapDisplay {
     flex: 4; 
     margin-left: 2em;

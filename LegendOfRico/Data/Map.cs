@@ -8,7 +8,7 @@
         public int MaxI { get; set; }
         public int StartJ { get; set; }
         public int MaxJ { get; set; }
-        public int MapLevel { get; set; }
+        public int MapLevel { get; set; } = 1;
         public void LevelUpMap()
         {
             //A definir.
