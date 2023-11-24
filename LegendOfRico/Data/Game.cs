@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components.Web;
 using System.ComponentModel;
+using Newtonsoft.Json;
+using Microsoft.JSInterop;
 
 namespace LegendOfRico.Data
 {
@@ -10,6 +12,7 @@ namespace LegendOfRico.Data
         public Character Player { get; set; } = new Wizard { };
         private bool showConnection = true;
         private bool showGame = false;
+        private bool showFight = false;
         public bool ShowConnection
         {
             get => showConnection;
@@ -32,6 +35,19 @@ namespace LegendOfRico.Data
                 {
                     showGame = value;
                     OnPropertyChanged(nameof(ShowGame));
+                }
+            }
+        }
+
+        public bool ShowFight
+        {
+            get => showFight;
+            set
+            {
+                if (showFight != value)
+                {
+                    showFight = value;
+                    OnPropertyChanged(nameof(ShowFight));
                 }
             }
         }
@@ -77,6 +93,7 @@ namespace LegendOfRico.Data
                 game.ShowConnection = true;
                 game.ShowGame = false;
         }
+        
 
 
 

@@ -1,5 +1,8 @@
 ﻿@page "/"
 @using LegendOfRico.Data
+@using Microsoft.JSInterop
+@using System.Text.Json
+@inject IJSRuntime JSRuntime
 
 
 <PageTitle>The legend of Rico</PageTitle>
@@ -52,6 +55,7 @@ else if (game.ShowGame == true)
         <div class="gameMenu">
         <p>Personnage: @game.Player.Name</p>
         <p>Position: [@game.Player.PositionI][@game.Player.PositionJ]@game.GameMap.MapLayout[game.Player.PositionI][game.Player.PositionJ].Name</p>
+                <button @onclick="() => Save(game.Player)">Sauvegarde</button>
         <button @onclick="() => Game.Deconnection(game)">Deconnexion</button>
         </div>
         <div class="mapDisplay">
@@ -84,6 +88,10 @@ else if (game.ShowGame == true)
     </div>
     </div>
 }
+else if (game.ShowFight == true)
+{
+    
+}
 
 @code{
     private CharacterModel characterModel = new CharacterModel();
@@ -92,6 +100,50 @@ else if (game.ShowGame == true)
     private void CreateCharacter()
     {
         game.CreateCharacter(characterModel.CharacterName, characterModel.SelectedType);
+    }
+
+    public async void Save(Character charact)
+    {
+        string jsonCharact = System.Text.Json.JsonSerializer.Serialize(charact);
+        await SaveFile(jsonCharact);     
+    }
+
+    public async Task SaveFile(string jsonData)
+    {
+        try
+        {
+            string saveFolderPath = "saves";
+            string fileName = "savings.json";
+
+            // Ensure the saves folder exists
+            Directory.CreateDirectory(saveFolderPath);
+
+            string filePath = Path.Combine(saveFolderPath, fileName);
+
+            // Write the data to the file
+            await File.WriteAllTextAsync(filePath, jsonData);
+
+            Console.WriteLine($"File saved at: {filePath}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error saving file: {ex.Message}");
+        }
+    }
+
+    public List<Character> LoadCharacters(string filePath)
+    {
+        try
+        {
+            string jsonData = File.ReadAllText(filePath);
+            List<Character> characters = System.Text.Json.JsonSerializer.Deserialize<List<Character>>(jsonData);
+            return characters;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error loading file: {ex.Message}");
+            return null;
+        }
     }
           
     //modification de la fonction de blazor pour ajouter l'update de l'affichage de la map en fonctiond de l'emplacement du personnage
