@@ -13,6 +13,20 @@ public abstract class Character : INotifyPropertyChanged
     public Weapon CharacterWeapon { get; private set; }
     public Armor CharacterArmor { get; private set; }
     public Item[] Inventory { get; private set; }
+     
+    private string mapSprite;
+    public string MapSprite
+    {
+        get { return mapSprite; }
+        set
+        {
+            if (mapSprite != value)
+            {
+                mapSprite = value;
+                OnPropertyChanged(nameof(MapSprite));
+            }
+        }
+    }
     public abstract TypeOfWeapon[] WeaponMastery { get; }
     public abstract TypeOfArmor ArmorMastery { get; }
     private int positionI = 250; 
@@ -43,7 +57,6 @@ public abstract class Character : INotifyPropertyChanged
             }
         }
     }
-    public string MapSprite {  get; set; }
 
     public void CreateCharacter()
     {

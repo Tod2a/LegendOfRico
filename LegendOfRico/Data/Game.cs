@@ -7,9 +7,9 @@ namespace LegendOfRico.Data
     public class Game
     {
         public Map GameMap { get; set; } = new Map();
-        public Character Player { get; set; }
-        private bool showConnection = false;
-        private bool showGame = true;
+        public Character Player { get; set; } = new Wizard { };
+        private bool showConnection = true;
+        private bool showGame = false;
         public bool ShowConnection
         {
             get => showConnection;
@@ -38,18 +38,44 @@ namespace LegendOfRico.Data
 
 
 
-        public static void SwitchForm(Game game)
+
+
+        public void CreateCharacter(string CName, TypeOfCharacter Type)
         {
-            if (game.ShowConnection == false)
+            Player = MakeCharacter(CName, Type);
+            ShowConnection = false;
+            ShowGame = true;
+
+            OnPropertyChanged(nameof(Player));
+        }
+
+        private static Character MakeCharacter(string CName, TypeOfCharacter Type)
+        {
+            if (Type == TypeOfCharacter.Magicien)
             {
-                game.ShowConnection = true;
-                game.ShowGame = false;
+                return new Wizard { Name = CName, MapSprite = "img/character/spriteWizard.png" };
+            }
+            else if (Type == TypeOfCharacter.Guerrier)
+            {
+                return new Fighter { Name = CName, MapSprite = "img/character/spriteFighter.png" };
+            }
+            else if (Type == TypeOfCharacter.Voleur)
+            {
+                return new Rogue { Name = CName, MapSprite = "img/character/spriteRogue.png" };
+            }
+            else if (Type == TypeOfCharacter.clerc) 
+            {
+                return new Cleric { Name = CName, MapSprite = "img/character/spriteCleric.png" };
             }
             else
             {
-                game.ShowConnection = false;
-                game.ShowGame = true;
+                return new Ranger { Name = CName, MapSprite = "img/character/spriteRanger.png" };
             }
+        }
+        public static void Deconnection(Game game)
+        {
+                game.ShowConnection = true;
+                game.ShowGame = false;
         }
 
 

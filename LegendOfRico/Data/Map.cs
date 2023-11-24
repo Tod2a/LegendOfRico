@@ -421,7 +421,7 @@
                 }
             }
             //zone de boss de la forêt
-            mapLayout[72][53] = new Square { SquareBiome = bossForest, Name = "Forêt de Sherloop", ChanceToTriggerFight = 1.0 };
+            mapLayout[72][53] = new Square { SquareBiome = bossForest, Name = "Sun Wukong", ChanceToTriggerFight = 1.0 };
 
 
 

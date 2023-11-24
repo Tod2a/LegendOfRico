@@ -159,6 +159,7 @@ a, .btn-link {
     flex: 4;
     margin-left: 2em;
     border: 2px solid #8b4513;
+    background-color: #ffffff;
 }
 
 .mapDisplay {
