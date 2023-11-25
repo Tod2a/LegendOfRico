@@ -190,9 +190,6 @@ namespace LegendOfRico.Data
 
 
 
-
-
-
         //fonction de création de la map qui retourne une matrice de 500 sur 500 remplies de squares et qui sera appellée dans le paramère mapLayout
 
         private static Square[][] CreateMapLayout()
@@ -223,8 +220,6 @@ namespace LegendOfRico.Data
 
 
 
-
-
             //ajout d'une ruine au nord de la map
 
             TrippleSquare(0, 54, 161, 201, mapLayout, TypeOfBiome.AbandonedVillage, "Les ruines de raftool", 0.1);
@@ -240,218 +235,90 @@ namespace LegendOfRico.Data
             TrippleSquare(184, 198, 43, 63, mapLayout, TypeOfBiome.DesertDifficult, "Les milles et une boucles", 0.25);
 
             //ajout d'un cimetiere nord-ouest de la map
-
             TrippleSquare(154, 198, 83, 180, mapLayout, TypeOfBiome.Graveyard, "Cimetière des héros", 0.1);
 
             //une forêt
-
             TrippleSquare(243, 312, 22, 110, mapLayout, TypeOfBiome.Forest, "Forêt de Yasopp", 0.1);
 
             //un désert
-
             TrippleSquare(61, 165, 157, 221, mapLayout, TypeOfBiome.Desert, "désert aride", 0.1);
 
             //une ruine
-
             TrippleSquare(121, 201, 231, 321, mapLayout, TypeOfBiome.AbandonedVillage, "ruines de zilda", 0.1);
 
             //une forêt
-
             TrippleSquare(154, 334, 375, 465, mapLayout, TypeOfBiome.Forest, "Forêt de Yasopp", 0.1);
 
             // un cimetiere
-
             TrippleSquare(387, 487, 178, 320, mapLayout, TypeOfBiome.Graveyard, "Cimetière sombre", 0.1);
 
             //une forêt
-
             TrippleSquare(268, 324, 275, 311, mapLayout, TypeOfBiome.Forest, "Forêt d'elwyne", 0.1);
 
             // un désert
-
             TrippleSquare(275, 323, 175, 212, mapLayout, TypeOfBiome.Desert, "désert humide", 0.1);
 
+            
+           
             //création des 4 zones importantes du jeu, celles des 4 boss
 
             //création de la foret de Sherloop qui habrite un des 4 boss du jeu
-            for (int i = 0; i < 150; i++)
-            {
-                for (int j = 0; j < 150; j++)
-                {
-                    if (j % 3 == 0 && i % 3 == 0)
-                    {
-                        mapLayout[i][j] = new Square { SquareBiome = forest2, Name = "Forêt de Sherloop", ChanceToTriggerFight = 0.1 };
-                    }
-                    else if (j % 3 == 0 && i % 4 == 0)
-                    {
-                        mapLayout[i][j] = new Square { SquareBiome = forest, Name = "Forêt de Sherloop", ChanceToTriggerFight = 0.1 };
-                    }
-                    else
-                    {
-                        mapLayout[i][j] = new Square { SquareBiome = forest1, Name = "Forêt de Sherloop", ChanceToTriggerFight = 0.1 };
-                    }
-                }
-            }
+            TrippleSquare(0, 150, 0, 150, mapLayout, TypeOfBiome.Forest, "Forêt de sherloop", 0.1);
+
             //zone dangereuse de cette forêt
-            for (int i = 20; i < 80; i++)
-            {
-                for (int j = 10; j < 65; j++)
-                {
-                    mapLayout[i][j] = new Square { SquareBiome = forest3, Name = "Forêt de Sherloop", ChanceToTriggerFight = 0.25 };
-                }
-            }
+            TrippleSquare(20, 80, 10, 65, mapLayout, TypeOfBiome.ForestDifficult, "Forêt de Sherloop", 0.25);
+
             //deuxieme zone dangereuse de cette forêt
-            for (int i = 90; i < 110; i++)
-            {
-                for (int j = 110; j < 142; j++)
-                {
-                    mapLayout[i][j] = new Square { SquareBiome = forest3, Name = "Forêt de Sherloop", ChanceToTriggerFight = 0.25 };
-                }
-            }
+            TrippleSquare(90, 110, 110, 142, mapLayout, TypeOfBiome.ForestDifficult, "Forêt de Sherloop", 0.25);
+
             //zone de boss de la forêt
             mapLayout[72][53] = new Square { SquareBiome = bossForest, Name = "Sun Wukong", ChanceToTriggerFight = 1.0 };
 
-
-
-
-
-
+           
 
             //création du désert Dune eternelle (référence à zelda et roi lion POG) qui habrite un des 4 boss du jeu
-            for (int i = 349; i < 500; i++)
-            {
-                for (int j = 349; j < 500; j++)
-                {
-                    if (j % 3 == 0 && i % 3 == 0)
-                    {
-                        mapLayout[i][j] = new Square { SquareBiome = desert2, Name = "La dune éternelle", ChanceToTriggerFight = 0.1 };
-                    }
-                    else if (j % 3 == 0 && i % 4 == 0)
-                    {
-                        mapLayout[i][j] = new Square { SquareBiome = desert, Name = "La dune éternelle", ChanceToTriggerFight = 0.1 };
-                    }
-                    else
-                    {
-                        mapLayout[i][j] = new Square { SquareBiome = desert1, Name = "La dune éternelle", ChanceToTriggerFight = 0.1 };
-                    }
-                }
-            }
+            TrippleSquare(349, 500, 349, 500, mapLayout, TypeOfBiome.Desert, "La dune éternelle", 0.1);
+
             //zone dangereuse de ce désert
-            for (int i = 359; i < 372; i++)
-            {
-                for (int j = 352; j < 369; j++)
-                {
-                    mapLayout[i][j] = new Square { SquareBiome = desert3, Name = "La dune éternelle", ChanceToTriggerFight = 0.25 };
-                }
-            }
+            TrippleSquare(359, 372, 352, 369, mapLayout, TypeOfBiome.DesertDifficult, "La dune éternelle", 0.1);
+
             //deuxieme zone dangereuse de ce desert
-            for (int i = 398; i < 431; i++)
-            {
-                for (int j = 354; j < 365; j++)
-                {
-                    mapLayout[i][j] = new Square { SquareBiome = desert3, Name = "La dune éternelle", ChanceToTriggerFight = 0.25 };
-                }
-            }
+            TrippleSquare(398, 431, 354, 365, mapLayout, TypeOfBiome.DesertDifficult, "La dune éternelle", 0.1);
+
             //troisieme zone dangereuse de ce desert
-            for (int i = 357; i < 378; i++)
-            {
-                for (int j = 378; j < 403; j++)
-                {
-                    mapLayout[i][j] = new Square { SquareBiome = desert3, Name = "La dune éternelle", ChanceToTriggerFight = 0.25 };
-                }
-            }
+            TrippleSquare(357, 378, 378, 403, mapLayout, TypeOfBiome.DesertDifficult, "La dune éternelle", 0.1);
+
             //quatrieme zone dangereuse de ce desert
-            for (int i = 469; i < 498; i++)
-            {
-                for (int j = 476; j < 496; j++)
-                {
-                    mapLayout[i][j] = new Square { SquareBiome = desert3, Name = "La dune éternelle", ChanceToTriggerFight = 0.25 };
-                }
-            }
+            TrippleSquare(469, 498, 476, 496, mapLayout, TypeOfBiome.DesertDifficult, "La dune éternelle", 0.1);
+
             //zone de boss de ce desert
             mapLayout[499][499] = new Square { SquareBiome = bossDesert, Name = "Le scorpion éternel", ChanceToTriggerFight = 1.0 };
 
 
 
-
-
             //création de l'ancienne cité de joy bean qui habrite un des 4 boss du jeu
-            for (int i = 349; i < 500; i++)
-            {
-                for (int j = 0; j < 150; j++)
-                {
-                    if (j % 3 == 0 && i % 3 == 0)
-                    {
-                        mapLayout[i][j] = new Square { SquareBiome = ruinedVillage2, Name = "l'ancienne cité de Joy Bean", ChanceToTriggerFight = 0.1 };
-                    }
-                    else if (j % 3 == 0 && i % 4 == 0)
-                    {
-                        mapLayout[i][j] = new Square { SquareBiome = ruinedVillage, Name = "l'ancienne cité de Joy Bean", ChanceToTriggerFight = 0.1 };
-                    }
-                    else
-                    {
-                        mapLayout[i][j] = new Square { SquareBiome = ruinedVillage1, Name = "l'ancienne cité de jJoy Bean", ChanceToTriggerFight = 0.1 };
-                    }
-                }
-            }
+            TrippleSquare(349, 500, 0, 150, mapLayout, TypeOfBiome.AbandonedVillage, "l'ancienne cité de Joy Bean", 0.1);
+
             //zone dangereuse de cette cité en ruine
-            for (int i = 420; i < 468; i++)
-            {
-                for (int j = 56; j < 98; j++)
-                {
-                    mapLayout[i][j] = new Square { SquareBiome = ruinedVillage3, Name = "l'ancienne cité de Joy Bean", ChanceToTriggerFight = 0.25 };
-                }
-            }
+            TrippleSquare(420, 468, 56, 98, mapLayout, TypeOfBiome.AbandonedVillageDifficult, "l'ancienne cité de Joy Bean", 0.25);
+
             //deuxieme zone dangereuse de cette cité en ruine
-            for (int i = 357; i < 376; i++)
-            {
-                for (int j = 120; j < 135; j++)
-                {
-                    mapLayout[i][j] = new Square { SquareBiome = ruinedVillage3, Name = "l'ancienne cité de Joy Bean", ChanceToTriggerFight = 0.25 };
-                }
-            }
+            TrippleSquare(357, 376, 120, 135, mapLayout, TypeOfBiome.AbandonedVillageDifficult, "l'ancienne cité de Joy Bean", 0.25);
+
             //zone de boss de cette cité en ruine
             mapLayout[428][58] = new Square { SquareBiome = bossRuinedVillage, Name = "Le grand Joy Bean", ChanceToTriggerFight = 1.0 };
 
 
 
-
-
             //création du Cimetière des tontaton qui habrite un des 4 boss du jeu
-            for (int i = 0; i < 150; i++)
-            {
-                for (int j = 349; j < 500; j++)
-                {
-                    if (j % 3 == 0 && i % 3 == 0)
-                    {
-                        mapLayout[i][j] = new Square { SquareBiome = graveyard2, Name = "Cimetière des tontaton", ChanceToTriggerFight = 0.1 };
-                    }
-                    else if (j % 3 == 0 && i % 4 == 0)
-                    {
-                        mapLayout[i][j] = new Square { SquareBiome = graveyard, Name = "Cimetière des tontaton", ChanceToTriggerFight = 0.1 };
-                    }
-                    else
-                    {
-                        mapLayout[i][j] = new Square { SquareBiome = graveyard1, Name = "Cimetière des tontaton", ChanceToTriggerFight = 0.1 };
-                    }
-                }
-            }
+            TrippleSquare(0, 150, 349, 500, mapLayout, TypeOfBiome.Graveyard, "Cimetière des tontaton", 0.1);
+
             //zone dangereuse de ce cimetière
-            for (int i = 20; i < 60; i++)
-            {
-                for (int j = 390; j < 435; j++)
-                {
-                    mapLayout[i][j] = new Square { SquareBiome = graveyard3, Name = "Cimetière des tontaton", ChanceToTriggerFight = 0.25 };
-                }
-            }
+            TrippleSquare(20, 60, 390, 435, mapLayout, TypeOfBiome.GraveyardDifficult, "Cimetière des tontaton", 0.25);
+
             //deuxieme zone dangereuse de ce cimetiere
-            for (int i = 90; i < 110; i++)
-            {
-                for (int j = 369; j < 385; j++)
-                {
-                    mapLayout[i][j] = new Square { SquareBiome = graveyard3, Name = "Cimetière des tontaton", ChanceToTriggerFight = 0.25 };
-                }
-            }
+            TrippleSquare(90, 110, 369, 385, mapLayout, TypeOfBiome.GraveyardDifficult, "Cimetière des tontaton", 0.25);
+
             //zone de boss du cimetière
             mapLayout[36][401] = new Square { SquareBiome = bossGraveyard, Name = "Chef tontaton revenu", ChanceToTriggerFight = 1.0 };
 
