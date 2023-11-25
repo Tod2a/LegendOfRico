@@ -125,6 +125,12 @@ public abstract class Character : INotifyPropertyChanged
         Inventory.Remove(armor);
         ArmorAmount += armor.ArmorOfArmor;
     }
+    public void UnequipArmor()
+    {
+        Inventory.Add(CharacterArmor);
+        ArmorAmount -= CharacterArmor.ArmorOfArmor;
+        CharacterArmor = new Topless();
+    }
 
     public void LootItem(Item droppedItem)
     {
@@ -153,13 +159,6 @@ public abstract class Character : INotifyPropertyChanged
         {
             //To be defined
         }
-    }
-
-    public void UnequipArmor()
-    {
-        Inventory.Add(CharacterArmor);
-        ArmorAmount -= CharacterArmor.ArmorOfArmor;
-        CharacterArmor = null;
     }
 
     public void GoUp()
