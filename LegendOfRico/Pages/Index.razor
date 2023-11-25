@@ -18,15 +18,12 @@
                 <InputText @bind-Value="characterModel.CharacterName" />
                 <label>Type de personnage</label>
 
-                <InputRadioGroup @bind-Value="characterModel.SelectedType">
+                <select @bind="characterModel.SelectedType" class="form-control">
                     @foreach (var option in Enum.GetValues(typeof(TypeOfCharacter)))
                     {
-                        <label>
-                            <InputRadio Value="@option" />
-                            @option.ToString()
-                        </label>
+                        <option value="@option">@option.ToString()</option>
                     }
-                </InputRadioGroup>
+                </select>
                 <button type="submit">Créer</button>
             </EditForm>
         </div>
@@ -102,49 +99,7 @@ else if (game.ShowFight == true)
         game.CreateCharacter(characterModel.CharacterName, characterModel.SelectedType);
     }
 
-    public async void Save(Character charact)
-    {
-        string jsonCharact = System.Text.Json.JsonSerializer.Serialize(charact);
-        await SaveFile(jsonCharact);     
-    }
-
-    public async Task SaveFile(string jsonData)
-    {
-        try
-        {
-            string saveFolderPath = "saves";
-            string fileName = "savings.json";
-
-            // Ensure the saves folder exists
-            Directory.CreateDirectory(saveFolderPath);
-
-            string filePath = Path.Combine(saveFolderPath, fileName);
-
-            // Write the data to the file
-            await File.WriteAllTextAsync(filePath, jsonData);
-
-            Console.WriteLine($"File saved at: {filePath}");
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error saving file: {ex.Message}");
-        }
-    }
-
-    public List<Character> LoadCharacters(string filePath)
-    {
-        try
-        {
-            string jsonData = File.ReadAllText(filePath);
-            List<Character> characters = System.Text.Json.JsonSerializer.Deserialize<List<Character>>(jsonData);
-            return characters;
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error loading file: {ex.Message}");
-            return null;
-        }
-    }
+    
           
     //modification de la fonction de blazor pour ajouter l'update de l'affichage de la map en fonctiond de l'emplacement du personnage
 
