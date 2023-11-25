@@ -7,6 +7,7 @@ public enum TypeOfWeapon
     Dagger,
     Greatsword,
     Mace,
+    None,
     Staff,
     Sword
 }

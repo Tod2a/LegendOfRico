@@ -65,7 +65,7 @@ public abstract class Character : INotifyPropertyChanged
         //To be defined
     }
 
-    public void Hit(Monster target)
+    public virtual void Hit(Monster target)
     {
         int WeaponDamageRoll =
             (new Random()).Next(CharacterWeapon.MinimumWeaponDamage, CharacterWeapon.MaximumWeaponDamage + 1);
