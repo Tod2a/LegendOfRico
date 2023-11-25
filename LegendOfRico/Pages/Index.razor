@@ -55,7 +55,7 @@ else if (game.ShowGame == true)
         <div class="gameMenu">
         <p>Personnage: @game.Player.Name</p>
         <p>Position: [@game.Player.PositionI][@game.Player.PositionJ]@game.GameMap.MapLayout[game.Player.PositionI][game.Player.PositionJ].Name</p>
-                <button @onclick="() => Save(game.Player)">Sauvegarde</button>
+                <!--<button onclick="() => Save(game.Player)">Sauvegarde</button>-->
         <button @onclick="() => Game.Deconnection(game)">Deconnexion</button>
         </div>
         <div class="mapDisplay">
