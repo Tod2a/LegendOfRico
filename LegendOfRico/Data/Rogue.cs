@@ -4,7 +4,7 @@ public class Rogue : Character
 {
     public override TypeOfWeapon[] WeaponMastery => new[] {TypeOfWeapon.Dagger, TypeOfWeapon.Sword };
     public override TypeOfArmor ArmorMastery => TypeOfArmor.Medium;
-    public Weapon OffHandWeapon { get; private set; }
+    public Weapon OffHandWeapon { get; private set; } = new Fist();
     public override bool CanEquipShield { get; protected set; } = false;
     public override int MaxHitPoints => 15;
     public double ChanceToDodge { get; private set; } = 0.25;
@@ -20,11 +20,11 @@ public class Rogue : Character
     }
     
     //Special "Hit" for Rogue since he can wield two weapons at once
-    public new void Hit(Monster target)
+    public override void Hit(Monster target)
     {
         int weaponDamageRoll =
             (new Random()).Next(CharacterWeapon.MinimumWeaponDamage, CharacterWeapon.MaximumWeaponDamage + 1);
-        if (OffHandWeapon != null) //Adds half off hand weapon damage to the damage roll
+        if (!(OffHandWeapon.GetType() == typeof(Fist))) //Adds half off hand weapon damage to the damage roll
         {
             weaponDamageRoll += 
                 (int)(new Random()).Next(OffHandWeapon.MinimumWeaponDamage, OffHandWeapon.MaximumWeaponDamage + 1) / 2;
