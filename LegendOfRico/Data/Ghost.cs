@@ -1,10 +1,8 @@
 ﻿namespace LegendOfRico.Data
 {
-    public class Ghost : Monster
+    public class Ghost : Undead
     {
         public int HitMinDmg = 1;
         public int HitMaxDmg = 2;
-
-       
     }
 }

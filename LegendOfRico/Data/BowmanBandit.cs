@@ -1,6 +1,6 @@
 ﻿namespace LegendOfRico.Data
 {
-    public class BowmanBandit: Monster
+    public class BowmanBandit: Humanoid
     {
         public int ArrowMinDmg = 10;
         public int ArrowMaxDmg = 20;

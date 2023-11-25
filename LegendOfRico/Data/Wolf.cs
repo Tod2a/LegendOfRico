@@ -1,6 +1,6 @@
 ﻿namespace LegendOfRico.Data
 {
-    public class Wolf : Monster
+    public class Wolf : Beast
     {
         public int BiteMinDmg = 5;
         public int BiteMaxDmg = 10;

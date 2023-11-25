@@ -2,7 +2,7 @@
 {
     public class Bow : Weapon
     {
-        public override TypeOfWeapon WeaponType { get; } = TypeOfWeapon.Bow;
-        public TypeOfDamage WeaponTypeDamage = TypeOfDamage.Piercing;
+        public override TypeOfWeapon WeaponType => TypeOfWeapon.Bow;
+        public override TypeOfDamage WeaponTypeOfDamage => TypeOfDamage.Piercing;
     }
 }

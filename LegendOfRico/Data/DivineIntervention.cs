@@ -1,11 +1,11 @@
 namespace LegendOfRico.Data;
 
-public class Smite : Spells
+public class DivineIntervention : Spells
 {
-    public override string SpellName => "Smite";
-    public override int MaxNumberOfUses => 10;
-    public override int MinValue => 10;
-    public override int MaxValue => 20;
+    public override string SpellName => "Divine Intervention";
+    public override int MaxNumberOfUses => 3;
+    public override int MinValue => 60;
+    public override int MaxValue => 80;
     public TypeOfDamage SpellType = TypeOfDamage.Holy;
 
     public void UseSpell(Monster target)

@@ -1,6 +1,6 @@
 ﻿namespace LegendOfRico.Data
 {
-    public class StrayDog : Monster
+    public class StrayDog : Beast
     {
         public int BiteMinDmg = 2;
         public int BiteMaxDmg = 6;

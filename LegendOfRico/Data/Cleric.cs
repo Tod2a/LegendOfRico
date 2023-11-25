@@ -2,9 +2,10 @@ namespace LegendOfRico.Data;
 
 public class Cleric : Character
 {
-    public override TypeOfWeapon[] WeaponMastery { get; } = new[] { TypeOfWeapon.Axe, TypeOfWeapon.Sword };
-    public override TypeOfArmor ArmorMastery { get; } = TypeOfArmor.Medium;
-    public Shield ClericShield { get; private set; }
+    public override TypeOfWeapon[] WeaponMastery => new[] { TypeOfWeapon.Mace };
+    public override TypeOfArmor ArmorMastery => TypeOfArmor.Medium;
+    public override bool CanEquipShield { get; protected set; } = true;
+    public override int MaxHitPoints => 25;
     public Dictionary<Spells, int> SpellBook { get; private set; }
 
     public void InitializeSpellBook()

@@ -2,7 +2,7 @@
 {
     public class Mace : Weapon
     {
-        public override TypeOfWeapon WeaponType { get; } = TypeOfWeapon.Mace;
-        public TypeOfDamage WeaponTypeDamage = TypeOfDamage.Bludgeoning;
+        public override TypeOfWeapon WeaponType => TypeOfWeapon.Mace;
+        public override TypeOfDamage WeaponTypeOfDamage => TypeOfDamage.Bludgeoning;
     }
 }

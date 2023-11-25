@@ -1,14 +1,14 @@
 namespace LegendOfRico.Data;
 
-public class Fireball : Spells
+public class Pyroblast : Spells
 {
-    public override string SpellName => "Fireball";
-    public override int MaxNumberOfUses => 10;
-    public override int MinValue => 10;
-    public override int MaxValue => 30;
+    public override string SpellName => "Pyroblast";
+    public override int MaxNumberOfUses => 3;
+    public override int MinValue => 70;
+    public override int MaxValue => 100;
     public TypeOfDamage SpellType = TypeOfDamage.Fire;
-    public double CritChance = 0.05;
-    public double BurnChance = 0.2;
+    public double CritChance = 0.1;
+    public double BurnChance = 0.5;
 
     public void UseSpell(Monster target)
     {
@@ -18,7 +18,7 @@ public class Fireball : Spells
         {
             damageRoll *= 2;
         }
-        if ((new Random()).NextDouble() <= BurnChance)
+        if ((new Random()).NextDouble() <= BurnChance && !target.MonsterResistance.Contains(SpellType))
         {
             target.Burnt();
         }

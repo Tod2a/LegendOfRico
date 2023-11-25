@@ -2,8 +2,22 @@
 {
     public class Fighter: Character
     {
-        public override TypeOfWeapon[] WeaponMastery { get; } = new[] { TypeOfWeapon.Axe, TypeOfWeapon.Sword };
+        public override TypeOfWeapon[] WeaponMastery =>
+            new[] { TypeOfWeapon.Axe, TypeOfWeapon.Sword, TypeOfWeapon.Greatsword };
+        public override TypeOfArmor ArmorMastery => TypeOfArmor.Heavy;
+        public override bool CanEquipShield { get; protected set; } = true;
+        public override int MaxHitPoints => 30;
 
-        public override TypeOfArmor ArmorMastery { get; } = TypeOfArmor.Heavy;
+        public void EquipGreatsword(Weapon greatsword)
+        {
+            EquipWeapon(greatsword);
+            CanEquipShield = false;
+        }
+
+        public void UnequipGreatsword()
+        {
+            UnequipWeapon();
+            CanEquipShield = true;
+        }
     }
 }

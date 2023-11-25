@@ -5,9 +5,9 @@
         public int MinHeal { get; } = 10;
         public int MaxHeal { get; } = 30;
 
-        public void RollHealValue(int value) // à définir
+        public int RollHealValue(int value) // à définir
         {
-
+            return (new Random()).Next(MinHeal, MaxHeal + 1);
         }
     }
 }
