@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34024.191
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegendOfRico", "LegendOfRico.csproj", "{E791CB46-7672-40A2-80B5-2EC6E69F32FE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegendOfRico", "LegendOfRico.csproj", "{32E556F1-A9B2-4C0D-87F2-5FF82BE8832D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E791CB46-7672-40A2-80B5-2EC6E69F32FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E791CB46-7672-40A2-80B5-2EC6E69F32FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E791CB46-7672-40A2-80B5-2EC6E69F32FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E791CB46-7672-40A2-80B5-2EC6E69F32FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32E556F1-A9B2-4C0D-87F2-5FF82BE8832D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32E556F1-A9B2-4C0D-87F2-5FF82BE8832D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32E556F1-A9B2-4C0D-87F2-5FF82BE8832D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32E556F1-A9B2-4C0D-87F2-5FF82BE8832D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {9649DC11-7974-4D32-81E7-B2DD4E8DECA6}
+		SolutionGuid = {77133F95-4B84-484D-A9E4-E3C1D8E9D34E}
 	EndGlobalSection
 EndGlobal

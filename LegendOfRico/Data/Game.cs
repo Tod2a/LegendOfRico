@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components.Web;
 using System.ComponentModel;
-using Newtonsoft.Json;
 using Microsoft.JSInterop;
 
 namespace LegendOfRico.Data
