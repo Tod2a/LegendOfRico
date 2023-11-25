@@ -33,7 +33,11 @@
 
         //création des monstres 
         //encore à définir et modifer les pools en fonction
-        public static Undead skeleton = new Undead { Name = "Skeleton" };
+        public static Undead skeleton = new Undead { MonsterName = "Skeleton" };
+
+        public static Spider Aragorn = new Spider { MonsterName = "Aragorn", MonsterHP = 5000,  };
+        public static Spider SonOfAragorn = new Spider { MonsterName = "AragornJr", MonsterHP = 1000 };
+        public static Spider CousinOfAragorn = new Spider { MonsterName = "Nrogara", MonsterHP = 2500 };
 
 
         // création des pool de monstres, 4 pools par biomes, trois en fonction du niveau de la map et un pour les boss
@@ -44,9 +48,9 @@
         public static Monster[] poolOfMediumPlain = { skeleton, skeleton };
         public static Monster[] poolOfHardPlain = { skeleton, skeleton };
         //forêt
-        public static Monster[] poolOfForest = { skeleton, skeleton };
-        public static Monster[] poolOfMediumForest = { skeleton, skeleton };
-        public static Monster[] poolOfHardForest = { skeleton, skeleton };
+        public static Monster[] poolOfForest = { SonOfAragorn, skeleton };
+        public static Monster[] poolOfMediumForest = { CousinOfAragorn, skeleton };
+        public static Monster[] poolOfHardForest = { Aragorn, skeleton };
         public static Monster[] bossOfForest = { skeleton, skeleton };
         //désert
         public static Monster[] poolOfDesert = { skeleton, skeleton };

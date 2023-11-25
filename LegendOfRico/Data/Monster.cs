@@ -2,8 +2,8 @@ namespace LegendOfRico.Data;
 
 public abstract class Monster
 {
-    public string MonsterName { get; private set; }
-    public int MonsterHP { get; private set; }
+    public string MonsterName { get; set; }
+    public int MonsterHP { get; set; }
     public abstract TypeOfDamage[] MonsterWeakness { get; }
     public TypeOfDamage[] MonsterResistance { get; private set; }
     public TypeOfMonster MonsterType { get; private set; }
