@@ -34,6 +34,9 @@
         //création des monstres 
         //encore à définir et modifer les pools en fonction
         public static Undead skeleton = new Undead { MonsterName = "Skeleton" };
+        public static Undead Albatard = new Undead { MonsterName = "Albatard", MonsterHP = 5000 };
+        public static Undead Boldel = new Undead { MonsterName = "Boldel", MonsterHP = 2500 };
+        public static Undead Draleo = new Undead { MonsterName = "Draleo", MonsterHP = 1000 };
 
         public static Spider Aragorn = new Spider { MonsterName = "Aragorn", MonsterHP = 5000,  };
         public static Spider SonOfAragorn = new Spider { MonsterName = "AragornJr", MonsterHP = 1000 };
@@ -63,9 +66,9 @@
         public static Monster[] poolOfHardRuined = { skeleton, skeleton };
         public static Monster[] bossOfRuined = { skeleton, skeleton };
         //cimetiere
-        public static Monster[] poolOfGraveyard = { skeleton, skeleton };
-        public static Monster[] poolOfMediumGraveyard = { skeleton, skeleton };
-        public static Monster[] poolOfHardGraveyard = { skeleton, skeleton };
+        public static Monster[] poolOfGraveyard = { Draleo, skeleton };
+        public static Monster[] poolOfMediumGraveyard = { Boldel, skeleton };
+        public static Monster[] poolOfHardGraveyard = { Albatard, skeleton };
         public static Monster[] bossOfGraveyard = { skeleton, skeleton };
         //village
         public static Monster[] poolOfVillage = { skeleton, skeleton };
