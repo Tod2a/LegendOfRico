@@ -67,29 +67,29 @@ public abstract class Character : INotifyPropertyChanged
 
     public virtual void Hit(Monster target)
     {
-        int WeaponDamageRoll =
+        int weaponDamageRoll =
             (new Random()).Next(CharacterWeapon.MinimumWeaponDamage, CharacterWeapon.MaximumWeaponDamage + 1);
         if ((new Random()).NextDouble() <= CharacterWeapon.WeaponCritChance) //Si l'arme crit dégâts x2
         {
-            WeaponDamageRoll *= 2;
+            weaponDamageRoll *= 2;
         }
 
         if (target.MonsterWeakness.Contains(CharacterWeapon.WeaponTypeOfDamage))
         {
-            WeaponDamageRoll *= 2;
+            weaponDamageRoll *= 2;
         }
-        target.TakeDamage(WeaponDamageRoll);
+        target.TakeDamage(weaponDamageRoll);
     }
 
-    public void ReceiveHeal(int HealAmount)
+    public void ReceiveHeal(int healAmount)
     {
-        if (CurrentHitPoints + HealAmount > MaxHitPoints)
+        if (CurrentHitPoints + healAmount > MaxHitPoints)
         {
             CurrentHitPoints = MaxHitPoints;
         }
         else
         {
-            CurrentHitPoints += HealAmount;
+            CurrentHitPoints += healAmount;
         }
     }
 
@@ -104,7 +104,7 @@ public abstract class Character : INotifyPropertyChanged
     {
         Inventory.Add(CharacterShield);
         ArmorAmount -= CharacterShield.ShieldBonusArmor;
-        CharacterShield = null;
+        CharacterShield = new FistShield();
     }
 
     public void EquipWeapon(Weapon weapon)
@@ -116,7 +116,7 @@ public abstract class Character : INotifyPropertyChanged
     public void UnequipWeapon()
     {
         Inventory.Add(CharacterWeapon);
-        CharacterWeapon = null;
+        CharacterWeapon = new Fist();
     }
     
     public void EquipArmor(Armor armor)
