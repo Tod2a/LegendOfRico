@@ -1,4 +1,6 @@
-﻿namespace LegendOfRico.Data
+﻿using System.Collections.Specialized;
+
+namespace LegendOfRico.Data
 {
     public class Map
     {
@@ -87,29 +89,109 @@
         public static Biomes forest = new Biomes { BiomeType = TypeOfBiome.Forest, MonsterPool = poolOfForest, ImageUrl = "img/biomes/foret.png" };
         public static Biomes forest1 = new Biomes { BiomeType = TypeOfBiome.Forest, MonsterPool = poolOfForest, ImageUrl = "img/biomes/foret1.png" };
         public static Biomes forest2 = new Biomes { BiomeType = TypeOfBiome.Forest, MonsterPool = poolOfForest, ImageUrl = "img/biomes/foret2.png" };
-        public static Biomes forest3 = new Biomes { BiomeType = TypeOfBiome.Forest, MonsterPool = poolOfForest, ImageUrl = "img/biomes/foret3.png" };
+        public static Biomes forest3 = new Biomes { BiomeType = TypeOfBiome.ForestDifficult, MonsterPool = poolOfForest, ImageUrl = "img/biomes/foret3.png" };
         public static Biomes bossForest = new Biomes { BiomeType = TypeOfBiome.Forest, MonsterPool = bossOfForest, ImageUrl = "img/biomes/foretBoss.png" };
         //désert
         public static Biomes desert = new Biomes { BiomeType = TypeOfBiome.Desert, MonsterPool = poolOfDesert, ImageUrl = "img/biomes/desert.png" };
         public static Biomes desert1 = new Biomes { BiomeType = TypeOfBiome.Desert, MonsterPool = poolOfDesert, ImageUrl = "img/biomes/desert1.png" };
         public static Biomes desert2 = new Biomes { BiomeType = TypeOfBiome.Desert, MonsterPool = poolOfDesert, ImageUrl = "img/biomes/desert2.png" };
-        public static Biomes desert3 = new Biomes { BiomeType = TypeOfBiome.Desert, MonsterPool = poolOfDesert, ImageUrl = "img/biomes/desert3.png" };
+        public static Biomes desert3 = new Biomes { BiomeType = TypeOfBiome.DesertDifficult, MonsterPool = poolOfDesert, ImageUrl = "img/biomes/desert3.png" };
+        public static Biomes desert4 = new Biomes { BiomeType = TypeOfBiome.DesertDifficult, MonsterPool = poolOfDesert, ImageUrl = "img/biomes/desert4.png" };
+        public static Biomes desert5 = new Biomes { BiomeType = TypeOfBiome.DesertDifficult, MonsterPool = poolOfDesert, ImageUrl = "img/biomes/desert5.png" };
         public static Biomes bossDesert = new Biomes { BiomeType = TypeOfBiome.Desert, MonsterPool = bossOfDesert, ImageUrl = "img/biomes/desertBoss.png" };
         //ruines
         public static Biomes ruinedVillage = new Biomes { BiomeType = TypeOfBiome.AbandonedVillage, MonsterPool = poolOfRuined, ImageUrl = "img/biomes/ruine.png" };
         public static Biomes ruinedVillage1 = new Biomes { BiomeType = TypeOfBiome.AbandonedVillage, MonsterPool = poolOfRuined, ImageUrl = "img/biomes/ruine1.png" };
         public static Biomes ruinedVillage2 = new Biomes { BiomeType = TypeOfBiome.AbandonedVillage, MonsterPool = poolOfRuined, ImageUrl = "img/biomes/ruine2.png" };
-        public static Biomes ruinedVillage3 = new Biomes { BiomeType = TypeOfBiome.AbandonedVillage, MonsterPool = poolOfRuined, ImageUrl = "img/biomes/ruine3.png" };
+        public static Biomes ruinedVillage3 = new Biomes { BiomeType = TypeOfBiome.AbandonedVillageDifficult, MonsterPool = poolOfRuined, ImageUrl = "img/biomes/ruine3.png" };
         public static Biomes bossRuinedVillage = new Biomes { BiomeType = TypeOfBiome.AbandonedVillage, MonsterPool = bossOfRuined, ImageUrl = "img/biomes/ruineBoss.png" };
         //cimetiere
         public static Biomes graveyard = new Biomes { BiomeType = TypeOfBiome.Graveyard, MonsterPool = poolOfGraveyard, ImageUrl = "img/biomes/cimetiere.png" };
         public static Biomes graveyard1 = new Biomes { BiomeType = TypeOfBiome.Graveyard, MonsterPool = poolOfGraveyard, ImageUrl = "img/biomes/cimetiere1.png" };
         public static Biomes graveyard2 = new Biomes { BiomeType = TypeOfBiome.Graveyard, MonsterPool = poolOfGraveyard, ImageUrl = "img/biomes/cimetiere2.png" };
-        public static Biomes graveyard3 = new Biomes { BiomeType = TypeOfBiome.Graveyard, MonsterPool = poolOfGraveyard, ImageUrl = "img/biomes/cimetiere3.png" };
+        public static Biomes graveyard3 = new Biomes { BiomeType = TypeOfBiome.GraveyardDifficult, MonsterPool = poolOfGraveyard, ImageUrl = "img/biomes/cimetiere3.png" };
         public static Biomes bossGraveyard = new Biomes { BiomeType = TypeOfBiome.Graveyard, MonsterPool = bossOfGraveyard, ImageUrl = "img/biomes/cimetiereBoss.png" };
         //village
         public static Biomes village = new Biomes { BiomeType = TypeOfBiome.Village, MonsterPool = poolOfVillage, ImageUrl = "img/biomes/village.png" };
         public static Biomes bossVillage = new Biomes { BiomeType = TypeOfBiome.Village, MonsterPool = bossOfVillage, ImageUrl = "img/biomes/villageBoss.png" };
+
+
+        private static void TrippleSquare(int minI, int maxI, int minJ, int maxJ, Square[][] mapLayout, TypeOfBiome tBiome, string Name, double cTrigger)
+        {
+            Biomes b0 = plain;
+            Biomes b1 = plain1;
+            Biomes b2 = plain2;
+
+            switch (tBiome)
+            {
+                case TypeOfBiome.Forest:
+                    b0 = forest;
+                    b1 = forest1;
+                    b2 = forest2;
+                    break;
+                case TypeOfBiome.AbandonedVillage:
+                    b0 = ruinedVillage;
+                    b1 = ruinedVillage1;
+                    b2 = ruinedVillage2;
+                    break;
+                case TypeOfBiome.Desert:
+                    b0 = desert;
+                    b1 = desert1;
+                    b2 = desert2;
+                    break;
+                case TypeOfBiome.Graveyard:
+                    b0 = graveyard;
+                    b1 = graveyard1;
+                    b2 = graveyard2;
+                    break;
+                case TypeOfBiome.DesertDifficult:
+                    b0 = desert3;
+                    b1 = desert4;
+                    b2 = desert5;
+                    break;
+                case TypeOfBiome.GraveyardDifficult:
+                    b0 = graveyard3;
+                    b1 = graveyard3;
+                    b2 = graveyard3;
+                    break;
+                case TypeOfBiome.AbandonedVillageDifficult:
+                    b0 = ruinedVillage3;
+                    b1 = ruinedVillage3;
+                    b2 = ruinedVillage3;
+                    break;
+                case TypeOfBiome.ForestDifficult:
+                    b0 = forest3;
+                    b1 = forest3;
+                    b2 = forest3;
+                    break;
+
+            }
+            for (int i = minI; i < maxI; i++)
+            {
+                for (int j = minJ; j < maxJ; j++)
+                {
+                    if (j % 3 == 0 && i % 3 == 0)
+                    {
+                        mapLayout[i][j] = new Square { SquareBiome = b2, Name = Name, ChanceToTriggerFight = cTrigger };
+                    }
+                    else if (j % 3 == 0 && i % 4 == 0)
+                    {
+                        mapLayout[i][j] = new Square { SquareBiome = b0, Name = Name, ChanceToTriggerFight = cTrigger };
+                    }
+                    else
+                    {
+                        mapLayout[i][j] = new Square { SquareBiome = b1, Name = Name, ChanceToTriggerFight = cTrigger };
+                    }
+                }
+            }
+
+        }
+
+
+
+
+
+
 
         //fonction de création de la map qui retourne une matrice de 500 sur 500 remplies de squares et qui sera appellée dans le paramère mapLayout
 
@@ -141,254 +223,53 @@
 
 
 
-         
+
 
             //ajout d'une ruine au nord de la map
 
-            for (int i = 0; i < 54; i++)
-            {
-                for (int j = 161; j < 201; j++)
-                {
-                    if (j % 3 == 0 && i % 3 == 0)
-                    {
-                        mapLayout[i][j] = new Square { SquareBiome = ruinedVillage2, Name = "Les ruines de raftool", ChanceToTriggerFight = 0.1 };
-                    }
-                    else if (j % 3 == 0 && i % 4 == 0)
-                    {
-                        mapLayout[i][j] = new Square { SquareBiome = ruinedVillage, Name = "Les ruines de raftool", ChanceToTriggerFight = 0.1 };
-                    }
-                    else
-                    {
-                        mapLayout[i][j] = new Square { SquareBiome = ruinedVillage1, Name = "Les ruines de raftool", ChanceToTriggerFight = 0.1 };
-                    }
-                }
-            }
-            for (int i = 20; i < 32; i++)
-            {
-                for (int j = 187; j < 194; j++)
-                {
-                    mapLayout[i][j] = new Square { SquareBiome = ruinedVillage3, Name = "Les ruines de raftool", ChanceToTriggerFight = 0.25 };
-                }
-            }
+            TrippleSquare(0, 54, 161, 201, mapLayout, TypeOfBiome.AbandonedVillage, "Les ruines de raftool", 0.1);
+            TrippleSquare(20, 32, 187, 194, mapLayout, TypeOfBiome.AbandonedVillageDifficult, "Les ruines de raftool", 0.25);
 
-            //ajout une petite foret
-
-            for (int i = 60; i < 110; i++)
-            {
-                for (int j = 234; j < 327; j++)
-                {
-                    if (j % 3 == 0 && i % 3 == 0)
-                    {
-                        mapLayout[i][j] = new Square { SquareBiome = forest2, Name = "Forêt de Nibel", ChanceToTriggerFight = 0.1 };
-                    }
-                    else if (j % 3 == 0 && i % 4 == 0)
-                    {
-                        mapLayout[i][j] = new Square { SquareBiome = forest, Name = "Forêt de Nibel", ChanceToTriggerFight = 0.1 };
-                    }
-                    else
-                    {
-                        mapLayout[i][j] = new Square { SquareBiome = forest1, Name = "Forêt de Nibel", ChanceToTriggerFight = 0.1 };
-                    }
-                }
-            }
-            //zone dangereuse de cette forêt
-            for (int i = 89; i < 101; i++)
-            {
-                for (int j = 249; j < 265; j++)
-                {
-                    mapLayout[i][j] = new Square { SquareBiome = forest3, Name = "Forêt de Nibel", ChanceToTriggerFight = 0.25 };
-                }
-            }
+            //ajout foret
+            TrippleSquare(60, 110, 234, 327, mapLayout, TypeOfBiome.Forest, "Forêt de Nibel", 0.1);
+            TrippleSquare(89, 101, 249, 265, mapLayout, TypeOfBiome.ForestDifficult, "Forêt de Nibel", 0.25);
 
             //ajout d'un désert
-            for (int i = 165; i < 230; i++)
-            {
-                for (int j = 24; j < 74; j++)
-                {
-                    if (j % 3 == 0 && i % 3 == 0)
-                    {
-                        mapLayout[i][j] = new Square { SquareBiome = desert2, Name = "Les milles et une boucles", ChanceToTriggerFight = 0.1 };
-                    }
-                    else if (j % 3 == 0 && i % 4 == 0)
-                    {
-                        mapLayout[i][j] = new Square { SquareBiome = desert, Name = "Les milles et une boucles", ChanceToTriggerFight = 0.1 };
-                    }
-                    else
-                    {
-                        mapLayout[i][j] = new Square { SquareBiome = desert1, Name = "Les milles et une boucles", ChanceToTriggerFight = 0.1 };
-                    }
-                }
-            }
-            //zone dangereuse de ce désert
-            for (int i = 184; i < 198; i++)
-            {
-                for (int j = 43; j < 63; j++)
-                {
-                    mapLayout[i][j] = new Square { SquareBiome = desert3, Name = "Les milles et une boucles", ChanceToTriggerFight = 0.25 };
-                }
-            }
+
+            TrippleSquare(165, 230, 24, 74, mapLayout, TypeOfBiome.Desert, "Les milles et une boucles", 0.1);
+            TrippleSquare(184, 198, 43, 63, mapLayout, TypeOfBiome.DesertDifficult, "Les milles et une boucles", 0.25);
 
             //ajout d'un cimetiere nord-ouest de la map
-            for (int i = 154; i < 198; i++)
-            {
-                for (int j = 83; j < 180; j++)
-                {
-                    if (j % 3 == 0 && i % 3 == 0)
-                    {
-                        mapLayout[i][j] = new Square { SquareBiome = graveyard2, Name = "Cimetière des héros", ChanceToTriggerFight = 0.1 };
-                    }
-                    else if (j % 3 == 0 && i % 4 == 0)
-                    {
-                        mapLayout[i][j] = new Square { SquareBiome = graveyard, Name = "Cimetière des héros", ChanceToTriggerFight = 0.1 };
-                    }
-                    else
-                    {
-                        mapLayout[i][j] = new Square { SquareBiome = graveyard1, Name = "Cimetière des héros", ChanceToTriggerFight = 0.1 };
-                    }
-                }
-            }
+
+            TrippleSquare(154, 198, 83, 180, mapLayout, TypeOfBiome.Graveyard, "Cimetière des héros", 0.1);
 
             //une forêt
-            for (int i = 243; i < 312; i++)
-            {
-                for (int j = 22; j < 110; j++)
-                {
-                    if (j % 3 == 0 && i % 3 == 0)
-                    {
-                        mapLayout[i][j] = new Square { SquareBiome = forest2, Name = "Forêt de Yasopp", ChanceToTriggerFight = 0.1 };
-                    }
-                    else if (j % 3 == 0 && i % 4 == 0)
-                    {
-                        mapLayout[i][j] = new Square { SquareBiome = forest, Name = "Forêt de Yasopp", ChanceToTriggerFight = 0.1 };
-                    }
-                    else
-                    {
-                        mapLayout[i][j] = new Square { SquareBiome = forest1, Name = "Forêt de Yasopp", ChanceToTriggerFight = 0.1 };
-                    }
-                }
-            }
+
+            TrippleSquare(243, 312, 22, 110, mapLayout, TypeOfBiome.Forest, "Forêt de Yasopp", 0.1);
 
             //un désert
-            for (int i = 61; i < 165; i++)
-            {
-                for (int j = 157; j < 221; j++)
-                {
-                    if (j % 3 == 0 && i % 3 == 0)
-                    {
-                        mapLayout[i][j] = new Square { SquareBiome = desert2, Name = "désert aride", ChanceToTriggerFight = 0.1 };
-                    }
-                    else if (j % 3 == 0 && i % 4 == 0)
-                    {
-                        mapLayout[i][j] = new Square { SquareBiome = desert, Name = "désert aride", ChanceToTriggerFight = 0.1 };
-                    }
-                    else
-                    {
-                        mapLayout[i][j] = new Square { SquareBiome = desert1, Name = "désert aride", ChanceToTriggerFight = 0.1 };
-                    }
-                }
-            }
+
+            TrippleSquare(61, 165, 157, 221, mapLayout, TypeOfBiome.Desert, "désert aride", 0.1);
 
             //une ruine
 
-            for (int i = 121; i < 201; i++)
-            {
-                for (int j = 231; j < 321; j++)
-                {
-                    if (j % 3 == 0 && i % 3 == 0)
-                    {
-                        mapLayout[i][j] = new Square { SquareBiome = ruinedVillage2, Name = "ruines de zilda", ChanceToTriggerFight = 0.1 };
-                    }
-                    else if (j % 3 == 0 && i % 4 == 0)
-                    {
-                        mapLayout[i][j] = new Square { SquareBiome = ruinedVillage, Name = "ruines de zilda", ChanceToTriggerFight = 0.1 };
-                    }
-                    else
-                    {
-                        mapLayout[i][j] = new Square { SquareBiome = ruinedVillage1, Name = "ruines de zilda", ChanceToTriggerFight = 0.1 };
-                    }
-                }
-            }
+            TrippleSquare(121, 201, 231, 321, mapLayout, TypeOfBiome.AbandonedVillage, "ruines de zilda", 0.1);
 
             //une forêt
-            for (int i = 154; i < 334; i++)
-            {
-                for (int j = 375; j < 465; j++)
-                {
-                    if (j % 3 == 0 && i % 3 == 0)
-                    {
-                        mapLayout[i][j] = new Square { SquareBiome = forest2, Name = "Forêt de Yasopp", ChanceToTriggerFight = 0.1 };
-                    }
-                    else if (j % 3 == 0 && i % 4 == 0)
-                    {
-                        mapLayout[i][j] = new Square { SquareBiome = forest, Name = "Forêt de Yasopp", ChanceToTriggerFight = 0.1 };
-                    }
-                    else
-                    {
-                        mapLayout[i][j] = new Square { SquareBiome = forest1, Name = "Forêt de Yasopp", ChanceToTriggerFight = 0.1 };
-                    }
-                }
-            }
+
+            TrippleSquare(154, 334, 375, 465, mapLayout, TypeOfBiome.Forest, "Forêt de Yasopp", 0.1);
 
             // un cimetiere
 
-            for (int i = 387; i < 487; i++)
-            {
-                for (int j = 178; j < 320; j++)
-                {
-                    if (j % 3 == 0 && i % 3 == 0)
-                    {
-                        mapLayout[i][j] = new Square { SquareBiome = graveyard2, Name = "Cimetière sombre", ChanceToTriggerFight = 0.1 };
-                    }
-                    else if (j % 3 == 0 && i % 4 == 0)
-                    {
-                        mapLayout[i][j] = new Square { SquareBiome = graveyard, Name = "Cimetière sombre", ChanceToTriggerFight = 0.1 };
-                    }
-                    else
-                    {
-                        mapLayout[i][j] = new Square { SquareBiome = graveyard1, Name = "Cimetière sombre", ChanceToTriggerFight = 0.1 };
-                    }
-                }
-            }
+            TrippleSquare(387, 487, 178, 320, mapLayout, TypeOfBiome.Graveyard, "Cimetière sombre", 0.1);
 
             //une forêt
-            for (int i = 268; i < 324; i++)
-            {
-                for (int j = 275; j < 311; j++)
-                {
-                    if (j % 3 == 0 && i % 3 == 0)
-                    {
-                        mapLayout[i][j] = new Square { SquareBiome = forest2, Name = "Forêt d'elwyne", ChanceToTriggerFight = 0.1 };
-                    }
-                    else if (j % 3 == 0 && i % 4 == 0)
-                    {
-                        mapLayout[i][j] = new Square { SquareBiome = forest, Name = "Forêt d'elwyne", ChanceToTriggerFight = 0.1 };
-                    }
-                    else
-                    {
-                        mapLayout[i][j] = new Square { SquareBiome = forest1, Name = "Forêt d'elwyne", ChanceToTriggerFight = 0.1 };
-                    }
-                }
-            }
+
+            TrippleSquare(268, 324, 275, 311, mapLayout, TypeOfBiome.Forest, "Forêt d'elwyne", 0.1);
 
             // un désert
-            for (int i = 275; i < 323; i++)
-            {
-                for (int j = 175; j < 212; j++)
-                {
-                    if (j % 3 == 0 && i % 3 == 0)
-                    {
-                        mapLayout[i][j] = new Square { SquareBiome = desert2, Name = "désert humide", ChanceToTriggerFight = 0.1 };
-                    }
-                    else if (j % 3 == 0 && i % 4 == 0)
-                    {
-                        mapLayout[i][j] = new Square { SquareBiome = desert, Name = "désert humide", ChanceToTriggerFight = 0.1 };
-                    }
-                    else
-                    {
-                        mapLayout[i][j] = new Square { SquareBiome = desert1, Name = "désert humide", ChanceToTriggerFight = 0.1 };
-                    }
-                }
-            }
+
+            TrippleSquare(275, 323, 175, 212, mapLayout, TypeOfBiome.Desert, "désert humide", 0.1);
 
             //création des 4 zones importantes du jeu, celles des 4 boss
 
