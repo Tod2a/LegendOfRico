@@ -10,8 +10,8 @@ public class Smite : Spells
 
     public void UseSpell(Monster target)
     {
-        int DamageRoll = (new Random()).Next(MinValue, MaxValue + 1);
-        target.TakeDamage(DamageRoll);
+        int damageRoll = (new Random()).Next(MinValue, MaxValue + 1);
+        target.TakeDamage(damageRoll);
         if (target.MonsterType == TypeOfMonster.Undead)
         {
             target.Burnt();

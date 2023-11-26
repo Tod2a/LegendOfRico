@@ -4,8 +4,12 @@ public enum TypeOfBiome
 {
     Plain,
     Forest,
+    ForestDifficult,
     Graveyard,
+    GraveyardDifficult,
     Village,
     Desert,
-    AbandonedVillage
+    DesertDifficult,
+    AbandonedVillage,
+    AbandonedVillageDifficult
 }

@@ -2,10 +2,12 @@ namespace LegendOfRico.Data;
 
 public enum TypeOfWeapon
 {
-    Sword,
-    Mace,
-    Staff,
     Axe,
+    Bow,
     Dagger,
-    Bow
+    Greatsword,
+    Mace,
+    None,
+    Staff,
+    Sword
 }

@@ -1,6 +1,6 @@
 ﻿namespace LegendOfRico.Data
 {
-    public class Spider : Monster
+    public class Spider : Beast
     {
         public int HitMinDmg = 5;
         public int HitMaxDmg = 10;

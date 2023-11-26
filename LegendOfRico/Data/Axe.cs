@@ -2,7 +2,7 @@
 {
     public class Axe : Weapon
     {
-        public override TypeOfWeapon WeaponType { get; } = TypeOfWeapon.Axe;
-        public TypeOfDamage WeaponTypeDamage = TypeOfDamage.Slashing;
+        public override TypeOfWeapon WeaponType => TypeOfWeapon.Axe;
+        public override TypeOfDamage WeaponTypeOfDamage => TypeOfDamage.Slashing;
     }
 }

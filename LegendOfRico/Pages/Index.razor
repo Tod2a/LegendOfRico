@@ -1,57 +1,124 @@
 ﻿@page "/"
 @using LegendOfRico.Data
+@using Microsoft.JSInterop
+@using System.Text.Json
+@inject IJSRuntime JSRuntime
+
 
 <PageTitle>The legend of Rico</PageTitle>
 <h1 class="gameTitle">The legend of Rico</h1>
-<div class="layoutGame" @onkeydown="HandleKeyDown" @onkeydown:preventDefault=true tabindex="0">
-<div class="displayGame">
-    <div class="gameMenu">
-    <p>Personnage: @PersoTest.Name</p>
-    <p>Position: [@PersoTest.PositionI][@PersoTest.PositionJ]@gameMap.MapLayout[PersoTest.PositionI][PersoTest.PositionJ].Name</p>
+@if (game.FormShow == TypeOfShow.Connection)
+{
+    <div class="displayGame">
+        <div class="gameMenu">
+            <EditForm Model="@characterModel" OnValidSubmit="CreateCharacter">
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+                <label>Nom du personnage</label>
+                <InputText @bind-Value="characterModel.CharacterName" />
+                <label>Type de personnage</label>
+
+                <select @bind="characterModel.SelectedType" class="form-control">
+                    @foreach (var option in Enum.GetValues(typeof(TypeOfCharacter)))
+                    {
+                        <option value="@option">@option.ToString()</option>
+                    }
+                </select>
+                <button type="submit">Créer</button>
+            </EditForm>
+        </div>
+        <div class="intro">
+            <h2>Bienvenue dans le monde mystique de Ricochico</h2>
+            <p>Explorez ce royaume enchanteur où une aventure épique attend les courageux aventuriers. Au cœur de ce monde fantastique, le grand Ricochico, gardien légendaire, détient la clé d'une relique ancienne renfermant un pouvoir immense.</p>
+
+            <p>Cette relique sacrée est divisée en quatre parties, chacune gardée par un puissant boss :</p>
+            <ul>
+                <li>Sun Wukong, le roi singe, dans la mystérieuse forêt de Sherloop.</li>
+                <li>Le Scorpion Éternel, gardien énigmatique de la Dune Éternelle.</li>
+                <li>Cher Tontaton, revenu d'entre les ombres, au Cimetière des Tontaton.</li>
+                <li>Joy Bean, maître des rêves, dans l'ancienne cité de Joy Bean.</li>
+            </ul>
+
+            <p>Forgez votre destinée, brave aventurier, et dévoilez les secrets de chaque territoire. Seul un héros intrépide pourra accomplir cette quête périlleuse et débloquer le pouvoir ultime nécessaire pour défier le grand Ricochico.</p>
+
+            <p>Que l'aventure commence, et que la légende de Ricochico s'écrive à travers vos exploits audacieux !</p>
+        </div>
     </div>
-    <div class="mapDisplay">
-    <table border="1" class="Map">
-        @for(int i = gameMap.StartI; i < gameMap.MaxI; i++)
-        {
-            <tr>
-            @for (int j = gameMap.StartJ; j < gameMap.MaxJ; j++)
+} 
+else if (game.FormShow == TypeOfShow.Map)
+{
+    <div class="layoutGame" @onkeydown="HandleKeyDown" @onkeydown:preventDefault=true tabindex="0">
+    <div class="displayGame">
+        <div class="gameMenu">
+        <p>Personnage: @game.Player.Name</p>
+        <p>Position: [@game.Player.PositionI][@game.Player.PositionJ]@game.GameMap.MapLayout[game.Player.PositionI][game.Player.PositionJ].Name</p>
+                <!--<button onclick="() => Save(game.Player)">Sauvegarde</button>-->
+        <button @onclick="() => Game.Deconnection(game)">Deconnexion</button>
+        </div>
+        <div class="mapDisplay">
+        <table border="1" class="Map">
+            @for(int i = game.GameMap.StartI; i < game.GameMap.MaxI; i++)
             {
-                @if (i == PersoTest.PositionI && j == PersoTest.PositionJ)
+                <tr>
+                @for (int j = game.GameMap.StartJ; j < game.GameMap.MaxJ; j++)
                 {
-                    <td>
-                        <div style="background-image: url('@gameMap.MapLayout[i][j].SquareBiome.ImageUrl');">
-                            <img src="@PersoTest.MapSprite" alt="Image PersoTest" class="character-image">
-                        </div>
-                    </td>
+                    @if (i == game.Player.PositionI && j == game.Player.PositionJ)
+                    {
+                        <td>
+                            <div style="background-image: url('@game.GameMap.MapLayout[i][j].SquareBiome.ImageUrl');">
+                                <img src="@game.Player.MapSprite" alt="Image Player" class="character-image">
+                            </div>
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            <div style="background-image: url('@game.GameMap.MapLayout[i][j].SquareBiome.ImageUrl');"></div>
+                        </td>
+                    }
+                   
                 }
-                else
-                {
-                    <td>
-                        <div style="background-image: url('@gameMap.MapLayout[i][j].SquareBiome.ImageUrl');"></div>
-                    </td>
-                }
-               
+                </tr>
             }
-            </tr>
-        }
-    </table>
+        </table>
+        </div>
     </div>
-</div>
-</div>
+    </div>
+}
+else if (game.FormShow == TypeOfShow.Fight)
+{
+    <div class="displayGame">
+        <div class="gameMenu">
+            <button @onclick="() => Game.FightWin(game)">Autowin</button>
+        </div>
+        <div class="fight">
+            COMBAT!!!!!
+        </div>
+
+    </div>
+}
 
 @code{
-    //création d'un personnage test pour la map, création et gestion des personnages encore à définir
-    public static Wizard PersoTest = new Wizard {Name = "Destructor", MapSprite = "img/character/spriteWizard.png" };
+    private CharacterModel characterModel = new CharacterModel();
+    //creation du jeu
+    public Game game = new Game { };
 
-    //création de la map
+    
 
-    public Map gameMap = new Map { MapLevel = 1 };
 
+    private void CreateCharacter()
+    {
+        game.CreateCharacter(characterModel.CharacterName, characterModel.SelectedType);
+        game.GameMap.UpdateMapDisplay(game.Player);
+    }
+
+    
+          
     //modification de la fonction de blazor pour ajouter l'update de l'affichage de la map en fonctiond de l'emplacement du personnage
 
     protected override void OnInitialized()
     {
-        gameMap.UpdateMapDisplay(PersoTest);
+        game.GameMap.UpdateMapDisplay(game.Player);
 
         base.OnInitialized();
     }
@@ -63,20 +130,22 @@
         switch (e.Key)
         {
             case "ArrowLeft":
-                PersoTest.GoLeft();
+                game.GoLeft(game);
                 break;
             case "ArrowRight":
-                PersoTest.GoRight();
+                game.GoRight(game);
                 break;
             case "ArrowUp":
-                PersoTest.GoUp();
+                game.GoUp(game);
                 break;
             case "ArrowDown":
-                PersoTest.GoDown();
+                game.GoDown(game);
                 break;
         }
-        gameMap.UpdateMapDisplay(PersoTest);
+        game.GameMap.UpdateMapDisplay(game.Player);
     }
+
+    
 
  
     

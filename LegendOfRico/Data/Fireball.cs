@@ -12,16 +12,16 @@ public class Fireball : Spells
 
     public void UseSpell(Monster target)
     {
-        int DamageRoll = (new Random()).Next(MinValue, MaxValue + 1);
-        target.TakeDamage(DamageRoll);
+        int damageRoll = (new Random()).Next(MinValue, MaxValue + 1);
+        target.TakeDamage(damageRoll);
         if ((new Random()).NextDouble() <= CritChance)
         {
-            DamageRoll *= 2;
+            damageRoll *= 2;
         }
         if ((new Random()).NextDouble() <= BurnChance)
         {
             target.Burnt();
         }
-        target.TakeDamage(DamageRoll);
+        target.TakeDamage(damageRoll);
     }
 }
