@@ -9,6 +9,7 @@ namespace LegendOfRico.Data
     {
         public Map GameMap { get; set; } = new Map();
         public Character Player { get; set; } = new Wizard { };
+        public string fightUrl {  get; set; } 
         private bool showConnection = true;
         private bool showGame = false;
         private bool showFight = false;
@@ -20,69 +21,88 @@ namespace LegendOfRico.Data
 
         public void CreateCharacter(string CName, TypeOfCharacter Type)
         {
-            Player = MakeCharacter(CName, Type);
-            FormShow = TypeOfShow.Map;
-
-            
-        }
-
-        private static Character MakeCharacter(string CName, TypeOfCharacter Type)
-        {
             if (Type == TypeOfCharacter.Magicien)
             {
-                return new Wizard { Name = CName, MapSprite = "img/character/spriteWizard.png" };
+                Player = new Wizard { Name = CName, MapSprite = "img/character/spriteWizard.png" };
             }
             else if (Type == TypeOfCharacter.Guerrier)
             {
-                return new Fighter { Name = CName, MapSprite = "img/character/spriteFighter.png" };
+                Player = new Fighter { Name = CName, MapSprite = "img/character/spriteFighter.png" };
             }
             else if (Type == TypeOfCharacter.Voleur)
             {
-                return new Rogue { Name = CName, MapSprite = "img/character/spriteRogue.png" };
+                Player = new Rogue { Name = CName, MapSprite = "img/character/spriteRogue.png" };
             }
-            else if (Type == TypeOfCharacter.clerc) 
+            else if (Type == TypeOfCharacter.clerc)
             {
-                return new Cleric { Name = CName, MapSprite = "img/character/spriteCleric.png" };
+                Player = new Cleric { Name = CName, MapSprite = "img/character/spriteCleric.png" };
             }
             else
             {
-                return new Ranger { Name = CName, MapSprite = "img/character/spriteRanger.png" };
+                Player = new Ranger { Name = CName, MapSprite = "img/character/spriteRanger.png" };
             }
+            FormShow = TypeOfShow.Map;
+ 
         }
+
         public static void Deconnection(Game game)
         {
             game.FormShow = TypeOfShow.Connection;
         }
 
-        public void GoUp()
+        //Gestion des combats
+        //creation d'une fonction temporaire pour quitter la page de combat
+        public static void FightWin(Game game)
         {
-            if (Player.PositionI > 0)
+            game.FormShow = TypeOfShow.Map;
+        }
+
+        private static void IsFight(Game game, Square localisation)
+        {
+            Random random = new Random();
+            double randomNumber = random.NextDouble();
+            if(randomNumber < localisation.ChanceToTriggerFight)
             {
-                Player.PositionI--;
+                game.FormShow = TypeOfShow.Fight;
             }
         }
 
-        public void GoDown()
+
+
+        //Gestion de déplacement et de trigger fight
+        public void GoUp(Game game)
         {
-            if (Player.PositionI < 499)
+            if (game.Player.PositionI > 0)
             {
-                Player.PositionI++;
+                game.Player.PositionI--;
+                IsFight(game, game.GameMap.MapLayout[game.Player.PositionI][game.Player.PositionJ]);
             }
         }
 
-        public void GoLeft()
+        public void GoDown(Game game)
         {
-            if (Player.PositionJ > 0)
+            if (game.Player.PositionI < 499)
             {
-                Player.PositionJ--;
+                game.Player.PositionI++;
+                IsFight(game, game.GameMap.MapLayout[game.Player.PositionI][game.Player.PositionJ]);
             }
         }
 
-        public void GoRight()
+        public void GoLeft(Game game)
         {
-            if (Player.PositionJ < 499)
+            if (game.Player.PositionJ > 0)
             {
-                Player.PositionJ++;
+                game.Player.PositionJ--;
+                IsFight(game, game.GameMap.MapLayout[game.Player.PositionI][game.Player.PositionJ]);
+            }
+        }
+
+        public void GoRight(Game game)
+        {
+            if (game.Player.PositionJ < 499)
+            {
+                game.Player.PositionJ++;
+                IsFight(game, game.GameMap.MapLayout[game.Player.PositionI][game.Player.PositionJ]);
             }
         }
 

@@ -162,6 +162,13 @@ a, .btn-link {
     background-color: #ffffff;
 }
 
+.fight {
+    flex: 4;
+    margin-left: 2em;
+    border: 2px solid #8b4513;
+    background-color: #ff0000;
+}
+
 .mapDisplay {
     flex: 4; 
     margin-left: 2em;

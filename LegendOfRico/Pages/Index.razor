@@ -87,16 +87,29 @@ else if (game.FormShow == TypeOfShow.Map)
 }
 else if (game.FormShow == TypeOfShow.Fight)
 {
-    
+    <div class="displayGame">
+        <div class="gameMenu">
+            <button @onclick="() => Game.FightWin(game)">Autowin</button>
+        </div>
+        <div class="fight">
+            COMBAT!!!!!
+        </div>
+
+    </div>
 }
 
 @code{
     private CharacterModel characterModel = new CharacterModel();
     //creation du jeu
     public Game game = new Game { };
+
+    
+
+
     private void CreateCharacter()
     {
         game.CreateCharacter(characterModel.CharacterName, characterModel.SelectedType);
+        game.GameMap.UpdateMapDisplay(game.Player);
     }
 
     
@@ -117,16 +130,16 @@ else if (game.FormShow == TypeOfShow.Fight)
         switch (e.Key)
         {
             case "ArrowLeft":
-                game.GoLeft();
+                game.GoLeft(game);
                 break;
             case "ArrowRight":
-                game.GoRight();
+                game.GoRight(game);
                 break;
             case "ArrowUp":
-                game.GoUp();
+                game.GoUp(game);
                 break;
             case "ArrowDown":
-                game.GoDown();
+                game.GoDown(game);
                 break;
         }
         game.GameMap.UpdateMapDisplay(game.Player);
