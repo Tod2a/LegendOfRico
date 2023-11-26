@@ -7,7 +7,7 @@
 
 <PageTitle>The legend of Rico</PageTitle>
 <h1 class="gameTitle">The legend of Rico</h1>
-@if (game.ShowConnection == true)
+@if (game.FormShow == TypeOfShow.Connection)
 {
     <div class="displayGame">
         <div class="gameMenu">
@@ -45,7 +45,7 @@
         </div>
     </div>
 } 
-else if (game.ShowGame == true)
+else if (game.FormShow == TypeOfShow.Map)
 {
     <div class="layoutGame" @onkeydown="HandleKeyDown" @onkeydown:preventDefault=true tabindex="0">
     <div class="displayGame">
@@ -85,7 +85,7 @@ else if (game.ShowGame == true)
     </div>
     </div>
 }
-else if (game.ShowFight == true)
+else if (game.FormShow == TypeOfShow.Fight)
 {
     
 }
@@ -117,16 +117,16 @@ else if (game.ShowFight == true)
         switch (e.Key)
         {
             case "ArrowLeft":
-                game.Player.GoLeft();
+                game.GoLeft();
                 break;
             case "ArrowRight":
-                game.Player.GoRight();
+                game.GoRight();
                 break;
             case "ArrowUp":
-                game.Player.GoUp();
+                game.GoUp();
                 break;
             case "ArrowDown":
-                game.Player.GoDown();
+                game.GoDown();
                 break;
         }
         game.GameMap.UpdateMapDisplay(game.Player);

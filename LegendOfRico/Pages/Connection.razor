@@ -47,12 +47,11 @@
     private void CreateCharacter()
     {
         Console.WriteLine("le bouton marche");
-        Console.WriteLine(game.ShowConnection);
+        Console.WriteLine(game.FormShow);
         game.Player = MakeCharacter(characterModel.CharacterName, characterModel.SelectedType);
-        game.ShowGame = true;
-        game.ShowConnection = false;
+        game.FormShow = TypeOfShow.Map;
         StateHasChanged();
-        Console.WriteLine(game.ShowConnection);
+        Console.WriteLine(game.FormShow);
     }
 
     public static Character MakeCharacter(string CName, TypeOfCharacter Type)

@@ -36,7 +36,7 @@ public abstract class Character : INotifyPropertyChanged
     public int PositionI
     {
         get { return positionI; }
-        private set
+        set
         {
             if (value != positionI)
             {
@@ -50,7 +50,7 @@ public abstract class Character : INotifyPropertyChanged
     public int PositionJ
     {
         get { return positionJ; }
-        private set
+        set
         {
             if (value != positionJ)
             {
@@ -60,12 +60,7 @@ public abstract class Character : INotifyPropertyChanged
         }
     }
 
-    public void CreateCharacter()
-    {
-        //To be defined
-    }
-
-    public virtual void Hit(Monster target)
+        public virtual void Hit(Monster target)
     {
         int weaponDamageRoll =
             (new Random()).Next(CharacterWeapon.MinimumWeaponDamage, CharacterWeapon.MaximumWeaponDamage + 1);
@@ -161,37 +156,7 @@ public abstract class Character : INotifyPropertyChanged
         }
     }
 
-    public void GoUp()
-    {
-        if (PositionI > 0)
-        {
-            PositionI--;
-        }
-    }
-
-    public void GoDown()
-    {
-        if (PositionI < 499)
-        {
-            PositionI++;
-        }
-    }
-
-    public void GoLeft()
-    {
-        if (PositionJ > 0)
-        {
-            PositionJ--;
-        }
-    }
-
-    public void GoRight()
-    {
-        if (PositionJ < 499)
-        {
-            PositionJ++;
-        }
-    }
+    
 
     //gestion du changement des propriété lorsqu'on se déplace sur la carte, permet de réactualiser la carte lors d'un mouvement
     public event PropertyChangedEventHandler PropertyChanged;

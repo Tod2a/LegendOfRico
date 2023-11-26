@@ -12,44 +12,7 @@ namespace LegendOfRico.Data
         private bool showConnection = true;
         private bool showGame = false;
         private bool showFight = false;
-        public bool ShowConnection
-        {
-            get => showConnection;
-            set
-            {
-                if (showConnection != value)
-                {
-                    showConnection = value;
-                    OnPropertyChanged(nameof(ShowConnection));
-                }
-            }
-        }
-
-        public bool ShowGame
-        {
-            get => showGame;
-            set
-            {
-                if (showGame != value)
-                {
-                    showGame = value;
-                    OnPropertyChanged(nameof(ShowGame));
-                }
-            }
-        }
-
-        public bool ShowFight
-        {
-            get => showFight;
-            set
-            {
-                if (showFight != value)
-                {
-                    showFight = value;
-                    OnPropertyChanged(nameof(ShowFight));
-                }
-            }
-        }
+        public TypeOfShow FormShow { get; set; } = TypeOfShow.Connection;
 
 
 
@@ -58,10 +21,9 @@ namespace LegendOfRico.Data
         public void CreateCharacter(string CName, TypeOfCharacter Type)
         {
             Player = MakeCharacter(CName, Type);
-            ShowConnection = false;
-            ShowGame = true;
+            FormShow = TypeOfShow.Map;
 
-            OnPropertyChanged(nameof(Player));
+            
         }
 
         private static Character MakeCharacter(string CName, TypeOfCharacter Type)
@@ -89,21 +51,43 @@ namespace LegendOfRico.Data
         }
         public static void Deconnection(Game game)
         {
-                game.ShowConnection = true;
-                game.ShowGame = false;
+            game.FormShow = TypeOfShow.Connection;
         }
-        
 
-
-
-        //Pour créer l'évenement de changement de form entre connexion, map et combat
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged(string propertyName)
+        public void GoUp()
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            if (Player.PositionI > 0)
+            {
+                Player.PositionI--;
+            }
         }
+
+        public void GoDown()
+        {
+            if (Player.PositionI < 499)
+            {
+                Player.PositionI++;
+            }
+        }
+
+        public void GoLeft()
+        {
+            if (Player.PositionJ > 0)
+            {
+                Player.PositionJ--;
+            }
+        }
+
+        public void GoRight()
+        {
+            if (Player.PositionJ < 499)
+            {
+                Player.PositionJ++;
+            }
+        }
+
+
+        
 
     }
 }
