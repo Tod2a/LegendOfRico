@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components.Web;
 using System.ComponentModel;
 using Microsoft.JSInterop;
+using System.Runtime.CompilerServices;
 
 namespace LegendOfRico.Data
 {
@@ -9,7 +10,7 @@ namespace LegendOfRico.Data
     {
         public Map GameMap { get; set; } = new Map();
         public Character Player { get; set; } = new Wizard { };
-        public string fightUrl {  get; set; } 
+        public string FightUrl {  get; set; } 
         private bool showConnection = true;
         private bool showGame = false;
         private bool showFight = false;
@@ -57,13 +58,71 @@ namespace LegendOfRico.Data
             game.FormShow = TypeOfShow.Map;
         }
 
+        //Fonction qui va vérifier si le déplacement provoque un combat ou pas.
         private static void IsFight(Game game, Square localisation)
         {
             Random random = new Random();
             double randomNumber = random.NextDouble();
             if(randomNumber < localisation.ChanceToTriggerFight)
             {
+                SetBattleImg(game);
                 game.FormShow = TypeOfShow.Fight;
+            }
+        }
+
+        private static void SetBattleImg(Game game)
+        {
+            if (game.GameMap.MapLayout[game.Player.PositionI][game.Player.PositionJ].SquareBiome.BiomeType == TypeOfBiome.Forest || game.GameMap.MapLayout[game.Player.PositionI][game.Player.PositionJ].SquareBiome.BiomeType == TypeOfBiome.ForestDifficult)
+            {
+                if (game.GameMap.MapLayout[game.Player.PositionI][game.Player.PositionJ].ChanceToTriggerFight == 1.0)
+                {
+                    game.FightUrl = "img/layout/fondFightBossBois.png";
+                }
+                else
+                {
+                    game.FightUrl = "img/layout/fondFightBois.png";
+                }
+            }
+            else if (game.GameMap.MapLayout[game.Player.PositionI][game.Player.PositionJ].SquareBiome.BiomeType == TypeOfBiome.Graveyard || game.GameMap.MapLayout[game.Player.PositionI][game.Player.PositionJ].SquareBiome.BiomeType == TypeOfBiome.GraveyardDifficult)
+            {
+                if (game.GameMap.MapLayout[game.Player.PositionI][game.Player.PositionJ].ChanceToTriggerFight == 1.0)
+                {
+                    game.FightUrl = "img/layout/fondFightBossCimetiere.png";
+                }
+                else
+                {
+                    game.FightUrl = "img/layout/fondFightCimetiere.png";
+                }
+            }
+            else if (game.GameMap.MapLayout[game.Player.PositionI][game.Player.PositionJ].SquareBiome.BiomeType == TypeOfBiome.AbandonedVillage || game.GameMap.MapLayout[game.Player.PositionI][game.Player.PositionJ].SquareBiome.BiomeType == TypeOfBiome.AbandonedVillageDifficult)
+            {
+                if (game.GameMap.MapLayout[game.Player.PositionI][game.Player.PositionJ].ChanceToTriggerFight == 1.0)
+                {
+                    game.FightUrl = "img/layout/fondFightBossRuine.png";
+                }
+                else
+                {
+                    game.FightUrl = "img/layout/fondFightRuine.png";
+                }
+            }
+            else if (game.GameMap.MapLayout[game.Player.PositionI][game.Player.PositionJ].SquareBiome.BiomeType == TypeOfBiome.Desert || game.GameMap.MapLayout[game.Player.PositionI][game.Player.PositionJ].SquareBiome.BiomeType == TypeOfBiome.DesertDifficult)
+            {
+                if (game.GameMap.MapLayout[game.Player.PositionI][game.Player.PositionJ].ChanceToTriggerFight == 1.0)
+                {
+                    game.FightUrl = "img/layout/fondFightBossDesert.png";
+                }
+                else
+                {
+                    game.FightUrl = "img/layout/fondFightDesert.png";
+                }
+            }
+            else if (game.GameMap.MapLayout[game.Player.PositionI][game.Player.PositionJ].SquareBiome.BiomeType == TypeOfBiome.Plain)
+            {
+                game.FightUrl = "img/layout/fondFightPlaine.png";
+            }
+            else
+            {
+                game.FightUrl = "img/layout/fondFightBossVillage.png";
             }
         }
 
