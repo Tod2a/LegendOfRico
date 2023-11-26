@@ -205,15 +205,15 @@ namespace LegendOfRico.Data
                     //utilisation des 3 images différentes en fonction du modulo des coordonées de chaque square
                     if (j % 3 == 0 && i % 3 == 0)
                     {
-                        mapLayout[i][j] = new Square {SquareBiome = plain2, Name = "Plaine tranquille", ChanceToTriggerFight = 0.05 };
+                        mapLayout[i][j] = new Square {SquareBiome = plain2, Name = "Plaine tranquille", ChanceToTriggerFight = 0.025 };
                     }
                     else if (j % 3 == 0 && i % 4 == 0)
                     {
-                        mapLayout[i][j] = new Square {SquareBiome = plain, Name = "Plaine Tranquille", ChanceToTriggerFight = 0.05 }; 
+                        mapLayout[i][j] = new Square {SquareBiome = plain, Name = "Plaine Tranquille", ChanceToTriggerFight = 0.025 }; 
                     }
                     else
                     {
-                        mapLayout[i][j] = new Square {SquareBiome = plain1, Name = "Plaine Tranquille", ChanceToTriggerFight = 0.05 }; 
+                        mapLayout[i][j] = new Square {SquareBiome = plain1, Name = "Plaine Tranquille", ChanceToTriggerFight = 0.025 }; 
                     }
                 }
             }
