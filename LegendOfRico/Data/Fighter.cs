@@ -7,6 +7,7 @@
         public override TypeOfArmor ArmorMastery => TypeOfArmor.Heavy;
         public override bool CanEquipShield { get; protected set; } = true;
         public override int MaxHitPoints => 30;
+        public override string fightImgUrl { get; } = "img/Character/fightFighter.png";
 
         public void EquipGreatsword(Weapon greatsword)
         {
