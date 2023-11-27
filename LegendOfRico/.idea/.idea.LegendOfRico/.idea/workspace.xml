@@ -9,7 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b91dd0fa-6b15-430b-a63f-cd22aa97414d" name="Changes" comment="" />
+    <list default="true" id="b91dd0fa-6b15-430b-a63f-cd22aa97414d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.LegendOfRico/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LegendOfRico/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -109,6 +111,10 @@
       <workItem from="1700786888417" duration="362000" />
       <workItem from="1700875184501" duration="11269000" />
       <workItem from="1700887000461" duration="131000" />
+      <workItem from="1700914447937" duration="554000" />
+      <workItem from="1700915319619" duration="122000" />
+      <workItem from="1700915804645" duration="57000" />
+      <workItem from="1700918482300" duration="107000" />
     </task>
     <servers />
   </component>
