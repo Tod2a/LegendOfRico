@@ -2,6 +2,6 @@ namespace LegendOfRico.Data;
 
 public abstract class Item
 {
-    public string ItemName { get; private set; }
-    public int Price { get; private set; }
+    public string ItemName { get; protected set; }
+    public int Price { get; protected set; }
 }
