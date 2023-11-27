@@ -93,19 +93,12 @@ else if (game.FormShow == TypeOfShow.Fight)
         </div>
         <div class="fight" style="background-image: url('@game.GameMap.MapLayout[game.Player.PositionI][game.Player.PositionJ].SquareBiome.FightUrl');">
             <p class="fightDisplay">
-            COMBAT!!!!!<br>
-            COMBAT!!!!!<br>
-            COMBAT!!!!!<br>
-            COMBAT!!!!!<br>
-            COMBAT!!!!!<br>
-            COMBAT!!!!!<br>
-            COMBAT!!!!!<br>
-            COMBAT!!!!!<br>
-            COMBAT!!!!!<br>
-            COMBAT!!!!!<br>
-            COMBAT!!!!!<br>
-            COMBAT!!!!!<br>
-            COMBAT!!!!!<br>
+            <div>
+                    <img src="@game.Player.fightImgUrl" alt="Image fight Player" >
+            </div>
+            <div>
+                    <img src="@game.MonsterFight.fightImgUrl" alt="Image fight Monster" >
+            </div>
             </p>
         </div>
 

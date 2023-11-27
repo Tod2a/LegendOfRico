@@ -16,6 +16,7 @@ public abstract class Character : INotifyPropertyChanged
     public List<Item> Inventory { get; private set; }
     public abstract Boolean CanEquipShield { get; protected set; }
     public int Coins { get; private set; }
+    public virtual string fightImgUrl { get; }
     private string mapSprite;
     public string MapSprite
     {

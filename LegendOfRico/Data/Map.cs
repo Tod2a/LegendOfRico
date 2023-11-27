@@ -40,43 +40,43 @@ namespace LegendOfRico.Data
         public static Undead Boldel = new Undead { MonsterName = "Boldel", MonsterHP = 2500 };
         public static Undead Draleo = new Undead { MonsterName = "Draleo", MonsterHP = 1000 };
 
-        public static Spider Aragorn = new Spider { MonsterName = "Aragorn", MonsterHP = 5000,  };
-        public static Spider SonOfAragorn = new Spider { MonsterName = "AragornJr", MonsterHP = 1000 };
-        public static Spider CousinOfAragorn = new Spider { MonsterName = "Nrogara", MonsterHP = 2500 };
+        public static Spider Aragorn = new Spider { MonsterName = "Aragorn", MonsterHP = 5000, fightImgUrl="img/monster/basicSpider.png"  };
+        public static Spider SonOfAragorn = new Spider { MonsterName = "AragornJr", MonsterHP = 1000, fightImgUrl = "img/monster/basicSpider.png" };
+        public static Spider CousinOfAragorn = new Spider { MonsterName = "Nrogara", MonsterHP = 2500, fightImgUrl = "img/monster/basicSpider.png" };
 
 
         // création des pool de monstres, 4 pools par biomes, trois en fonction du niveau de la map et un pour les boss
         //contenu des pool encore à définir mais divers pool déjà créés pour faire la map
 
         //plaine
-        public static Monster[] poolOfPlain = { skeleton, skeleton };
-        public static Monster[] poolOfMediumPlain = { skeleton, skeleton };
-        public static Monster[] poolOfHardPlain = { skeleton, skeleton };
+        public static Monster[] poolOfPlain = { Aragorn };
+        public static Monster[] poolOfMediumPlain = { Aragorn};
+        public static Monster[] poolOfHardPlain = { Aragorn };
         //forêt
-        public static Monster[] poolOfForest = { SonOfAragorn, skeleton };
-        public static Monster[] poolOfMediumForest = { CousinOfAragorn, skeleton };
-        public static Monster[] poolOfHardForest = { Aragorn, skeleton };
-        public static Monster[] bossOfForest = { skeleton, skeleton };
+        public static Monster[] poolOfForest = { SonOfAragorn};
+        public static Monster[] poolOfMediumForest = { CousinOfAragorn };
+        public static Monster[] poolOfHardForest = { Aragorn };
+        public static Monster[] bossOfForest = {Aragorn };
         //désert
-        public static Monster[] poolOfDesert = { skeleton, skeleton };
-        public static Monster[] poolOfMediumDesert = { skeleton, skeleton };
-        public static Monster[] poolOfHardDesert = { skeleton, skeleton };
-        public static Monster[] bossOfDesert = { skeleton, skeleton };
+        public static Monster[] poolOfDesert = { Aragorn };
+        public static Monster[] poolOfMediumDesert = { Aragorn };
+        public static Monster[] poolOfHardDesert = { Aragorn };
+        public static Monster[] bossOfDesert = { Aragorn };
         //Ruines
-        public static Monster[] poolOfRuined = { skeleton, skeleton };
-        public static Monster[] poolOfMediumRuined = { skeleton, skeleton };
-        public static Monster[] poolOfHardRuined = { skeleton, skeleton };
-        public static Monster[] bossOfRuined = { skeleton, skeleton };
+        public static Monster[] poolOfRuined = { Aragorn };
+        public static Monster[] poolOfMediumRuined = { Aragorn };
+        public static Monster[] poolOfHardRuined = { Aragorn };
+        public static Monster[] bossOfRuined = { Aragorn };
         //cimetiere
-        public static Monster[] poolOfGraveyard = { Draleo, skeleton };
-        public static Monster[] poolOfMediumGraveyard = { Boldel, skeleton };
-        public static Monster[] poolOfHardGraveyard = { Albatard, skeleton };
-        public static Monster[] bossOfGraveyard = { skeleton, skeleton };
+        public static Monster[] poolOfGraveyard = { Aragorn };
+        public static Monster[] poolOfMediumGraveyard = { Aragorn };
+        public static Monster[] poolOfHardGraveyard = { Aragorn };
+        public static Monster[] bossOfGraveyard = { Aragorn };
         //village
-        public static Monster[] poolOfVillage = { skeleton, skeleton };
-        public static Monster[] poolOfMediumVillage = { skeleton, skeleton };
-        public static Monster[] poolOfHardVillage = { skeleton, skeleton };
-        public static Monster[] bossOfVillage = { skeleton, skeleton };
+        public static Monster[] poolOfVillage = { Aragorn };
+        public static Monster[] poolOfMediumVillage = { Aragorn };
+        public static Monster[] poolOfHardVillage = { Aragorn };
+        public static Monster[] bossOfVillage = { Aragorn };
 
         //création des différents Biomes 3 par types pour les différentes images, un pour les cases dangereuses et un pour les boss
         //sauf pour le village et la plaine

@@ -14,6 +14,7 @@ public abstract class Monster
     public int MonsterMaxDamage { get; private set; }
     public Boolean IsBurning { get; private set; }
     public Boolean IsFrozen { get; private set;}
+    public string fightImgUrl {  get; set; }
     
     public void TakeDamage(int DamageReceived)
     {

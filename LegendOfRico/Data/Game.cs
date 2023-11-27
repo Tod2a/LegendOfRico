@@ -10,6 +10,7 @@ namespace LegendOfRico.Data
     {
         public Map GameMap { get; set; } = new Map();
         public Character Player { get; set; } = new Wizard { };
+        public Monster MonsterFight { get; set; }
         private bool showConnection = true;
         private bool showGame = false;
         private bool showFight = false;
@@ -64,8 +65,17 @@ namespace LegendOfRico.Data
             double randomNumber = random.NextDouble();
             if(randomNumber < localisation.ChanceToTriggerFight)
             {
+                game.MonsterFight = SelectEnemy(game);
                 game.FormShow = TypeOfShow.Fight;
             }
+        }
+
+        //Fonction qui va choisir aléatoirement un monstre dans le pool du Biome
+        private static Monster SelectEnemy(Game game)
+        {
+            Random random = new Random();
+            int indexAleatoire = random.Next(game.GameMap.MapLayout[game.Player.PositionI][game.Player.PositionJ].SquareBiome.MonsterPool.Length);
+            return game.GameMap.MapLayout[game.Player.PositionI][game.Player.PositionJ].SquareBiome.MonsterPool[indexAleatoire];
         }
 
         

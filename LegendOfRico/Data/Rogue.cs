@@ -8,6 +8,7 @@ public class Rogue : Character
     public override bool CanEquipShield { get; protected set; } = false;
     public override int MaxHitPoints => 15;
     public double ChanceToDodge { get; private set; } = 0.25;
+    public override string fightImgUrl { get; } = "img/Character/fightRogue.png";
     
     public void Steal(Humanoid target)
     {
