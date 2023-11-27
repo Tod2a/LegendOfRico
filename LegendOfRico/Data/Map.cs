@@ -82,38 +82,38 @@ namespace LegendOfRico.Data
         //sauf pour le village et la plaine
 
         //Plaine
-        public static Biomes plain = new Biomes { BiomeType = TypeOfBiome.Plain, MonsterPool = poolOfPlain, ImageUrl = "img/biomes/plaine.png" };
-        public static Biomes plain1 = new Biomes { BiomeType = TypeOfBiome.Plain, MonsterPool = poolOfPlain, ImageUrl = "img/biomes/plaine1.png" };
-        public static Biomes plain2 = new Biomes { BiomeType = TypeOfBiome.Plain, MonsterPool = poolOfPlain, ImageUrl = "img/biomes/plaine2.png" };
+        public static Biomes plain = new Biomes { BiomeType = TypeOfBiome.Plain, MonsterPool = poolOfPlain, ImageUrl = "img/biomes/plaine.png", FightUrl = "img/layout/fondFightPlaine.png" };
+        public static Biomes plain1 = new Biomes { BiomeType = TypeOfBiome.Plain, MonsterPool = poolOfPlain, ImageUrl = "img/biomes/plaine1.png", FightUrl = "img/layout/fondFightPlaine.png" };
+        public static Biomes plain2 = new Biomes { BiomeType = TypeOfBiome.Plain, MonsterPool = poolOfPlain, ImageUrl = "img/biomes/plaine2.png", FightUrl = "img/layout/fondFightPlaine.png" };
         //forêt
-        public static Biomes forest = new Biomes { BiomeType = TypeOfBiome.Forest, MonsterPool = poolOfForest, ImageUrl = "img/biomes/foret.png" };
-        public static Biomes forest1 = new Biomes { BiomeType = TypeOfBiome.Forest, MonsterPool = poolOfForest, ImageUrl = "img/biomes/foret1.png" };
-        public static Biomes forest2 = new Biomes { BiomeType = TypeOfBiome.Forest, MonsterPool = poolOfForest, ImageUrl = "img/biomes/foret2.png" };
-        public static Biomes forest3 = new Biomes { BiomeType = TypeOfBiome.ForestDifficult, MonsterPool = poolOfForest, ImageUrl = "img/biomes/foret3.png" };
-        public static Biomes bossForest = new Biomes { BiomeType = TypeOfBiome.Forest, MonsterPool = bossOfForest, ImageUrl = "img/biomes/foretBoss.png" };
+        public static Biomes forest = new Biomes { BiomeType = TypeOfBiome.Forest, MonsterPool = poolOfForest, ImageUrl = "img/biomes/foret.png", FightUrl = "img/layout/fondFightBois.png" };
+        public static Biomes forest1 = new Biomes { BiomeType = TypeOfBiome.Forest, MonsterPool = poolOfForest, ImageUrl = "img/biomes/foret1.png", FightUrl = "img/layout/fondFightBois.png" };
+        public static Biomes forest2 = new Biomes { BiomeType = TypeOfBiome.Forest, MonsterPool = poolOfForest, ImageUrl = "img/biomes/foret2.png", FightUrl = "img/layout/fondFightBois.png" };
+        public static Biomes forest3 = new Biomes { BiomeType = TypeOfBiome.ForestDifficult, MonsterPool = poolOfForest, ImageUrl = "img/biomes/foret3.png", FightUrl = "img/layout/fondFightBois.png" };
+        public static Biomes bossForest = new Biomes { BiomeType = TypeOfBiome.Forest, MonsterPool = bossOfForest, ImageUrl = "img/biomes/foretBoss.png", FightUrl = "img/layout/fondFightBossBois.png" };
         //désert
-        public static Biomes desert = new Biomes { BiomeType = TypeOfBiome.Desert, MonsterPool = poolOfDesert, ImageUrl = "img/biomes/desert.png" };
-        public static Biomes desert1 = new Biomes { BiomeType = TypeOfBiome.Desert, MonsterPool = poolOfDesert, ImageUrl = "img/biomes/desert1.png" };
-        public static Biomes desert2 = new Biomes { BiomeType = TypeOfBiome.Desert, MonsterPool = poolOfDesert, ImageUrl = "img/biomes/desert2.png" };
-        public static Biomes desert3 = new Biomes { BiomeType = TypeOfBiome.DesertDifficult, MonsterPool = poolOfDesert, ImageUrl = "img/biomes/desert3.png" };
-        public static Biomes desert4 = new Biomes { BiomeType = TypeOfBiome.DesertDifficult, MonsterPool = poolOfDesert, ImageUrl = "img/biomes/desert4.png" };
-        public static Biomes desert5 = new Biomes { BiomeType = TypeOfBiome.DesertDifficult, MonsterPool = poolOfDesert, ImageUrl = "img/biomes/desert5.png" };
-        public static Biomes bossDesert = new Biomes { BiomeType = TypeOfBiome.Desert, MonsterPool = bossOfDesert, ImageUrl = "img/biomes/desertBoss.png" };
+        public static Biomes desert = new Biomes { BiomeType = TypeOfBiome.Desert, MonsterPool = poolOfDesert, ImageUrl = "img/biomes/desert.png", FightUrl = "img/layout/fondFightDesert.png" };
+        public static Biomes desert1 = new Biomes { BiomeType = TypeOfBiome.Desert, MonsterPool = poolOfDesert, ImageUrl = "img/biomes/desert1.png", FightUrl = "img/layout/fondFightDesert.png" };
+        public static Biomes desert2 = new Biomes { BiomeType = TypeOfBiome.Desert, MonsterPool = poolOfDesert, ImageUrl = "img/biomes/desert2.png", FightUrl = "img/layout/fondFightDesert.png" };
+        public static Biomes desert3 = new Biomes { BiomeType = TypeOfBiome.DesertDifficult, MonsterPool = poolOfDesert, ImageUrl = "img/biomes/desert3.png", FightUrl = "img/layout/fondFightDesert.png" };
+        public static Biomes desert4 = new Biomes { BiomeType = TypeOfBiome.DesertDifficult, MonsterPool = poolOfDesert, ImageUrl = "img/biomes/desert4.png", FightUrl = "img/layout/fondFightDesert.png" };
+        public static Biomes desert5 = new Biomes { BiomeType = TypeOfBiome.DesertDifficult, MonsterPool = poolOfDesert, ImageUrl = "img/biomes/desert5.png", FightUrl = "img/layout/fondFightDesert.png" };
+        public static Biomes bossDesert = new Biomes { BiomeType = TypeOfBiome.Desert, MonsterPool = bossOfDesert, ImageUrl = "img/biomes/desertBoss.png", FightUrl = "img/layout/fondFightBossDesert.png" };
         //ruines
-        public static Biomes ruinedVillage = new Biomes { BiomeType = TypeOfBiome.AbandonedVillage, MonsterPool = poolOfRuined, ImageUrl = "img/biomes/ruine.png" };
-        public static Biomes ruinedVillage1 = new Biomes { BiomeType = TypeOfBiome.AbandonedVillage, MonsterPool = poolOfRuined, ImageUrl = "img/biomes/ruine1.png" };
-        public static Biomes ruinedVillage2 = new Biomes { BiomeType = TypeOfBiome.AbandonedVillage, MonsterPool = poolOfRuined, ImageUrl = "img/biomes/ruine2.png" };
-        public static Biomes ruinedVillage3 = new Biomes { BiomeType = TypeOfBiome.AbandonedVillageDifficult, MonsterPool = poolOfRuined, ImageUrl = "img/biomes/ruine3.png" };
-        public static Biomes bossRuinedVillage = new Biomes { BiomeType = TypeOfBiome.AbandonedVillage, MonsterPool = bossOfRuined, ImageUrl = "img/biomes/ruineBoss.png" };
+        public static Biomes ruinedVillage = new Biomes { BiomeType = TypeOfBiome.AbandonedVillage, MonsterPool = poolOfRuined, ImageUrl = "img/biomes/ruine.png", FightUrl = "img/layout/fondFightRuine.png" };
+        public static Biomes ruinedVillage1 = new Biomes { BiomeType = TypeOfBiome.AbandonedVillage, MonsterPool = poolOfRuined, ImageUrl = "img/biomes/ruine1.png", FightUrl = "img/layout/fondFightRuine.png" };
+        public static Biomes ruinedVillage2 = new Biomes { BiomeType = TypeOfBiome.AbandonedVillage, MonsterPool = poolOfRuined, ImageUrl = "img/biomes/ruine2.png", FightUrl = "img/layout/fondFightRuine.png" };
+        public static Biomes ruinedVillage3 = new Biomes { BiomeType = TypeOfBiome.AbandonedVillageDifficult, MonsterPool = poolOfRuined, ImageUrl = "img/biomes/ruine3.png", FightUrl = "img/layout/fondFightRuine.png" };
+        public static Biomes bossRuinedVillage = new Biomes { BiomeType = TypeOfBiome.AbandonedVillage, MonsterPool = bossOfRuined, ImageUrl = "img/biomes/ruineBoss.png", FightUrl = "img/layout/fondFightBossRuine.png" };
         //cimetiere
-        public static Biomes graveyard = new Biomes { BiomeType = TypeOfBiome.Graveyard, MonsterPool = poolOfGraveyard, ImageUrl = "img/biomes/cimetiere.png" };
-        public static Biomes graveyard1 = new Biomes { BiomeType = TypeOfBiome.Graveyard, MonsterPool = poolOfGraveyard, ImageUrl = "img/biomes/cimetiere1.png" };
-        public static Biomes graveyard2 = new Biomes { BiomeType = TypeOfBiome.Graveyard, MonsterPool = poolOfGraveyard, ImageUrl = "img/biomes/cimetiere2.png" };
-        public static Biomes graveyard3 = new Biomes { BiomeType = TypeOfBiome.GraveyardDifficult, MonsterPool = poolOfGraveyard, ImageUrl = "img/biomes/cimetiere3.png" };
-        public static Biomes bossGraveyard = new Biomes { BiomeType = TypeOfBiome.Graveyard, MonsterPool = bossOfGraveyard, ImageUrl = "img/biomes/cimetiereBoss.png" };
+        public static Biomes graveyard = new Biomes { BiomeType = TypeOfBiome.Graveyard, MonsterPool = poolOfGraveyard, ImageUrl = "img/biomes/cimetiere.png", FightUrl = "img/layout/fondFightCimetiere.png" };
+        public static Biomes graveyard1 = new Biomes { BiomeType = TypeOfBiome.Graveyard, MonsterPool = poolOfGraveyard, ImageUrl = "img/biomes/cimetiere1.png", FightUrl = "img/layout/fondFightCimetiere.png" };
+        public static Biomes graveyard2 = new Biomes { BiomeType = TypeOfBiome.Graveyard, MonsterPool = poolOfGraveyard, ImageUrl = "img/biomes/cimetiere2.png", FightUrl = "img/layout/fondFightCimetiere.png" };
+        public static Biomes graveyard3 = new Biomes { BiomeType = TypeOfBiome.GraveyardDifficult, MonsterPool = poolOfGraveyard, ImageUrl = "img/biomes/cimetiere3.png", FightUrl = "img/layout/fondFightCimetiere.png" };
+        public static Biomes bossGraveyard = new Biomes { BiomeType = TypeOfBiome.Graveyard, MonsterPool = bossOfGraveyard, ImageUrl = "img/biomes/cimetiereBoss.png", FightUrl = "img/layout/fondFightBossCimetiere.png" };
         //village
-        public static Biomes village = new Biomes { BiomeType = TypeOfBiome.Village, MonsterPool = poolOfVillage, ImageUrl = "img/biomes/village.png" };
-        public static Biomes bossVillage = new Biomes { BiomeType = TypeOfBiome.Village, MonsterPool = bossOfVillage, ImageUrl = "img/biomes/villageBoss.png" };
+        public static Biomes village = new Biomes { BiomeType = TypeOfBiome.Village, MonsterPool = poolOfVillage, ImageUrl = "img/biomes/village.png", FightUrl = "img/layout/fondFightBossVillage.png" };
+        public static Biomes bossVillage = new Biomes { BiomeType = TypeOfBiome.Village, MonsterPool = bossOfVillage, ImageUrl = "img/biomes/villageBoss.png", FightUrl = "img/layout/fondFightBossVillage.png" };
 
 
         private static void TrippleSquare(int minI, int maxI, int minJ, int maxJ, Square[][] mapLayout, TypeOfBiome tBiome, string Name, double cTrigger)
