@@ -4,7 +4,7 @@ public class Rogue : Character
 {
     public override TypeOfWeapon[] WeaponMastery => new[] {TypeOfWeapon.Dagger, TypeOfWeapon.Sword };
     public override TypeOfArmor ArmorMastery => TypeOfArmor.Medium;
-    public Weapon OffHandWeapon { get; private set; } = new Fist();
+    public Weapon OffHandWeapon { get; private set; } = new Fist("Poing", 0, 1, 3);
     public override bool CanEquipShield { get; protected set; } = false;
     public override int MaxHitPoints => 15;
     public double ChanceToDodge { get; private set; } = 0.25;

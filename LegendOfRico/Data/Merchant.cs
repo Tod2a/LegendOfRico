@@ -44,7 +44,10 @@
             ItemsStock.Add(new Sword("Epée en mithril", 50, 3, 6));
 
             //Miscellaneous
-            ItemsStock.Add(new Potion()); //Need to fix how Potion work
+            ItemsStock.Add(new Potion("Petite potion de soin", 5, 1, 10));
+            ItemsStock.Add(new Potion("Potion de soin", 10, 10, 20));
+            ItemsStock.Add(new Potion("Grande potion de soin", 20, 20, 40));
+            ItemsStock.Add(new Potion("Enorme potion de soin", 40, 40, 80));
         }
     }
 }

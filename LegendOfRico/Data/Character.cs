@@ -112,7 +112,7 @@ public abstract class Character : INotifyPropertyChanged
     public void UnequipWeapon()
     {
         Inventory.Add(CharacterWeapon);
-        CharacterWeapon = new Fist();
+        CharacterWeapon = new Fist("Poing", 0, 1, 3);
     }
     
     public void EquipArmor(Armor armor)
