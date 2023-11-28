@@ -32,7 +32,9 @@ public abstract class Character : INotifyPropertyChanged
     }
     public abstract TypeOfWeapon[] WeaponMastery { get; }
     public abstract TypeOfArmor ArmorMastery { get; }
-    private int positionI = 250; 
+    private int positionI = 250;
+    public Boolean IsFrozen { get; private set; } = false;
+    public Boolean IsBurning { get; private set; } = false;
 
     public int PositionI
     {
@@ -59,6 +61,16 @@ public abstract class Character : INotifyPropertyChanged
                 OnPropertyChanged(nameof(PositionJ));
             }
         }
+    }
+
+    public void Burnt()
+    {
+        IsBurning = true;
+    }
+
+    public void Frozen()
+    {
+        IsFrozen = true;
     }
 
     public virtual void Rest()
@@ -92,6 +104,11 @@ public abstract class Character : INotifyPropertyChanged
         {
             CurrentHitPoints += healAmount;
         }
+    }
+
+    public void TakeDamage(int damageTaken)
+    {
+        CurrentHitPoints -= damageTaken;
     }
 
     public void EquipShield(Shield shield)

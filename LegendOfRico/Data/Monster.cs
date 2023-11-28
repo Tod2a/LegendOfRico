@@ -4,6 +4,7 @@ public abstract class Monster
 {
     public string MonsterName { get; set; }
     public int MonsterHP { get; set; }
+    public int MonsterCurrentHP { get; set; }
     public abstract TypeOfDamage[] MonsterWeakness { get; }
     public TypeOfDamage[] MonsterResistance { get; private set; }
     public TypeOfMonster MonsterType { get; private set; }
@@ -29,5 +30,17 @@ public abstract class Monster
     public void Frozen()
     {
         IsFrozen = true;
+    }
+
+    public void ReceiveHeal(int healAmount)
+    {
+        if (MonsterCurrentHP + healAmount > MonsterHP)
+        {
+            MonsterCurrentHP = MonsterHP;
+        }
+        else
+        {
+            MonsterCurrentHP += healAmount;
+        }
     }
 }

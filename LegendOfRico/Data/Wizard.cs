@@ -22,5 +22,10 @@
                 spell.RefreshSpell();
             }
         }
+
+        public void CastSpell(Spells spell, Monster target)
+        {
+            spell.UseSpell(target);
+        }
     }
 }

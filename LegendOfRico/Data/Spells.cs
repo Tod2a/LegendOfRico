@@ -12,4 +12,7 @@ public abstract class Spells
     {
         CurrentNumberOfUses = MaxNumberOfUses;
     }
+
+    public abstract void UseSpell(Monster target);
+    public abstract void UseSpell(Character target);
 }
