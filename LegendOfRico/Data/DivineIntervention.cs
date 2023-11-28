@@ -9,7 +9,7 @@ public class DivineIntervention : Spells
     public override int MaxValue => 80;
     public TypeOfDamage SpellType = TypeOfDamage.Holy;
 
-    public void UseSpell(Monster target)
+    public override void UseSpell(Monster target)
     {
         int damageRoll = (new Random()).Next(MinValue, MaxValue + 1);
         target.TakeDamage(damageRoll);
@@ -17,5 +17,10 @@ public class DivineIntervention : Spells
         {
             target.Burnt();
         }
+    }
+
+    public override void UseSpell(Character target)
+    {
+        target.ReceiveHeal((new Random()).Next(MinValue, MaxValue + 1));
     }
 }
