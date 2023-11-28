@@ -177,6 +177,11 @@ a, .btn-link {
     padding-top: 12em;
 }
 
+.fightAction {
+    text-align: center;
+
+}
+
 .mapDisplay {
     flex: 4; 
     margin-left: 2em;
