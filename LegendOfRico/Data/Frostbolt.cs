@@ -4,6 +4,7 @@ public class Frostbolt : Spells
 {
     public override string SpellName => "Frostbolt";
     public override int MaxNumberOfUses => 10;
+    public override int CurrentNumberOfUses { get; protected set; } = 10;
     public override int MinValue => 15;
     public override int MaxValue => 25;
     public TypeOfDamage SpellType = TypeOfDamage.Cold;

@@ -16,9 +16,9 @@ public abstract class Monster
     public Boolean IsFrozen { get; private set;}
     public string fightImgUrl {  get; set; }
     
-    public void TakeDamage(int DamageReceived)
+    public void TakeDamage(int damageReceived)
     {
-        MonsterHP -= DamageReceived;
+        MonsterHP -= damageReceived;
     }
     
     public void Burnt()
