@@ -92,24 +92,19 @@ else if (game.FormShow == TypeOfShow.Fight)
             <button @onclick="() => Game.FightWin(game)">Autowin</button>
         </div>
         <div class="fight" style="background-image: url('@game.GameMap.MapLayout[game.Player.PositionI][game.Player.PositionJ].SquareBiome.FightUrl');">
-            <p class="fightDisplay">
-
-            <div>
-                    <img src="@game.Player.fightImgUrl" alt="Image fight Player" >
-            </div>
-            <div>
-                    <img src="@game.MonsterFight.fightImgUrl" alt="Image fight Monster" >
-            </div>
-            </p>
-            <div class="fightAction">
-           
-                <button>
-                    sort 
-                </button>
-
-                <button>
-                    inventaire
-                </button>
+            <div class="fightDisplay">
+                <div class="opponent">
+                    <img class="sprite" src="@game.MonsterFight.fightImgUrl" alt="Image fight Monster">
+                </div>
+                <div class="player">
+                    <img class="sprite" src="@game.Player.fightImgUrl" alt="Image fight Player">
+                </div>
+        </div>
+            <div class="fightMenu">
+                <div class="actions">
+                <button>Sortilèges</button>
+                <button>Inventaire</button>
+                </div>
             </div>
         </div>
 

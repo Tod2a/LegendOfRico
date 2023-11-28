@@ -175,12 +175,88 @@ a, .btn-link {
 .fightDisplay {
     padding-bottom: 12em;
     padding-top: 12em;
+    
+    display: block;
+    justify-content: space-between;
+    align-items: center;
+    
 }
 
-.fightAction {
-    text-align: center;
+.opponent {
+    float: right;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    margin-right: 50px;
+}
+
+.opponent .sprite {
+    float: right;
+    width: 100px;
+    
+    }
+
+.player {
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-left: 50px;
 
 }
+
+.player .sprite {
+    float: left;
+    width: 100px;
+}
+
+.fightMenu {
+    text-align: center; 
+    position: relative;
+    float: right;
+    background: #666;
+    border: 3px solid #888;
+    border-radius: 4px;
+    color: #fff;
+    font-family: monospace;
+    font-size: 20px;
+    line-height: 14px;
+    margin: 4px;
+    padding: 50px;
+    width: calc(100% - 8px);
+    height: calc(100% - 8px);
+  
+}
+
+.fightMenu .actions button {
+    position: relative;
+    float: left;
+    background: #666;
+    border: 3px solid #888;
+    border-radius: 4px;
+    color: #fff;
+    font-family: monospace;
+    font-size: 20px;
+    line-height: 14px;
+    margin: 4px;
+    padding: 16px;
+    width: calc(50% - 8px);
+    height: calc(50% - 8px);
+    }
+
+.fightMenu .actions button,
+.fightMenu .actions button:hover,
+.fightMenu .actions button:active {
+    outline: none;
+}
+
+.fightMenu .actions button:hover {
+        background: #777;
+        border-color: #999;
+    }
+
+.fightMenu .actions button:active {
+        background: #555;
+        border-color: #666;
+    }
 
 .mapDisplay {
     flex: 4; 
