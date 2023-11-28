@@ -61,7 +61,12 @@ public abstract class Character : INotifyPropertyChanged
         }
     }
 
-        public virtual void Hit(Monster target)
+    public virtual void Rest()
+    {
+        CurrentHitPoints = MaxHitPoints;
+    }
+
+    public virtual void Hit(Monster target)
     {
         int weaponDamageRoll =
             (new Random()).Next(CharacterWeapon.MinimumWeaponDamage, CharacterWeapon.MaximumWeaponDamage + 1);

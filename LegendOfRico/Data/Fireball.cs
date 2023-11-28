@@ -4,6 +4,7 @@ public class Fireball : Spells
 {
     public override string SpellName => "Fireball";
     public override int MaxNumberOfUses => 10;
+    public override int CurrentNumberOfUses { get; protected set; } = 10;
     public override int MinValue => 10;
     public override int MaxValue => 30;
     public TypeOfDamage SpellType = TypeOfDamage.Fire;
