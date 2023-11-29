@@ -3,7 +3,7 @@ namespace LegendOfRico.Data
 {
     public class Staff : Weapon
     {
-        public Staff(string itemName, int price, int minimumWeaponDamage, int maximumWeaponDamage, Dictionary<Stats, int> bonusStats) : 
+        public Staff(string itemName, int price, int minimumWeaponDamage, int maximumWeaponDamage, int bonusStats) : 
             base(itemName, price, minimumWeaponDamage, maximumWeaponDamage, bonusStats)
         {
         }

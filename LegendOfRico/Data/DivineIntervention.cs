@@ -5,8 +5,8 @@ public class DivineIntervention : Spells
     public override string SpellName => "Divine Intervention";
     public override int MaxNumberOfUses => 3;
     public override int CurrentNumberOfUses { get; protected set; } = 3;
-    public override int MinValue => 60;
-    public override int MaxValue => 80;
+    public int MinValue => 60;
+    public int MaxValue => 80;
     public TypeOfDamage SpellType = TypeOfDamage.Holy;
 
     public override void UseSpell(Monster target)

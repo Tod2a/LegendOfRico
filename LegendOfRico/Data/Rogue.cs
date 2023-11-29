@@ -6,6 +6,7 @@ public class Rogue : Character
     public override TypeOfArmor ArmorMastery => TypeOfArmor.Medium;
     public Weapon OffHandWeapon { get; private set; } = new Fist("Poing", 0, 1, 3);
     public override bool CanEquipShield { get; protected set; } = false;
+    public override List<Spells> SpellBook { get; protected set; } = new List<Spells>();
     public override int MaxHitPoints => 15;
     public double ChanceToDodge { get; private set; } = 0.25;
     public override string fightImgUrl { get; } = "img/Character/fightRogue.png";

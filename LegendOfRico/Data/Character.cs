@@ -8,11 +8,12 @@ public abstract class Character : INotifyPropertyChanged
     public int Level { get; private set; } = 1;
     public abstract int MaxHitPoints { get; }
     public int CurrentHitPoints { get; private set; }
-    public Dictionary<Stats, int> Statistics { get; private set; }
+    public int Statistics { get; private set; }
     public int ArmorAmount { get; private set; }
     public Weapon CharacterWeapon { get; private set; }
     public Shield CharacterShield { get; private set; }
     public Armor CharacterArmor { get; private set; }
+    public abstract List<Spells> SpellBook { get; protected set; }
     public List<Item> Inventory { get; private set; }
     public abstract Boolean CanEquipShield { get; protected set; }
     public int Coins { get; private set; }
@@ -92,6 +93,11 @@ public abstract class Character : INotifyPropertyChanged
             weaponDamageRoll *= 2;
         }
         target.TakeDamage(weaponDamageRoll);
+    }
+
+    public void CastSpell(Spells spell, Monster target)
+    {
+        spell.UseSpell(target);
     }
 
     public void ReceiveHeal(int healAmount)

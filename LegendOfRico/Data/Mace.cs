@@ -3,7 +3,7 @@ namespace LegendOfRico.Data
 {
     public class Mace : Weapon
     {
-        public Mace(string itemName, int price, int minimumWeaponDamage, int maximumWeaponDamage, Dictionary<Stats, int> bonusStats) :
+        public Mace(string itemName, int price, int minimumWeaponDamage, int maximumWeaponDamage, int bonusStats) :
             base(itemName, price, minimumWeaponDamage, maximumWeaponDamage, bonusStats)
         {
         }

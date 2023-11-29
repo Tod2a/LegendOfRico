@@ -7,9 +7,9 @@ public abstract class Weapon : Item
     public int MaximumWeaponDamage { get; protected set; }
     public abstract TypeOfWeapon WeaponType { get; }
     public abstract TypeOfDamage WeaponTypeOfDamage { get;}
-    public Dictionary<Stats, int> BonusStats { get; protected set; }
+    public int BonusStats { get; protected set; }
 
-    public Weapon(string itemName, int price, int minimumWeaponDamage, int maximumWeaponDamage, Dictionary<Stats, int> bonusStats) {
+    public Weapon(string itemName, int price, int minimumWeaponDamage, int maximumWeaponDamage, int bonusStats) {
         ItemName = itemName;
         Price = price;
         MinimumWeaponDamage = minimumWeaponDamage;

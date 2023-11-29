@@ -5,8 +5,8 @@ public class Heal : Spells
     public override string SpellName => "Heal";
     public override int MaxNumberOfUses => 15;
     public override int CurrentNumberOfUses { get; protected set; } = 15;
-    public override int MinValue => 5;
-    public override int MaxValue => 15;
+    public int MinValue => 5;
+    public int MaxValue => 15;
     public double CritChance = 0.05;
 
     public override void UseSpell(Monster target)

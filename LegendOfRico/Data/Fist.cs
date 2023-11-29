@@ -7,7 +7,8 @@ public class Fist : Weapon
     {
     }
 
-    public Fist(string itemName, int price, int minimumWeaponDamage, int maximumWeaponDamage, Dictionary<Stats, int> bonusStats) : base(itemName, price, minimumWeaponDamage, maximumWeaponDamage, bonusStats)
+    public Fist(string itemName, int price, int minimumWeaponDamage, int maximumWeaponDamage, int bonusStats) : 
+        base(itemName, price, minimumWeaponDamage, maximumWeaponDamage, bonusStats)
     {
     }
 
