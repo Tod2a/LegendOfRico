@@ -11,9 +11,14 @@ namespace LegendOfRico.Data
         public Map GameMap { get; set; } = new Map();
         public Character Player { get; set; } = new Wizard { };
         public Monster MonsterFight { get; set; }
-        private bool showConnection = true;
-        private bool showGame = false;
-        private bool showFight = false;
+        //série de paramètres/variables qui vont gérer l'affichage des différents display du jeu
+        //gestion du menu de droite
+        public bool ShowInventory = true;
+        public bool ShowQuestList = false;
+        public bool ShowMerchantList = false;
+        //gestion de l'interface de combat
+        public bool ShowFightSpells = true;
+        public bool ShowFightInventory = false;
         public TypeOfShow FormShow { get; set; } = TypeOfShow.Connection;
 
 
@@ -51,6 +56,29 @@ namespace LegendOfRico.Data
             game.FormShow = TypeOfShow.Connection;
         }
 
+        //gestion du menu de droite pour les quetes, inventaire et marchand.
+
+        public static void SwitchShowMerchantList (Game game)
+        {
+            game.ShowInventory = false;
+            game.ShowMerchantList = true;
+            game.ShowQuestList = false;
+        }
+
+        public static void SwitchShowQuestList (Game game)
+        {
+            game.ShowInventory = false;
+            game.ShowMerchantList = false;
+            game.ShowQuestList = true;
+        }
+
+        public static void SwitchShowInventoryList (Game game)
+        {
+            game.ShowInventory = true;
+            game.ShowMerchantList = false;
+            game.ShowQuestList = false;
+        }
+
         //Gestion des combats
         //creation d'une fonction temporaire pour quitter la page de combat
         public static void FightWin(Game game)
@@ -68,6 +96,17 @@ namespace LegendOfRico.Data
                 game.MonsterFight = SelectEnemy(game);
                 game.FormShow = TypeOfShow.Fight;
             }
+        }
+        public static void SwitchFightSpells(Game game)
+        {
+            game.ShowFightSpells = true;
+            game.ShowFightInventory = false;
+        }
+
+        public static void SwitchFightInventory(Game game)
+        {
+            game.ShowFightInventory = true;
+            game.ShowFightSpells = false;
         }
 
         //Fonction qui va choisir aléatoirement un monstre dans le pool du Biome
@@ -88,6 +127,10 @@ namespace LegendOfRico.Data
                 game.Player.PositionI--;
                 IsFight(game, game.GameMap.MapLayout[game.Player.PositionI][game.Player.PositionJ]);
             }
+            if (game.ShowMerchantList == true)
+            {
+                Game.SwitchShowInventoryList(game);
+            }
         }
 
         public void GoDown(Game game)
@@ -96,6 +139,10 @@ namespace LegendOfRico.Data
             {
                 game.Player.PositionI++;
                 IsFight(game, game.GameMap.MapLayout[game.Player.PositionI][game.Player.PositionJ]);
+            }
+            if (game.ShowMerchantList == true)
+            {
+                Game.SwitchShowInventoryList(game);
             }
         }
 
@@ -106,6 +153,10 @@ namespace LegendOfRico.Data
                 game.Player.PositionJ--;
                 IsFight(game, game.GameMap.MapLayout[game.Player.PositionI][game.Player.PositionJ]);
             }
+            if (game.ShowMerchantList == true)
+            {
+                Game.SwitchShowInventoryList(game);
+            }
         }
 
         public void GoRight(Game game)
@@ -114,6 +165,10 @@ namespace LegendOfRico.Data
             {
                 game.Player.PositionJ++;
                 IsFight(game, game.GameMap.MapLayout[game.Player.PositionI][game.Player.PositionJ]);
+            }
+            if (game.ShowMerchantList == true)
+            {
+                Game.SwitchShowInventoryList(game);
             }
         }
 

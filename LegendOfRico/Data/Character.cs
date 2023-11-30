@@ -15,6 +15,7 @@ public abstract class Character : INotifyPropertyChanged
     public Armor CharacterArmor { get; private set; }
     public abstract List<Spells> SpellBook { get; protected set; }
     public List<Item> Inventory { get; private set; }
+    public List<Quest> quests { get; private set; }
     public abstract Boolean CanEquipShield { get; protected set; }
     public int Coins { get; private set; }
     public virtual string fightImgUrl { get; }

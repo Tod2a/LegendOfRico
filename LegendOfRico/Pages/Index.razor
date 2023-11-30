@@ -35,7 +35,7 @@
             <ul>
                 <li>Sun Wukong, le roi singe, dans la mystérieuse forêt de Sherloop.</li>
                 <li>Le Scorpion Éternel, gardien énigmatique de la Dune Éternelle.</li>
-                <li>Cher Tontaton, revenu d'entre les ombres, au Cimetière des Tontaton.</li>
+                <li>Le chef Tontaton, revenu d'entre les ombres, au Cimetière des Tontaton.</li>
                 <li>Joy Bean, maître des rêves, dans l'ancienne cité de Joy Bean.</li>
             </ul>
 
@@ -52,6 +52,12 @@ else if (game.FormShow == TypeOfShow.Map)
         <div class="gameMenu">
         <p>Personnage: @game.Player.Name</p>
         <p>Position: [@game.Player.PositionI][@game.Player.PositionJ]@game.GameMap.MapLayout[game.Player.PositionI][game.Player.PositionJ].Name</p>
+        <button @onclick="() => Game.SwitchShowInventoryList(game)">Inventaire</button>
+        <button @onclick="() => Game.SwitchShowQuestList(game)">Liste des quêtes</button>
+                @if (game.GameMap.MapLayout[game.Player.PositionI][game.Player.PositionJ].HasNPC == true)
+                {
+                    <button @onclick="() => Game.SwitchShowMerchantList(game)">Marchand</button>
+                }
                 <!--<button onclick="() => Save(game.Player)">Sauvegarde</button>-->
         <button @onclick="() => Game.Deconnection(game)">Deconnexion</button>
         </div>
@@ -82,6 +88,11 @@ else if (game.FormShow == TypeOfShow.Map)
             }
         </table>
         </div>
+        <div class="mapMenu">
+                <p style="display: @(game.ShowInventory ? "block" : "none")">ici inventaire</p>
+                <p style="display: @(game.ShowQuestList ? "block" : "none")">ici liste des quetes</p>
+                <p style="display: @(game.ShowMerchantList ? "block" : "none")">ici marchand</p>
+        </div>
     </div>
     </div>
 }
@@ -91,8 +102,8 @@ else if (game.FormShow == TypeOfShow.Fight)
         <div class="gameMenu">
             <button @onclick="() => Game.FightWin(game)">Autowin</button>
         </div>
-        <div class="fight" style="background-image: url('@game.GameMap.MapLayout[game.Player.PositionI][game.Player.PositionJ].SquareBiome.FightUrl');">
-            <div class="fightDisplay">
+        <div class="fight" >
+            <div class="fightDisplay" style="background-image: url('@game.GameMap.MapLayout[game.Player.PositionI][game.Player.PositionJ].SquareBiome.FightUrl');">
                 <div class="opponent">
                     <img class="sprite" src="@game.MonsterFight.fightImgUrl" alt="Image fight Monster">
                 </div>
@@ -102,8 +113,21 @@ else if (game.FormShow == TypeOfShow.Fight)
         </div>
             <div class="fightMenu">
                 <div class="actions">
-                <button>Sortilèges</button>
-                <button>Inventaire</button>
+                    @if (game.ShowFightSpells)
+                    {
+                        @foreach(var spell in game.Player.SpellBook)
+                        {
+                            <button>@spell.SpellName</button>
+                        }
+                        <button @onclick="() => Game.SwitchFightInventory(game)">go to inventaire</button>
+                    }
+                    else if (game.ShowFightInventory)
+                    {
+                        <button>Inventaire</button>
+                        <button @onclick="() => Game.SwitchFightSpells(game)">go to spells</button>
+                    }
+
+                
                 </div>
             </div>
         </div>

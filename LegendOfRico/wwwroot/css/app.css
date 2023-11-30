@@ -122,6 +122,22 @@ a, .btn-link {
     display: flex;
 }
 
+.mapMenu {
+    flex: 1;
+    background-image: url("../img/layout/fondBois.jpg");
+    background-size: cover;
+    background-position: center;
+    color: #996515;
+    padding: 10px;
+    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-left: 2em;
+    border: 5px solid #8b4513;
+}
+
 .gameMenu {
     flex: 1;
     background-image: url("../img/layout/fondBois.jpg");
@@ -157,29 +173,33 @@ a, .btn-link {
 
 .intro {
     flex: 4;
+    background-image: url("../img/layout/fondParchemin.jpg");
+    background-size: cover;
+    background-position: center;
     margin-left: 2em;
-    border: 2px solid #8b4513;
+    border: 5px solid #8b4513;
     background-color: #ffffff;
+    padding: 3em 3em 3em 3em;
 }
 
 .fight {
     flex: 4;
     margin-left: 2em;
-    border: 2px solid #8b4513;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    
+    
     height: 100%;
 }
 
 .fightDisplay {
-    padding-bottom: 12em;
-    padding-top: 12em;
-    
+    padding-bottom: 15em;
+    padding-top: 15em;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     display: block;
     justify-content: space-between;
     align-items: center;
-    
+    border: 3px solid #8b4513;
 }
 
 .opponent {
