@@ -114,7 +114,8 @@ namespace LegendOfRico.Data
         //village
         public static Biomes village = new Biomes { BiomeType = TypeOfBiome.Village, MonsterPool = poolOfVillage, ImageUrl = "img/biomes/village.png", FightUrl = "img/layout/fondFightBossVillage.png" };
         public static Biomes bossVillage = new Biomes { BiomeType = TypeOfBiome.Village, MonsterPool = bossOfVillage, ImageUrl = "img/biomes/villageBoss.png", FightUrl = "img/layout/fondFightBossVillage.png" };
-
+        public static Biomes village2 = new Biomes { BiomeType = TypeOfBiome.Village, MonsterPool = poolOfVillage, ImageUrl = "img/biomes/village2.png" , FightUrl = "img/layout/fondFightBossVillage.png" };
+    }
 
         private static void TrippleSquare(int minI, int maxI, int minJ, int maxJ, Square[][] mapLayout, TypeOfBiome tBiome, string Name, double cTrigger)
         {
@@ -323,6 +324,7 @@ namespace LegendOfRico.Data
             mapLayout[36][401] = new Square { SquareBiome = bossGraveyard, Name = "Chef tontaton revenu", ChanceToTriggerFight = 1.0 };
 
             // ajout des différents villages
+            mapLayout[152][82] = new Square { SquareBiome = village2, Name = "Logue Town", ChanceToTriggerFight = 0.0, HasNPC = true, HasQuestTarget = true };
 
             //ajout du village de départ astrub
             mapLayout[250][250] = new Square { SquareBiome = village, Name = "Astrub", ChanceToTriggerFight = 0.0, HasNPC = true, HasQuestTarget = true };
