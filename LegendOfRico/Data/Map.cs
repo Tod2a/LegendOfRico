@@ -116,7 +116,7 @@ namespace LegendOfRico.Data
         public static Biomes bossVillage = new Biomes { BiomeType = TypeOfBiome.Village, MonsterPool = bossOfVillage, ImageUrl = "img/biomes/villageBoss.png", FightUrl = "img/layout/fondFightBossVillage.png" };
         public static Biomes village2 = new Biomes { BiomeType = TypeOfBiome.Village, MonsterPool = poolOfVillage, ImageUrl = "img/biomes/village2.png" , FightUrl = "img/layout/fondFightBossVillage.png" };
         public static Biomes village3 = new Biomes { BiomeType = TypeOfBiome.Village, MonsterPool = poolOfVillage, ImageUrl = "img/biomes/village3.png", FightUrl = "img/layout/fondFightBossVillage.png" };
-    }
+    
 
         private static void TrippleSquare(int minI, int maxI, int minJ, int maxJ, Square[][] mapLayout, TypeOfBiome tBiome, string Name, double cTrigger)
         {
