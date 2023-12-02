@@ -48,6 +48,8 @@ public abstract class Character : INotifyPropertyChanged
     }
     public abstract TypeOfWeapon[] WeaponMastery { get; }
     public abstract TypeOfArmor ArmorMastery { get; }
+    public int lastRestVillageI { get; set; } = 250;
+    public int LastRestVillageJ { get; set; } = 250;
     private int positionI = 250;
     public Boolean IsFrozen { get; private set; } = false;
     public Boolean IsBurning { get; private set; } = false;
@@ -93,6 +95,8 @@ public abstract class Character : INotifyPropertyChanged
 
     public void Rest()
     {
+        lastRestVillageI = positionI;
+        LastRestVillageJ = positionJ;
         CurrentHitPoints = MaxHitPoints;
         foreach (var spell in SpellBook)
         {

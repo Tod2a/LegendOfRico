@@ -8,5 +8,6 @@
         public override int MonsterHP { get; set; } = 100;
         public override int MonsterCurrentHP { get; set; } = 100;
         public override string fightImgUrl { get; set; } = "img/monster/Spider/SonOfAragog.png";
+        public override int XpGranted { get; set; } = 50;
     }
 }

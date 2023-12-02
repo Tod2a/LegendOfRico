@@ -9,7 +9,7 @@ public abstract class Monster
     public TypeOfDamage[] MonsterResistance { get; private set; }
     public TypeOfMonster MonsterType { get; private set; }
     public Item[] LootTable { get; private set; }
-    public int XpGranted { get; private set; }
+    public abstract int XpGranted { get; set; }
     public abstract int MonsterMinDamage { get; set; }
     public abstract int MonsterMaxDamage { get; set; }
     public Boolean IsBurning { get; private set; }
