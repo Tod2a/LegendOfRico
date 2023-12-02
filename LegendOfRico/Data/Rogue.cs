@@ -11,13 +11,12 @@ public class Rogue : Character
     public double ChanceToDodge { get; private set; } = 0.25;
     public override string fightImgUrl { get; } = "img/Character/fightRogue.png";
     
-    public void Steal(Humanoid target)
+    public void Steal(Monster target)
     {
-        Random chance = new Random();
-        int a = chance.Next(1,10);
-        if (a <= 6 ) 
-        { 
-            LootGold(target.DropsCoins());
+        if(target.MonsterType == TypeOfMonster.Humanoid)
+        {
+            var t = (Humanoid)target;
+            LootGold(t.DropsCoins());
         }
     }
     
