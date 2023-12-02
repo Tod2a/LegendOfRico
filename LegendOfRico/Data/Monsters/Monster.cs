@@ -47,8 +47,15 @@ public abstract class Monster
     {
         Random dice = new Random();
         int damage = dice.Next(MonsterMinDamage, MonsterMaxDamage + 1);
-        target.TakeDamage(damage); 
-        return MonsterName + " vous inflige " + damage + " dégats";
+        double dodge = dice.NextDouble();
+        if (dodge < target.ChanceToDodge)
+        {
+            return "Le monstre lance une attaque que vous avez esquivée";
+        }
+        else
+        {
+            target.TakeDamage(damage);
+            return MonsterName + " vous inflige " + damage + " dégats";
+        } 
     }
-
 }

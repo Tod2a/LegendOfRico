@@ -5,6 +5,6 @@ public enum TypeOfCharacter
     Magicien,
     Guerrier,
     Voleur,
-    clerc,
+    Clerc,
     Ranger
 }

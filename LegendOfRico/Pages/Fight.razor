@@ -24,7 +24,7 @@
                 {
                     @foreach (var spell in Game.Player.SpellBook)
                     {
-                        <button @onclick="() => spell.UseSpell(Game)">@spell.SpellName</button>
+                        <button @onclick="() => Game.Action(spell, Game)">@spell.SpellName</button>
                     }
                     <button @onclick="Game.SwitchFightInventory">go to inventaire</button>
                 }

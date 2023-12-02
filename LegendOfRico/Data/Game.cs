@@ -40,7 +40,7 @@ namespace LegendOfRico.Data
             {
                 Player = new Rogue { Name = CName, MapSprite = "img/character/spriteRogue.png" };
             }
-            else if (Type == TypeOfCharacter.clerc)
+            else if (Type == TypeOfCharacter.Clerc)
             {
                 Player = new Cleric { Name = CName, MapSprite = "img/character/spriteCleric.png" };
             }
@@ -92,6 +92,13 @@ namespace LegendOfRico.Data
                 MonsterFight = SelectEnemy();
                 FormShow = TypeOfShow.Fight;
             }
+        }
+
+        public void Action(Spells spell, Game game)
+        {
+            FightMessage = spell.UseSpell(game);
+            FightMessage += "<br>";
+            FightMessage += game.MonsterFight.Hit(game.Player);
         }
         public void SwitchFightSpells()
         {
