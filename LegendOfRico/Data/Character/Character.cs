@@ -131,7 +131,7 @@ public abstract class Character : INotifyPropertyChanged
     {
         Inventory.Add(CharacterShield);
         ArmorAmount -= CharacterShield.ShieldBonusArmor;
-        CharacterShield = new FistShield();
+        CharacterShield = new FistShield("Poing",0,0);
     }
 
     public void EquipWeapon(Weapon weapon)
