@@ -17,41 +17,7 @@ else if (game.FormShow == TypeOfShow.Map)
 }
 else if (game.FormShow == TypeOfShow.Fight)
 {
-    <div class="displayGame">
-        <div class="gameMenu">
-            <button @onclick="() => Game.FightWin(game)">Autowin</button>
-        </div>
-        <div class="fight" >
-            <div class="fightDisplay" style="background-image: url('@game.GameMap.MapLayout[game.Player.PositionI][game.Player.PositionJ].SquareBiome.FightUrl');">
-                <div class="opponent">
-                    <img class="sprite" src="@game.MonsterFight.fightImgUrl" alt="Image fight Monster">
-                </div>
-                <div class="player">
-                    <img class="sprite" src="@game.Player.fightImgUrl" alt="Image fight Player">
-                </div>
-        </div>
-            <div class="fightMenu">
-                <div class="actions">
-                    @if (game.ShowFightSpells)
-                    {
-                        @foreach(var spell in game.Player.SpellBook)
-                        {
-                            <button>@spell.SpellName</button>
-                        }
-                        <button @onclick="() => Game.SwitchFightInventory(game)">go to inventaire</button>
-                    }
-                    else if (game.ShowFightInventory)
-                    {
-                        <button>Inventaire</button>
-                        <button @onclick="() => Game.SwitchFightSpells(game)">go to spells</button>
-                    }
-
-                
-                </div>
-            </div>
-        </div>
-
-    </div>
+    <Fight Game="game" TypeOfShowChange="StateHasChanged"/>
 }
 
 @code{
@@ -60,9 +26,6 @@ else if (game.FormShow == TypeOfShow.Fight)
     public Game game = new Game { };
 
 
-   
-
-    
           
     //modification de la fonction de blazor pour ajouter l'update de l'affichage de la map en fonctiond de l'emplacement du personnage
 
@@ -73,27 +36,7 @@ else if (game.FormShow == TypeOfShow.Fight)
         base.OnInitialized();
     }
 
-    //Fonction de gestion des bouton clavier
-    private void HandleKeyDown(KeyboardEventArgs e)
-    {
-
-        switch (e.Key)
-        {
-            case "ArrowLeft":
-                game.GoLeft(game);
-                break;
-            case "ArrowRight":
-                game.GoRight(game);
-                break;
-            case "ArrowUp":
-                game.GoUp(game);
-                break;
-            case "ArrowDown":
-                game.GoDown(game);
-                break;
-        }
-        game.GameMap.UpdateMapDisplay(game.Player);
-    }
+  
 
     
 }
