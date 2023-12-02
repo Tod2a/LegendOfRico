@@ -214,13 +214,21 @@ a, .btn-link {
     margin-left: 10px;
     margin-bottom: 10px;
     margin-right: 50px;
+    display: flex;
 }
 
-.opponent .sprite {
+.opponent .spriteFlex {
+    flex: 4;
+}
+.opponent .spriteFlex .sprite {
     float: right;
     width: 100px;
     
     }
+
+.opponent .HPBar {
+    flex: 1;
+}
 
 .player {
     float: left;

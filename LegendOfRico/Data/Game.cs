@@ -111,7 +111,7 @@ namespace LegendOfRico.Data
             Random random = new Random();
             int indexAleatoire = random.Next(GameMap.MapLayout[Player.PositionI][Player.PositionJ].SquareBiome.MonsterPool.Length);
             Monster monster = GameMap.MapLayout[Player.PositionI][Player.PositionJ].SquareBiome.MonsterPool[indexAleatoire];
-            FightMessage = "Vous êtes agrréssé par " + monster.MonsterName + " il faut le vaincre pour survivre.";
+            FightMessage = "Vous êtes agressé par " + monster.MonsterName + ", il faut le vaincre pour survivre.";
             return monster;
         }
 

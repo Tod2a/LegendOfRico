@@ -10,7 +10,8 @@
         </div>
         <div class="fightDisplay" style="background-image: url('@Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].SquareBiome.FightUrl');">
             <div class="opponent">
-                <img class="sprite" src="@Game.MonsterFight.fightImgUrl" alt="Image fight Monster">
+                <div class="spriteFlex"><img class="sprite" src="@Game.MonsterFight.fightImgUrl" alt="Image fight Monster"></div>
+                <div class="HPBar"><p>@Game.MonsterFight.MonsterCurrentHP / @Game.MonsterFight.MonsterHP</p></div>
             </div>
             <div class="player">
                 <img class="sprite" src="@Game.Player.fightImgUrl" alt="Image fight Player">
@@ -22,7 +23,7 @@
                 {
                     @foreach (var spell in Game.Player.SpellBook)
                     {
-                        <button>@spell.SpellName</button>
+                        <button @onclick="() => spell.UseSpell(Game)">@spell.SpellName</button>
                     }
                     <button @onclick="Game.SwitchFightInventory">go to inventaire</button>
                 }
