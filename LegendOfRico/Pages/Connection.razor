@@ -44,41 +44,15 @@
     [Parameter]
     public Game Game { get; set; }
     [Parameter]
-    public EventCallback<TypeOfShow> TypeOfShowChange { get; set; }
+    public EventCallback TypeOfShowChange { get; set; }
 
     private void CreateCharacter()
     {
-        Console.WriteLine("le bouton marche");
-        Console.WriteLine(Game.FormShow);
-        Game.Player = MakeCharacter(characterModel.CharacterName, characterModel.SelectedType);
+        
+        Game.CreateCharacter(characterModel.CharacterName, characterModel.SelectedType);
         Game.FormShow = TypeOfShow.Map;
-        StateHasChanged();
-        Console.WriteLine(Game.FormShow);
         TypeOfShowChange.InvokeAsync();
     }
 
-    public static Character MakeCharacter(string CName, TypeOfCharacter Type)
-    {
-        if (Type == TypeOfCharacter.Magicien)
-        {
-            return new Wizard { Name = CName, MapSprite = "img/character/spriteWizard.png" };
-        }
-        else if (Type == TypeOfCharacter.Guerrier)
-        {
-            return new Fighter { Name = CName, MapSprite = "img/character/spriteFighter.png" };
-        }
-        else if (Type == TypeOfCharacter.Voleur)
-        {
-            return new Rogue { Name = CName, MapSprite = "img/character/spriteRogue.png" };
-        }
-        else if (Type == TypeOfCharacter.clerc)
-        {
-            return new Cleric { Name = CName, MapSprite = "img/character/spriteCleric.png" };
-        }
-        else
-        {
-            return new Ranger { Name = CName, MapSprite = "img/character/spriteRanger.png" };
-        }
-    }
    
 }

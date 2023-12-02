@@ -1,8 +1,8 @@
 ﻿@page "/"
 @using LegendOfRico.Data
 @using Microsoft.JSInterop
-@using System.Text.Json
 @inject IJSRuntime JSRuntime
+
 
 
 <PageTitle>The legend of Rico</PageTitle>
@@ -107,14 +107,7 @@ else if (game.FormShow == TypeOfShow.Fight)
     public Game game = new Game { };
 
 
-    
-
-
-    private void CreateCharacter()
-    {
-        game.CreateCharacter(characterModel.CharacterName, characterModel.SelectedType);
-        game.GameMap.UpdateMapDisplay(game.Player);
-    }
+   
 
     
           
@@ -149,8 +142,5 @@ else if (game.FormShow == TypeOfShow.Fight)
         game.GameMap.UpdateMapDisplay(game.Player);
     }
 
-    
-
- 
     
 }

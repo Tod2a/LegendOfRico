@@ -1,0 +1,83 @@
+﻿@using LegendOfRico.Data
+
+<div class="layoutGame" @onkeydown="HandleKeyDown" @onkeydown:preventDefault=true tabindex="0">
+    <div class="displayGame">
+        <div class="gameMenu">
+            <p>Personnage: @Game.Player.Name</p>
+            <p>Position: [@Game.Player.PositionI][@Game.Player.PositionJ]@Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].Name</p>
+            <button @onclick="() => Game.SwitchShowInventoryList(Game)">Inventaire</button>
+            <button @onclick="() => Game.SwitchShowQuestList(Game)">Liste des quêtes</button>
+            @if (Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].HasNPC == true)
+            {
+                <button @onclick="() => Game.SwitchShowMerchantList(Game)">Marchand</button>
+            }
+            <!--<button onclick="() => Save(game.Player)">Sauvegarde</button>-->
+            <button @onclick="() => Game.Deconnection(Game)">Deconnexion</button>
+        </div>
+        <div class="mapDisplay">
+            <table border="1" class="Map">
+                @for (int i = Game.GameMap.StartI; i < Game.GameMap.MaxI; i++)
+                {
+                    <tr>
+                        @for (int j = Game.GameMap.StartJ; j < Game.GameMap.MaxJ; j++)
+                        {
+                            @if (i == Game.Player.PositionI && j == Game.Player.PositionJ)
+                            {
+                                <td>
+                                    <div style="background-image: url('@Game.GameMap.MapLayout[i][j].SquareBiome.ImageUrl');">
+                                        <img src="@Game.Player.MapSprite" alt="Image Player" class="character-image">
+                                    </div>
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    <div style="background-image: url('@Game.GameMap.MapLayout[i][j].SquareBiome.ImageUrl');"></div>
+                                </td>
+                            }
+
+                        }
+                    </tr>
+                }
+            </table>
+        </div>
+        <div class="mapMenu">
+            <p style="display: @(Game.ShowInventory ? "block" : "none")">ici inventaire</p>
+            <p style="display: @(Game.ShowQuestList ? "block" : "none")">ici liste des quetes</p>
+            <p style="display: @(Game.ShowMerchantList ? "block" : "none")">ici marchand</p>
+        </div>
+    </div>
+</div>
+
+
+
+@code {
+
+    [Parameter]
+    public Game Game { get; set; }
+    [Parameter]
+    public EventCallback TypeOfShowChange { get; set; }
+
+    //Fonction de gestion des bouton clavier
+    private void HandleKeyDown(KeyboardEventArgs e)
+    {
+
+        switch (e.Key)
+        {
+            case "ArrowLeft":
+                Game.GoLeft(Game);
+                break;
+            case "ArrowRight":
+                Game.GoRight(Game);
+                break;
+            case "ArrowUp":
+                Game.GoUp(Game);
+                break;
+            case "ArrowDown":
+                Game.GoDown(Game);
+                break;
+        }
+        Game.GameMap.UpdateMapDisplay(Game.Player);
+    }
+
+}
