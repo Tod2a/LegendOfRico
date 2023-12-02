@@ -11,7 +11,7 @@ namespace LegendOfRico.Data
         public Map GameMap { get; set; } = new Map();
         public Character Player { get; set; } = new Wizard { };
         public Monster MonsterFight { get; set; }
-        public string FightMessage { get; set; }
+        public string FightMessage { get; set; } = "";
         //série de paramètres/variables qui vont gérer l'affichage des différents display du jeu
         //gestion du menu de droite
         public bool ShowInventory = true;
