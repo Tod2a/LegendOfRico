@@ -107,11 +107,11 @@ namespace LegendOfRico.Data
             FightMessage += game.MonsterFight.Hit(game.Player);
             if (game.MonsterFight.MonsterCurrentHP <= 0)
             {
-                FormShow = TypeOfShow.Map;
+                MonsterFight = null;
             }
-            if (game.Player.CurrentHitPoints <= 0)
+            if (game.Player.CurrentHitPoints <= 0 && MonsterFight != null)
             {
-                FormShow = TypeOfShow.Map;
+                PlayerDead = true;
             }
             
         }

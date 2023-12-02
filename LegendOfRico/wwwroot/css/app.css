@@ -215,6 +215,7 @@ a, .btn-link {
     margin-bottom: 10px;
     margin-right: 50px;
     display: flex;
+    flex-direction: column;
 }
 
 .opponent .spriteFlex {
@@ -248,6 +249,7 @@ a, .btn-link {
     margin-bottom: 10px;
     margin-left: 50px;
     display: flex;
+    flex-direction: column;
 }
 
 .player .spriteFlex {
@@ -264,6 +266,18 @@ a, .btn-link {
     top: 48px;
     right: 40px;
     width: 320px;
+}
+
+.fightResult {
+    padding-bottom: 15em;
+    padding-top: 15em;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: block;
+    justify-content: space-between;
+    align-items: center;
+    border: 3px solid #8b4513;
 }
 
 .fightMenu {

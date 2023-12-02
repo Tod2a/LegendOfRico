@@ -5,6 +5,8 @@
         <button @onclick="Autowin">Autowin</button>
     </div>
     <div class="fight">
+        @if(Game.MonsterFight != null && !Game.PlayerDead)
+        {
         <div class="fightBox">
             <p>@Game.FightMessage</p>
         </div>
@@ -45,6 +47,20 @@
 
             </div>
         </div>
+        }
+        @if(Game.MonsterFight == null)
+        {
+            <div class="fightResult" style="background-image: url('@Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].SquareBiome.FightUrl');">
+                <p>Vous avez gagné!</p>
+            </div>
+        }
+        @if(Game.PlayerDead == true)
+        {
+            <div class="fightResult" style="background-image: url('@Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].SquareBiome.FightUrl');">
+                <p>Vous êtes mort</p>
+            </div>
+        }
+
     </div>
 
 </div>
