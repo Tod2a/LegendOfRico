@@ -13,54 +13,7 @@
 } 
 else if (game.FormShow == TypeOfShow.Map)
 {
-    <div class="layoutGame" @onkeydown="HandleKeyDown" @onkeydown:preventDefault=true tabindex="0">
-    <div class="displayGame">
-        <div class="gameMenu">
-        <p>Personnage: @game.Player.Name</p>
-        <p>Position: [@game.Player.PositionI][@game.Player.PositionJ]@game.GameMap.MapLayout[game.Player.PositionI][game.Player.PositionJ].Name</p>
-        <button @onclick="() => Game.SwitchShowInventoryList(game)">Inventaire</button>
-        <button @onclick="() => Game.SwitchShowQuestList(game)">Liste des quêtes</button>
-                @if (game.GameMap.MapLayout[game.Player.PositionI][game.Player.PositionJ].HasNPC == true)
-                {
-                    <button @onclick="() => Game.SwitchShowMerchantList(game)">Marchand</button>
-                }
-                <!--<button onclick="() => Save(game.Player)">Sauvegarde</button>-->
-        <button @onclick="() => Game.Deconnection(game)">Deconnexion</button>
-        </div>
-        <div class="mapDisplay">
-        <table border="1" class="Map">
-            @for(int i = game.GameMap.StartI; i < game.GameMap.MaxI; i++)
-            {
-                <tr>
-                @for (int j = game.GameMap.StartJ; j < game.GameMap.MaxJ; j++)
-                {
-                    @if (i == game.Player.PositionI && j == game.Player.PositionJ)
-                    {
-                        <td>
-                            <div style="background-image: url('@game.GameMap.MapLayout[i][j].SquareBiome.ImageUrl');">
-                                <img src="@game.Player.MapSprite" alt="Image Player" class="character-image">
-                            </div>
-                        </td>
-                    }
-                    else
-                    {
-                        <td>
-                            <div style="background-image: url('@game.GameMap.MapLayout[i][j].SquareBiome.ImageUrl');"></div>
-                        </td>
-                    }
-                   
-                }
-                </tr>
-            }
-        </table>
-        </div>
-        <div class="mapMenu">
-                <p style="display: @(game.ShowInventory ? "block" : "none")">ici inventaire</p>
-                <p style="display: @(game.ShowQuestList ? "block" : "none")">ici liste des quetes</p>
-                <p style="display: @(game.ShowMerchantList ? "block" : "none")">ici marchand</p>
-        </div>
-    </div>
-    </div>
+    <Map Game="game" TypeOfShowChange="StateHasChanged"/>
 }
 else if (game.FormShow == TypeOfShow.Fight)
 {

@@ -12,7 +12,7 @@
                 <button @onclick="() => Game.SwitchShowMerchantList(Game)">Marchand</button>
             }
             <!--<button onclick="() => Save(game.Player)">Sauvegarde</button>-->
-            <button @onclick="() => Game.Deconnection(Game)">Deconnexion</button>
+            <button @onclick="Deconnection">Deconnexion</button>
         </div>
         <div class="mapDisplay">
             <table border="1" class="Map">
@@ -57,6 +57,12 @@
     public Game Game { get; set; }
     [Parameter]
     public EventCallback TypeOfShowChange { get; set; }
+
+    void Deconnection ()
+    {
+        Game.Deconnection();
+        TypeOfShowChange.InvokeAsync();
+    }
 
     //Fonction de gestion des bouton clavier
     private void HandleKeyDown(KeyboardEventArgs e)

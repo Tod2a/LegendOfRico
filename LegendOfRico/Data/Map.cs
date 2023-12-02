@@ -23,7 +23,7 @@ namespace LegendOfRico.Data
             MaxI = PersoTest.PositionI + 5;
             StartJ = PersoTest.PositionJ - 4;
             MaxJ = PersoTest.PositionJ + 5;
-            if (StartI<0) { StartI = 0; }
+            if (StartI < 0) { StartI = 0; }
             if (StartJ < 0) { StartJ = 0; }
             if (MaxI > 500) { MaxI = 500; }
             if (MaxJ > 500) { MaxJ = 500; }
@@ -40,7 +40,7 @@ namespace LegendOfRico.Data
         public static Undead Boldel = new Undead { MonsterName = "Boldel", MonsterHP = 2500 };
         public static Undead Draleo = new Undead { MonsterName = "Draleo", MonsterHP = 1000 };
 
-        public static Spider Aragorn = new Spider { MonsterName = "Aragorn", MonsterHP = 5000, fightImgUrl="img/monster/basicSpider.png"  };
+        public static Spider Aragorn = new Spider { MonsterName = "Aragorn", MonsterHP = 5000, fightImgUrl = "img/monster/basicSpider.png" };
         public static Spider SonOfAragorn = new Spider { MonsterName = "AragornJr", MonsterHP = 1000, fightImgUrl = "img/monster/basicSpider.png" };
         public static Spider CousinOfAragorn = new Spider { MonsterName = "Nrogara", MonsterHP = 2500, fightImgUrl = "img/monster/basicSpider.png" };
 
@@ -50,13 +50,13 @@ namespace LegendOfRico.Data
 
         //plaine
         public static Monster[] poolOfPlain = { Aragorn };
-        public static Monster[] poolOfMediumPlain = { Aragorn};
+        public static Monster[] poolOfMediumPlain = { Aragorn };
         public static Monster[] poolOfHardPlain = { Aragorn };
         //forêt
-        public static Monster[] poolOfForest = { SonOfAragorn};
+        public static Monster[] poolOfForest = { SonOfAragorn };
         public static Monster[] poolOfMediumForest = { CousinOfAragorn };
         public static Monster[] poolOfHardForest = { Aragorn };
-        public static Monster[] bossOfForest = {Aragorn };
+        public static Monster[] bossOfForest = { Aragorn };
         //désert
         public static Monster[] poolOfDesert = { Aragorn };
         public static Monster[] poolOfMediumDesert = { Aragorn };
@@ -114,9 +114,9 @@ namespace LegendOfRico.Data
         //village
         public static Biomes village = new Biomes { BiomeType = TypeOfBiome.Village, MonsterPool = poolOfVillage, ImageUrl = "img/biomes/village.png", FightUrl = "img/layout/fondFightBossVillage.png" };
         public static Biomes bossVillage = new Biomes { BiomeType = TypeOfBiome.Village, MonsterPool = bossOfVillage, ImageUrl = "img/biomes/villageBoss.png", FightUrl = "img/layout/fondFightBossVillage.png" };
-        public static Biomes village2 = new Biomes { BiomeType = TypeOfBiome.Village, MonsterPool = poolOfVillage, ImageUrl = "img/biomes/village2.png" , FightUrl = "img/layout/fondFightBossVillage.png" };
+        public static Biomes village2 = new Biomes { BiomeType = TypeOfBiome.Village, MonsterPool = poolOfVillage, ImageUrl = "img/biomes/village2.png", FightUrl = "img/layout/fondFightBossVillage.png" };
         public static Biomes village3 = new Biomes { BiomeType = TypeOfBiome.Village, MonsterPool = poolOfVillage, ImageUrl = "img/biomes/village3.png", FightUrl = "img/layout/fondFightBossVillage.png" };
-    
+   
 
         private static void TrippleSquare(int minI, int maxI, int minJ, int maxJ, Square[][] mapLayout, TypeOfBiome tBiome, string Name, double cTrigger)
         {

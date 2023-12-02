@@ -51,9 +51,9 @@ namespace LegendOfRico.Data
  
         }
 
-        public static void Deconnection(Game game)
+        public void Deconnection()
         {
-            game.FormShow = TypeOfShow.Connection;
+            FormShow = TypeOfShow.Connection;
         }
 
         //gestion du menu de droite pour les quetes, inventaire et marchand.
