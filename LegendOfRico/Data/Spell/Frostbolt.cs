@@ -11,20 +11,25 @@ public class Frostbolt : Spells
     public double CritChance = 0.2;
     public double FreezeChance = 0.05;
 
-    public override void UseSpell(Game currentGame)
+    public override string UseSpell(Game currentGame)
     {
         int damageRoll = (new Random()).Next(MinValue, MaxValue + 1);
         damageRoll += (int)((currentGame.Player.Statistics / 50) * damageRoll);
+        string s = "";
 
         if ((new Random()).NextDouble() <= CritChance)
         {
             damageRoll *= 2;
+            s += "Coup critique ! ";
         }
         if ((new Random()).NextDouble() <= FreezeChance && !currentGame.MonsterFight.MonsterResistance.Contains(SpellType))
         {
             currentGame.MonsterFight.Frozen();
+            s += "Vous avez gelé votre cible ! ";
         }
         currentGame.MonsterFight.TakeDamage(damageRoll);
+        s += "Vous infligez " + damageRoll + " points de dégâts à la cible ! ";
         CurrentNumberOfUses--;
+        return s;
     }
 }

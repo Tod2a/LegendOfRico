@@ -7,13 +7,19 @@ public class Steal : Spells
     public override int CurrentNumberOfUses { get; protected set; } = 3;
     public TypeOfDamage SpellType = TypeOfDamage.None;
 
-    public override void UseSpell(Game currentGame)
+    public override string UseSpell(Game currentGame)
     {
         if (currentGame.MonsterFight.MonsterType == TypeOfMonster.Humanoid)
         {
             var t = (Humanoid)currentGame.MonsterFight;
-            currentGame.Player.LootGold(t.DropsCoins());
+            int stolenCoins = t.DropsCoins();
+            currentGame.Player.LootGold(stolenCoins);
             CurrentNumberOfUses--;
+            return "Vous avez volé "+stolenCoins+" à la cible !";
+        }
+        else
+        {
+            return "Votre cible n'a pas d'argent !";
         }
     }
 }

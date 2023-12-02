@@ -10,6 +10,6 @@ public class Cleric : Character
     public override int MaxHitPoints => 25;
     public override int ArmorAmount { get; protected set; } = 3;
     public override double ChanceToDodge { get; protected set; } = 0.05;
-    public override List<Spells> SpellBook { get; protected set; } = new List<Spells>() { new Smite(), new Heal(),};
+    public override List<Spells> SpellBook { get; protected set; } = new List<Spells>() { new Smite(), new Heal(), new DivineIntervention()};
     public override string fightImgUrl { get;  } = "img/Character/fightCleric.png";
 }

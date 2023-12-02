@@ -11,5 +11,5 @@ public abstract class Spells
         CurrentNumberOfUses = MaxNumberOfUses;
     }
 
-    public abstract void UseSpell(Game currentGame);
+    public abstract string UseSpell(Game currentGame);
 }
