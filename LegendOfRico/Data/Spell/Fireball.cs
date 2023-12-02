@@ -25,5 +25,6 @@ public class Fireball : Spells
             currentGame.MonsterFight.Burnt();
         }
         currentGame.MonsterFight.TakeDamage(damageRoll);
+        CurrentNumberOfUses--;
     }
 }

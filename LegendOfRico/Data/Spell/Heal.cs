@@ -2,7 +2,7 @@ namespace LegendOfRico.Data;
 
 public class Heal : Spells
 {
-    public override string SpellName => "Heal";
+    public override string SpellName => "Soin";
     public override int MaxNumberOfUses => 15;
     public override int CurrentNumberOfUses { get; protected set; } = 15;
     public int MinValue => 5;
@@ -18,5 +18,6 @@ public class Heal : Spells
             healRoll *= 2;
         }
         currentGame.Player.ReceiveHeal(healRoll);
+        CurrentNumberOfUses--;
     }
 }

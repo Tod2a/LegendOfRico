@@ -2,7 +2,7 @@ namespace LegendOfRico.Data;
 
 public class Smite : Spells
 {
-    public override string SpellName => "Smite";
+    public override string SpellName => "Châtiment";
     public override int MaxNumberOfUses => 10;
     public override int CurrentNumberOfUses { get; protected set; } = 10;
     public int MinValue => 10;
@@ -20,5 +20,6 @@ public class Smite : Spells
             currentGame.MonsterFight.Burnt();
             currentGame.MonsterFight.TakeDamage((int)(currentGame.MonsterFight.MonsterHP / 10));
         }
+        CurrentNumberOfUses--;
     }
 }

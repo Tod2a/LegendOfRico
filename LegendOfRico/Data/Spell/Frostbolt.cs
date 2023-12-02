@@ -25,5 +25,6 @@ public class Frostbolt : Spells
             currentGame.MonsterFight.Frozen();
         }
         currentGame.MonsterFight.TakeDamage(damageRoll);
+        CurrentNumberOfUses--;
     }
 }

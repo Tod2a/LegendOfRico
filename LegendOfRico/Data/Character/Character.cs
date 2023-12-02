@@ -10,6 +10,7 @@ public abstract class Character : INotifyPropertyChanged
     public int CurrentHitPoints { get; private set; }
     public int Statistics { get; private set; }
     public int ArmorAmount { get; private set; }
+    public abstract double ChanceToDodge { get; protected set; }
     public Weapon CharacterWeapon { get; private set; }
     public Shield CharacterShield { get; private set; }
     public Armor CharacterArmor { get; private set; }
@@ -75,15 +76,21 @@ public abstract class Character : INotifyPropertyChanged
         IsFrozen = true;
     }
 
-    public virtual void Rest()
+    public void Rest()
     {
         CurrentHitPoints = MaxHitPoints;
+        foreach (var spell in SpellBook)
+        {
+            spell.RefreshSpell();
+        }
     }
 
     public virtual void Hit(Monster target)
     {
         int weaponDamageRoll =
             (new Random()).Next(CharacterWeapon.MinimumWeaponDamage, CharacterWeapon.MaximumWeaponDamage + 1);
+        weaponDamageRoll += (int)((Statistics / 50) * weaponDamageRoll);
+
         if ((new Random()).NextDouble() <= CharacterWeapon.WeaponCritChance) //Si l'arme crit dégâts x2
         {
             weaponDamageRoll *= 2;
@@ -110,7 +117,7 @@ public abstract class Character : INotifyPropertyChanged
 
     public void TakeDamage(int damageTaken)
     {
-        CurrentHitPoints -= damageTaken;
+        CurrentHitPoints -= damageTaken - ArmorAmount;
     }
 
     public void EquipShield(Shield shield)

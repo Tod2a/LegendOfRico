@@ -20,5 +20,6 @@ public class DivineIntervention : Spells
             currentGame.MonsterFight.Burnt();
             currentGame.MonsterFight.TakeDamage((int)(currentGame.MonsterFight.MonsterHP / 10));
         }
+        CurrentNumberOfUses--;
     }
 }

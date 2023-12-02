@@ -6,29 +6,23 @@ public class Rogue : Character
     public override TypeOfArmor ArmorMastery => TypeOfArmor.Medium;
     public Weapon OffHandWeapon { get; private set; } = new Fist("Poing", 0, 1, 3);
     public override bool CanEquipShield { get; protected set; } = false;
-    public override List<Spells> SpellBook { get; protected set; } = new List<Spells>();
+    public override List<Spells> SpellBook { get; protected set; } = new List<Spells>() { new Steal() };
     public override int MaxHitPoints => 15;
-    public double ChanceToDodge { get; private set; } = 0.25;
+    public override double ChanceToDodge { get; protected set; } = 0.25;
     public override string fightImgUrl { get; } = "img/Character/fightRogue.png";
-    
-    public void Steal(Monster target)
-    {
-        if(target.MonsterType == TypeOfMonster.Humanoid)
-        {
-            var t = (Humanoid)target;
-            LootGold(t.DropsCoins());
-        }
-    }
     
     //Special "Hit" for Rogue since he can wield two weapons at once
     public override void Hit(Monster target)
     {
         int weaponDamageRoll =
             (new Random()).Next(CharacterWeapon.MinimumWeaponDamage, CharacterWeapon.MaximumWeaponDamage + 1);
+        weaponDamageRoll += (int)((Statistics / 50) * weaponDamageRoll);
         if (!(OffHandWeapon.GetType() == typeof(Fist))) //Adds half off hand weapon damage to the damage roll
         {
-            weaponDamageRoll += 
+            int offHandWeaponDamageRoll = 
                 (int)(new Random()).Next(OffHandWeapon.MinimumWeaponDamage, OffHandWeapon.MaximumWeaponDamage + 1) / 2;
+            offHandWeaponDamageRoll += (int)((Statistics / 50) * offHandWeaponDamageRoll);
+            weaponDamageRoll += offHandWeaponDamageRoll;
         }
         
         if ((new Random()).NextDouble() <= CharacterWeapon.WeaponCritChance) //Double damage if crit
