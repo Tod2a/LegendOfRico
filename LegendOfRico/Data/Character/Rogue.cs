@@ -10,7 +10,7 @@ public class Rogue : Character
     public override bool CanEquipShield { get; protected set; } = false;
     public override List<Spells> SpellBook { get; protected set; } = new List<Spells>() { new Steal() };
     public override int MaxHitPoints => 15;
-    public override int CurrentHitPoints => 15;
+    public override int CurrentHitPoints { get; protected set; } = 15;
     public override int ArmorAmount { get; protected set; } = 0;
     public override double ChanceToDodge { get; protected set; } = 0.25;
     public override string fightImgUrl { get; } = "img/Character/fightRogue.png";
