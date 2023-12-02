@@ -224,10 +224,22 @@ a, .btn-link {
     float: right;
     width: 100px;
     
-    }
+}
 
-.opponent .HPBar {
-    flex: 1;
+.stats {
+    background: #111;
+    border: 2px solid black;
+    border-radius: 8px;
+    color: white;
+    padding: 12px;
+}
+
+.opponent .stats {
+    float: right;
+    
+    /*top: 96px;
+    left: 40px;*/
+    width: 320px;
 }
 
 .player {
@@ -247,8 +259,11 @@ a, .btn-link {
     width: 100px;
 }
 
-.player .HPBar {
-    flex: 1;
+.player .stats {
+    float: left;
+    top: 48px;
+    right: 40px;
+    width: 320px;
 }
 
 .fightMenu {

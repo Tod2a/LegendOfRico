@@ -11,11 +11,19 @@
         <div class="fightDisplay" style="background-image: url('@Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].SquareBiome.FightUrl');">
             <div class="opponent">
                 <div class="spriteFlex"><img class="sprite" src="@Game.MonsterFight.fightImgUrl" alt="Image fight Monster"></div>
-                <div class="HPBar"><p>@Game.MonsterFight.MonsterCurrentHP / @Game.MonsterFight.MonsterHP</p></div>
+                <div class="stats">
+                    <div class="HPBar"><p>@Game.MonsterFight.MonsterCurrentHP / @Game.MonsterFight.MonsterHP</p></div>
+                    <div class="Name"><p>@Game.MonsterFight.MonsterName</p></div>
+                </div>
+                
             </div>
             <div class="player">
                 <div class="spriteFlex"><img class="sprite" src="@Game.Player.fightImgUrl" alt="Image fight Player"></div>
-                <div class="HPBar">@Game.Player.CurrentHitPoints / @Game.Player.MaxHitPoints</div>
+                <div class="stats">
+                    <div class="Name"><p>@Game.Player.Name</p></div>
+                    <div class="HPBar">@Game.Player.CurrentHitPoints / @Game.Player.MaxHitPoints</div>
+                </div>
+                
             </div>
         </div>
         <div class="fightMenu">
