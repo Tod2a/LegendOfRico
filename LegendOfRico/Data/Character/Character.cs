@@ -7,7 +7,7 @@ public abstract class Character : INotifyPropertyChanged
     public string Name { get; set; }
     public int Level { get; private set; } = 1;
     public abstract int MaxHitPoints { get; }
-    public int CurrentHitPoints { get; private set; }
+    public abstract int CurrentHitPoints { get; }
     public int Statistics { get; private set; }
     public abstract int ArmorAmount { get; protected set; }
     public abstract double ChanceToDodge { get; protected set; }
