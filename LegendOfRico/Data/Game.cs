@@ -59,25 +59,25 @@ namespace LegendOfRico.Data
 
         //gestion du menu de droite pour les quetes, inventaire et marchand.
 
-        public static void SwitchShowMerchantList (Game game)
+        public void SwitchShowMerchantList ()
         {
-            game.ShowInventory = false;
-            game.ShowMerchantList = true;
-            game.ShowQuestList = false;
+            ShowInventory = false;
+            ShowMerchantList = true;
+            ShowQuestList = false;
         }
 
-        public static void SwitchShowQuestList (Game game)
+        public void SwitchShowQuestList ()
         {
-            game.ShowInventory = false;
-            game.ShowMerchantList = false;
-            game.ShowQuestList = true;
+            ShowInventory = false;
+            ShowMerchantList = false;
+            ShowQuestList = true;
         }
 
-        public static void SwitchShowInventoryList (Game game)
+        public void SwitchShowInventoryList ()
         {
-            game.ShowInventory = true;
-            game.ShowMerchantList = false;
-            game.ShowQuestList = false;
+            ShowInventory = true;
+            ShowMerchantList = false;
+            ShowQuestList = false;
         }
 
         //Gestion des combats

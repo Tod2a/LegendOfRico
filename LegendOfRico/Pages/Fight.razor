@@ -24,12 +24,12 @@
                     {
                         <button>@spell.SpellName</button>
                     }
-                    <button @onclick="() => Game.SwitchFightInventory()">go to inventaire</button>
+                    <button @onclick="Game.SwitchFightInventory">go to inventaire</button>
                 }
                 else if (Game.ShowFightInventory)
                 {
                     <button>Inventaire</button>
-                    <button @onclick="() => Game.SwitchFightSpells()">go to spells</button>
+                    <button @onclick="Game.SwitchFightSpells">go to spells</button>
                 }
 
 
