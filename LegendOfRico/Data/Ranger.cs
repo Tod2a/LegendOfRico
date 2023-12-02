@@ -9,7 +9,11 @@ public class Ranger : Character
     public override List<Spells> SpellBook { get; protected set; } = new List<Spells>();
     public override string fightImgUrl { get; } = "img/Character/fightRanger.png";
 
-    public void Sooth(Beast target){
-        target.Soothed();
+    public void Sooth(Monster target){
+        if(target.MonsterType == TypeOfMonster.Beast)
+        {
+            var t = (Beast)target;
+            t.Soothed();
+        }
     }
 }
