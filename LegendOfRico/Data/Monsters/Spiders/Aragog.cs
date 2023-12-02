@@ -7,6 +7,6 @@
         public override int MonsterMaxDamage { get; set; } = 10;
         public override int MonsterHP { get; set; } = 500;
         public override int MonsterCurrentHP { get; set; } = 500;
-        public override string fightImgUrl { get; set; } = "img/monster/basicSpider.png";
+        public override string fightImgUrl { get; set; } = "img/monster/spider/Aragog.png";
     }
 }
