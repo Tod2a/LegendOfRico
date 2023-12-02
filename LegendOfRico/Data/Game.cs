@@ -127,7 +127,7 @@ namespace LegendOfRico.Data
             }
             if (game.ShowMerchantList == true)
             {
-                Game.SwitchShowInventoryList(game);
+                SwitchShowInventoryList();
             }
         }
 
@@ -140,7 +140,7 @@ namespace LegendOfRico.Data
             }
             if (game.ShowMerchantList == true)
             {
-                Game.SwitchShowInventoryList(game);
+                SwitchShowInventoryList();
             }
         }
 
@@ -153,7 +153,7 @@ namespace LegendOfRico.Data
             }
             if (game.ShowMerchantList == true)
             {
-                Game.SwitchShowInventoryList(game);
+                SwitchShowInventoryList();
             }
         }
 
@@ -166,7 +166,7 @@ namespace LegendOfRico.Data
             }
             if (game.ShowMerchantList == true)
             {
-                Game.SwitchShowInventoryList(game);
+                SwitchShowInventoryList();
             }
         }
 
