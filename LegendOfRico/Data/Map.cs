@@ -10,7 +10,19 @@ namespace LegendOfRico.Data
         public int MaxI { get; set; }
         public int StartJ { get; set; }
         public int MaxJ { get; set; }
-        public int MapLevel { get; set; } = 1;
+        private int mapLevel = 1;
+        public int MapLevel 
+        {
+            get {return mapLevel; }
+            set 
+            {
+                if(mapLevel != value)
+                {
+                    mapLevel = value;
+                    CheckPoolOfMonster();
+                }
+            } 
+        }
         public void LevelUpMap()
         {
             //A definir.
@@ -29,6 +41,69 @@ namespace LegendOfRico.Data
             if (MaxJ > 500) { MaxJ = 500; }
         }
 
+        //Fonction pour ajuster le pool de monstre en cas de lvl up de la carte
+        private void CheckPoolOfMonster()
+        {
+            if(MapLevel == 5)
+            {
+                foreach(var lines in MapLayout)
+                {
+                    foreach(var square in lines)
+                    {
+                        if (square.SquareBiome.BiomeType == TypeOfBiome.Plain)
+                        { 
+                            square.SquareBiome.MonsterPool = poolOfMediumPlain; 
+                        }
+                        else if (square.SquareBiome.BiomeType == TypeOfBiome.Forest || square.SquareBiome.BiomeType == TypeOfBiome.ForestDifficult)
+                        {
+                            square.SquareBiome.MonsterPool = poolOfMediumForest;
+                        }
+                        else if (square.SquareBiome.BiomeType == TypeOfBiome.Graveyard || square.SquareBiome.BiomeType == TypeOfBiome.GraveyardDifficult)
+                        {
+                            square.SquareBiome.MonsterPool = poolOfMediumGraveyard;
+                        }
+                        else if (square.SquareBiome.BiomeType == TypeOfBiome.Desert || square.SquareBiome.BiomeType == TypeOfBiome.DesertDifficult)
+                        {
+                            square.SquareBiome.MonsterPool = poolOfMediumDesert;
+                        }
+                        else if (square.SquareBiome.BiomeType == TypeOfBiome.AbandonedVillage || square.SquareBiome.BiomeType == TypeOfBiome.AbandonedVillageDifficult)
+                        {
+                            square.SquareBiome.MonsterPool = poolOfMediumRuined;
+                        }                
+                    }
+                }
+            }
+            if (MapLevel == 10)
+            {
+                foreach (var lines in MapLayout)
+                {
+                    foreach (var square in lines)
+                    {
+                        if (square.SquareBiome.BiomeType == TypeOfBiome.Plain)
+                        {
+                            square.SquareBiome.MonsterPool = poolOfHardPlain;
+                        }
+                        else if (square.SquareBiome.BiomeType == TypeOfBiome.Forest || square.SquareBiome.BiomeType == TypeOfBiome.ForestDifficult)
+                        {
+                            square.SquareBiome.MonsterPool = poolOfHardForest;
+                        }
+                        else if (square.SquareBiome.BiomeType == TypeOfBiome.Graveyard || square.SquareBiome.BiomeType == TypeOfBiome.GraveyardDifficult)
+                        {
+                            square.SquareBiome.MonsterPool = poolOfHardGraveyard;
+                        }
+                        else if (square.SquareBiome.BiomeType == TypeOfBiome.Desert || square.SquareBiome.BiomeType == TypeOfBiome.DesertDifficult)
+                        {
+                            square.SquareBiome.MonsterPool = poolOfHardDesert;
+                        }
+                        else if (square.SquareBiome.BiomeType == TypeOfBiome.AbandonedVillage || square.SquareBiome.BiomeType == TypeOfBiome.AbandonedVillageDifficult)
+                        {
+                            square.SquareBiome.MonsterPool = poolOfHardRuined;
+                        }
+                    }
+                }
+            }
+        }
+
 
 
         // tout ce qui suit sert à créer la map ainsi que son contenu
@@ -41,16 +116,16 @@ namespace LegendOfRico.Data
         public static Undead Draleo = new Undead { MonsterName = "Draleo", MonsterHP = 1000 };
 
         public static Spider Aragorn = new Spider { MonsterName = "Aragorn", MonsterMinDamage = 5, MonsterMaxDamage = 10 ,MonsterHP = 500, MonsterCurrentHP = 500, fightImgUrl = "img/monster/basicSpider.png" };
-        public static Spider SonOfAragorn = new Spider { MonsterName = "AragornJr", MonsterHP = 1000, fightImgUrl = "img/monster/basicSpider.png" };
-        public static Spider CousinOfAragorn = new Spider { MonsterName = "Nrogara", MonsterHP = 2500, fightImgUrl = "img/monster/basicSpider.png" };
+        public static Spider SonOfAragorn = new Spider { MonsterName = "AragornJr", MonsterMinDamage = 5, MonsterMaxDamage = 10, MonsterHP = 100, MonsterCurrentHP = 100, fightImgUrl = "img/monster/basicSpider.png" };
+        public static Spider CousinOfAragorn = new Spider { MonsterName = "Nrogara", MonsterMinDamage = 5, MonsterMaxDamage = 10, MonsterHP = 250, MonsterCurrentHP = 250, fightImgUrl = "img/monster/basicSpider.png" };
 
 
         // création des pool de monstres, 4 pools par biomes, trois en fonction du niveau de la map et un pour les boss
         //contenu des pool encore à définir mais divers pool déjà créés pour faire la map
 
         //plaine
-        public static Monster[] poolOfPlain = { Aragorn };
-        public static Monster[] poolOfMediumPlain = { Aragorn };
+        public static Monster[] poolOfPlain = { SonOfAragorn };
+        public static Monster[] poolOfMediumPlain = { CousinOfAragorn };
         public static Monster[] poolOfHardPlain = { Aragorn };
         //forêt
         public static Monster[] poolOfForest = { SonOfAragorn };
@@ -58,24 +133,24 @@ namespace LegendOfRico.Data
         public static Monster[] poolOfHardForest = { Aragorn };
         public static Monster[] bossOfForest = { Aragorn };
         //désert
-        public static Monster[] poolOfDesert = { Aragorn };
-        public static Monster[] poolOfMediumDesert = { Aragorn };
+        public static Monster[] poolOfDesert = { SonOfAragorn };
+        public static Monster[] poolOfMediumDesert = { CousinOfAragorn };
         public static Monster[] poolOfHardDesert = { Aragorn };
         public static Monster[] bossOfDesert = { Aragorn };
         //Ruines
-        public static Monster[] poolOfRuined = { Aragorn };
-        public static Monster[] poolOfMediumRuined = { Aragorn };
+        public static Monster[] poolOfRuined = { SonOfAragorn };
+        public static Monster[] poolOfMediumRuined = { CousinOfAragorn };
         public static Monster[] poolOfHardRuined = { Aragorn };
         public static Monster[] bossOfRuined = { Aragorn };
         //cimetiere
-        public static Monster[] poolOfGraveyard = { Aragorn };
-        public static Monster[] poolOfMediumGraveyard = { Aragorn };
+        public static Monster[] poolOfGraveyard = { SonOfAragorn };
+        public static Monster[] poolOfMediumGraveyard = { CousinOfAragorn };
         public static Monster[] poolOfHardGraveyard = { Aragorn };
         public static Monster[] bossOfGraveyard = { Aragorn };
         //village
-        public static Monster[] poolOfVillage = { Aragorn };
-        public static Monster[] poolOfMediumVillage = { Aragorn };
-        public static Monster[] poolOfHardVillage = { Aragorn };
+        public static Monster[] poolOfVillage = {};
+        public static Monster[] poolOfMediumVillage = {};
+        public static Monster[] poolOfHardVillage = {};
         public static Monster[] bossOfVillage = { Aragorn };
 
         //création des différents Biomes 3 par types pour les différentes images, un pour les cases dangereuses et un pour les boss

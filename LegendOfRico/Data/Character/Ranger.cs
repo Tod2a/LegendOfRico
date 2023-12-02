@@ -13,4 +13,11 @@ public class Ranger : Character
     public override double ChanceToDodge { get; protected set; } = 0.15;
     public override List<Spells> SpellBook { get; protected set; } = new List<Spells>() { new Sooth()};
     public override string fightImgUrl { get; } = "img/Character/fightRanger.png";
+    protected override void CheckLearnSpell()
+    {
+        if (Level == 3)
+        {
+            //Spell à défini
+        }
+    }
 }

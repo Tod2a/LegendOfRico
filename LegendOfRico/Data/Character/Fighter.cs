@@ -15,6 +15,13 @@
         public override double ChanceToDodge { get; protected set; } = 0.1;
         public override string fightImgUrl { get; } = "img/Character/fightFighter.png";
 
+        protected override void CheckLearnSpell()
+        {
+            if (Level == 3)
+            {
+                //Spell à défini
+            }
+        }
         public void EquipGreatsword(Weapon greatsword)
         {
             EquipWeapon(greatsword);

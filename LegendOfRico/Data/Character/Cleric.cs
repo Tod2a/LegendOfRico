@@ -13,4 +13,12 @@ public class Cleric : Character
     public override double ChanceToDodge { get; protected set; } = 0.05;
     public override List<Spells> SpellBook { get; protected set; } = new List<Spells>() { new Smite(), new Heal(), new Pyroblast(), new DivineIntervention()};
     public override string fightImgUrl { get;  } = "img/Character/fightCleric.png";
+
+   protected override void CheckLearnSpell() 
+    {
+        if (Level == 3)
+        {
+            //Spell à défini
+        }
+    }
 }

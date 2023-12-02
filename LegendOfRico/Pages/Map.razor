@@ -13,6 +13,7 @@
             }
             <!--<button onclick="() => Save(game.Player)">Sauvegarde</button>-->
             <button @onclick="Deconnection">Deconnexion</button>
+            <!--<button @onclick="Lvl">Lvlup</button>-->
         </div>
         <div class="mapDisplay">
             <table border="1" class="Map">
@@ -62,6 +63,13 @@
     {
         Game.Deconnection();
         TypeOfShowChange.InvokeAsync();
+    }
+
+    void Lvl()
+    {
+        Game.LevelUp();
+        Console.WriteLine(Game.GameMap.MapLevel);
+        Console.WriteLine(Game.Player.Level);
     }
 
     //Fonction de gestion des bouton clavier

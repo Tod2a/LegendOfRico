@@ -18,7 +18,7 @@ public abstract class Monster
     
     public void TakeDamage(int damageReceived)
     {
-        MonsterHP -= damageReceived;
+        MonsterCurrentHP -= damageReceived;
     }
     
     public void Burnt()

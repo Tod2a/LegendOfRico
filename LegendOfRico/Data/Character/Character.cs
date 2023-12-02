@@ -5,7 +5,20 @@ namespace LegendOfRico.Data;
 public abstract class Character : INotifyPropertyChanged
 {
     public string Name { get; set; }
-    public int Level { get; private set; } = 1;
+    private int level = 1;
+    public int Level {
+        get { return level; }
+        set 
+        {
+            if (level != value)
+            {
+                level = value;
+                CheckLearnSpell();
+            }
+        } 
+    }
+    public int CurrentXp { get; set; } = 0;
+    public int XpToLevel { get; set; } = 1000;
     public abstract int MaxHitPoints { get; }
     public abstract int CurrentHitPoints { get; protected set; }
     public int Statistics { get; private set; }
@@ -66,6 +79,8 @@ public abstract class Character : INotifyPropertyChanged
         }
     }
 
+
+    protected abstract void CheckLearnSpell();
     public void Burnt()
     {
         IsBurning = true;

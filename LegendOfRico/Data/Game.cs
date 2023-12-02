@@ -12,6 +12,7 @@ namespace LegendOfRico.Data
         public Character Player { get; set; } = new Wizard { };
         public Monster MonsterFight { get; set; }
         public string FightMessage { get; set; } = "";
+        public bool PlayerDead = false;
         //série de paramètres/variables qui vont gérer l'affichage des différents display du jeu
         //gestion du menu de droite
         public bool ShowInventory = true;
@@ -24,6 +25,11 @@ namespace LegendOfRico.Data
 
 
 
+        public void LevelUp()
+        {
+            GameMap.MapLevel++;
+            Player.Level++;
+        }
 
 
         public void CreateCharacter(string CName, TypeOfCharacter Type)
@@ -97,7 +103,7 @@ namespace LegendOfRico.Data
         public void Action(Spells spell, Game game)
         {
             FightMessage = spell.UseSpell(game);
-            FightMessage += "<br>";
+            FightMessage += ", ";
             FightMessage += game.MonsterFight.Hit(game.Player);
         }
         public void SwitchFightSpells()

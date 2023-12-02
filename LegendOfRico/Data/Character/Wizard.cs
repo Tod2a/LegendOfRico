@@ -13,5 +13,13 @@
         public override int ArmorAmount { get; protected set; } = 0;
         public override double ChanceToDodge { get; protected set; } = 0.05;
         public override string fightImgUrl { get; } = "img/Character/fightWizard.png";
+
+        protected override void CheckLearnSpell()
+        {
+            if (Level == 3)
+            {
+                //Spell à défini
+            }
+        }
     }
 }
