@@ -42,4 +42,13 @@ public abstract class Monster
             MonsterCurrentHP += healAmount;
         }
     }
+
+    public string Hit(Character target)
+    {
+        Random dice = new Random();
+        int damage = dice.Next(MonsterMinDamage, MonsterMaxDamage + 1);
+        target.TakeDamage(damage); 
+        return MonsterName + " vous inflige " + damage + " dégats";
+    }
+
 }
