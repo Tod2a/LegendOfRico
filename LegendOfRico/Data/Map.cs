@@ -107,51 +107,36 @@ namespace LegendOfRico.Data
 
 
         // tout ce qui suit sert à créer la map ainsi que son contenu
-
-        //création des monstres 
-        //encore à définir et modifer les pools en fonction
-        public static Undead skeleton = new Undead { MonsterName = "Skeleton" };
-        public static Undead Albatard = new Undead { MonsterName = "Albatard", MonsterHP = 5000 };
-        public static Undead Boldel = new Undead { MonsterName = "Boldel", MonsterHP = 2500 };
-        public static Undead Draleo = new Undead { MonsterName = "Draleo", MonsterHP = 1000 };
-
-        public static Spider Aragorn = new Spider { MonsterName = "Aragorn", MonsterMinDamage = 5, MonsterMaxDamage = 10 ,MonsterHP = 500, MonsterCurrentHP = 500, fightImgUrl = "img/monster/basicSpider.png" };
-        public static Spider SonOfAragorn = new Spider { MonsterName = "AragornJr", MonsterMinDamage = 5, MonsterMaxDamage = 10, MonsterHP = 100, MonsterCurrentHP = 100, fightImgUrl = "img/monster/basicSpider.png" };
-        public static Spider CousinOfAragorn = new Spider { MonsterName = "Nrogara", MonsterMinDamage = 5, MonsterMaxDamage = 10, MonsterHP = 250, MonsterCurrentHP = 250, fightImgUrl = "img/monster/basicSpider.png" };
-
-
         // création des pool de monstres, 4 pools par biomes, trois en fonction du niveau de la map et un pour les boss
         //contenu des pool encore à définir mais divers pool déjà créés pour faire la map
 
         //plaine
-        public static Monster[] poolOfPlain = { SonOfAragorn };
-        public static Monster[] poolOfMediumPlain = { CousinOfAragorn };
-        public static Monster[] poolOfHardPlain = { Aragorn };
+        public static List<Type> poolOfPlain = new List<Type> { typeof(SonOfAragog) };
+        public static List<Type> poolOfMediumPlain = new List<Type> { typeof(BigSonOfAragog) };
+        public static List<Type> poolOfHardPlain = new List<Type> { typeof(Aragog) };
         //forêt
-        public static Monster[] poolOfForest = { SonOfAragorn };
-        public static Monster[] poolOfMediumForest = { CousinOfAragorn };
-        public static Monster[] poolOfHardForest = { Aragorn };
-        public static Monster[] bossOfForest = { Aragorn };
+        public static List<Type> poolOfForest = new List<Type> { typeof(SonOfAragog) };
+        public static List<Type> poolOfMediumForest = new List<Type> { typeof(BigSonOfAragog) };
+        public static List<Type> poolOfHardForest = new List<Type> { typeof(Aragog) };
+        public static List<Type> bossOfForest = new List<Type> { typeof(SonOfAragog) };
         //désert
-        public static Monster[] poolOfDesert = { SonOfAragorn };
-        public static Monster[] poolOfMediumDesert = { CousinOfAragorn };
-        public static Monster[] poolOfHardDesert = { Aragorn };
-        public static Monster[] bossOfDesert = { Aragorn };
+        public static List<Type> poolOfDesert = new List<Type> { typeof(SonOfAragog) };
+        public static List<Type> poolOfMediumDesert = new List<Type> { typeof(BigSonOfAragog) };
+        public static List<Type> poolOfHardDesert = new List<Type> { typeof(Aragog) };
+        public static List<Type> bossOfDesert = new List<Type> { typeof(SonOfAragog) };
         //Ruines
-        public static Monster[] poolOfRuined = { SonOfAragorn };
-        public static Monster[] poolOfMediumRuined = { CousinOfAragorn };
-        public static Monster[] poolOfHardRuined = { Aragorn };
-        public static Monster[] bossOfRuined = { Aragorn };
+        public static List<Type> poolOfRuined = new List<Type> { typeof(SonOfAragog) };
+        public static List<Type> poolOfMediumRuined = new List<Type> { typeof(BigSonOfAragog) };
+        public static List<Type> poolOfHardRuined = new List<Type> { typeof(Aragog) };
+        public static List<Type> bossOfRuined = new List<Type> { typeof(SonOfAragog) };
         //cimetiere
-        public static Monster[] poolOfGraveyard = { SonOfAragorn };
-        public static Monster[] poolOfMediumGraveyard = { CousinOfAragorn };
-        public static Monster[] poolOfHardGraveyard = { Aragorn };
-        public static Monster[] bossOfGraveyard = { Aragorn };
+        public static List<Type> poolOfGraveyard = new List<Type> { typeof(SonOfAragog) };
+        public static List<Type> poolOfMediumGraveyard = new List<Type> { typeof(BigSonOfAragog) };
+        public static List<Type> poolOfHardGraveyard = new List<Type> { typeof(Aragog) };
+        public static List<Type> bossOfGraveyard = new List<Type> { typeof(SonOfAragog) };
         //village
-        public static Monster[] poolOfVillage = {};
-        public static Monster[] poolOfMediumVillage = {};
-        public static Monster[] poolOfHardVillage = {};
-        public static Monster[] bossOfVillage = { Aragorn };
+        public static List<Type> poolOfVillage = new List<Type> {  };
+        public static List<Type> bossOfVillage = new List<Type> { typeof(SonOfAragog) };
 
         //création des différents Biomes 3 par types pour les différentes images, un pour les cases dangereuses et un pour les boss
         //sauf pour le village et la plaine

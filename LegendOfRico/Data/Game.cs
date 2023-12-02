@@ -105,6 +105,15 @@ namespace LegendOfRico.Data
             FightMessage = spell.UseSpell(game);
             FightMessage += ", ";
             FightMessage += game.MonsterFight.Hit(game.Player);
+            if (game.MonsterFight.MonsterCurrentHP <= 0)
+            {
+                FormShow = TypeOfShow.Map;
+            }
+            if (game.Player.CurrentHitPoints <= 0)
+            {
+                FormShow = TypeOfShow.Map;
+            }
+            
         }
         public void SwitchFightSpells()
         {
@@ -121,9 +130,9 @@ namespace LegendOfRico.Data
         //Fonction qui va choisir aléatoirement un monstre dans le pool du Biome
         private Monster SelectEnemy()
         {
-            Random random = new Random();
-            int indexAleatoire = random.Next(GameMap.MapLayout[Player.PositionI][Player.PositionJ].SquareBiome.MonsterPool.Length);
-            Monster monster = GameMap.MapLayout[Player.PositionI][Player.PositionJ].SquareBiome.MonsterPool[indexAleatoire];
+            List<Type> list = GameMap.MapLayout[Player.PositionI][Player.PositionJ].SquareBiome.MonsterPool;
+            Type randomClassType = list[new Random().Next(list.Count)];
+            dynamic monster = Activator.CreateInstance(randomClassType);
             FightMessage = "Vous êtes agressé par " + monster.MonsterName + ", il faut le vaincre pour survivre.";
             return monster;
         }

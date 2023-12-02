@@ -2,11 +2,13 @@
 {
     public class Cheetah : Beast
     {
-        public int BiteMinDmg = 3;
-        public int BiteMaxDmg = 6;
-
-        public int ClawMinDmg = 5;
-        public int ClawMaxDmg = 10;
+        public override string MonsterName { get; set; } 
+        public override int MonsterMinDamage { get; set; } 
+        public override int MonsterMaxDamage { get; set; } 
+        public override int MonsterHP { get; set; } 
+        public override int MonsterCurrentHP { get; set; } 
+        public override string fightImgUrl { get; set; } 
+        
 
         public double ChanceToDodge = 0.25;
     }

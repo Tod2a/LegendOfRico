@@ -2,19 +2,19 @@ namespace LegendOfRico.Data;
 
 public abstract class Monster
 {
-    public string MonsterName { get; set; }
-    public int MonsterHP { get; set; }
-    public int MonsterCurrentHP { get; set; }
+    public abstract string MonsterName { get; set; }
+    public abstract int MonsterHP { get; set; }
+    public abstract int MonsterCurrentHP { get; set; }
     public abstract TypeOfDamage[] MonsterWeakness { get; }
     public TypeOfDamage[] MonsterResistance { get; private set; }
     public TypeOfMonster MonsterType { get; private set; }
     public Item[] LootTable { get; private set; }
     public int XpGranted { get; private set; }
-    public int MonsterMinDamage { get; set; }
-    public int MonsterMaxDamage { get; set; }
+    public abstract int MonsterMinDamage { get; set; }
+    public abstract int MonsterMaxDamage { get; set; }
     public Boolean IsBurning { get; private set; }
     public Boolean IsFrozen { get; private set;}
-    public string fightImgUrl {  get; set; }
+    public abstract string fightImgUrl {  get; set; }
     
     public void TakeDamage(int damageReceived)
     {
