@@ -190,6 +190,13 @@ a, .btn-link {
     height: 100%;
 }
 
+.fightBox {
+    flex: 1;
+    border: 3px solid #888;
+    background: #666;
+    color: #fff;
+}
+
 .fightDisplay {
     padding-bottom: 15em;
     padding-top: 15em;

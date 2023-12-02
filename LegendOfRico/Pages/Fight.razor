@@ -5,6 +5,9 @@
         <button @onclick="Autowin">Autowin</button>
     </div>
     <div class="fight">
+        <div class="fightBox">
+            <p>@Game.FightMessage</p>
+        </div>
         <div class="fightDisplay" style="background-image: url('@Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].SquareBiome.FightUrl');">
             <div class="opponent">
                 <img class="sprite" src="@Game.MonsterFight.fightImgUrl" alt="Image fight Monster">

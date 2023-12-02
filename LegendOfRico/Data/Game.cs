@@ -11,6 +11,7 @@ namespace LegendOfRico.Data
         public Map GameMap { get; set; } = new Map();
         public Character Player { get; set; } = new Wizard { };
         public Monster MonsterFight { get; set; }
+        public string FightMessage { get; set; }
         //série de paramètres/variables qui vont gérer l'affichage des différents display du jeu
         //gestion du menu de droite
         public bool ShowInventory = true;
@@ -80,11 +81,6 @@ namespace LegendOfRico.Data
         }
 
         //Gestion des combats
-        //creation d'une fonction temporaire pour quitter la page de combat
-        public static void FightWin(Game game)
-        {
-            game.FormShow = TypeOfShow.Map;
-        }
 
         //Fonction qui va vérifier si le déplacement provoque un combat ou pas.
         private void IsFight(Square localisation)
@@ -114,7 +110,9 @@ namespace LegendOfRico.Data
         {
             Random random = new Random();
             int indexAleatoire = random.Next(GameMap.MapLayout[Player.PositionI][Player.PositionJ].SquareBiome.MonsterPool.Length);
-            return GameMap.MapLayout[Player.PositionI][Player.PositionJ].SquareBiome.MonsterPool[indexAleatoire];
+            Monster monster = GameMap.MapLayout[Player.PositionI][Player.PositionJ].SquareBiome.MonsterPool[indexAleatoire];
+            FightMessage = "Vous êtes agrréssé par " + monster.MonsterName + " il faut le vaincre pour survivre.";
+            return monster;
         }
 
         
