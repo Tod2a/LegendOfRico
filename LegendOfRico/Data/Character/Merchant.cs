@@ -9,7 +9,7 @@
         {
             //Low level gear
             ItemsStock.Add(new Axe("Hache en bronze", 50, 3, 6));
-            ItemsStock.Add(new Bow("Arc en frêne", 50, 3, 6));
+            ItemsStock.Add(new Bow("Arc en frêne", 50, 5, 8));
             ItemsStock.Add(new Dagger("Dague en bronze", 50, 2, 6));
             ItemsStock.Add(new Greatsword("Espadon en bronze", 50, 5, 8));
             ItemsStock.Add(new Mace("Masse en bronze", 50, 2, 5));
@@ -18,7 +18,7 @@
 
             //Mid level gear
             ItemsStock.Add(new Axe("Hache en fer", 100, 6, 12, 2));
-            ItemsStock.Add(new Bow("Arc en noyer", 100, 6, 12, 2));
+            ItemsStock.Add(new Bow("Arc en noyer", 100, 10, 16, 4));
             ItemsStock.Add(new Dagger("Dague en fer", 100, 4, 12, 2));
             ItemsStock.Add(new Greatsword("Espadon en fer", 100, 10, 16, 4));
             ItemsStock.Add(new Mace("Masse en fer", 100, 4, 10, 2));
@@ -27,7 +27,7 @@
 
             //High level gear
             ItemsStock.Add(new Axe("Hache en acier", 200, 12, 24, 4));
-            ItemsStock.Add(new Bow("Arc en chêne", 200, 12, 24, 4));
+            ItemsStock.Add(new Bow("Arc en chêne", 200, 20, 32, 8));
             ItemsStock.Add(new Dagger("Dague en acier", 200, 8, 24, 4));
             ItemsStock.Add(new Greatsword("Espadon en acier", 200, 20, 32, 8));
             ItemsStock.Add(new Mace("Masse en acier", 200, 8, 20, 4));
@@ -36,7 +36,7 @@
 
             //Endgame gear
             ItemsStock.Add(new Axe("Hache en mithril", 400, 24, 48, 8));
-            ItemsStock.Add(new Bow("Arc en orme", 400, 24, 48, 8));
+            ItemsStock.Add(new Bow("Arc en orme", 400, 40, 64, 16));
             ItemsStock.Add(new Dagger("Dague en mithril", 400, 2, 6));
             ItemsStock.Add(new Greatsword("Espadon en mithril", 400, 40, 64, 16));
             ItemsStock.Add(new Mace("Masse en mithril", 400, 16, 40, 8));

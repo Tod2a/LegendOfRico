@@ -9,10 +9,10 @@ public abstract class Character : INotifyPropertyChanged
     public abstract int MaxHitPoints { get; }
     public int CurrentHitPoints { get; private set; }
     public int Statistics { get; private set; }
-    public int ArmorAmount { get; private set; }
+    public abstract int ArmorAmount { get; protected set; }
     public abstract double ChanceToDodge { get; protected set; }
-    public Weapon CharacterWeapon { get; private set; }
-    public Shield CharacterShield { get; private set; }
+    public abstract Weapon CharacterWeapon { get; protected set; }
+    public abstract Shield CharacterShield { get; protected set; }
     public Armor CharacterArmor { get; private set; }
     public abstract List<Spells> SpellBook { get; protected set; }
     public List<Item> Inventory { get; private set; }

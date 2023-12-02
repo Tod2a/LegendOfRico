@@ -4,8 +4,10 @@ public class Shield : Item
 {
     public virtual int ShieldBonusArmor { get; private set; }
 
-    public void set(int shieldArmor)
+    public Shield(string shieldName, int shieldPrice, int shieldArmor)
     {
+        ItemName = shieldName;
+        Price = shieldPrice;
         ShieldBonusArmor = shieldArmor;
     }
 }

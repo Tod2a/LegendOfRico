@@ -3,7 +3,8 @@ namespace LegendOfRico.Data;
 
 public class Fist : Weapon
 {
-    public Fist(string itemName, int price, int minimumWeaponDamage, int maximumWeaponDamage) : base(itemName, price, minimumWeaponDamage, maximumWeaponDamage)
+    public Fist(string itemName, int price, int minimumWeaponDamage, int maximumWeaponDamage) : 
+        base(itemName, price, minimumWeaponDamage, maximumWeaponDamage)
     {
     }
 
