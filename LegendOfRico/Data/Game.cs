@@ -87,34 +87,34 @@ namespace LegendOfRico.Data
         }
 
         //Fonction qui va vérifier si le déplacement provoque un combat ou pas.
-        private static void IsFight(Game game, Square localisation)
+        private void IsFight(Square localisation)
         {
             Random random = new Random();
             double randomNumber = random.NextDouble();
             if(randomNumber < localisation.ChanceToTriggerFight)
             {
-                game.MonsterFight = SelectEnemy(game);
-                game.FormShow = TypeOfShow.Fight;
+                MonsterFight = SelectEnemy();
+                FormShow = TypeOfShow.Fight;
             }
         }
-        public static void SwitchFightSpells(Game game)
+        public void SwitchFightSpells()
         {
-            game.ShowFightSpells = true;
-            game.ShowFightInventory = false;
+            ShowFightSpells = true;
+            ShowFightInventory = false;
         }
 
-        public static void SwitchFightInventory(Game game)
+        public void SwitchFightInventory()
         {
-            game.ShowFightInventory = true;
-            game.ShowFightSpells = false;
+            ShowFightInventory = true;
+            ShowFightSpells = false;
         }
 
         //Fonction qui va choisir aléatoirement un monstre dans le pool du Biome
-        private static Monster SelectEnemy(Game game)
+        private Monster SelectEnemy()
         {
             Random random = new Random();
-            int indexAleatoire = random.Next(game.GameMap.MapLayout[game.Player.PositionI][game.Player.PositionJ].SquareBiome.MonsterPool.Length);
-            return game.GameMap.MapLayout[game.Player.PositionI][game.Player.PositionJ].SquareBiome.MonsterPool[indexAleatoire];
+            int indexAleatoire = random.Next(GameMap.MapLayout[Player.PositionI][Player.PositionJ].SquareBiome.MonsterPool.Length);
+            return GameMap.MapLayout[Player.PositionI][Player.PositionJ].SquareBiome.MonsterPool[indexAleatoire];
         }
 
         
@@ -125,7 +125,7 @@ namespace LegendOfRico.Data
             if (game.Player.PositionI > 0)
             {
                 game.Player.PositionI--;
-                IsFight(game, game.GameMap.MapLayout[game.Player.PositionI][game.Player.PositionJ]);
+                IsFight(GameMap.MapLayout[Player.PositionI][Player.PositionJ]);
             }
             if (game.ShowMerchantList == true)
             {
@@ -138,7 +138,7 @@ namespace LegendOfRico.Data
             if (game.Player.PositionI < 499)
             {
                 game.Player.PositionI++;
-                IsFight(game, game.GameMap.MapLayout[game.Player.PositionI][game.Player.PositionJ]);
+                IsFight(GameMap.MapLayout[Player.PositionI][Player.PositionJ]);
             }
             if (game.ShowMerchantList == true)
             {
@@ -151,7 +151,7 @@ namespace LegendOfRico.Data
             if (game.Player.PositionJ > 0)
             {
                 game.Player.PositionJ--;
-                IsFight(game, game.GameMap.MapLayout[game.Player.PositionI][game.Player.PositionJ]);
+                IsFight(GameMap.MapLayout[Player.PositionI][Player.PositionJ]);
             }
             if (game.ShowMerchantList == true)
             {
@@ -164,7 +164,7 @@ namespace LegendOfRico.Data
             if (game.Player.PositionJ < 499)
             {
                 game.Player.PositionJ++;
-                IsFight(game, game.GameMap.MapLayout[game.Player.PositionI][game.Player.PositionJ]);
+                IsFight(GameMap.MapLayout[Player.PositionI][Player.PositionJ]);
             }
             if (game.ShowMerchantList == true)
             {

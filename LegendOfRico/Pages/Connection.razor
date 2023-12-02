@@ -48,9 +48,10 @@
 
     private void CreateCharacter()
     {
-        
+
         Game.CreateCharacter(characterModel.CharacterName, characterModel.SelectedType);
         Game.FormShow = TypeOfShow.Map;
+        Game.GameMap.UpdateMapDisplay(Game.Player);
         TypeOfShowChange.InvokeAsync();
     }
 

@@ -7,23 +7,23 @@
 
 <PageTitle>The legend of Rico</PageTitle>
 <h1 class="gameTitle">The legend of Rico</h1>
-@if (game.FormShow == TypeOfShow.Connection)
+@if (Game.FormShow == TypeOfShow.Connection)
 {
-    <Connection Game="game" TypeOfShowChange="StateHasChanged"/>
+    <Connection Game="Game" TypeOfShowChange="StateHasChanged"/>
 } 
-else if (game.FormShow == TypeOfShow.Map)
+else if (Game.FormShow == TypeOfShow.Map)
 {
-    <Map Game="game" TypeOfShowChange="StateHasChanged"/>
+    <Map Game="Game" TypeOfShowChange="StateHasChanged"/>
 }
-else if (game.FormShow == TypeOfShow.Fight)
+else if (Game.FormShow == TypeOfShow.Fight)
 {
-    <Fight Game="game" TypeOfShowChange="StateHasChanged"/>
+    <Fight Game="Game" TypeOfShowChange="StateHasChanged"/>
 }
 
 @code{
     private CharacterModel characterModel = new CharacterModel();
     //creation du jeu
-    public Game game = new Game { };
+    public Game Game = new Game { };
 
 
           
@@ -31,7 +31,7 @@ else if (game.FormShow == TypeOfShow.Fight)
 
     protected override void OnInitialized()
     {
-        game.GameMap.UpdateMapDisplay(game.Player);
+        Game.GameMap.UpdateMapDisplay(Game.Player);
 
         base.OnInitialized();
     }
