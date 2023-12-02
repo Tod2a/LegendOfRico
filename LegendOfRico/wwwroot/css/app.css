@@ -235,12 +235,20 @@ a, .btn-link {
     margin-right: 10px;
     margin-bottom: 10px;
     margin-left: 50px;
-
+    display: flex;
 }
 
-.player .sprite {
+.player .spriteFlex {
+    flex: 4;
+}
+
+.player .spriteFlex .sprite {
     float: left;
     width: 100px;
+}
+
+.player .HPBar {
+    flex: 1;
 }
 
 .fightMenu {

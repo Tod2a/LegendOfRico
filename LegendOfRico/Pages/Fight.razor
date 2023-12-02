@@ -14,7 +14,8 @@
                 <div class="HPBar"><p>@Game.MonsterFight.MonsterCurrentHP / @Game.MonsterFight.MonsterHP</p></div>
             </div>
             <div class="player">
-                <img class="sprite" src="@Game.Player.fightImgUrl" alt="Image fight Player">
+                <div class="spriteFlex"><img class="sprite" src="@Game.Player.fightImgUrl" alt="Image fight Player"></div>
+                <div class="HPBar">@Game.Player.CurrentHitPoints / @Game.Player.MaxHitPoints</div>
             </div>
         </div>
         <div class="fightMenu">
