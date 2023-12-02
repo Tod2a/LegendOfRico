@@ -96,11 +96,6 @@ public abstract class Character : INotifyPropertyChanged
         target.TakeDamage(weaponDamageRoll);
     }
 
-    public void CastSpell(Spells spell, Monster target)
-    {
-        spell.UseSpell(target);
-    }
-
     public void ReceiveHeal(int healAmount)
     {
         if (CurrentHitPoints + healAmount > MaxHitPoints)

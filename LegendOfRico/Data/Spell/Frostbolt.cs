@@ -11,33 +11,19 @@ public class Frostbolt : Spells
     public double CritChance = 0.2;
     public double FreezeChance = 0.05;
 
-    public override void UseSpell(Monster target)
+    public override void UseSpell(Game currentGame)
     {
         int damageRoll = (new Random()).Next(MinValue, MaxValue + 1);
-        target.TakeDamage(damageRoll);
-        if ((new Random()).NextDouble() <= CritChance)
-        {
-            damageRoll *= 2;
-        }
-        if ((new Random()).NextDouble() <= FreezeChance && !target.MonsterResistance.Contains(SpellType))
-        {
-            target.Frozen();
-        }
-        target.TakeDamage(damageRoll);
-    }
+        damageRoll += (int)((currentGame.Player.Statistics / 50) * damageRoll);
 
-    public override void UseSpell(Character target)
-    {
-        int damageRoll = (new Random()).Next(MinValue, MaxValue + 1);
-        target.TakeDamage(damageRoll);
         if ((new Random()).NextDouble() <= CritChance)
         {
             damageRoll *= 2;
         }
-        if ((new Random()).NextDouble() <= FreezeChance)
+        if ((new Random()).NextDouble() <= FreezeChance && !currentGame.MonsterFight.MonsterResistance.Contains(SpellType))
         {
-            target.Frozen();
+            currentGame.MonsterFight.Frozen();
         }
-        target.TakeDamage(damageRoll);
+        currentGame.MonsterFight.TakeDamage(damageRoll);
     }
 }

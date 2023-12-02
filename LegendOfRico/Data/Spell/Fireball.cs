@@ -11,33 +11,19 @@ public class Fireball : Spells
     public double CritChance = 0.05;
     public double BurnChance = 0.2;
 
-    public override void UseSpell(Monster target)
+    public override void UseSpell(Game currentGame)
     {
         int damageRoll = (new Random()).Next(MinValue, MaxValue + 1);
-        target.TakeDamage(damageRoll);
-        if ((new Random()).NextDouble() <= CritChance)
-        {
-            damageRoll *= 2;
-        }
-        if ((new Random()).NextDouble() <= BurnChance && !target.MonsterResistance.Contains(SpellType))
-        {
-            target.Burnt();
-        }
-        target.TakeDamage(damageRoll);
-    }
+        damageRoll += (int)((currentGame.Player.Statistics / 50) * damageRoll);
 
-    public override void UseSpell(Character target)
-    {
-        int damageRoll = (new Random()).Next(MinValue, MaxValue + 1);
-        target.TakeDamage(damageRoll);
         if ((new Random()).NextDouble() <= CritChance)
         {
             damageRoll *= 2;
         }
-        if ((new Random()).NextDouble() <= BurnChance)
+        if ((new Random()).NextDouble() <= BurnChance && !currentGame.MonsterFight.MonsterResistance.Contains(SpellType))
         {
-            target.Burnt();
+            currentGame.MonsterFight.Burnt();
         }
-        target.TakeDamage(damageRoll);
+        currentGame.MonsterFight.TakeDamage(damageRoll);
     }
 }

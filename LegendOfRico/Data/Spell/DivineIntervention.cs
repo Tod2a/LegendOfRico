@@ -9,18 +9,16 @@ public class DivineIntervention : Spells
     public int MaxValue => 80;
     public TypeOfDamage SpellType = TypeOfDamage.Holy;
 
-    public override void UseSpell(Monster target)
+    public override void UseSpell(Game currentGame)
     {
         int damageRoll = (new Random()).Next(MinValue, MaxValue + 1);
-        target.TakeDamage(damageRoll);
-        if (target.MonsterType == TypeOfMonster.Undead)
-        {
-            target.Burnt();
-        }
-    }
+        damageRoll += (int)((currentGame.Player.Statistics / 50) * damageRoll);
 
-    public override void UseSpell(Character target)
-    {
-        target.ReceiveHeal((new Random()).Next(MinValue, MaxValue + 1));
+        currentGame.MonsterFight.TakeDamage(damageRoll);
+        if (currentGame.MonsterFight.MonsterType == TypeOfMonster.Undead)
+        {
+            currentGame.MonsterFight.Burnt();
+            currentGame.MonsterFight.TakeDamage((int)(currentGame.MonsterFight.MonsterHP / 10));
+        }
     }
 }
