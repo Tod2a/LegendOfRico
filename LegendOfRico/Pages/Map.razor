@@ -72,15 +72,19 @@
         {
             case "ArrowLeft":
                 Game.GoLeft(Game);
+                TypeOfShowChange.InvokeAsync();
                 break;
             case "ArrowRight":
                 Game.GoRight(Game);
+                TypeOfShowChange.InvokeAsync();
                 break;
             case "ArrowUp":
                 Game.GoUp(Game);
+                TypeOfShowChange.InvokeAsync();
                 break;
             case "ArrowDown":
                 Game.GoDown(Game);
+                TypeOfShowChange.InvokeAsync();
                 break;
         }
         Game.GameMap.UpdateMapDisplay(Game.Player);

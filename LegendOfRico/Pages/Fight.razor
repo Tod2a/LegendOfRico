@@ -1,0 +1,50 @@
+﻿@using LegendOfRico.Data
+
+<div class="displayGame">
+    <div class="gameMenu">
+        <button @onclick="Autowin">Autowin</button>
+    </div>
+    <div class="fight">
+        <div class="fightDisplay" style="background-image: url('@Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].SquareBiome.FightUrl');">
+            <div class="opponent">
+                <img class="sprite" src="@Game.MonsterFight.fightImgUrl" alt="Image fight Monster">
+            </div>
+            <div class="player">
+                <img class="sprite" src="@Game.Player.fightImgUrl" alt="Image fight Player">
+            </div>
+        </div>
+        <div class="fightMenu">
+            <div class="actions">
+                @if (Game.ShowFightSpells)
+                {
+                    @foreach (var spell in Game.Player.SpellBook)
+                    {
+                        <button>@spell.SpellName</button>
+                    }
+                    <button @onclick="() => Game.SwitchFightInventory(Game)">go to inventaire</button>
+                }
+                else if (Game.ShowFightInventory)
+                {
+                    <button>Inventaire</button>
+                    <button @onclick="() => Game.SwitchFightSpells(Game)">go to spells</button>
+                }
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@code {
+    [Parameter]
+    public Game Game { get; set; }
+    [Parameter]
+    public EventCallback TypeOfShowChange { get; set; }
+
+    void Autowin()
+    {
+        Game.FormShow = TypeOfShow.Map;
+        TypeOfShowChange.InvokeAsync();
+    }
+}
