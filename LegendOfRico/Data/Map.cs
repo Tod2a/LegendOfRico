@@ -40,7 +40,7 @@ namespace LegendOfRico.Data
         public static Undead Boldel = new Undead { MonsterName = "Boldel", MonsterHP = 2500 };
         public static Undead Draleo = new Undead { MonsterName = "Draleo", MonsterHP = 1000 };
 
-        public static Spider Aragorn = new Spider { MonsterName = "Aragorn", MonsterHP = 5000, MonsterCurrentHP = 5000, fightImgUrl = "img/monster/basicSpider.png" };
+        public static Spider Aragorn = new Spider { MonsterName = "Aragorn", MonsterMinDamage = 5, MonsterMaxDamage = 10 ,MonsterHP = 500, MonsterCurrentHP = 500, fightImgUrl = "img/monster/basicSpider.png" };
         public static Spider SonOfAragorn = new Spider { MonsterName = "AragornJr", MonsterHP = 1000, fightImgUrl = "img/monster/basicSpider.png" };
         public static Spider CousinOfAragorn = new Spider { MonsterName = "Nrogara", MonsterHP = 2500, fightImgUrl = "img/monster/basicSpider.png" };
 

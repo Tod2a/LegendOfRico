@@ -10,8 +10,8 @@ public abstract class Monster
     public TypeOfMonster MonsterType { get; private set; }
     public Item[] LootTable { get; private set; }
     public int XpGranted { get; private set; }
-    public int MonsterMinDamage { get; private set; }
-    public int MonsterMaxDamage { get; private set; }
+    public int MonsterMinDamage { get; set; }
+    public int MonsterMaxDamage { get; set; }
     public Boolean IsBurning { get; private set; }
     public Boolean IsFrozen { get; private set;}
     public string fightImgUrl {  get; set; }
@@ -55,7 +55,7 @@ public abstract class Monster
         else
         {
             target.TakeDamage(damage);
-            return MonsterName + " vous inflige " + damage + " dégats";
+            return MonsterName + " vous inflige " + (damage - target.ArmorAmount) + " dégats";
         } 
     }
 }
