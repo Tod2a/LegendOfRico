@@ -118,19 +118,24 @@ namespace LegendOfRico.Data
                 }
             }
             else 
-            { 
-                FightMessage += game.MonsterFight.Hit(game.Player);
-                if (game.Player.CurrentHitPoints <= 0 && MonsterFight != null)
-                {
-                    PlayerDead = true;
-                    FightMessage = "Vous êtes mort, des gobelins sortent de l'ombre pour vous emmener rapidement dans le dernier village que vous avez visité.";
-                    FightMessage += "Vous perdez toute votre expérience";
-                    game.Player.CurrentXp = 0;
-                    game.Player.PositionI = game.Player.lastRestVillageI;
-                    game.Player.PositionJ = game.Player.LastRestVillageJ;
-                }
+            {
+                MonsterHit(game);
             }
 
+        }
+
+        public void MonsterHit(Game game)
+        {
+            game.FightMessage += game.MonsterFight.Hit(game.Player);
+            if (game.Player.CurrentHitPoints <= 0 && MonsterFight != null)
+            {
+                game.PlayerDead = true;
+                game.FightMessage = "Vous êtes mort, des gobelins sortent de l'ombre pour vous emmener rapidement dans le dernier village que vous avez visité.";
+                game.FightMessage += "Vous perdez toute votre expérience";
+                game.Player.CurrentXp = 0;
+                game.Player.PositionI = game.Player.lastRestVillageI;
+                game.Player.PositionJ = game.Player.LastRestVillageJ;
+            }
         }
         public void SwitchFightSpells()
         {

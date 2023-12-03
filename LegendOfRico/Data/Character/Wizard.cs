@@ -9,7 +9,7 @@
         public override List<Spells> SpellBook { get; protected set; } = new List<Spells>() { new Fireball() };
         public override bool CanEquipShield { get; protected set; } = false;
         public override int MaxHitPoints => 20;
-        public override int CurrentHitPoints { get; protected set; } = 20;
+        public override int CurrentHitPoints { get; set; } = 20;
         public override int ArmorAmount { get; protected set; } = 0;
         public override double ChanceToDodge { get; protected set; } = 0.05;
         public override string fightImgUrl { get; } = "img/Character/fightWizard.png";

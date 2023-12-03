@@ -47,9 +47,13 @@
         </div>
         <div class="mapMenu">
             <p style="display: @(Game.ShowInventory ? "block" : "none")">
-                @foreach(var item in Game.Player.Inventory)
+                <p>Inventaire:</p>
+                @foreach(var item in Game.Player.ConsumableInventory)
                 {
-                    <p>@item.ItemName</p>
+                    @if (item.Quantity > 0)
+                    {
+                        <p>@item.ItemName ( @item.Quantity ) <button @onclick="() => item.Use(Game)">Use</button></p>
+                    }
                 }
             </p>
             <p style="display: @(Game.ShowQuestList ? "block" : "none")">ici liste des quetes</p>

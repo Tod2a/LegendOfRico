@@ -1,6 +1,6 @@
 namespace LegendOfRico.Data;
 
-public class Shield : Item
+public class Shield : Stuff
 {
     public virtual int ShieldBonusArmor { get; private set; }
 

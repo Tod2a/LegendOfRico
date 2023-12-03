@@ -1,6 +1,6 @@
 namespace LegendOfRico.Data;
 
-public class Armor : Item
+public class Armor : Stuff
 {
     public TypeOfArmor ArmorType { get; private set; }
     public int ArmorOfArmor { get; private set; }

@@ -21,7 +21,7 @@ public abstract class Character : INotifyPropertyChanged
     public int CurrentXp { get; set; } = 0;
     public int XpToLevel { get; set; } = 1000;
     public abstract int MaxHitPoints { get; }
-    public abstract int CurrentHitPoints { get; protected set; }
+    public abstract int CurrentHitPoints { get; set; }
     public int Statistics { get; private set; }
     public abstract int ArmorAmount { get; protected set; }
     public abstract double ChanceToDodge { get; protected set; }
@@ -29,7 +29,8 @@ public abstract class Character : INotifyPropertyChanged
     public abstract Shield CharacterShield { get; protected set; }
     public Armor CharacterArmor { get; private set; }
     public abstract List<Spells> SpellBook { get; protected set; }
-    public List<Item> Inventory { get; private set; }
+    public List<Consumable> ConsumableInventory { get; private set; }
+    public List<Stuff> StuffInventory { get; private set; }
     public List<Quest> quests { get; private set; }
     public abstract Boolean CanEquipShield { get; protected set; }
     public int Coins { get; private set; }
@@ -87,7 +88,17 @@ public abstract class Character : INotifyPropertyChanged
 
     
     protected abstract void CheckLearnSpell();
-    public Character() { Inventory = new List<Item> {new Potion("Potion de départ", 0, 1, 10, 5) }; }
+    public Character() 
+    {
+        ConsumableInventory = new List<Consumable>
+        {
+            new Potion("Potion de départ", 0, 1, 10, 5),
+            new Potion("Petite potion de soin", 5, 1, 10, 0),
+            new Potion("Potion de soin", 10, 10, 20, 0),
+            new Potion("Grande potion de soin", 20, 20, 40, 0),
+            new Potion("Enorme potion de soin", 40, 40, 80, 0)
+        }; 
+    }
     public void Burnt()
     {
         IsBurning = true;
@@ -151,45 +162,45 @@ public abstract class Character : INotifyPropertyChanged
     public void EquipShield(Shield shield)
     {
         CharacterShield = shield;
-        Inventory.Remove(shield);
+        StuffInventory.Remove(shield);
         ArmorAmount += shield.ShieldBonusArmor;
     }
 
     public void UnequipShield()
     {
-        Inventory.Add(CharacterShield);
+        StuffInventory.Add(CharacterShield);
         ArmorAmount -= CharacterShield.ShieldBonusArmor;
         CharacterShield = new FistShield("Poing",0,0);
     }
 
     public void EquipWeapon(Weapon weapon)
     {
-        Inventory.Remove(weapon);
+        StuffInventory.Remove(weapon);
         CharacterWeapon = weapon;
     }
 
     public void UnequipWeapon()
     {
-        Inventory.Add(CharacterWeapon);
+        StuffInventory.Add(CharacterWeapon);
         CharacterWeapon = new Fist("Poing", 0, 1, 3);
     }
     
     public void EquipArmor(Armor armor)
     {
         CharacterArmor = armor;
-        Inventory.Remove(armor);
+        StuffInventory.Remove(armor);
         ArmorAmount += armor.ArmorOfArmor;
     }
     public void UnequipArmor()
     {
-        Inventory.Add(CharacterArmor);
+        StuffInventory.Add(CharacterArmor);
         ArmorAmount -= CharacterArmor.ArmorOfArmor;
         CharacterArmor = new Topless();
     }
 
-    public void LootItem(Item droppedItem)
+    public void LootStuff(Stuff droppedItem)
     {
-        Inventory.Add(droppedItem);
+        StuffInventory.Add(droppedItem);
     }
 
     public void LootGold(int droppedGold)
@@ -197,18 +208,18 @@ public abstract class Character : INotifyPropertyChanged
         Coins += droppedGold;
     }
 
-    public void Sell(Item soldItem)
+    public void SellStuff(Stuff soldItem)
     {
-        Inventory.Remove(soldItem);
+        StuffInventory.Remove(soldItem);
         Coins += (int)(soldItem.Price) / 4;
     }
 
-    public void Buy(Item boughtItem)
+    public void BuyStuff(Stuff boughtItem)
     {
         if (boughtItem.Price <= Coins)
         {
             Coins -= boughtItem.Price;
-            Inventory.Add(boughtItem);
+            StuffInventory.Add(boughtItem);
         }
         else
         {
