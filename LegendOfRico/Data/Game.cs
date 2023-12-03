@@ -104,7 +104,6 @@ namespace LegendOfRico.Data
         {
             FightMessage = spell.UseSpell(game);
             FightMessage += ", ";
-            FightMessage += game.MonsterFight.Hit(game.Player);
             if (game.MonsterFight.MonsterCurrentHP <= 0)
             {
                 FightMessage = "Félicitation, vous avez gagné, cette victoire vous rapporte " + game.MonsterFight.XpGranted + " expérience";
@@ -118,16 +117,20 @@ namespace LegendOfRico.Data
                     game.Player.XpToLevel += 250;
                 }
             }
-            if (game.Player.CurrentHitPoints <= 0 && MonsterFight != null)
-            {
-                PlayerDead = true;
-                FightMessage = "Vous êtes mort, des gobelins sortent de l'ombre pour vous emmener rapidement dans le dernier village que vous avez visité.";
-                FightMessage += "Vous perdez toute votre expérience";
-                game.Player.CurrentXp = 0;
-                game.Player.PositionI = game.Player.lastRestVillageI;
-                game.Player.PositionJ = game.Player.LastRestVillageJ;
+            else 
+            { 
+                FightMessage += game.MonsterFight.Hit(game.Player);
+                if (game.Player.CurrentHitPoints <= 0 && MonsterFight != null)
+                {
+                    PlayerDead = true;
+                    FightMessage = "Vous êtes mort, des gobelins sortent de l'ombre pour vous emmener rapidement dans le dernier village que vous avez visité.";
+                    FightMessage += "Vous perdez toute votre expérience";
+                    game.Player.CurrentXp = 0;
+                    game.Player.PositionI = game.Player.lastRestVillageI;
+                    game.Player.PositionJ = game.Player.LastRestVillageJ;
+                }
             }
-            
+
         }
         public void SwitchFightSpells()
         {

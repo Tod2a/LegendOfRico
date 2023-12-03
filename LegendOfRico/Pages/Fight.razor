@@ -57,14 +57,14 @@
         {
             <div class="fightResult" style="background-image: url('@Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].SquareBiome.FightUrl');">
                 <p>@Game.FightMessage</p>
-                <button @onclick="Autowin">Valider</button>
+                <button @onclick="Victory">Valider</button>
             </div>
         }
         @if(Game.PlayerDead == true)
         {
             <div class="fightResult" style="background-image: url('@Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].SquareBiome.FightUrl');">
                 <p>@Game.FightMessage</p>
-                <button @onclick="Autowin">Se réveiller difficilement</button>
+                <button @onclick="Defeat">Se réveiller difficilement</button>
             </div>
         }
 
@@ -78,7 +78,13 @@
     [Parameter]
     public EventCallback TypeOfShowChange { get; set; }
 
-    void Autowin()
+    void Victory()
+    {
+        Game.FormShow = TypeOfShow.Map;
+        TypeOfShowChange.InvokeAsync();
+    }
+
+    void Defeat()
     {
         Game.FormShow = TypeOfShow.Map;
         Game.PlayerDead = false;
