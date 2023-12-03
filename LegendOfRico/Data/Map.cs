@@ -109,9 +109,9 @@ namespace LegendOfRico.Data
         //contenu des pool encore à définir mais divers pool déjà créés pour faire la map
 
         //plaine
-        public static List<Type> poolOfPlain = new List<Type> { typeof(SonOfAragog) };
-        public static List<Type> poolOfMediumPlain = new List<Type> { typeof(BigSonOfAragog) };
-        public static List<Type> poolOfHardPlain = new List<Type> { typeof(Aragog) };
+        public static List<Type> poolOfPlain = new List<Type> { typeof(Bulldog) };
+        public static List<Type> poolOfMediumPlain = new List<Type> { typeof(Americanstaff) };
+        public static List<Type> poolOfHardPlain = new List<Type> { typeof(Rottweiler) };
         //forêt
         public static List<Type> poolOfForest = new List<Type> { typeof(SonOfAragog) };
         public static List<Type> poolOfMediumForest = new List<Type> { typeof(BigSonOfAragog) };
@@ -123,9 +123,9 @@ namespace LegendOfRico.Data
         public static List<Type> poolOfHardDesert = new List<Type> { typeof(Aragog) };
         public static List<Type> bossOfDesert = new List<Type> { typeof(SonOfAragog) };
         //Ruines
-        public static List<Type> poolOfRuined = new List<Type> { typeof(SonOfAragog) };
-        public static List<Type> poolOfMediumRuined = new List<Type> { typeof(BigSonOfAragog) };
-        public static List<Type> poolOfHardRuined = new List<Type> { typeof(Aragog) };
+        public static List<Type> poolOfRuined = new List<Type> { typeof(Nosptipti) };
+        public static List<Type> poolOfMediumRuined = new List<Type> { typeof(Nosalto) };
+        public static List<Type> poolOfHardRuined = new List<Type> { typeof(Nosaffraid) };
         public static List<Type> bossOfRuined = new List<Type> { typeof(SonOfAragog) };
         //cimetiere
         public static List<Type> poolOfGraveyard = new List<Type> { typeof(SonOfAragog) };
