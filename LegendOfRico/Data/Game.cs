@@ -17,7 +17,6 @@ namespace LegendOfRico.Data
         //gestion du menu de droite
         public bool ShowInventory = true;
         public bool ShowQuestList = false;
-        public bool ShowMerchantList = false;
         //gestion de l'interface de combat
         public bool ShowFightSpells = true;
         public bool ShowFightInventory = false;
@@ -63,26 +62,18 @@ namespace LegendOfRico.Data
             FormShow = TypeOfShow.Connection;
         }
 
-        //gestion du menu de droite pour les quetes, inventaire et marchand.
+        //gestion du menu de droite pour les quetes et inventaire.
 
-        public void SwitchShowMerchantList ()
-        {
-            ShowInventory = false;
-            ShowMerchantList = true;
-            ShowQuestList = false;
-        }
 
         public void SwitchShowQuestList ()
         {
             ShowInventory = false;
-            ShowMerchantList = false;
             ShowQuestList = true;
         }
 
         public void SwitchShowInventoryList ()
         {
             ShowInventory = true;
-            ShowMerchantList = false;
             ShowQuestList = false;
         }
 
@@ -169,10 +160,6 @@ namespace LegendOfRico.Data
                 game.Player.PositionI--;
                 IsFight(GameMap.MapLayout[Player.PositionI][Player.PositionJ]);
             }
-            if (game.ShowMerchantList == true)
-            {
-                SwitchShowInventoryList();
-            }
         }
 
         public void GoDown(Game game)
@@ -181,10 +168,6 @@ namespace LegendOfRico.Data
             {
                 game.Player.PositionI++;
                 IsFight(GameMap.MapLayout[Player.PositionI][Player.PositionJ]);
-            }
-            if (game.ShowMerchantList == true)
-            {
-                SwitchShowInventoryList();
             }
         }
 
@@ -195,10 +178,6 @@ namespace LegendOfRico.Data
                 game.Player.PositionJ--;
                 IsFight(GameMap.MapLayout[Player.PositionI][Player.PositionJ]);
             }
-            if (game.ShowMerchantList == true)
-            {
-                SwitchShowInventoryList();
-            }
         }
 
         public void GoRight(Game game)
@@ -207,10 +186,6 @@ namespace LegendOfRico.Data
             {
                 game.Player.PositionJ++;
                 IsFight(GameMap.MapLayout[Player.PositionI][Player.PositionJ]);
-            }
-            if (game.ShowMerchantList == true)
-            {
-                SwitchShowInventoryList();
             }
         }
 
