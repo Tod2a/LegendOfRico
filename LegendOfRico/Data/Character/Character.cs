@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace LegendOfRico.Data;
 
@@ -134,9 +135,13 @@ public abstract class Character : INotifyPropertyChanged
         }
     }
 
-    public void TakeDamage(int damageTaken)
+    public string TakeDamage(int damageTaken)
     {
-        CurrentHitPoints -= damageTaken - ArmorAmount;
+        if (damageTaken > ArmorAmount)
+        { 
+            CurrentHitPoints -= damageTaken - ArmorAmount;
+        }
+        return " et vous inflige " + damageTaken + " dégats réduit par votre armure de " + ArmorAmount;
     }
 
     public void EquipShield(Shield shield)

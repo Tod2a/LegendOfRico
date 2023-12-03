@@ -1,7 +1,9 @@
+
 namespace LegendOfRico.Data;
 
 public abstract class Monster
 {
+    Random dice = new Random();
     public abstract string MonsterName { get; set; }
     public abstract int MonsterHP { get; set; }
     public abstract int MonsterCurrentHP { get; set; }
@@ -10,8 +12,9 @@ public abstract class Monster
     public TypeOfMonster MonsterType { get; private set; }
     public Item[] LootTable { get; private set; }
     public abstract int XpGranted { get; set; }
-    public abstract int MonsterMinDamage { get; set; }
-    public abstract int MonsterMaxDamage { get; set; }
+    public int MonsterMinDamage { get; set; }
+    public int MonsterMaxDamage { get; set; }
+    public abstract MonsterHit[] HitTable { get; set; }
     public Boolean IsBurning { get; private set; }
     public Boolean IsFrozen { get; private set;}
     public abstract string fightImgUrl {  get; set; }
@@ -42,10 +45,30 @@ public abstract class Monster
             MonsterCurrentHP += healAmount;
         }
     }
+    private string SelectHit()
+    {
+        MonsterHit hit = HitTable[dice.Next(HitTable.Length)];
+
+        // Vérifie si MinDamage est inférieur à MaxDamage
+        if (hit.MinDamage > hit.MaxDamage)
+        {
+            // Inverse les valeurs si nécessaire
+            int temp = hit.MinDamage;
+            hit.MinDamage = hit.MaxDamage;
+            hit.MaxDamage = temp;
+        }
+
+        MonsterMinDamage = hit.MinDamage;
+        MonsterMaxDamage = hit.MaxDamage;
+
+        return hit.Name;
+    }
 
     public string Hit(Character target)
     {
-        Random dice = new Random();
+        string hitname = SelectHit();
+        Console.WriteLine(MonsterMinDamage);
+        Console.WriteLine(MonsterMaxDamage);
         int damage = dice.Next(MonsterMinDamage, MonsterMaxDamage + 1);
         double dodge = dice.NextDouble();
         if (dodge < target.ChanceToDodge)
@@ -54,8 +77,7 @@ public abstract class Monster
         }
         else
         {
-            target.TakeDamage(damage);
-            return MonsterName + " vous inflige " + (damage - target.ArmorAmount) + " dégats";
+            return MonsterName +" lance " + hitname + target.TakeDamage(damage);
         } 
     }
 }

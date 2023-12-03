@@ -1,16 +1,15 @@
-﻿
-namespace LegendOfRico.Data
+﻿namespace LegendOfRico.Data
 {
-    public abstract class Spider : Beast {
-
+    public abstract class StrayDog : Beast
+    {
         public override MonsterHit[] HitTable { get; set; }
-        public double ChanceToPoison = 0.75;
 
-        public Spider()
+        //public double ChanceToDodge = 0.25;
+
+        public StrayDog()
         {
             HitTable = BuildHitTable();
         }
         protected abstract MonsterHit[] BuildHitTable();
-      
     }
 }

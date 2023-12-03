@@ -1,8 +1,8 @@
 ﻿namespace LegendOfRico.Data
 {
-    public class SonOfAragog: Spider
+    public class Nosptipti: Bat
     {
-        public override string MonsterName { get; set; } = "AragogJr"; 
+        public override string MonsterName { get; set; } = "Nosptipti";
         public override int MonsterHP { get; set; } = 100;
         public override int MonsterCurrentHP { get; set; } = 100;
         public override string fightImgUrl { get; set; } = "img/monster/Spider/SonOfAragog.png";
@@ -18,3 +18,4 @@
         }
     }
 }
+

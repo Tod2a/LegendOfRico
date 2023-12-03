@@ -4,7 +4,7 @@ namespace LegendOfRico.Data
 {
     public class Map
     {
-        public Square[][] MapLayout { get; } = CreateMapLayout();
+        public Square[][] MapLayout { get; }
         //4 Variables necessaire à l'affichage de la map
         public int StartI { get; set; }
         public int MaxI { get; set; }
@@ -23,10 +23,8 @@ namespace LegendOfRico.Data
                 }
             } 
         }
-        public void LevelUpMap()
-        {
-            //A definir.
-        }
+        
+        public Map() { MapLayout = CreateMapLayout(); }
 
         //Fonction qui va changer les valeurs d'affichage de map à chaque déplacement
         public void UpdateMapDisplay(Character PersoTest)
@@ -178,7 +176,7 @@ namespace LegendOfRico.Data
         public static Biomes village3 = new Biomes { BiomeType = TypeOfBiome.Village, MonsterPool = poolOfVillage, ImageUrl = "img/biomes/village3.png", FightUrl = "img/layout/fondFightBossVillage.png" };
    
 
-        private static void TrippleSquare(int minI, int maxI, int minJ, int maxJ, Square[][] mapLayout, TypeOfBiome tBiome, string Name, double cTrigger)
+        private void TrippleSquare(int minI, int maxI, int minJ, int maxJ, Square[][] mapLayout, TypeOfBiome tBiome, string Name, double cTrigger)
         {
             Biomes b0 = plain;
             Biomes b1 = plain1;
@@ -254,7 +252,7 @@ namespace LegendOfRico.Data
 
         //fonction de création de la map qui retourne une matrice de 500 sur 500 remplies de squares et qui sera appellée dans le paramère mapLayout
 
-        private static Square[][] CreateMapLayout()
+        private Square[][] CreateMapLayout()
         {
             Square[][] mapLayout = new Square[500][];
             // création de la map de base remplis de plaines

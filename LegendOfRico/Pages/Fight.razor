@@ -81,6 +81,8 @@
     void Autowin()
     {
         Game.FormShow = TypeOfShow.Map;
+        Game.PlayerDead = false;
+        Game.Player.Rest();
         Game.GameMap.UpdateMapDisplay(Game.Player);
         TypeOfShowChange.InvokeAsync();
     }

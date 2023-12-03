@@ -1,8 +1,8 @@
 ﻿namespace LegendOfRico.Data
 {
-    public class Aragog: Spider
+    public class Rottweiler: StrayDog
     {
-        public override string MonsterName { get; set; } = "Aragog";
+        public override string MonsterName { get; set; } = "Rottweiler";
         public override int MonsterHP { get; set; } = 500;
         public override int MonsterCurrentHP { get; set; } = 500;
         public override string fightImgUrl { get; set; } = "img/monster/spider/Aragog.png";

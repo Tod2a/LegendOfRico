@@ -1,8 +1,8 @@
 ﻿namespace LegendOfRico.Data
-{
-    public class BigSonOfAragog: Spider
+{ 
+    public class Americanstaff: StrayDog
     {
-        public override string MonsterName { get; set; } = "L'ainé de Aragog";
+        public override string MonsterName { get; set; } = "American Staff";
         public override int MonsterHP { get; set; } = 250;
         public override int MonsterCurrentHP { get; set; } = 250;
         public override string fightImgUrl { get; set; } = "img/monster/spider/BigSonOfAragog.png";
@@ -16,5 +16,7 @@
                     new MonsterHit{Name = "Perforation", MinDamage = 10, MaxDamage = 15}
                 };
         }
+
+
     }
 }

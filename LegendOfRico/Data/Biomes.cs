@@ -1,3 +1,5 @@
+using System.Globalization;
+
 namespace LegendOfRico.Data;
 
 public class Biomes
@@ -6,4 +8,5 @@ public class Biomes
     public List<Type> MonsterPool { get; set; }
     public string ImageUrl {  get; set; }
     public string FightUrl { get; set; }
+
 }
