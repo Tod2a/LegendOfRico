@@ -55,6 +55,8 @@ public abstract class Character : INotifyPropertyChanged
     public Boolean IsFrozen { get; private set; } = false;
     public Boolean IsBurning { get; private set; } = false;
 
+
+
     public int PositionI
     {
         get { return positionI; }
@@ -83,7 +85,9 @@ public abstract class Character : INotifyPropertyChanged
     }
 
 
+    
     protected abstract void CheckLearnSpell();
+    public Character() { Inventory = new List<Item> {new Potion("Potion de départ", 0, 1, 10, 5) }; }
     public void Burnt()
     {
         IsBurning = true;

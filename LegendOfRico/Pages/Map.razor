@@ -46,7 +46,12 @@
             </table>
         </div>
         <div class="mapMenu">
-            <p style="display: @(Game.ShowInventory ? "block" : "none")">ici inventaire</p>
+            <p style="display: @(Game.ShowInventory ? "block" : "none")">
+                @foreach(var item in Game.Player.Inventory)
+                {
+                    <p>@item.ItemName</p>
+                }
+            </p>
             <p style="display: @(Game.ShowQuestList ? "block" : "none")">ici liste des quetes</p>
             <p style="display: @(Game.ShowMerchantList ? "block" : "none")">ici marchand</p>
         </div>
