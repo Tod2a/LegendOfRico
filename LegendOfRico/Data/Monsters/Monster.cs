@@ -8,7 +8,7 @@ public abstract class Monster
     public abstract int MonsterHP { get; set; }
     public abstract int MonsterCurrentHP { get; set; }
     public abstract TypeOfDamage[] MonsterWeakness { get; }
-    public TypeOfDamage[] MonsterResistance { get; private set; }
+    public TypeOfDamage[] MonsterResistance { get; private set; } = new TypeOfDamage[] { };
     public TypeOfMonster MonsterType { get; private set; }
     public Item[] LootTable { get; private set; }
     public abstract int XpGranted { get; set; }

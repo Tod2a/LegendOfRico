@@ -13,7 +13,7 @@
             return new MonsterHit[]
                 {
                     new MonsterHit{Name = "Balafre", MinDamage = 5, MaxDamage = 8 },
-                    new MonsterHit{Name = "éviscération", MinDamage = 25, MaxDamage = 30}
+                    new MonsterHit{Name = "Eviscération", MinDamage = 25, MaxDamage = 30}
                 };
         }
     }

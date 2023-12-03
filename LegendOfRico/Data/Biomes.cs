@@ -16,5 +16,4 @@ public class Biomes
         ImageUrl = image;
         FightUrl = fight;
     }
-
 }
