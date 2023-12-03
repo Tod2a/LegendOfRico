@@ -17,7 +17,20 @@
             </div>
             <div class="MerchantShowcase">
                 <div class="MerchantBuy">
-                    <p>test d'achat</p>
+                    <p><div class="itemFlex">
+                        <div class="itemShowName">Objet</div> 
+                        <div class="itemShow">prix</div> 
+                        <div class="itemShow">achat</div>
+                    </div>
+                    </p>
+                    @foreach(var item in Game.Merchant.ItemsStock)
+                    {
+                        <div class="itemFlex">
+                            <div class ="itemShowName">@item.ItemName</div> 
+                            <div class ="itemShow">@item.Price</div>
+                            <div class ="itemShow"><button>Achter</button></div>
+                        </div>
+                    }
                 </div>
                 <div class="MerchantSell">
                     <p>test de vente</p>

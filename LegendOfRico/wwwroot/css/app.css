@@ -357,7 +357,6 @@ a, .btn-link {
 
 .MerchantDisplay {
     display: flex;
-    flex-direction: column;
     height: 100%;
 }
 
@@ -372,11 +371,32 @@ a, .btn-link {
 }
 
 .MerchantSell {
-    flex:1;
-    background-color:aliceblue;
+    flex: 1;
+    background-image: url("../img/layout/fondBois.jpg");
+    background-size: cover;
+    background-position: center;
+    border: 3px solid #8b4513;
 }
 
 .MerchantBuy {
+    border: 3px solid #8b4513;
     flex: 1;
-    background-color:aquamarine;
+    background-image: url("../img/layout/fondBois.jpg");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.itemFlex {
+    display: flex;
+    flex-direction: row;
+}
+
+.itemShow {
+    flex: 1;
+}
+
+.itemShowName {
+    flex: 2;
 }

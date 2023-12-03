@@ -11,6 +11,7 @@ namespace LegendOfRico.Data
         public Map GameMap { get; set; } = new Map();
         public Character Player { get; set; } = new Wizard { };
         public Monster MonsterFight { get; set; }
+        public Merchant Merchant { get; set; } = new Merchant();
         public string FightMessage { get; set; } = "";
         public bool PlayerDead = false;
         //série de paramètres/variables qui vont gérer l'affichage des différents display du jeu
