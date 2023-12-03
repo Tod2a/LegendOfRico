@@ -1,0 +1,43 @@
+﻿@using LegendOfRico.Data
+
+<div class="displayGame">
+    <div class="gameMenu">
+        <p>Personnage: @Game.Player.Name</p>
+        <p>Position: [@Game.Player.PositionI][@Game.Player.PositionJ]@Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].Name</p>
+        <p>Niveau: @Game.Player.Level</p>
+        <p>Expérience: @Game.Player.CurrentXp</p>
+        <p>Expérience pour lvlup: @Game.Player.XpToLevel</p>
+        <p>Argent: @Game.Player.Coins</p>
+        <button @onclick="Leave">Quitter</button>
+    </div>
+    <div class="MerchantLayout">
+        <div class="MerchantDisplay">
+            <div class="MerchantImage">
+                <p>test d'endroit d'image</p>
+            </div>
+            <div class="MerchantShowcase">
+                <div class="MerchantBuy">
+                    <p>test d'achat</p>
+                </div>
+                <div class="MerchantSell">
+                    <p>test de vente</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@code {
+    [Parameter]
+    public Game Game { get; set; }
+    [Parameter]
+    public EventCallback TypeOfShowChange { get; set; }
+
+    void Leave()
+    {
+        Game.FormShow = TypeOfShow.Map;
+        TypeOfShowChange.InvokeAsync();
+    }
+
+}

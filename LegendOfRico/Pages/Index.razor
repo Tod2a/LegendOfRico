@@ -19,6 +19,10 @@ else if (Game.FormShow == TypeOfShow.Fight)
 {
     <Fight Game="Game" TypeOfShowChange="StateHasChanged"/>
 }
+else if (Game.FormShow == TypeOfShow.Merchant)
+{
+    <Merchant Game="Game" TypeOfShowChange="StateHasChanged" />
+}
 
 @code{
     private CharacterModel characterModel = new CharacterModel();

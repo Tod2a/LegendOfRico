@@ -31,7 +31,7 @@ public abstract class Character : INotifyPropertyChanged
     public abstract List<Spells> SpellBook { get; protected set; }
     public List<Consumable> ConsumableInventory { get; private set; }
     public List<Stuff> StuffInventory { get; private set; }
-    public List<Quest> quests { get; private set; }
+    public List<Quest> Quests { get; private set; }
     public abstract Boolean CanEquipShield { get; protected set; }
     public int Coins { get; private set; }
     public virtual string fightImgUrl { get; }

@@ -4,6 +4,7 @@
     {
         Connection,
         Map,
-        Fight
+        Fight,
+        Merchant
     }
 }

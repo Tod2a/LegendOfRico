@@ -349,3 +349,34 @@ a, .btn-link {
     text-align: center;
     border: 5px solid #8b4513;
 }
+
+.MerchantLayout {
+    flex: 4;
+    border: 3px solid #8b4513;
+}
+
+.MerchantDisplay {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.MerchantImage {
+    flex: 1;
+    background-color: aqua;
+}
+
+.MerchantShowcase {
+    display: flex;
+    flex: 1;
+}
+
+.MerchantSell {
+    flex:1;
+    background-color:aliceblue;
+}
+
+.MerchantBuy {
+    flex: 1;
+    background-color:aquamarine;
+}
