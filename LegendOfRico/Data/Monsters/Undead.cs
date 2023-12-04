@@ -1,9 +1,10 @@
 namespace LegendOfRico.Data;
-public class Undead : Monster
+public abstract class Undead : Monster
 {
     public override string MonsterName { get; set; } 
 
     public override MonsterHit[] HitTable { get; set; }
+    public override TypeOfMonster MonsterType { get; set; } = TypeOfMonster.Undead;
     public override int MonsterHP { get; set; }
     public override int MonsterCurrentHP { get; set; } 
     public override string fightImgUrl { get; set; }

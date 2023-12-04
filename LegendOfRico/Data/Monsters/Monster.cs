@@ -9,7 +9,9 @@ public abstract class Monster
     public abstract int MonsterCurrentHP { get; set; }
     public abstract TypeOfDamage[] MonsterWeakness { get; }
     public TypeOfDamage[] MonsterResistance { get; private set; } = new TypeOfDamage[] { };
-    public TypeOfMonster MonsterType { get; private set; }
+    public abstract TypeOfMonster MonsterType { get; set; }
+    //ajout d'une race à chaque monstre pour faciliter la création de quête par après, on pourra faire des quetes qui cibles des bêtes ou des spiders
+    public abstract TypeOfBreed MonsterBreed { get; set; }
     public Item[] LootTable { get; private set; }
     public abstract int XpGranted { get; set; }
     public int MonsterMinDamage { get; set; }

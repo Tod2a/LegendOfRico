@@ -4,6 +4,7 @@ public abstract class Beast : Monster
 {
     public Boolean IsSoothed { get; private set; }
     public int SoothDuration { get; private set; }
+    public override TypeOfMonster MonsterType { get; set; } = TypeOfMonster.Beast;
     public override TypeOfDamage[] MonsterWeakness => new[] { TypeOfDamage.Fire };
     public override MonsterHit[] HitTable { get; set; } = new MonsterHit[] { };
 

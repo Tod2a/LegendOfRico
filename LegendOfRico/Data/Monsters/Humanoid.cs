@@ -1,11 +1,12 @@
 namespace LegendOfRico.Data;
 
-public class Humanoid : Monster
+public abstract class Humanoid : Monster
 {
 
     public override string MonsterName { get; set; } 
 
     public override MonsterHit[] HitTable { get; set; }
+    public override TypeOfMonster MonsterType { get; set; } = TypeOfMonster.Humanoid;
     public override int MonsterHP { get; set; } 
     public override int MonsterCurrentHP { get; set; }
     public override string fightImgUrl { get; set; }
