@@ -3,8 +3,8 @@
     public class Bulldog: StrayDog
     {
         public override string MonsterName { get; set; } = "Bulldog";
-        public override int MonsterHP { get; set; } = 100;
-        public override int MonsterCurrentHP { get; set; } = 100;
+        public override int MonsterHP { get; set; } = 20;
+        public override int MonsterCurrentHP { get; set; } = 20;
         public override string fightImgUrl { get; set; } = "img/monster/Dog/bulldog.png";
         public override int XpGranted { get; set; } = 50;
 
@@ -12,8 +12,8 @@
         {
             return new MonsterHit[]
                 {
-                    new MonsterHit{Name = "Morsure", MinDamage = 10, MaxDamage = 15 },
-                    new MonsterHit{Name = "Piqure", MinDamage = 5, MaxDamage = 10}
+                    new MonsterHit{Name = "Morsure", MinDamage = 4, MaxDamage = 6 },
+                    new MonsterHit{Name = "Piqure", MinDamage = 5, MaxDamage = 5}
                 };
         }
     }

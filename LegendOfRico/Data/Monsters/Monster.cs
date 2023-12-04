@@ -16,6 +16,7 @@ public abstract class Monster
     public int MonsterMaxDamage { get; set; }
     public abstract MonsterHit[] HitTable { get; set; }
     public Boolean IsBurning { get; private set; }
+    public int BurnDuration { get; private set; }
     public Boolean IsFrozen { get; private set;}
     public abstract string fightImgUrl {  get; set; }
     
@@ -27,11 +28,34 @@ public abstract class Monster
     public void Burnt()
     {
         IsBurning = true;
+        if(BurnDuration < 3)
+        {
+            BurnDuration = 3;
+        }
+    }
+
+    public int BurnTic()
+    {
+        int ticDmg = (int)(MonsterHP / 10);
+        MonsterCurrentHP -= ticDmg;
+        BurnDuration--;
+        if(BurnDuration <= 0)
+        {
+            IsBurning = false;
+        }
+        return ticDmg;
     }
 
     public void Frozen()
     {
-        IsFrozen = true;
+        if(IsFrozen == true)
+        {
+            IsFrozen = false;
+        }
+        else
+        {
+            IsFrozen = true;
+        }
     }
 
     public void ReceiveHeal(int healAmount)
@@ -73,7 +97,7 @@ public abstract class Monster
         double dodge = dice.NextDouble();
         if (dodge < target.ChanceToDodge)
         {
-            return "Le monstre lance une attaque que vous avez esquivée";
+            return "Le monstre attaque mais vous esquivez !";
         }
         else
         {

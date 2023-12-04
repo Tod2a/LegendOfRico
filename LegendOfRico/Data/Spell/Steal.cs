@@ -9,17 +9,26 @@ public class Steal : Spells
 
     public override string UseSpell(Game currentGame)
     {
-        if (currentGame.MonsterFight.MonsterType == TypeOfMonster.Humanoid)
+        string s = "";
+        if(CurrentNumberOfUses > 0)
         {
-            var t = (Humanoid)currentGame.MonsterFight;
-            int stolenCoins = t.DropsCoins();
-            currentGame.Player.LootGold(stolenCoins);
-            CurrentNumberOfUses--;
-            return "Vous avez volé "+stolenCoins+" à la cible !";
+            if (currentGame.MonsterFight.MonsterType == TypeOfMonster.Humanoid)
+            {
+                var t = (Humanoid)currentGame.MonsterFight;
+                int stolenCoins = t.DropsCoins();
+                currentGame.Player.LootGold(stolenCoins);
+                CurrentNumberOfUses--;
+                s += "Vous avez volé " + stolenCoins + " à la cible !";
+            }
+            else
+            {
+                s += "Votre cible n'a pas d'argent !";
+            }
         }
         else
         {
-            return "Votre cible n'a pas d'argent !";
+            s += "Vous ne pouvez plus lancer ce sort !";
         }
+        return s;
     }
 }

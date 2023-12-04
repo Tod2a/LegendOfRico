@@ -95,10 +95,11 @@ namespace LegendOfRico.Data
         public void Action(Spells spell, Game game)
         {
             FightMessage = spell.UseSpell(game);
-            FightMessage += ", ";
+            FightMessage += " ";
             if (game.MonsterFight.MonsterCurrentHP <= 0)
             {
-                FightMessage = "Félicitation, vous avez gagné, cette victoire vous rapporte " + game.MonsterFight.XpGranted + " expérience";
+                FightMessage = "Félicitation, vous avez gagné, cette victoire vous rapporte " + game.MonsterFight.XpGranted + 
+                    " points d'expérience";
                 game.Player.CurrentXp += game.MonsterFight.XpGranted;
                 MonsterFight = null;
                 if(game.Player.CurrentXp >= game.Player.XpToLevel) 
@@ -109,11 +110,15 @@ namespace LegendOfRico.Data
                     game.Player.XpToLevel += 250;
                 }
             }
-            else 
+            else if(FightMessage != "Vous ne pouvez plus lancer ce sort ! ") //Le monstre passe son tour si le joueur est con
             {
                 MonsterHit(game);
             }
-
+            else if(game.MonsterFight.IsFrozen) //Le monstre ne joue pas si gelé
+            {
+                FightMessage += "Vous avez gelé la cible !";
+                game.MonsterFight.Frozen(); //dégèle
+            }
         }
 
         public void MonsterHit(Game game)

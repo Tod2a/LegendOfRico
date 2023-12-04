@@ -3,8 +3,8 @@ namespace LegendOfRico.Data;
 public class Frostbolt : Spells
 {
     public override string SpellName => "Frostbolt";
-    public override int MaxNumberOfUses => 10;
-    public override int CurrentNumberOfUses { get; protected set; } = 10;
+    public override int MaxNumberOfUses => 15;
+    public override int CurrentNumberOfUses { get; protected set; } = 15;
     public int MinValue => 15;
     public int MaxValue => 25;
     public TypeOfDamage SpellType = TypeOfDamage.Cold;
@@ -13,23 +13,32 @@ public class Frostbolt : Spells
 
     public override string UseSpell(Game currentGame)
     {
-        int damageRoll = (new Random()).Next(MinValue, MaxValue + 1);
-        damageRoll += (int)((currentGame.Player.Statistics / 50) * damageRoll);
         string s = "";
 
-        if ((new Random()).NextDouble() <= CritChance)
+        int damageRoll = (new Random()).Next(MinValue, MaxValue + 1);
+        damageRoll += (int)((currentGame.Player.Statistics / 50) * damageRoll);
+
+        if (CurrentNumberOfUses > 0)
         {
-            damageRoll *= 2;
-            s += "Coup critique ! ";
+            if ((new Random()).NextDouble() <= CritChance)
+            {
+                damageRoll *= 2;
+                s += "Coup critique ! ";
+            }
+            if ((new Random()).NextDouble() <= FreezeChance && !currentGame.MonsterFight.MonsterResistance.Contains(SpellType)
+                && !currentGame.MonsterFight.IsFrozen)
+            {
+                currentGame.MonsterFight.Frozen();
+                s += "Vous avez gelé votre cible ! ";
+            }
+            currentGame.MonsterFight.TakeDamage(damageRoll);
+            s += "Vous infligez " + damageRoll + " points de dégâts à la cible ! ";
+            CurrentNumberOfUses--;
         }
-        if ((new Random()).NextDouble() <= FreezeChance && !currentGame.MonsterFight.MonsterResistance.Contains(SpellType))
+        else
         {
-            currentGame.MonsterFight.Frozen();
-            s += "Vous avez gelé votre cible ! ";
+            s += "Vous ne pouvez plus lancer ce sort !";
         }
-        currentGame.MonsterFight.TakeDamage(damageRoll);
-        s += "Vous infligez " + damageRoll + " points de dégâts à la cible ! ";
-        CurrentNumberOfUses--;
         return s;
     }
 }

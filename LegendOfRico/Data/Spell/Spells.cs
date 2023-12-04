@@ -12,4 +12,9 @@ public abstract class Spells
     }
 
     public abstract string UseSpell(Game currentGame);
+
+    public void LoseOneUseOfSpell()
+    {
+        CurrentNumberOfUses--;
+    }
 }

@@ -9,16 +9,25 @@ public class Sooth : Spells
 
     public override string UseSpell(Game currentGame)
     {
-        if (currentGame.MonsterFight.MonsterType == TypeOfMonster.Beast)
+        string s = "";
+        if (CurrentNumberOfUses > 0)
         {
-            var t = (Beast)currentGame.MonsterFight;
-            t.Soothed();
-            CurrentNumberOfUses--;
-            return "Vous avez apaisé votre cible !";
+            if (currentGame.MonsterFight.MonsterType == TypeOfMonster.Beast)
+            {
+                var t = (Beast)currentGame.MonsterFight;
+                t.Soothed();
+                CurrentNumberOfUses--;
+                s += "Vous avez apaisé votre cible !";
+            }
+            else
+            {
+                s += "Vous ne pouvez apaiser que les bêtes !";
+            }
         }
         else
         {
-            return "Vous ne pouvez apaiser que les bêtes !";
+            s += "Vous ne pouvez plus lancer ce sort !";
         }
+        return s;
     }
 }

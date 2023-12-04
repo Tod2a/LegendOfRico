@@ -11,24 +11,31 @@ public class DivineIntervention : Spells
 
     public override string UseSpell(Game currentGame)
     {
-        int damageRoll = (new Random()).Next(MinValue, MaxValue + 1);
-        damageRoll += (int)((currentGame.Player.Statistics / 50) * damageRoll);
-
-        int healRoll = (new Random()).Next(MinValue, MaxValue + 1);
-        healRoll += (int)((currentGame.Player.Statistics / 50) * healRoll);
         string s = "";
-
-        currentGame.MonsterFight.TakeDamage(damageRoll);
-        currentGame.Player.ReceiveHeal(healRoll);
-
-        if (currentGame.MonsterFight.MonsterType == TypeOfMonster.Undead)
+        if (CurrentNumberOfUses > 0)
         {
-            currentGame.MonsterFight.Burnt();
-            currentGame.MonsterFight.TakeDamage((int)(currentGame.MonsterFight.MonsterHP / 10));
-            s += s += "Votre cible brûle ! ";
+            int damageRoll = (new Random()).Next(MinValue, MaxValue + 1);
+            damageRoll += (int)((currentGame.Player.Statistics / 50) * damageRoll);
+
+            int healRoll = (new Random()).Next(MinValue, MaxValue + 1);
+            healRoll += (int)((currentGame.Player.Statistics / 50) * healRoll);
+
+            currentGame.MonsterFight.TakeDamage(damageRoll);
+            currentGame.Player.ReceiveHeal(healRoll);
+
+            if (currentGame.MonsterFight.MonsterType == TypeOfMonster.Undead)
+            {
+                currentGame.MonsterFight.Burnt();
+                currentGame.MonsterFight.TakeDamage((int)(currentGame.MonsterFight.MonsterHP / 10));
+                s += s += "Votre cible brûle ! ";
+            }
+            s += "Vous infligez " + damageRoll + " points de dégâts à la cible et rendez " + healRoll + " points de vie à vos alliés !";
+            CurrentNumberOfUses--;
         }
-        s += "Vous infligez " + damageRoll + " points de dégâts à la cible et rendez "+healRoll+" points de vie à vos alliés !";
-        CurrentNumberOfUses--;
+        else
+        {
+            s += "Vous ne pouvez plus lancer ce sort !";
+        }
         return s;
     }
 }

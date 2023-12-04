@@ -9,9 +9,18 @@ public class Burst : Spells
 
     public override string UseSpell(Game currentGame)
     {
-        currentGame.Player.Hit(currentGame.MonsterFight);
-        currentGame.Player.Hit(currentGame.MonsterFight);
-        CurrentNumberOfUses--;
-        return "Vous frappez votre cible deux fois dans un excès de rage !";
+        string s = "";
+        if (CurrentNumberOfUses > 0)
+        {
+            s += "Vous frappez votre cible deux fois dans un excès de rage !";
+            currentGame.Player.Hit(currentGame.MonsterFight);
+            currentGame.Player.Hit(currentGame.MonsterFight);
+            LoseOneUseOfSpell();
+        }
+        else
+        {
+            s += "Vous ne pouvez plus lancer ce sort !";
+        }
+        return s;
     }
 }
