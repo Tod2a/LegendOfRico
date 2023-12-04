@@ -3,13 +3,13 @@ namespace LegendOfRico.Data;
 
 public class Dagger : Weapon
 {
-    public Dagger(string itemName, int price, int minimumWeaponDamage, int maximumWeaponDamage, int bonusStats) :
-            base(itemName, price, minimumWeaponDamage, maximumWeaponDamage, bonusStats)
+    public Dagger(string itemName, string description, int price, int minimumWeaponDamage, int maximumWeaponDamage, int bonusStats) : 
+        base(itemName, description, price, minimumWeaponDamage, maximumWeaponDamage, bonusStats)
     {
     }
 
-    public Dagger(string itemName, int price, int minimumWeaponDamage, int maximumWeaponDamage) :
-        base(itemName, price, minimumWeaponDamage, maximumWeaponDamage)
+    public Dagger(string itemName, string description, int price, int minimumWeaponDamage, int maximumWeaponDamage) :
+        base(itemName, description, price, minimumWeaponDamage, maximumWeaponDamage)
     {
     }
 

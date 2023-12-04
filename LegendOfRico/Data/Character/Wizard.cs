@@ -4,9 +4,9 @@
     {
         public override TypeOfWeapon[] WeaponMastery => new[] { TypeOfWeapon.Staff };
         public override TypeOfArmor ArmorMastery => TypeOfArmor.Light;
-        public override Weapon CharacterWeapon { get; protected set; } = new Staff("Baton en bois flotté", 5, 1, 5);
-        public override Shield CharacterShield { get; protected set; } = new FistShield("Poing", 0, 0);
-        public override Armor CharacterArmor { get; protected set; } = new Armor("Haillons", 5, TypeOfArmor.Light, 1);
+        public override Weapon CharacterWeapon { get; protected set; } = new Staff("Baton en bois flotté", "baton", 5, 1, 5);
+        public override Shield CharacterShield { get; protected set; } = new FistShield("Poing", "poing", 0, 0);
+        public override Armor CharacterArmor { get; protected set; } = new Armor("Haillons", "haillons", 5, TypeOfArmor.Light, 1);
         public override List<Spells> SpellBook { get; protected set; } = new List<Spells>() { new Fireball() };
         public override bool CanEquipShield { get; protected set; } = false;
         public override int MaxHitPoints => 20;

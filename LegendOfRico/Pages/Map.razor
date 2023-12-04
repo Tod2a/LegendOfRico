@@ -1,4 +1,5 @@
 ﻿@using LegendOfRico.Data
+@using BootstrapBlazor
 
 <div class="layoutGame" @onkeydown="HandleKeyDown" @onkeydown:preventDefault=true tabindex="0">
     <div class="displayGame">
@@ -59,7 +60,7 @@
                 <p>Inventaire Stuff:</p>
                 @foreach (var item in Game.Player.StuffInventory)
                 {
-                    <p>@item.ItemName</p>
+                    <p data-toggle="tooltip" data-placement="top" title="@item.Description">@item.ItemName</p>
                 }
             </p>
             <p style="display: @(Game.ShowQuestList ? "block" : "none")">ici liste des quetes</p>

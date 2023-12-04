@@ -4,10 +4,10 @@ public class Rogue : Character
 {
     public override TypeOfWeapon[] WeaponMastery => new[] {TypeOfWeapon.Dagger, TypeOfWeapon.Sword };
     public override TypeOfArmor ArmorMastery => TypeOfArmor.Medium;
-    public override Weapon CharacterWeapon { get; protected set; } = new Dagger("Dague en bois", 5, 1, 3);
-    public override Shield CharacterShield { get; protected set; } = new FistShield("Poing", 0, 0);
-    public override Armor CharacterArmor { get; protected set; } = new Armor("Haillons", 5, TypeOfArmor.Light, 1);
-    public Weapon OffHandWeapon { get; private set; } = new Fist("Poing", 0, 1, 3);
+    public override Weapon CharacterWeapon { get; protected set; } = new Dagger("Dague en bois", "dague", 5, 1, 3);
+    public override Shield CharacterShield { get; protected set; } = new FistShield("Poing", "poing", 0, 0);
+    public override Armor CharacterArmor { get; protected set; } = new Armor("Haillons", "aillons", 5, TypeOfArmor.Light, 1);
+    public Weapon OffHandWeapon { get; private set; } = new Fist("Poing", "poing", 0, 1, 3);
     public override bool CanEquipShield { get; protected set; } = false;
     public override List<Spells> SpellBook { get; protected set; } = new List<Spells>() { new Steal() };
     public override int MaxHitPoints => 15;
@@ -60,6 +60,6 @@ public class Rogue : Character
     public void UnequipOffHandWeapon()
     {
         StuffInventory.Add(OffHandWeapon);
-        OffHandWeapon = new Fist("Poing", 0, 1, 3);
+        OffHandWeapon = new Fist("Poing", "poing", 0, 1, 3);
     }
 }

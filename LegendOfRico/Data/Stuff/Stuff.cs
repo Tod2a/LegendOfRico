@@ -1,6 +1,7 @@
 ﻿namespace LegendOfRico.Data
 {
-    public class Stuff: Item
+    public abstract class Stuff: Item
     {
+        public abstract string Description { get; set; }
     }
 }

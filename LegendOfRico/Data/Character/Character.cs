@@ -100,7 +100,7 @@ public abstract class Character : INotifyPropertyChanged
         };
         StuffInventory = new List<Stuff>
         {
-            new Mace("Masse de départ", 10, 5, 10)
+            new Mace("Masse de départ", "une masse", 10, 5, 10)
         };
     }
     public void Burnt()
@@ -172,7 +172,7 @@ public abstract class Character : INotifyPropertyChanged
     {
         StuffInventory.Add(CharacterShield);
         ArmorAmount -= CharacterShield.ShieldBonusArmor;
-        CharacterShield = new FistShield("Poing",0,0);
+        CharacterShield = new FistShield("Poing","un poing",0,0);
     }
 
     public void EquipWeapon(Weapon weapon)
@@ -184,7 +184,7 @@ public abstract class Character : INotifyPropertyChanged
     public void UnequipWeapon()
     {
         StuffInventory.Add(CharacterWeapon);
-        CharacterWeapon = new Fist("Poing", 0, 1, 3);
+        CharacterWeapon = new Fist("Poing", "un poing", 0, 1, 3);
     }
     
     public void EquipArmor(Armor armor)
@@ -197,7 +197,7 @@ public abstract class Character : INotifyPropertyChanged
     {
         StuffInventory.Add(CharacterArmor);
         ArmorAmount -= CharacterArmor.ArmorOfArmor;
-        CharacterArmor = new Topless("Rien",0,TypeOfArmor.None,0);;
+        CharacterArmor = new Topless("Rien","Bah rien",0,TypeOfArmor.None,0);;
     }
 
     public void LootStuff(Stuff droppedItem)
