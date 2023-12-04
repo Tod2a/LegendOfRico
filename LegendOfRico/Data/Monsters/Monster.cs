@@ -36,7 +36,7 @@ public abstract class Monster
 
     public int BurnTic()
     {
-        int ticDmg = (int)(MonsterHP / 10);
+        int ticDmg = (MonsterHP / 10);
         MonsterCurrentHP -= ticDmg;
         BurnDuration--;
         if(BurnDuration <= 0)

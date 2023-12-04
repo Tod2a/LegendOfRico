@@ -99,15 +99,37 @@ namespace LegendOfRico.Data
             if (game.MonsterFight.MonsterCurrentHP <= 0)
             {
                 FightMessage = "Félicitation, vous avez gagné, cette victoire vous rapporte " + game.MonsterFight.XpGranted + 
-                    " points d'expérience";
+                    " points d'expérience ! ";
                 game.Player.CurrentXp += game.MonsterFight.XpGranted;
                 MonsterFight = null;
                 if(game.Player.CurrentXp >= game.Player.XpToLevel) 
                 {
                     LevelUp();
-                    FightMessage += ", grace à cela, vous gagnez un niveau!";
+                    FightMessage += "Vous gagnez un niveau !";
                     game.Player.CurrentXp -= game.Player.XpToLevel;
-                    game.Player.XpToLevel += 250;
+                    game.Player.XpToLevel += 250*game.Player.Level;
+                }
+            }
+            else if (game.MonsterFight.IsBurning) //Le monstre perd 10% hp si il brûle
+            {
+                FightMessage += "La cible brûle et subit "+game.MonsterFight.BurnTic()+" points de dégâts ! ";
+                if (game.MonsterFight.MonsterCurrentHP <= 0) //Check si meurt avec brûlure
+                {
+                    FightMessage = "Félicitation, vous avez gagné, cette victoire vous rapporte " + game.MonsterFight.XpGranted +
+                        " points d'expérience ! ";
+                    game.Player.CurrentXp += game.MonsterFight.XpGranted;
+                    MonsterFight = null;
+                    if (game.Player.CurrentXp >= game.Player.XpToLevel)
+                    {
+                        LevelUp();
+                        FightMessage += "Vous gagnez un niveau !";
+                        game.Player.CurrentXp -= game.Player.XpToLevel;
+                        game.Player.XpToLevel += 250 * game.Player.Level;
+                    }
+                }
+                else
+                {
+                    MonsterHit(game);
                 }
             }
             else if(FightMessage != "Vous ne pouvez plus lancer ce sort ! ") //Le monstre passe son tour si le joueur est con
@@ -194,9 +216,5 @@ namespace LegendOfRico.Data
                 IsFight(GameMap.MapLayout[Player.PositionI][Player.PositionJ]);
             }
         }
-
-
-        
-
     }
 }

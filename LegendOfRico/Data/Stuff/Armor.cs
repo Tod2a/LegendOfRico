@@ -5,13 +5,11 @@ public class Armor : Stuff
     public TypeOfArmor ArmorType { get; private set; }
     public int ArmorOfArmor { get; private set; }
 
-    public void SetArmorType(TypeOfArmor armorType)
+    public Armor(string armorName, int armorPrice, TypeOfArmor armorType, int armorOfArmor)
     {
+        ItemName = armorName;
+        Price = armorPrice;
         ArmorType = armorType;
-    }
-
-    public void SetArmorOfArmor(int armorOfArmor)
-    {
         ArmorOfArmor = armorOfArmor;
     }
 }

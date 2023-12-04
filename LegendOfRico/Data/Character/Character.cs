@@ -27,7 +27,7 @@ public abstract class Character : INotifyPropertyChanged
     public abstract double ChanceToDodge { get; protected set; }
     public abstract Weapon CharacterWeapon { get; protected set; }
     public abstract Shield CharacterShield { get; protected set; }
-    public Armor CharacterArmor { get; private set; }
+    public abstract Armor CharacterArmor { get; protected set; }
     public abstract List<Spells> SpellBook { get; protected set; }
     public List<Consumable> ConsumableInventory { get; private set; }
     public List<Stuff> StuffInventory { get; private set; }
@@ -193,7 +193,7 @@ public abstract class Character : INotifyPropertyChanged
     {
         StuffInventory.Add(CharacterArmor);
         ArmorAmount -= CharacterArmor.ArmorOfArmor;
-        CharacterArmor = new Topless();
+        CharacterArmor = new Topless("Rien",0,TypeOfArmor.None,0);;
     }
 
     public void LootStuff(Stuff droppedItem)

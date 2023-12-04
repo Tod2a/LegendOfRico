@@ -15,7 +15,7 @@ public class Burst : Spells
             s += "Vous frappez votre cible deux fois dans un excès de rage !";
             currentGame.Player.Hit(currentGame.MonsterFight);
             currentGame.Player.Hit(currentGame.MonsterFight);
-            LoseOneUseOfSpell();
+            CurrentNumberOfUses--;
         }
         else
         {
