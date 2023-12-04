@@ -48,7 +48,7 @@ public abstract class Character : INotifyPropertyChanged
             }
         }
     }
-    public abstract TypeOfWeapon[] WeaponMastery { get; }
+    public abstract List<TypeOfWeapon> WeaponMastery { get; }
     public abstract TypeOfArmor ArmorMastery { get; }
     public int lastRestVillageI { get; set; } = 250;
     public int LastRestVillageJ { get; set; } = 250;
@@ -165,37 +165,42 @@ public abstract class Character : INotifyPropertyChanged
     {
         if(stuff.TypeOfStuff == TypeOfStuff.Weapon)
         {
-            StuffInventory.Remove(stuff);
-            if(this.GetType() ==  typeof(Rogue) && CharacterWeapon.GetType() != typeof(Fist)) {
-                if(CharacterWeapon.GetType() != typeof(DoubleWeapon))
+            var stuffWeapon = (Weapon)stuff;
+            if (WeaponMastery.Contains(stuffWeapon.WeaponType))
+            {
+                StuffInventory.Remove(stuff);
+                if (this.GetType() == typeof(Rogue) && CharacterWeapon.GetType() != typeof(Fist))
                 {
-                    CharacterWeapon = new DoubleWeapon(CharacterWeapon.ItemName + "/" + stuff.ItemName,
-                        CharacterWeapon.Description + "/" + stuff.Description,
-                        CharacterWeapon.Price + stuff.Price,
-                        CharacterWeapon.MinimumWeaponDamage + (stuff.MinimumWeaponDamage / 2),
-                        CharacterWeapon.MaximumWeaponDamage + (stuff.MaximumWeaponDamage / 2),
-                        CharacterWeapon.BonusStats + stuff.BonusStats,
-                        CharacterWeapon, stuff);
+                    if (CharacterWeapon.GetType() != typeof(DoubleWeapon))
+                    {
+                        CharacterWeapon = new DoubleWeapon(CharacterWeapon.ItemName + "/" + stuff.ItemName,
+                            CharacterWeapon.Description + "/" + stuff.Description,
+                            CharacterWeapon.Price + stuff.Price,
+                            CharacterWeapon.MinimumWeaponDamage + (stuff.MinimumWeaponDamage / 2),
+                            CharacterWeapon.MaximumWeaponDamage + (stuff.MaximumWeaponDamage / 2),
+                            CharacterWeapon.BonusStats + stuff.BonusStats,
+                            CharacterWeapon, stuff);
+                    }
+                    else
+                    {
+                        var ambidextrWeapon = (DoubleWeapon)CharacterWeapon;
+                        Stuff weapon1 = ambidextrWeapon.Weapon1;
+                        Stuff weapon2 = ambidextrWeapon.Weapon2;
+                        StuffInventory.Add(weapon2);
+                        CharacterWeapon = new DoubleWeapon(weapon1.ItemName + "/" + stuff.ItemName,
+                            weapon1.Description + "/" + stuff.Description,
+                            weapon1.Price + stuff.Price,
+                            weapon1.MinimumWeaponDamage + (stuff.MinimumWeaponDamage / 2),
+                            weapon1.MaximumWeaponDamage + (stuff.MaximumWeaponDamage / 2),
+                            weapon1.BonusStats + stuff.BonusStats,
+                            weapon1, stuff);
+                    }
                 }
                 else
                 {
-                    var ambidextrWeapon = (DoubleWeapon)CharacterWeapon;
-                    Stuff weapon1 = ambidextrWeapon.Weapon1;
-                    Stuff weapon2 = ambidextrWeapon.Weapon2;
-                    StuffInventory.Add(weapon2);
-                    CharacterWeapon = new DoubleWeapon(weapon1.ItemName + "/" + stuff.ItemName,
-                        weapon1.Description + "/" + stuff.Description,
-                        weapon1.Price + stuff.Price,
-                        weapon1.MinimumWeaponDamage + (stuff.MinimumWeaponDamage / 2),
-                        weapon1.MaximumWeaponDamage + (stuff.MaximumWeaponDamage / 2),
-                        weapon1.BonusStats + stuff.BonusStats,
-                        weapon1, stuff);
+                    UnequipWeapon();
+                    CharacterWeapon = stuff;
                 }
-            }
-            else
-            {
-                UnequipWeapon();
-                CharacterWeapon = stuff;
             }
         }
         else if (stuff.TypeOfStuff == TypeOfStuff.Shield)

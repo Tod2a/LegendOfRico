@@ -2,7 +2,7 @@ namespace LegendOfRico.Data;
 
 public class Rogue : Character
 {
-    public override TypeOfWeapon[] WeaponMastery => new[] {TypeOfWeapon.Dagger, TypeOfWeapon.Sword };
+    public override List<TypeOfWeapon> WeaponMastery => new List<TypeOfWeapon> {TypeOfWeapon.Dagger, TypeOfWeapon.Sword };
     public override TypeOfArmor ArmorMastery => TypeOfArmor.Medium;
     public override Stuff CharacterWeapon { get; protected set; } = new Dagger("Dague en bois", "dague", 5, 1, 3, 0);
     public override Stuff CharacterShield { get; protected set; } = new FistShield("Poing", "poing", 0, 0);

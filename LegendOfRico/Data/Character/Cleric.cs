@@ -2,7 +2,7 @@ namespace LegendOfRico.Data;
 
 public class Cleric : Character
 {
-    public override TypeOfWeapon[] WeaponMastery => new[] { TypeOfWeapon.Mace };
+    public override List<TypeOfWeapon> WeaponMastery => new List<TypeOfWeapon> { TypeOfWeapon.Mace };
     public override TypeOfArmor ArmorMastery => TypeOfArmor.Medium;
     public override Stuff CharacterWeapon { get; protected set; } = new Mace("Masse en bois","une masse", 5, 1, 3, 0);
     public override Stuff CharacterShield { get; protected set; } = new Shield("Bouclier en bois", "Bouclier", 0, 3);

@@ -2,7 +2,7 @@ namespace LegendOfRico.Data;
 
 public class Ranger : Character
 {
-    public override TypeOfWeapon[] WeaponMastery => new[] { TypeOfWeapon.Sword, TypeOfWeapon.Bow };
+    public override List<TypeOfWeapon> WeaponMastery => new List<TypeOfWeapon> { TypeOfWeapon.Sword, TypeOfWeapon.Bow };
     public override TypeOfArmor ArmorMastery => TypeOfArmor.Medium;
     public override Stuff CharacterWeapon { get; protected set; } = new Bow("Arc en bois flotté", "arc", 5, 3, 4, 0);
     public override Stuff CharacterShield { get; protected set; } = new FistShield("Poing", "poing", 0, 0);
