@@ -10,10 +10,13 @@
         <!--<button @onclick="Autowin">Autowin</button>-->
     </div>
     <div class="fight">
-        @if(Game.MonsterFight != null && !Game.PlayerDead)
-        {
+        
         <div class="fightBox">
-            <p>@Game.FightMessage</p>
+            <p>
+                @Game.FightMessage
+                <button @onclick="Victory" style="display: @(Game.MonsterDead ? "block" : "none")">Valider</button>
+                <button @onclick="Defeat" style="display: @(Game.PlayerDead ? "block" : "none")">Se réveiller difficilement</button>
+            </p>
         </div>
         <div class="fightDisplay" style="background-image: url('@Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].SquareBiome.FightUrl');">
             <div class="opponent">
@@ -58,21 +61,7 @@
 
             </div>
         </div>
-        }
-        @if(Game.MonsterFight == null)
-        {
-            <div class="fightResult" style="background-image: url('@Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].SquareBiome.FightUrl');">
-                <p>@Game.FightMessage</p>
-                <button @onclick="Victory">Valider</button>
-            </div>
-        }
-        @if(Game.PlayerDead == true)
-        {
-            <div class="fightResult" style="background-image: url('@Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].SquareBiome.FightUrl');">
-                <p>@Game.FightMessage</p>
-                <button @onclick="Defeat">Se réveiller difficilement</button>
-            </div>
-        }
+        
 
     </div>
 
@@ -87,6 +76,7 @@
     void Victory()
     {
         Game.FormShow = TypeOfShow.Map;
+        Game.MonsterDead = false;
         TypeOfShowChange.InvokeAsync();
     }
 

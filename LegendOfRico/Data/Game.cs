@@ -14,6 +14,7 @@ namespace LegendOfRico.Data
         public Merchant Merchant { get; set; } = new Merchant();
         public string FightMessage { get; set; } = "";
         public bool PlayerDead = false;
+        public bool MonsterDead = false;
         //série de paramètres/variables qui vont gérer l'affichage des différents display du jeu
         //gestion du menu de droite
         public bool ShowInventory = true;
@@ -98,10 +99,11 @@ namespace LegendOfRico.Data
             FightMessage += " ";
             if (game.MonsterFight.MonsterCurrentHP <= 0)
             {
-                FightMessage = "Félicitation, vous avez gagné, cette victoire vous rapporte " + game.MonsterFight.XpGranted + 
+                game.MonsterFight.MonsterCurrentHP = 0;
+                FightMessage += "cela suffit à vaincre le monstre, cette victoire vous rapporte " + game.MonsterFight.XpGranted + 
                     " points d'expérience ! ";
                 game.Player.CurrentXp += game.MonsterFight.XpGranted;
-                MonsterFight = null;
+                MonsterDead = true;
                 if(game.Player.CurrentXp >= game.Player.XpToLevel) 
                 {
                     LevelUp();
@@ -115,10 +117,11 @@ namespace LegendOfRico.Data
                 FightMessage += "La cible brûle et subit "+game.MonsterFight.BurnTic()+" points de dégâts ! ";
                 if (game.MonsterFight.MonsterCurrentHP <= 0) //Check si meurt avec brûlure
                 {
+                    game.MonsterFight.MonsterCurrentHP = 0;
                     FightMessage = "Félicitation, vous avez gagné, cette victoire vous rapporte " + game.MonsterFight.XpGranted +
                         " points d'expérience ! ";
                     game.Player.CurrentXp += game.MonsterFight.XpGranted;
-                    MonsterFight = null;
+                    MonsterDead = true;
                     if (game.Player.CurrentXp >= game.Player.XpToLevel)
                     {
                         LevelUp();
@@ -146,8 +149,9 @@ namespace LegendOfRico.Data
         public void MonsterHit(Game game)
         {
             game.FightMessage += game.MonsterFight.Hit(game.Player);
-            if (game.Player.CurrentHitPoints <= 0 && MonsterFight != null)
+            if (game.Player.CurrentHitPoints <= 0 && !MonsterDead)
             {
+                game.Player.CurrentHitPoints = 0;
                 game.PlayerDead = true;
                 game.FightMessage = "Vous êtes mort, des gobelins sortent de l'ombre pour vous emmener rapidement dans le dernier village que vous avez visité.";
                 game.FightMessage += "Vous perdez toute votre expérience";
