@@ -163,15 +163,15 @@ public abstract class Character : INotifyPropertyChanged
     //Gestion des équipements
     public void EquipStuff(Stuff stuff)
     {
-        if(stuff.TypeOfStuff == TypeOfStuff.Weapon)
+        if(stuff.TypeOfStuff == TypeOfStuff.Weapon) //Si veut équiper une arme
         {
             var stuffWeapon = (Weapon)stuff;
-            if (WeaponMastery.Contains(stuffWeapon.WeaponType))
+            if (WeaponMastery.Contains(stuffWeapon.WeaponType)) //Si le perso peut utiliser cette arme
             {
                 StuffInventory.Remove(stuff);
-                if (this.GetType() == typeof(Rogue) && CharacterWeapon.GetType() != typeof(Fist))
+                if (this.GetType() == typeof(Rogue) && CharacterWeapon.GetType() != typeof(Fist)) //Si c'est un rogue avec une arme
                 {
-                    if (CharacterWeapon.GetType() != typeof(DoubleWeapon))
+                    if (CharacterWeapon.GetType() != typeof(DoubleWeapon)) //Si pas de main gauche
                     {
                         CharacterWeapon = new DoubleWeapon(CharacterWeapon.ItemName + "/" + stuff.ItemName,
                             CharacterWeapon.Description + "/" + stuff.Description,
@@ -181,7 +181,7 @@ public abstract class Character : INotifyPropertyChanged
                             CharacterWeapon.BonusStats + stuff.BonusStats,
                             CharacterWeapon, stuff);
                     }
-                    else
+                    else //Si il a qqch en main gauche
                     {
                         var ambidextrWeapon = (DoubleWeapon)CharacterWeapon;
                         Stuff weapon1 = ambidextrWeapon.Weapon1;
@@ -196,7 +196,7 @@ public abstract class Character : INotifyPropertyChanged
                             weapon1, stuff);
                     }
                 }
-                else
+                else //Si c'est pas un rogue avec une arme
                 {
                     UnequipWeapon();
                     CharacterWeapon = stuff;
@@ -212,10 +212,15 @@ public abstract class Character : INotifyPropertyChanged
         }
         else if (stuff.TypeOfStuff == TypeOfStuff.Armor)
         {
-            UnequipArmor();
-            CharacterArmor = stuff;
-            StuffInventory.Remove(stuff);
-            ArmorAmount += stuff.ArmorOfArmor;
+            var stuffArmor = (Armor)stuff;
+
+            if(stuffArmor.ArmorType <= ArmorMastery)
+            {
+                UnequipArmor();
+                CharacterArmor = stuff;
+                StuffInventory.Remove(stuff);
+                ArmorAmount += stuff.ArmorOfArmor;
+            }
         }
     }
 
