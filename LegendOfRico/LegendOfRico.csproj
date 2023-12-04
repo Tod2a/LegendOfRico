@@ -9,16 +9,12 @@
   <ItemGroup>
     <Compile Remove="Data\NewFolder1\**" />
     <Compile Remove="Data\NewFolder2\**" />
-    <Compile Remove="Data\NewFolder\**" />
     <Content Remove="Data\NewFolder1\**" />
     <Content Remove="Data\NewFolder2\**" />
-    <Content Remove="Data\NewFolder\**" />
     <EmbeddedResource Remove="Data\NewFolder1\**" />
     <EmbeddedResource Remove="Data\NewFolder2\**" />
-    <EmbeddedResource Remove="Data\NewFolder\**" />
     <None Remove="Data\NewFolder1\**" />
     <None Remove="Data\NewFolder2\**" />
-    <None Remove="Data\NewFolder\**" />
   </ItemGroup>
 
   <ItemGroup>

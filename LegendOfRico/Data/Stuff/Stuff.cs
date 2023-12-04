@@ -8,6 +8,7 @@
         public virtual TypeOfDamage WeaponTypeOfDamage { get; }
         public virtual int ShieldBonusArmor { get; private set; }
         public virtual int ArmorOfArmor { get; set; }
+        public virtual TypeOfWeapon WeaponType { get; set; }
         public abstract string Description { get; set; }
         public abstract TypeOfStuff TypeOfStuff { get; protected set; }
     }
