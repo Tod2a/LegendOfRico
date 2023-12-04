@@ -60,7 +60,10 @@
                 <p>Inventaire Stuff:</p>
                 @foreach (var item in Game.Player.StuffInventory)
                 {
-                    <p data-toggle="tooltip" data-placement="top" title="@item.Description">@item.ItemName</p>
+                    <p data-toggle="tooltip" data-placement="top" title="@item.Description">
+                        @item.ItemName
+                    <!--<button style="display: @(item.TypeOfStuff==TypeOfStuff.Shield ? "block" : "none")" @onclick="() => Game.Player.EquipShield(item)">Equiper</button>-->
+                    </p>
                 }
             </p>
             <p style="display: @(Game.ShowQuestList ? "block" : "none")">ici liste des quetes</p>

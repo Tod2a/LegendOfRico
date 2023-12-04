@@ -161,8 +161,11 @@ public abstract class Character : INotifyPropertyChanged
         return " et vous inflige " + actualDamageTaken + " points de dégats (" + damageTaken+" - "+ArmorAmount+").";
     }
 
+    //Gestion des équipements
+ 
     public void EquipShield(Shield shield)
     {
+        UnequipShield();
         CharacterShield = shield;
         StuffInventory.Remove(shield);
         ArmorAmount += shield.ShieldBonusArmor;
@@ -177,6 +180,7 @@ public abstract class Character : INotifyPropertyChanged
 
     public void EquipWeapon(Weapon weapon)
     {
+        UnequipWeapon();
         StuffInventory.Remove(weapon);
         CharacterWeapon = weapon;
     }
@@ -189,6 +193,7 @@ public abstract class Character : INotifyPropertyChanged
     
     public void EquipArmor(Armor armor)
     {
+        UnequipArmor();
         CharacterArmor = armor;
         StuffInventory.Remove(armor);
         ArmorAmount += armor.ArmorOfArmor;
