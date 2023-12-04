@@ -4,7 +4,7 @@ public class Ranger : Character
 {
     public override TypeOfWeapon[] WeaponMastery => new[] { TypeOfWeapon.Sword, TypeOfWeapon.Bow };
     public override TypeOfArmor ArmorMastery => TypeOfArmor.Medium;
-    public override Stuff CharacterWeapon { get; protected set; } = new Bow("Arc en bois flotté", "arc", 5, 3, 4);
+    public override Stuff CharacterWeapon { get; protected set; } = new Bow("Arc en bois flotté", "arc", 5, 3, 4, 0);
     public override Stuff CharacterShield { get; protected set; } = new FistShield("Poing", "poing", 0, 0);
     public override Stuff CharacterArmor { get; protected set; } = new Armor("Haillons", "haillons", 5, TypeOfArmor.Light, 1);
     public override bool CanEquipShield { get; protected set; } = false;

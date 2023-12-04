@@ -20,13 +20,4 @@ public abstract class Weapon : Stuff
         MaximumWeaponDamage = maximumWeaponDamage;
         BonusStats = bonusStats;
     }
-
-    public Weapon(string itemName, string description, int price, int minimumWeaponDamage, int maximumWeaponDamage)
-    {
-        ItemName = itemName;
-        Description = description;
-        Price = price;
-        MinimumWeaponDamage = minimumWeaponDamage;
-        MaximumWeaponDamage = maximumWeaponDamage;
-    }
 }

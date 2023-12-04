@@ -1,6 +1,6 @@
 ﻿namespace LegendOfRico.Data
 {
-    public abstract class Stuff: Item
+    public abstract class Stuff : Item
     {
         public virtual double WeaponCritChance { get; }
         public virtual int MinimumWeaponDamage { get; protected set; }

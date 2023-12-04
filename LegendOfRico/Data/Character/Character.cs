@@ -100,7 +100,6 @@ public abstract class Character : INotifyPropertyChanged
         };
         StuffInventory = new List<Stuff>
         {
-            new Mace("Masse de départ", "une masse", 10, 5, 10)
         };
     }
     public void Burnt()
@@ -201,7 +200,7 @@ public abstract class Character : INotifyPropertyChanged
         if (!(CharacterWeapon.GetType() == typeof(Fist)))
         {
             StuffInventory.Add(CharacterWeapon);
-            CharacterWeapon = new Fist("Poing", "un poing", 0, 1, 3);
+            CharacterWeapon = new Fist("Poing", "un poing", 0, 1, 3, 0);
         }
     }
 

@@ -4,7 +4,7 @@ public class Cleric : Character
 {
     public override TypeOfWeapon[] WeaponMastery => new[] { TypeOfWeapon.Mace };
     public override TypeOfArmor ArmorMastery => TypeOfArmor.Medium;
-    public override Stuff CharacterWeapon { get; protected set; } = new Mace("Masse en bois","une masse", 5, 1, 3);
+    public override Stuff CharacterWeapon { get; protected set; } = new Mace("Masse en bois","une masse", 5, 1, 3, 0);
     public override Stuff CharacterShield { get; protected set; } = new Shield("Bouclier en bois", "Bouclier", 0, 3);
     public override Stuff CharacterArmor { get; protected set; } = new Armor("Haillons", "Haillons", 5, TypeOfArmor.Light, 1);
     public override bool CanEquipShield { get; protected set; } = true;

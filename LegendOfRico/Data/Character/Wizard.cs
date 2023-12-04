@@ -4,7 +4,7 @@
     {
         public override TypeOfWeapon[] WeaponMastery => new[] { TypeOfWeapon.Staff };
         public override TypeOfArmor ArmorMastery => TypeOfArmor.Light;
-        public override Stuff CharacterWeapon { get; protected set; } = new Staff("Baton en bois flotté", "baton", 5, 1, 5);
+        public override Stuff CharacterWeapon { get; protected set; } = new Staff("Baton en bois flotté", "baton", 5, 1, 5, 2);
         public override Stuff CharacterShield { get; protected set; } = new FistShield("Poing", "poing", 0, 0);
         public override Stuff CharacterArmor { get; protected set; } = new Armor("Haillons", "haillons", 5, TypeOfArmor.Light, 1);
         public override List<Spells> SpellBook { get; protected set; } = new List<Spells>() { new Fireball() };
