@@ -92,12 +92,16 @@ public abstract class Character : INotifyPropertyChanged
     {
         ConsumableInventory = new List<Consumable>
         {
-            new Potion("Potion de départ", 0, 1, 10, 5),
-            new Potion("Petite potion de soin", 5, 1, 10, 0),
-            new Potion("Potion de soin", 10, 10, 20, 0),
-            new Potion("Grande potion de soin", 20, 20, 40, 0),
-            new Potion("Enorme potion de soin", 40, 40, 80, 0)
-        }; 
+            new Potion(0, "Potion de départ", 0, 1, 10, 5),
+            new Potion(1, "Petite potion de soin", 5, 1, 10, 0),
+            new Potion(2, "Potion de soin", 10, 10, 20, 0),
+            new Potion(3, "Grande potion de soin", 20, 20, 40, 0),
+            new Potion(4, "Enorme potion de soin", 40, 40, 80, 0)
+        };
+        StuffInventory = new List<Stuff>
+        {
+            new Mace("Masse de départ", 10, 5, 10)
+        };
     }
     public void Burnt()
     {
@@ -222,6 +226,21 @@ public abstract class Character : INotifyPropertyChanged
         else
         {
             //To be defined
+        }
+    }
+
+    public void SellConsumable(Consumable consumable)
+    {
+        ConsumableInventory[consumable.Id].Quantity--;
+        Coins += (int)(consumable.Price) / 4;
+    }
+
+    public void BuyConsumable(Consumable boughtConsumable)
+    {
+        if (boughtConsumable.Price <= Coins)
+        {
+            Coins -= boughtConsumable.Price;
+            ConsumableInventory[boughtConsumable.Id].Quantity++;
         }
     }
 

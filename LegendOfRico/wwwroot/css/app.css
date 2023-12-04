@@ -362,7 +362,28 @@ a, .btn-link {
 
 .MerchantImage {
     flex: 1;
-    background-color: aqua;
+    background-image: url('../img/layout/Merchant.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    text-align:right;
+}
+
+.MerchantButton {
+    margin-top:1em;
+    margin-right:1em;
+}
+
+.MerchantSpeak {
+    position: relative;
+    display: inline-block;
+    padding: 10px;
+    background-color: #fff; 
+    border: 1px solid #000; 
+    border-radius: 10px; 
+    margin-top: 15em;
+    margin-right:1em;
+    margin-bottom: 25em;
 }
 
 .MerchantShowcase {
@@ -388,6 +409,10 @@ a, .btn-link {
     flex-direction: column;
 }
 
+.MerchantActionTitle {
+    text-align:center;
+}
+
 .itemFlex {
     display: flex;
     flex-direction: row;
@@ -395,8 +420,10 @@ a, .btn-link {
 
 .itemShow {
     flex: 1;
+    text-align:center;
+    padding-right: 0.2em;
 }
 
 .itemShowName {
-    flex: 2;
+    flex: 3;
 }

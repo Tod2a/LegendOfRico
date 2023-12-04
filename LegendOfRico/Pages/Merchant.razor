@@ -13,27 +13,81 @@
     <div class="MerchantLayout">
         <div class="MerchantDisplay">
             <div class="MerchantImage">
-                <p>test d'endroit d'image</p>
+                <p><button @onclick="Switch" class="MerchantButton">Changer l'étalage</button></p>
+                <p class="MerchantSpeak">Que puis-je faire pour vous ?</p>
             </div>
             <div class="MerchantShowcase">
                 <div class="MerchantBuy">
-                    <p><div class="itemFlex">
-                        <div class="itemShowName">Objet</div> 
-                        <div class="itemShow">prix</div> 
-                        <div class="itemShow">achat</div>
-                    </div>
+                    <p class="MerchantActionTitle">
+                        Acheter
                     </p>
-                    @foreach(var item in Game.Merchant.ItemsStock)
-                    {
+                    <p>
                         <div class="itemFlex">
-                            <div class ="itemShowName">@item.ItemName</div> 
-                            <div class ="itemShow">@item.Price</div>
-                            <div class ="itemShow"><button>Achter</button></div>
+                            <div class="itemShowName">Objet</div> 
+                            <div class="itemShow">prix</div> 
+                            <div class="itemShow">achat</div>
                         </div>
+                    </p>
+                    @if (ShowStuff)
+                    {
+                        @foreach (var item in Game.Merchant.StuffStock)
+                        {
+                            <div class="itemFlex">
+                                <div class ="itemShowName">@item.ItemName</div> 
+                                <div class ="itemShow">@item.Price</div>
+                                <div class ="itemShow"><button @onclick="() => Game.Player.BuyStuff(item)">Acheter</button></div>
+                            </div>
+                        }
+
+                    }
+                    else
+                    {
+                        @foreach (var item in Game.Merchant.ConsumableStock)
+                        {
+                            <div class="itemFlex">
+                                <div class="itemShowName">@item.ItemName</div>
+                                <div class="itemShow">@item.Price</div>
+                                <div class="itemShow"><button @onclick="() => Game.Player.BuyConsumable(item)">Acheter</button></div>
+                            </div>
+                        }
                     }
                 </div>
                 <div class="MerchantSell">
-                    <p>test de vente</p>
+                    <p class="MerchantActionTitle">
+                        Vendre
+                    </p>
+                    <p>
+                        <div class="itemFlex">
+                            <div class="itemShowName">Objet</div>
+                            <div class="itemShow">prix</div>
+                            <div class="itemShow">achat</div>
+                        </div>
+                    </p>
+                    @if (ShowStuff)
+                    {
+                        @foreach (var item in Game.Player.StuffInventory)
+                        {
+                            <div class="itemFlex">
+                                <div class="itemShowName">@item.ItemName</div>
+                                <div class="itemShow">@item.Price</div>
+                                <div class="itemShow"><button @onclick="() => Game.Player.SellStuff(item)">Vendre</button></div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var item in Game.Player.ConsumableInventory)
+                        {
+                            @if (item.Quantity > 0)
+                            {
+                                <div class="itemFlex">
+                                    <div class="itemShowName">@item.ItemName (@item.Quantity)</div>
+                                    <div class="itemShow">@item.Price</div>
+                                    <div class="itemShow"><button @onclick="() => Game.Player.SellConsumable(item)">Vendre</button></div>
+                                </div>
+                            }
+                        }
+                    }
                 </div>
             </div>
         </div>
@@ -46,6 +100,12 @@
     public Game Game { get; set; }
     [Parameter]
     public EventCallback TypeOfShowChange { get; set; }
+    private bool ShowStuff = true;
+
+    void Switch()
+    {
+        ShowStuff = !ShowStuff;
+    }
 
     void Leave()
     {

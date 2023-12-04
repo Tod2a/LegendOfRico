@@ -7,16 +7,18 @@
        
 
 
-        public Potion(string potionName, int potionPrice, int minHeal, int maxHeal)
+        public Potion(int id, string potionName, int potionPrice, int minHeal, int maxHeal)
         {
+            Id = id;
             ItemName = potionName;
             Price = potionPrice;
             MinHeal = minHeal;
             MaxHeal = maxHeal;
         }
 
-        public Potion(string potionName, int potionPrice, int minHeal, int maxHeal, int quantity)
+        public Potion(int id, string potionName, int potionPrice, int minHeal, int maxHeal, int quantity)
         {
+            Id = id;
             ItemName = potionName;
             Price = potionPrice;
             MinHeal = minHeal;
