@@ -227,7 +227,7 @@ public abstract class Character : INotifyPropertyChanged
     public void SellStuff(Stuff soldItem)
     {
         StuffInventory.Remove(soldItem);
-        Coins += (int)(soldItem.Price) / 4;
+        Coins += (soldItem.Price) / 4;
     }
 
     public void BuyStuff(Stuff boughtItem)

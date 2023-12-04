@@ -79,7 +79,7 @@
                         {
                             <div class="itemFlex">
                                 <div class="itemShowName">@item.ItemName</div>
-                                <div class="itemShow">@item.Price</div>
+                                <div class="itemShow">@((int)item.Price/4)</div>
                                 <div class="itemShow"><button @onclick="() => Game.Player.SellStuff(item)">Vendre</button></div>
                             </div>
                         }
