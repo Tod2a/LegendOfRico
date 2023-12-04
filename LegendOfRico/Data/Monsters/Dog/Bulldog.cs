@@ -12,8 +12,8 @@
         {
             return new MonsterHit[]
                 {
-                    new MonsterHit{Name = "Morsure", MinDamage = 4, MaxDamage = 6 },
-                    new MonsterHit{Name = "Piqure", MinDamage = 5, MaxDamage = 5}
+                    new MonsterHit{Name = "Morsure", MinDamage = 5, MaxDamage = 7 }//,
+                    //new MonsterHit{Name = "Piqure", MinDamage = 5, MaxDamage = 5}
                 };
         }
     }
