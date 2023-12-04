@@ -33,7 +33,7 @@ public abstract class Character : INotifyPropertyChanged
     public List<Stuff> StuffInventory { get; private set; }
     public List<Quest> Quests { get; private set; }
     public abstract Boolean CanEquipShield { get; protected set; }
-    public int Coins { get; private set; }
+    public int Coins { get; private set; } = 100000;
     public virtual string fightImgUrl { get; }
     private string mapSprite;
     public string MapSprite
@@ -165,9 +165,24 @@ public abstract class Character : INotifyPropertyChanged
     {
         if(stuff.TypeOfStuff == TypeOfStuff.Weapon)
         {
-            UnequipWeapon();
             StuffInventory.Remove(stuff);
-            CharacterWeapon = stuff;
+            if(this.GetType() ==  typeof(Rogue) && CharacterWeapon.GetType() != typeof(Fist)) {
+                if(CharacterWeapon.GetType() != typeof(DoubleWeapon))
+                {
+                    CharacterWeapon = new DoubleWeapon(CharacterWeapon.ItemName + "/" + stuff.ItemName,
+                        CharacterWeapon.Description + "/" + stuff.Description,
+                        CharacterWeapon.Price + stuff.Price,
+                        CharacterWeapon.MinimumWeaponDamage + (stuff.MinimumWeaponDamage / 2),
+                        CharacterWeapon.MaximumWeaponDamage + (stuff.MaximumWeaponDamage / 2),
+                        CharacterWeapon.BonusStats + stuff.BonusStats,
+                        CharacterWeapon, stuff);
+                }
+            }
+            else
+            {
+                UnequipWeapon();
+                CharacterWeapon = stuff;
+            }
         }
         else if (stuff.TypeOfStuff == TypeOfStuff.Shield)
         {
@@ -197,7 +212,14 @@ public abstract class Character : INotifyPropertyChanged
 
     public void UnequipWeapon()
     {
-        if (!(CharacterWeapon.GetType() == typeof(Fist)))
+        if(CharacterWeapon.GetType() == typeof(DoubleWeapon))
+        {
+            var ambidextrWeapon = (DoubleWeapon)CharacterWeapon;
+            StuffInventory.Add(ambidextrWeapon.Weapon1);
+            StuffInventory.Add(ambidextrWeapon.Weapon2);
+            CharacterWeapon = new Fist("Poing", "un poing", 0, 1, 3, 0);
+        }
+        else if (!(CharacterWeapon.GetType() == typeof(Fist)))
         {
             StuffInventory.Add(CharacterWeapon);
             CharacterWeapon = new Fist("Poing", "un poing", 0, 1, 3, 0);

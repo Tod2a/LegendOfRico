@@ -11,5 +11,6 @@
         public virtual TypeOfWeapon WeaponType { get; set; }
         public abstract string Description { get; set; }
         public abstract TypeOfStuff TypeOfStuff { get; protected set; }
+        public abstract int BonusStats { get; protected set; }
     }
 }
