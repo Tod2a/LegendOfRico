@@ -1,4 +1,4 @@
-﻿namespace LegendOfRico.Data.Stuff
+﻿namespace LegendOfRico.Data
 {
     public class DoubleWeapon : Weapon
     {
