@@ -188,22 +188,31 @@ public abstract class Character : INotifyPropertyChanged
 
     public void UnequipShield()
     {
-        StuffInventory.Add(CharacterShield);
-        ArmorAmount -= CharacterShield.ShieldBonusArmor;
-        CharacterShield = new FistShield("Poing","un poing",0,0);
+        if(!(CharacterShield.GetType() == typeof(FistShield)))
+        {
+            StuffInventory.Add(CharacterShield);
+            ArmorAmount -= CharacterShield.ShieldBonusArmor;
+            CharacterShield = new FistShield("Poing", "un poing", 0, 0);
+        }
     }
 
     public void UnequipWeapon()
     {
-        StuffInventory.Add(CharacterWeapon);
-        CharacterWeapon = new Fist("Poing", "un poing", 0, 1, 3);
+        if (!(CharacterWeapon.GetType() == typeof(Fist)))
+        {
+            StuffInventory.Add(CharacterWeapon);
+            CharacterWeapon = new Fist("Poing", "un poing", 0, 1, 3);
+        }
     }
 
     public void UnequipArmor()
     {
-        StuffInventory.Add(CharacterArmor);
-        ArmorAmount -= CharacterArmor.ArmorOfArmor;
-        CharacterArmor = new Topless("Rien","Bah rien",0,TypeOfArmor.None,0);;
+        if (!(CharacterArmor.GetType() == typeof(Topless)))
+        {
+            StuffInventory.Add(CharacterArmor);
+            ArmorAmount -= CharacterArmor.ArmorOfArmor;
+            CharacterArmor = new Topless("Rien", "Bah rien", 0, TypeOfArmor.None, 0); ;
+        }
     }
 
     public void LootStuff(Stuff droppedItem)
