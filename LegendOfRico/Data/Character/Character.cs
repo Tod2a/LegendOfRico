@@ -177,6 +177,20 @@ public abstract class Character : INotifyPropertyChanged
                         CharacterWeapon.BonusStats + stuff.BonusStats,
                         CharacterWeapon, stuff);
                 }
+                else
+                {
+                    var ambidextrWeapon = (DoubleWeapon)CharacterWeapon;
+                    Stuff weapon1 = ambidextrWeapon.Weapon1;
+                    Stuff weapon2 = ambidextrWeapon.Weapon2;
+                    StuffInventory.Add(weapon2);
+                    CharacterWeapon = new DoubleWeapon(weapon1.ItemName + "/" + stuff.ItemName,
+                        weapon1.Description + "/" + stuff.Description,
+                        weapon1.Price + stuff.Price,
+                        weapon1.MinimumWeaponDamage + (stuff.MinimumWeaponDamage / 2),
+                        weapon1.MaximumWeaponDamage + (stuff.MaximumWeaponDamage / 2),
+                        weapon1.BonusStats + stuff.BonusStats,
+                        weapon1, stuff);
+                }
             }
             else
             {
