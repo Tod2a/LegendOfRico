@@ -30,6 +30,9 @@ namespace LegendOfRico.Data
         {
             GameMap.MapLevel++;
             Player.Level++;
+            FightMessage += "Vous gagnez un niveau !";
+            Player.CurrentXp -= Player.XpToLevel;
+            Player.XpToLevel += 250 * Player.Level;
         }
 
 
@@ -99,36 +102,14 @@ namespace LegendOfRico.Data
             FightMessage += " ";
             if (game.MonsterFight.MonsterCurrentHP <= 0)
             {
-                game.MonsterFight.MonsterCurrentHP = 0;
-                FightMessage += "cela suffit à vaincre le monstre, cette victoire vous rapporte " + game.MonsterFight.XpGranted + 
-                    " points d'expérience ! ";
-                game.Player.CurrentXp += game.MonsterFight.XpGranted;
-                MonsterDead = true;
-                if(game.Player.CurrentXp >= game.Player.XpToLevel) 
-                {
-                    LevelUp();
-                    FightMessage += "Vous gagnez un niveau !";
-                    game.Player.CurrentXp -= game.Player.XpToLevel;
-                    game.Player.XpToLevel += 250*game.Player.Level;
-                }
+                FightVictory();
             }
             else if (game.MonsterFight.IsBurning) //Le monstre perd 10% hp si il brûle
             {
                 FightMessage += "La cible brûle et subit "+game.MonsterFight.BurnTic()+" points de dégâts ! ";
                 if (game.MonsterFight.MonsterCurrentHP <= 0) //Check si meurt avec brûlure
                 {
-                    game.MonsterFight.MonsterCurrentHP = 0;
-                    FightMessage = "Félicitation, vous avez gagné, cette victoire vous rapporte " + game.MonsterFight.XpGranted +
-                        " points d'expérience ! ";
-                    game.Player.CurrentXp += game.MonsterFight.XpGranted;
-                    MonsterDead = true;
-                    if (game.Player.CurrentXp >= game.Player.XpToLevel)
-                    {
-                        LevelUp();
-                        FightMessage += "Vous gagnez un niveau !";
-                        game.Player.CurrentXp -= game.Player.XpToLevel;
-                        game.Player.XpToLevel += 250 * game.Player.Level;
-                    }
+                    FightVictory();
                 }
                 else
                 {
@@ -143,6 +124,19 @@ namespace LegendOfRico.Data
             {
                 FightMessage += "Vous avez gelé la cible !";
                 game.MonsterFight.Frozen(); //dégèle
+            }
+        }
+
+        private void FightVictory()
+        {
+            MonsterFight.MonsterCurrentHP = 0;
+            FightMessage += "cela suffit à vaincre le monstre, cette victoire vous rapporte " + MonsterFight.XpGranted +
+                " points d'expérience ! ";
+            Player.CurrentXp += MonsterFight.XpGranted;
+            MonsterDead = true;
+            if (Player.CurrentXp >= Player.XpToLevel)
+            {
+                LevelUp();
             }
         }
 
