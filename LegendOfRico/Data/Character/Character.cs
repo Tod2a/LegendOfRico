@@ -152,11 +152,9 @@ public abstract class Character : INotifyPropertyChanged
 
     public string TakeDamage(int damageTaken)
     {
-        if (damageTaken > ArmorAmount)
-        { 
-            CurrentHitPoints -= damageTaken - ArmorAmount;
-        }
-        return " et vous inflige " + damageTaken + " dégats réduit par votre armure de " + ArmorAmount;
+        int actualDamageTaken = ArmorAmount > damageTaken ? 0 : damageTaken - ArmorAmount;
+        CurrentHitPoints -= actualDamageTaken;
+        return " et vous inflige " + actualDamageTaken + " points de dégats (" + damageTaken+" - "+ArmorAmount+").";
     }
 
     public void EquipShield(Shield shield)
