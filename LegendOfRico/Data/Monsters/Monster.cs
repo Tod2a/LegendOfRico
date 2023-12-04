@@ -33,6 +33,12 @@ public abstract class Monster
             BurnDuration = 3;
         }
     }
+    
+    public void Incinerate()
+    {
+        IsBurning = true;
+        BurnDuration = 10;
+    }
 
     public int BurnTic()
     {
