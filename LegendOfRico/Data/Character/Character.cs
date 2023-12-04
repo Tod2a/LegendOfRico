@@ -25,9 +25,9 @@ public abstract class Character : INotifyPropertyChanged
     public int Statistics { get; private set; }
     public abstract int ArmorAmount { get; protected set; }
     public abstract double ChanceToDodge { get; protected set; }
-    public abstract Weapon CharacterWeapon { get; protected set; }
-    public abstract Shield CharacterShield { get; protected set; }
-    public abstract Armor CharacterArmor { get; protected set; }
+    public abstract Stuff CharacterWeapon { get; protected set; }
+    public abstract Stuff CharacterShield { get; protected set; }
+    public abstract Stuff CharacterArmor { get; protected set; }
     public abstract List<Spells> SpellBook { get; protected set; }
     public List<Consumable> ConsumableInventory { get; private set; }
     public List<Stuff> StuffInventory { get; private set; }
@@ -162,13 +162,28 @@ public abstract class Character : INotifyPropertyChanged
     }
 
     //Gestion des équipements
- 
-    public void EquipShield(Shield shield)
+    public void EquipStuff(Stuff stuff)
     {
-        UnequipShield();
-        CharacterShield = shield;
-        StuffInventory.Remove(shield);
-        ArmorAmount += shield.ShieldBonusArmor;
+        if(stuff.TypeOfStuff == TypeOfStuff.Weapon)
+        {
+            UnequipWeapon();
+            StuffInventory.Remove(stuff);
+            CharacterWeapon = stuff;
+        }
+        else if (stuff.TypeOfStuff == TypeOfStuff.Shield)
+        {
+            UnequipShield();
+            CharacterShield = stuff;
+            StuffInventory.Remove(stuff);
+            ArmorAmount += stuff.ShieldBonusArmor;
+        }
+        else if (stuff.TypeOfStuff == TypeOfStuff.Armor)
+        {
+            UnequipArmor();
+            CharacterArmor = stuff;
+            StuffInventory.Remove(stuff);
+            ArmorAmount += stuff.ArmorOfArmor;
+        }
     }
 
     public void UnequipShield()
@@ -178,26 +193,12 @@ public abstract class Character : INotifyPropertyChanged
         CharacterShield = new FistShield("Poing","un poing",0,0);
     }
 
-    public void EquipWeapon(Weapon weapon)
-    {
-        UnequipWeapon();
-        StuffInventory.Remove(weapon);
-        CharacterWeapon = weapon;
-    }
-
     public void UnequipWeapon()
     {
         StuffInventory.Add(CharacterWeapon);
         CharacterWeapon = new Fist("Poing", "un poing", 0, 1, 3);
     }
-    
-    public void EquipArmor(Armor armor)
-    {
-        UnequipArmor();
-        CharacterArmor = armor;
-        StuffInventory.Remove(armor);
-        ArmorAmount += armor.ArmorOfArmor;
-    }
+
     public void UnequipArmor()
     {
         StuffInventory.Add(CharacterArmor);

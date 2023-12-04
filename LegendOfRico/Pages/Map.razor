@@ -10,6 +10,18 @@
             <p>Expérience: @Game.Player.CurrentXp</p>
             <p>Expérience pour lvlup: @Game.Player.XpToLevel</p>
             <p>Argent: @Game.Player.Coins</p>
+            <p data-toggle="tooltip" data-placement="top" title="@Game.Player.CharacterWeapon.Description">
+                Arme: @Game.Player.CharacterWeapon.ItemName
+                <button @onclick=Game.Player.UnequipWeapon>Déséquiper</button>
+            </p>
+            <p data-toggle="tooltip" data-placement="top" title="@Game.Player.CharacterArmor.Description">
+                Armure: @Game.Player.CharacterArmor.ItemName
+                <button @onclick=Game.Player.UnequipArmor>Déséquiper</button>
+            </p>
+            <p data-toggle="tooltip" data-placement="top" title="@Game.Player.CharacterShield.Description">
+                Bouclier: @Game.Player.CharacterShield.ItemName
+                <button @onclick=Game.Player.UnequipShield>Déséquiper</button>
+            </p>
             <button @onclick="Game.SwitchShowInventoryList">Inventaire</button>
             <button @onclick="Game.SwitchShowQuestList">Liste des quêtes</button>
             @if (Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].HasNPC == true)
@@ -62,7 +74,7 @@
                 {
                     <p data-toggle="tooltip" data-placement="top" title="@item.Description">
                         @item.ItemName
-                    <!--<button style="display: @(item.TypeOfStuff==TypeOfStuff.Shield ? "block" : "none")" @onclick="() => Game.Player.EquipShield(item)">Equiper</button>-->
+                    <button  @onclick="() => Game.Player.EquipStuff(item)">Equiper</button>
                     </p>
                 }
             </p>
