@@ -83,7 +83,7 @@
                 {
                     <p data-toggle="tooltip" data-placement="top" title="@item.Description">
                         @item.ItemName
-                        @if (Game.Player.WeaponMastery.Contains(item.WeaponType))
+                        @if (Game.Player.CanEquip(item))
                         {
                             <button  @onclick="() => Game.Player.EquipStuff(item)">Equiper</button>
                         }

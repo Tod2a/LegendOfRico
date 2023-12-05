@@ -163,6 +163,25 @@ public abstract class Character : INotifyPropertyChanged
     }
 
     //Gestion des équipements
+
+    public bool CanEquip(Stuff stuff)
+    {
+        if (stuff.TypeOfStuff == TypeOfStuff.Weapon)
+        {
+            var WeaponItem = (Weapon)stuff;
+            return WeaponMastery.Contains(WeaponItem.WeaponType);
+        }
+        else if (stuff.TypeOfStuff == TypeOfStuff.Shield)
+        {
+            return CanEquipShield;
+        }
+        else if (stuff.TypeOfStuff == TypeOfStuff.Armor)
+        {
+            var ArmorItem = (Armor)stuff;
+            return ArmorMastery >= ArmorItem.ArmorType;
+        }
+        return false;
+    }
     public void EquipStuff(Stuff stuff)
     {
         if(stuff.TypeOfStuff == TypeOfStuff.Weapon) //Si veut équiper une arme
