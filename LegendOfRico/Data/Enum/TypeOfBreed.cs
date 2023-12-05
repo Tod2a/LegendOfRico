@@ -7,6 +7,7 @@
         Dog,
         FireElemental,
         Ghost,
+        Bandit,
         Joybean,
         Sunwukong,
         Cheftontaton,

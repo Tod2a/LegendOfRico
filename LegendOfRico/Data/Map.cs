@@ -128,13 +128,13 @@ namespace LegendOfRico.Data
         public static List<Type> poolOfHardRuined = new List<Type> { typeof(Nosaffraid) };
         public static List<Type> bossOfRuined = new List<Type> { typeof(JoyBean) };
         //cimetiere
-        public static List<Type> poolOfGraveyard = new List<Type> { typeof(SonOfAragog) };
-        public static List<Type> poolOfMediumGraveyard = new List<Type> { typeof(BigSonOfAragog) };
-        public static List<Type> poolOfHardGraveyard = new List<Type> { typeof(Aragog) };
+        public static List<Type> poolOfGraveyard = new List<Type> { typeof(Fantominet) };
+        public static List<Type> poolOfMediumGraveyard = new List<Type> { typeof(Spectre) };
+        public static List<Type> poolOfHardGraveyard = new List<Type> { typeof(Cauchemar) };
         public static List<Type> bossOfGraveyard = new List<Type> { typeof(Cheftontaton) };
         //village
         public static List<Type> poolOfVillage = new List<Type> {  };
-        public static List<Type> bossOfVillage = new List<Type> { typeof(SonOfAragog) };
+        public static List<Type> bossOfVillage = new List<Type> { typeof(RicoChico) };
 
         //création des différents Biomes 3 par types pour les différentes images, un pour les cases dangereuses et un pour les boss
         //sauf pour le village et la plaine
