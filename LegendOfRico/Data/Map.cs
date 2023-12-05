@@ -382,14 +382,24 @@ namespace LegendOfRico.Data
             //zone de boss du cimetière
             mapLayout[36][401] = new Square { SquareBiome = bossGraveyard, Name = "Chef tontaton revenu", ChanceToTriggerFight = 1.0 };
 
+            //ajout du chateau du boss final du jeu
+            mapLayout[246][250] = new Square { SquareBiome = bossVillage, Name = "Le chateau du grand Rico Chico", ChanceToTriggerFight = 1.0 };
+
+
+            //creation des donneurs de quêtes et de leurs quêtes
+            QuestGiver archibald = new QuestGiver("Archibald");
+            archibald.AddQuest("Chasse une araignée", "va dans la forêt chasser une araignée", TypeOfBreed.Spider, 20, 20);
+
+
+            //ajout du village de départ astrub
+            mapLayout[250][250] = new Square { SquareBiome = village, Name = "Astrub", ChanceToTriggerFight = 0.0, HasNPC = true, HasQuestTarget = true, MisterQuest=archibald };
+
             // ajout des différents villages
             mapLayout[152][82] = new Square { SquareBiome = village2, Name = "Logue Town", ChanceToTriggerFight = 0.0, HasNPC = true, HasQuestTarget = true };
             mapLayout[166][224] = new Square { SquareBiome = village3, Name = "Marine Ford", ChanceToTriggerFight = 0.0, HasNPC = true, HasQuestTarget = true };
 
-            //ajout du village de départ astrub
-            mapLayout[250][250] = new Square { SquareBiome = village, Name = "Astrub", ChanceToTriggerFight = 0.0, HasNPC = true, HasQuestTarget = true };
-            //ajout du chateau du boss final du jeu
-            mapLayout[246][250] = new Square { SquareBiome = bossVillage, Name = "Le chateau du grand Rico Chico", ChanceToTriggerFight = 1.0 };
+            
+            
 
             return mapLayout;
         }

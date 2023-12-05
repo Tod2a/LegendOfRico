@@ -3,21 +3,26 @@
     public class QuestGiver: NPC
     {
         public override string NPCName { get; protected set; }
-        public List<Quest> Quests {  get; set; } = new List<Quest>();
+        public List<Quest> Quests {  get; private set; } 
 
         public QuestGiver(string nPCName)
         {
             NPCName = nPCName;
+            Quests = new List<Quest>()
+            {
+                new Quest("Chasse un chien", "va dans les plaines et chasse un chien", TypeOfBreed.Dog, 10, 10) 
+            };
         }
 
-        public void AddMonsterQuest(string name, string description,  TypeOfMonster target)
+        public void AddQuest(string name, string description, TypeOfBreed target, int xpreward, int coinreward)
         {
-            //Quests.Add(new MonsterQuest(name, description,target));
+            Quests.Add(new Quest(name, description, target,xpreward, coinreward));
         }
 
-        public void AddBreedQuest(string name, string description,  TypeOfBreed target)
+        public void RemoveQuest(Quest quest) 
         {
-            //Quests.Add(new BreedQuest(name, description, target));
+            Quests.Remove(quest);
         }
+
     }
 }

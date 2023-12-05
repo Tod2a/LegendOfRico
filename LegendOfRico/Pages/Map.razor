@@ -69,6 +69,23 @@
                     </p>
                 }
             </p>
+            <p style="display: @(Game.ShowQuestGiver ? "block" : "none")">
+            <p>@Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].MisterQuest.NPCName :</p>
+                @if(Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].MisterQuest.Quests.Count == 0)
+                {
+                    <p>Je n'ai pas de quêtes à vous proposer</p>
+                }
+                else
+                {
+                    foreach (var quest in Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].MisterQuest.Quests)
+                    {
+                    <p data-toggle="tooltip" data-placement="top" title="@quest.Description" class="questTaget">
+                            @quest.QuestName
+                            <button @onclick="() => Game.TakeQuest(quest)">Valider</button>                            
+                    </p>
+                    }
+                }
+            </p>
         </div>
     </div>
 </div>

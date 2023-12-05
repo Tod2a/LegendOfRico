@@ -19,6 +19,7 @@ namespace LegendOfRico.Data
         //gestion du menu de droite
         public bool ShowInventory = true;
         public bool ShowQuestList = false;
+        public bool ShowQuestGiver = false;
         //gestion de l'interface de combat
         public bool ShowFightSpells = true;
         public bool ShowFightInventory = false;
@@ -93,6 +94,12 @@ namespace LegendOfRico.Data
             Player.QuestsBook.Remove(quest);
         }
 
+        public void TakeQuest (Quest quest)
+        {
+            Player.QuestsBook.Add(quest);
+            GameMap.MapLayout[Player.PositionI][Player.PositionJ].MisterQuest.Quests.Remove(quest);
+        }
+
         //gestion du menu de droite pour les quetes et inventaire.
 
 
@@ -100,12 +107,21 @@ namespace LegendOfRico.Data
         {
             ShowInventory = false;
             ShowQuestList = true;
+            ShowQuestGiver = false;
         }
 
         public void SwitchShowInventoryList ()
         {
             ShowInventory = true;
             ShowQuestList = false;
+            ShowQuestGiver = false;
+        }
+
+        public void SwitchShowQuestGiver ()
+        {
+            ShowQuestGiver = true;
+            ShowQuestList = false;
+            ShowInventory = false;
         }
 
         //Gestion des combats

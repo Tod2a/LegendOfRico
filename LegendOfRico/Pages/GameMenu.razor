@@ -32,6 +32,10 @@
     {
         <button @onclick="ShowInventory">Inventaire</button>
         <button @onclick="ShowQuest">Liste des quêtes</button>
+        @if (Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].HasQuestTarget == true)
+        {
+            <button @onclick="ShowQuestGiver">Donneur de quêtes</button>
+        }
     }
     
     @if (Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].HasNPC == true)
@@ -58,6 +62,12 @@
     void ShowInventory ()
     {
         Game.SwitchShowInventoryList();
+        TypeOfShowChange.InvokeAsync();
+    }
+
+    void ShowQuestGiver ()
+    {
+        Game.SwitchShowQuestGiver();
         TypeOfShowChange.InvokeAsync();
     }
 
