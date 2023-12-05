@@ -8,7 +8,7 @@
         public override MonsterHit[] HitTable { get; set; } = new MonsterHit[] { };
         public override TypeOfBreed MonsterBreed { get; set; } = TypeOfBreed.Sunwukong;
         public override int XpGranted { get; set; } = 2500;
-        public override string fightImgUrl { get; set; } = "";
+        public override string fightImgUrl { get; set; } = "img/monster/Boss/Sunwukong.png";
 
         protected override MonsterHit[] BuildHitTable()
         {

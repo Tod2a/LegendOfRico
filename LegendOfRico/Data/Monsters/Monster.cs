@@ -21,6 +21,7 @@ public abstract class Monster
     public int BurnDuration { get; private set; }
     public Boolean IsFrozen { get; private set;}
     public abstract string fightImgUrl {  get; set; }
+    public virtual string PetImgUrl { get; set; } = " ";
     
     public void TakeDamage(int damageReceived)
     {

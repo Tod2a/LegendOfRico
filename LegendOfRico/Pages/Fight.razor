@@ -39,7 +39,13 @@
                 
             </div>
             <div class="player">
-                <div class="spriteFlex"><img class="sprite" src="@Game.Player.fightImgUrl" alt="Image fight Player"></div>
+                <div class="playerpetdisplay">
+                    <div class="spriteFlex"><img class="sprite" src="@Game.Player.fightImgUrl" alt="Image fight Player"></div>
+                    @if (Game.Player.GetType() == typeof(Ranger))
+                    {
+                        <div class="spritepet"><img src="@Game.Player.Pet.PetImgUrl" alt="votre pet" /></div>
+                    }
+                </div>
                 <div class="stats">
                     <div class="Name"><p>@Game.Player.Name</p></div>
                     <div class="HPBar">@Game.Player.CurrentHitPoints / @Game.Player.MaxHitPoints</div>

@@ -252,11 +252,16 @@ a, .btn-link {
     flex-direction: column;
 }
 
-.player .spriteFlex {
+.player .playerpetdisplay{
+    display: flex;
     flex: 4;
 }
 
-.player .spriteFlex .sprite {
+.player .playerpetdisplay .spriteFlex {
+    flex: 1;
+}
+
+.player .playerpetdisplay .spriteFlex .sprite {
     float: left;
     width: 100px;
 }
@@ -266,6 +271,11 @@ a, .btn-link {
     top: 48px;
     right: 40px;
     width: 320px;
+}
+
+.player .playerpetdisplay .spritepet img {
+    flex: 1;
+    transform: scaleX(-1);
 }
 
 .fightResult {
