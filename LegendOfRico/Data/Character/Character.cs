@@ -166,8 +166,8 @@ public abstract class Character : INotifyPropertyChanged
         if(stuff.TypeOfStuff == TypeOfStuff.Weapon) //Si veut équiper une arme
         {
             var stuffWeapon = (Weapon)stuff;
-            if (WeaponMastery.Contains(stuffWeapon.WeaponType)) //Si le perso peut utiliser cette arme
-            {
+           
+            
                 StuffInventory.Remove(stuff);
                 if (this.GetType() == typeof(Rogue) && CharacterWeapon.GetType() != typeof(Fist)) //Si c'est un rogue avec une arme
                 {
@@ -201,7 +201,7 @@ public abstract class Character : INotifyPropertyChanged
                     UnequipWeapon();
                     CharacterWeapon = stuff;
                 }
-            }
+
         }
         else if (stuff.TypeOfStuff == TypeOfStuff.Shield)
         {

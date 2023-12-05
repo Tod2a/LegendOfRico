@@ -75,7 +75,7 @@
                 {
                     @if (item.Quantity > 0)
                     {
-                        <p>@item.ItemName ( @item.Quantity ) <button @onclick="() => item.Use(Game)">Use</button></p>
+                        <p>@item.ItemName ( @item.Quantity ) <button @onclick="() => item.Use(Game)">Use</button> </p>
                     }
                 }
                 <p>Inventaire Stuff:</p>
@@ -83,7 +83,10 @@
                 {
                     <p data-toggle="tooltip" data-placement="top" title="@item.Description">
                         @item.ItemName
-                    <button  @onclick="() => Game.Player.EquipStuff(item)">Equiper</button>
+                        @if (Game.Player.WeaponMastery.Contains(item.WeaponType))
+                        {
+                            <button  @onclick="() => Game.Player.EquipStuff(item)">Equiper</button>
+                        }
                     </p>
                 }
             </p>
@@ -117,6 +120,7 @@
         Game.FormShow = TypeOfShow.Merchant;
         TypeOfShowChange.InvokeAsync();
     }
+
 
     //Fonction de gestion des bouton clavier
     private void HandleKeyDown(KeyboardEventArgs e)
