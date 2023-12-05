@@ -5,6 +5,10 @@
         Spider,
         Bat,
         Dog,
-        FireElemental
+        FireElemental,
+        Joybean,
+        Sunwukong,
+        Cheftontaton,
+        EternalScorpio
     }
 }

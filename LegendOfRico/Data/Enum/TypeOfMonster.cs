@@ -5,5 +5,6 @@ public enum TypeOfMonster
     Beast,
     Elemental,
     Humanoid,
-    Undead
+    Undead,
+    Boss
 }
