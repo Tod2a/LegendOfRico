@@ -4,7 +4,7 @@
     {
         public Stuff Weapon1 { get; set; }
         public Stuff Weapon2 { get; set; }
-        public override TypeOfWeapon WeaponType => TypeOfWeapon.Axe;
+        public override TypeOfWeapon WeaponType => TypeOfWeapon.Dagger;
         public override TypeOfDamage WeaponTypeOfDamage => TypeOfDamage.Slashing;
         public override double WeaponCritChance => 0.20;
 
