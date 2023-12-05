@@ -6,7 +6,6 @@
         public override int MonsterHP { get; set; } = 500;
         public override int MonsterCurrentHP { get; set; } = 500;
         public override string fightImgUrl { get; set; } = "img/monster/Bat/Nosaffraid.png";
-        public override string PetImgUrl { get; set; } = "img/monster/Pet/Nosaffraid.png";
         public override int XpGranted { get; set; } = 250;
 
         protected override MonsterHit[] BuildHitTable()

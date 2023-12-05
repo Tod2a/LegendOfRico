@@ -163,12 +163,27 @@ namespace LegendOfRico.Data
             MonsterFight.MonsterCurrentHP = 0;
             FightMessage += "cela suffit à vaincre le monstre, cette victoire vous rapporte " + MonsterFight.XpGranted +
                 " points d'expérience ! ";
+            FightMessage += CheckQuest();
             Player.CurrentXp += MonsterFight.XpGranted;
             MonsterDead = true;
             if (Player.CurrentXp >= Player.XpToLevel)
             {
                 LevelUp();
             }
+        }
+
+        private string CheckQuest()
+        {
+            string message = "";
+            foreach (var quest in Player.QuestsBook)
+            {
+                if(MonsterFight.MonsterBreed == quest.Target)
+                {
+                    quest.status = true;
+                    message = " Cela vous permet aussi de valider une quête.";
+                }
+            }
+            return message;
         }
 
         public void MonsterHit(Game game)
