@@ -238,14 +238,24 @@ namespace LegendOfRico.Data
 
         public void MonsterHit(Game game)
         {
-            game.FightMessage += game.MonsterFight.Hit(game.Player);
-            if (game.Player.CurrentHitPoints <= 0 && !MonsterDead)
+            if (MonsterFight.MonsterBreed == TypeOfBreed.RicoChico && !Player.Joydead && !Player.Scorpiodead && !Player.Tontatondead && !Player.Wukongdead)
             {
-                game.Player.CurrentHitPoints = 0;
-                game.PlayerDead = true;
-                game.FightMessage = "Vous êtes mort, des gobelins sortent de l'ombre pour vous emmener rapidement dans le dernier village que vous avez visité.";
-                game.FightMessage += "Vous perdez toute votre expérience";
-                game.Player.CurrentXp = 0;
+                FightMessage = "Vous toucher le grand Rico Chico mais il vous rit au nez et vous balaye d'une main. Vous êtes Ko. Revener après avoir reconstruit la relique";
+                Player.CurrentHitPoints = 0;
+                PlayerDead = true;
+                Player.CurrentXp = 0;
+            }
+            else
+            {
+                game.FightMessage += game.MonsterFight.Hit(game.Player);
+                if (game.Player.CurrentHitPoints <= 0 && !MonsterDead)
+                {
+                    game.Player.CurrentHitPoints = 0;
+                    game.PlayerDead = true;
+                    game.FightMessage = "Vous êtes mort, des gobelins sortent de l'ombre pour vous emmener rapidement dans le dernier village que vous avez visité.";
+                    game.FightMessage += "Vous perdez toute votre expérience";
+                    game.Player.CurrentXp = 0;
+                }
             }
         }
         public void SwitchFightSpells()
