@@ -246,8 +246,6 @@ namespace LegendOfRico.Data
                 game.FightMessage = "Vous êtes mort, des gobelins sortent de l'ombre pour vous emmener rapidement dans le dernier village que vous avez visité.";
                 game.FightMessage += "Vous perdez toute votre expérience";
                 game.Player.CurrentXp = 0;
-                game.Player.PositionI = game.Player.lastRestVillageI;
-                game.Player.PositionJ = game.Player.LastRestVillageJ;
             }
         }
         public void SwitchFightSpells()

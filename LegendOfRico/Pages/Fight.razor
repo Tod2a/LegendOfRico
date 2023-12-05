@@ -86,6 +86,8 @@
     void Defeat()
     {
         Game.FormShow = TypeOfShow.Map;
+        Game.Player.PositionI = Game.Player.lastRestVillageI;
+        Game.Player.PositionJ = Game.Player.LastRestVillageJ;
         Game.PlayerDead = false;
         Game.Player.Rest();
         Game.GameMap.UpdateMapDisplay(Game.Player);
