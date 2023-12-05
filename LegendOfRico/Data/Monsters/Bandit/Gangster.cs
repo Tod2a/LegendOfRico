@@ -1,6 +1,6 @@
 ﻿namespace LegendOfRico.Data
 {
-    public class Gangster: Humanoid
+    public class Gangster: Bandit
     {
         public override string MonsterName { get; set; } = "Gangster";
         public override int MonsterHP { get; set; } = 100;
