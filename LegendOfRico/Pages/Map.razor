@@ -65,7 +65,7 @@
                 {
                 <p data-toggle="tooltip" data-placement="top" title="@quest.Description" class="questTaget">
                     @quest.QuestName 
-                        @if (quest.status) {<button>Valider</button>}
+                        @if (quest.status) {<button @onclick="() => Game.ValidQuest(quest)">Valider</button>}
                     </p>
                 }
             </p>

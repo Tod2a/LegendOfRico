@@ -67,6 +67,32 @@ namespace LegendOfRico.Data
             FormShow = TypeOfShow.Connection;
         }
 
+        //gestion des quetes
+
+        public void ValidQuest (Quest quest)
+        {
+            if (quest.Target == TypeOfBreed.Joybean)
+            {
+                Player.Joydead = true;
+            }
+            else if (quest.Target == TypeOfBreed.EternalScorpio)
+            {
+                Player.Scorpiodead = true;
+            }
+            else if (quest.Target == TypeOfBreed.Cheftontaton)
+            {
+                Player.Tontatondead = true;
+            }
+            else if (quest.Target == TypeOfBreed.Sunwukong) 
+            {
+                Player.Wukongdead = true;
+            }
+            
+            Player.LootGold(quest.CoinsReward);
+            Player.CurrentXp += quest.XpReward;
+            Player.QuestsBook.Remove(quest);
+        }
+
         //gestion du menu de droite pour les quetes et inventaire.
 
 
