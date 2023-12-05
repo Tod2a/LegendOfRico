@@ -23,6 +23,4 @@ public class Rogue : Character
             //Spell à défini
         }
     }
-
-    
 }
