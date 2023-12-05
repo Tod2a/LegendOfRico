@@ -3,44 +3,7 @@
 
 <div class="layoutGame" @onkeydown="HandleKeyDown" @onkeydown:preventDefault=true tabindex="0">
     <div class="displayGame">
-        <div class="gameMenu">
-            <p>Personnage: @Game.Player.Name</p>
-            <p>Position: [@Game.Player.PositionI][@Game.Player.PositionJ]@Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].Name</p>
-            <p>Niveau: @Game.Player.Level</p>
-            <p>Expérience: @Game.Player.CurrentXp</p>
-            <p>Expérience pour lvlup: @Game.Player.XpToLevel</p>
-            <p>Argent: @Game.Player.Coins</p>
-            <p data-toggle="tooltip" data-placement="top" title="@Game.Player.CharacterWeapon.Description">
-                Arme: @Game.Player.CharacterWeapon.ItemName
-                @if (!(Game.Player.CharacterWeapon.GetType() == typeof(Fist)))
-                {
-                    <button @onclick=Game.Player.UnequipWeapon>Déséquiper</button>
-                }
-            </p>
-            <p data-toggle="tooltip" data-placement="top" title="@Game.Player.CharacterArmor.Description">
-                Armure: @Game.Player.CharacterArmor.ItemName
-                @if (!(Game.Player.CharacterArmor.GetType() == typeof(Topless)))
-                {
-                    <button @onclick=Game.Player.UnequipArmor>Déséquiper</button>
-                }
-            </p>
-            <p data-toggle="tooltip" data-placement="top" title="@Game.Player.CharacterShield.Description">
-                Bouclier: @Game.Player.CharacterShield.ItemName
-                @if (!(Game.Player.CharacterShield.GetType() == typeof(FistShield)))
-                {
-                <button @onclick=Game.Player.UnequipShield>Déséquiper</button>
-                }
-            </p>
-            <button @onclick="Game.SwitchShowInventoryList">Inventaire</button>
-            <button @onclick="Game.SwitchShowQuestList">Liste des quêtes</button>
-            @if (Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].HasNPC == true)
-            {
-                <button @onclick="Merch">Marchand</button>
-            }
-            <!--<button onclick="() => Save(game.Player)">Sauvegarde</button>-->
-            <button @onclick="Deconnection">Deconnexion</button>
-            <!--<button @onclick="Lvl">Lvlup</button>-->
-        </div>
+        <GameMenu Game="Game" TypeOfShowChange="TypeOfShowChange" />
         <div class="mapDisplay">
             <table border="1" class="Map">
                 @for (int i = Game.GameMap.StartI; i < Game.GameMap.MaxI; i++)
@@ -104,22 +67,7 @@
     [Parameter]
     public EventCallback TypeOfShowChange { get; set; }
 
-    void Deconnection ()
-    {
-        Game.Deconnection();
-        TypeOfShowChange.InvokeAsync();
-    }
-
-    void Lvl()
-    {
-        Game.LevelUp();
-    }
-
-    void Merch()
-    {
-        Game.FormShow = TypeOfShow.Merchant;
-        TypeOfShowChange.InvokeAsync();
-    }
+   
 
 
     //Fonction de gestion des bouton clavier

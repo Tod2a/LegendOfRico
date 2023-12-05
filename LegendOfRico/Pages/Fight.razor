@@ -2,24 +2,7 @@
 @using BootstrapBlazor
 
 <div class="displayGame">
-    <div class="gameMenu">
-        <p>Personnage: @Game.Player.Name</p>
-        <p>Position: [@Game.Player.PositionI][@Game.Player.PositionJ]@Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].Name</p>
-        <p>Niveau: @Game.Player.Level</p>
-        <p>Expérience: @Game.Player.CurrentXp</p>
-        <p>Expérience pour lvlup: @Game.Player.XpToLevel</p>
-        <p>Argent: @Game.Player.Coins</p>
-        <p data-toggle="tooltip" data-placement="top" title="@Game.Player.CharacterWeapon.Description">
-            Arme: @Game.Player.CharacterWeapon.ItemName
-        </p>
-        <p data-toggle="tooltip" data-placement="top" title="@Game.Player.CharacterArmor.Description">
-            Armure: @Game.Player.CharacterArmor.ItemName
-        </p>
-        <p data-toggle="tooltip" data-placement="top" title="@Game.Player.CharacterShield.Description">
-            Bouclier: @Game.Player.CharacterShield.ItemName
-        </p>
-        <!--<button @onclick="Autowin">Autowin</button>-->
-    </div>
+    <GameMenu Game="Game" TypeOfShowChange="TypeOfShowChange" />
     <div class="fight">
         
         <div class="fightBox">
