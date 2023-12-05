@@ -33,7 +33,7 @@ public abstract class Character : INotifyPropertyChanged
     public List<Stuff> StuffInventory { get; private set; }
     public List<Quest> Quests { get; private set; }
     public abstract Boolean CanEquipShield { get; protected set; }
-    public virtual Beast Pet { get; protected set; }
+    public virtual Beast Pet { get; protected set; } = new Bulldog();
     public int Coins { get; private set; } = 100000;
     public virtual string fightImgUrl { get; }
     private string mapSprite;
@@ -188,44 +188,47 @@ public abstract class Character : INotifyPropertyChanged
         if(stuff.TypeOfStuff == TypeOfStuff.Weapon) //Si veut équiper une arme
         {
             var stuffWeapon = (Weapon)stuff;
-                StuffInventory.Remove(stuff);
-                if (this.GetType() == typeof(Rogue) && CharacterWeapon.GetType() != typeof(Fist)) //Si c'est un rogue avec une arme
-                {
-                    if (CharacterWeapon.GetType() != typeof(DoubleWeapon)) //Si pas de main gauche
-                    {
-                        CharacterWeapon = new DoubleWeapon(CharacterWeapon.ItemName + "/" + stuff.ItemName,
-                            CharacterWeapon.Description + "/" + stuff.Description,
-                            CharacterWeapon.Price + stuff.Price,
-                            CharacterWeapon.MinimumWeaponDamage + (stuff.MinimumWeaponDamage / 2),
-                            CharacterWeapon.MaximumWeaponDamage + (stuff.MaximumWeaponDamage / 2),
-                            CharacterWeapon.BonusStats + stuff.BonusStats,
-                            CharacterWeapon, stuff);
-                    }
-                    else //Si il a qqch en main gauche
-                    {
-                        var ambidextrWeapon = (DoubleWeapon)CharacterWeapon;
-                        Stuff weapon1 = ambidextrWeapon.Weapon1;
-                        Stuff weapon2 = ambidextrWeapon.Weapon2;
-                        StuffInventory.Add(weapon2);
-                        CharacterWeapon = new DoubleWeapon(weapon1.ItemName + "/" + stuff.ItemName,
-                            weapon1.Description + "/" + stuff.Description,
-                            weapon1.Price + stuff.Price,
-                            weapon1.MinimumWeaponDamage + (stuff.MinimumWeaponDamage / 2),
-                            weapon1.MaximumWeaponDamage + (stuff.MaximumWeaponDamage / 2),
-                            weapon1.BonusStats + stuff.BonusStats,
-                            weapon1, stuff);
-                    }
-                }
-                if(stuffWeapon.GetType() == typeof(Greatsword))
+            StuffInventory.Remove(stuff);
+            if (this.GetType() == typeof(Rogue) && CharacterWeapon.GetType() != typeof(Fist)) //Si c'est un rogue avec une arme
             {
-
-            }
-                else //Si c'est pas un rogue avec une arme
+                if (CharacterWeapon.GetType() != typeof(DoubleWeapon)) //Si pas de main gauche
                 {
-                    UnequipWeapon();
-                    CharacterWeapon = stuff;
+                    CharacterWeapon = new DoubleWeapon(CharacterWeapon.ItemName + "/" + stuff.ItemName,
+                        CharacterWeapon.Description + "/" + stuff.Description,
+                        CharacterWeapon.Price + stuff.Price,
+                        CharacterWeapon.MinimumWeaponDamage + (stuff.MinimumWeaponDamage / 2),
+                        CharacterWeapon.MaximumWeaponDamage + (stuff.MaximumWeaponDamage / 2),
+                        CharacterWeapon.BonusStats + stuff.BonusStats,
+                        CharacterWeapon, stuff);
                 }
+                else //Si il a qqch en main gauche
+                {
+                    var ambidextrWeapon = (DoubleWeapon)CharacterWeapon;
+                    Stuff weapon1 = ambidextrWeapon.Weapon1;
+                    Stuff weapon2 = ambidextrWeapon.Weapon2;
+                    StuffInventory.Add(weapon2);
+                    CharacterWeapon = new DoubleWeapon(weapon1.ItemName + "/" + stuff.ItemName,
+                        weapon1.Description + "/" + stuff.Description,
+                        weapon1.Price + stuff.Price,
+                        weapon1.MinimumWeaponDamage + (stuff.MinimumWeaponDamage / 2),
+                        weapon1.MaximumWeaponDamage + (stuff.MaximumWeaponDamage / 2),
+                        weapon1.BonusStats + stuff.BonusStats,
+                        weapon1, stuff);
+                }
+            }
+            if(stuffWeapon.GetType() == typeof(Greatsword))
+            {
+                UnequipWeapon();
+                if(CharacterShield.GetType() == typeof(FistShield))
+                {
 
+                }
+            }
+            else
+            {
+                UnequipWeapon();
+                CharacterWeapon = stuff;
+            }
         }
         else if (stuff.TypeOfStuff == TypeOfStuff.Shield)
         {
