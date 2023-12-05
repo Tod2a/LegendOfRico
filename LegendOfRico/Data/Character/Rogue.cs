@@ -4,9 +4,9 @@ public class Rogue : Character
 {
     public override List<TypeOfWeapon> WeaponMastery => new List<TypeOfWeapon> {TypeOfWeapon.Dagger, TypeOfWeapon.Sword };
     public override TypeOfArmor ArmorMastery => TypeOfArmor.Medium;
-    public override Stuff CharacterWeapon { get; protected set; } = new Dagger("Dague en bois", "dague", 5, 1, 3, 0);
+    public override Stuff CharacterWeapon { get; protected set; } = new Dagger("Dague en bois", "(1 - 3)", 5, 1, 3, 0);
     public override Stuff CharacterShield { get; protected set; } = new FistShield("Poing", "poing", 0, 0);
-    public override Stuff CharacterArmor { get; protected set; } = new Armor("Haillons", "aillons", 5, TypeOfArmor.Light, 1);
+    public override Stuff CharacterArmor { get; protected set; } = new Armor("Haillons", "Des haillons", 5, TypeOfArmor.Light, 1);
     public override bool CanEquipShield { get; protected set; } = false;
     public override List<Spells> SpellBook { get; protected set; } = new List<Spells>() { new Steal() };
     public override int MaxHitPoints => 15;

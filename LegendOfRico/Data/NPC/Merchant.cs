@@ -16,7 +16,7 @@
             StuffStock.Add(new Dagger("Dague en bronze", "(2 - 6)", 50, 2, 6, 0));
             StuffStock.Add(new Greatsword("Espadon en bronze", "(5 - 8)", 50, 5, 8, 0));
             StuffStock.Add(new Mace("Masse en bronze", "(2 - 5)", 50, 2, 5, 0));
-            StuffStock.Add(new Staff("Baton en frêne", "(1 - 5)", 50, 1, 5, 2));
+            StuffStock.Add(new Staff("Baton en frêne", "(1 - 5) | Stats +2", 50, 1, 5, 2));
             StuffStock.Add(new Sword("Epée en bronze", "(3 - 6)", 50, 3, 6, 0));
             StuffStock.Add(new Armor("Armure en jute", "Léger | Armure : 2", 50, TypeOfArmor.Light, 2));
             StuffStock.Add(new Armor("Armure en cuir brute", "Moyen | Armure : 3", 75, TypeOfArmor.Medium, 3));
