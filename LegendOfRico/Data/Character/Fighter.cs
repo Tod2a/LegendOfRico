@@ -23,16 +23,5 @@
                 //Spell à défini
             }
         }
-        public void EquipGreatsword(Stuff greatsword)
-        {
-            EquipStuff(greatsword);
-            CanEquipShield = false;
-        }
-
-        public void UnequipGreatsword()
-        {
-            UnequipWeapon();
-            CanEquipShield = true;
-        }
     }
 }

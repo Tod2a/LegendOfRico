@@ -33,6 +33,7 @@ public abstract class Character : INotifyPropertyChanged
     public List<Stuff> StuffInventory { get; private set; }
     public List<Quest> Quests { get; private set; }
     public abstract Boolean CanEquipShield { get; protected set; }
+    public virtual Beast Pet { get; protected set; }
     public int Coins { get; private set; } = 100000;
     public virtual string fightImgUrl { get; }
     private string mapSprite;
@@ -187,8 +188,6 @@ public abstract class Character : INotifyPropertyChanged
         if(stuff.TypeOfStuff == TypeOfStuff.Weapon) //Si veut équiper une arme
         {
             var stuffWeapon = (Weapon)stuff;
-           
-            
                 StuffInventory.Remove(stuff);
                 if (this.GetType() == typeof(Rogue) && CharacterWeapon.GetType() != typeof(Fist)) //Si c'est un rogue avec une arme
                 {
@@ -217,6 +216,10 @@ public abstract class Character : INotifyPropertyChanged
                             weapon1, stuff);
                     }
                 }
+                if(stuffWeapon.GetType() == typeof(Greatsword))
+            {
+
+            }
                 else //Si c'est pas un rogue avec une arme
                 {
                     UnequipWeapon();
