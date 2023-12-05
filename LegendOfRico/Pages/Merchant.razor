@@ -43,7 +43,7 @@
                         @foreach (var item in Game.Merchant.StuffStock)
                         {
                             <div class="itemFlex">
-                                <div class ="itemShowName">@item.ItemName</div> 
+                                <div data-toggle="tooltip" data-placement="top" title="@item.Description" class="itemShowName">@item.ItemName</div>
                                 <div class ="itemShow">@item.Price</div>
                                 <div class ="itemShow"><button @onclick="() => Game.Player.BuyStuff(item)">Acheter</button></div>
                             </div>
