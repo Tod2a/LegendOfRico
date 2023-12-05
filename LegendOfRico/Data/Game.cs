@@ -85,6 +85,7 @@ namespace LegendOfRico.Data
         //Gestion des combats
 
         //Fonction qui va vérifier si le déplacement provoque un combat ou pas.
+
         private void IsFight(Square localisation)
         {
             Random random = new Random();
@@ -127,6 +128,36 @@ namespace LegendOfRico.Data
             }
         }
 
+        public void UseWeapon (Monster target, Game game)
+        {
+            FightMessage = Player.Hit(target);
+            FightMessage += " ";
+            if (game.MonsterFight.MonsterCurrentHP <= 0)
+            {
+                FightVictory();
+            }
+            else if (game.MonsterFight.IsBurning) //Le monstre perd 10% hp si il brûle
+            {
+                FightMessage += "La cible brûle et subit " + game.MonsterFight.BurnTic() + " points de dégâts ! ";
+                if (game.MonsterFight.MonsterCurrentHP <= 0) //Check si meurt avec brûlure
+                {
+                    FightVictory();
+                }
+                else
+                {
+                    MonsterHit(game);
+                }
+            }
+            else if (FightMessage != "Vous ne pouvez plus lancer ce sort ! ") //Le monstre passe son tour si le joueur est con
+            {
+                MonsterHit(game);
+            }
+            else if (game.MonsterFight.IsFrozen) //Le monstre ne joue pas si gelé
+            {
+                FightMessage += "Vous avez gelé la cible !";
+                game.MonsterFight.Frozen(); //dégèle
+            }
+        }
         private void FightVictory()
         {
             MonsterFight.MonsterCurrentHP = 0;

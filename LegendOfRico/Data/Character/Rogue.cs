@@ -24,22 +24,5 @@ public class Rogue : Character
         }
     }
 
-    //Special "Hit" for Rogue since he can wield two weapons at once
-    public override void Hit(Monster target)
-    {
-        int weaponDamageRoll =
-            (new Random()).Next(CharacterWeapon.MinimumWeaponDamage, CharacterWeapon.MaximumWeaponDamage + 1);
-        weaponDamageRoll += (Statistics / 50) * weaponDamageRoll;
-        
-        if ((new Random()).NextDouble() <= CharacterWeapon.WeaponCritChance) //Double damage if crit
-        {
-            weaponDamageRoll *= 2;
-        }
-
-        if (target.MonsterWeakness.Contains(CharacterWeapon.WeaponTypeOfDamage)) //Double damage if weakness
-        {
-            weaponDamageRoll *= 2;
-        }
-        target.TakeDamage(weaponDamageRoll);
-    }
+    
 }

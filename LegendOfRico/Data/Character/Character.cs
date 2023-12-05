@@ -123,7 +123,7 @@ public abstract class Character : INotifyPropertyChanged
         }
     }
 
-    public virtual void Hit(Monster target)
+    public virtual string Hit(Monster target)
     {
         int weaponDamageRoll =
             (new Random()).Next(CharacterWeapon.MinimumWeaponDamage, CharacterWeapon.MaximumWeaponDamage + 1);
@@ -139,6 +139,8 @@ public abstract class Character : INotifyPropertyChanged
             weaponDamageRoll *= 2;
         }
         target.TakeDamage(weaponDamageRoll);
+
+        return "Vous utiliser votre arme et infligez " + weaponDamageRoll + " dégats";
     }
 
     public void ReceiveHeal(int healAmount)

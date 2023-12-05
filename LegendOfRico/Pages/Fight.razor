@@ -47,33 +47,36 @@
                 
             </div>
         </div>
-        <div class="fightMenu">
-            <div class="actions">
-                @if (Game.ShowFightSpells)
-                {
-                    @foreach (var spell in Game.Player.SpellBook)
+        @if (!@Game.MonsterDead && !Game.PlayerDead)
+        {
+            <div class="fightMenu">
+                <div class="actions">
+                    @if (Game.ShowFightSpells)
                     {
-                        <button @onclick="() => Game.Action(spell, Game)">@spell.SpellName</button>
-                    }
-                    <button @onclick="Game.SwitchFightInventory">go to inventaire</button>
-                }
-                else if (Game.ShowFightInventory)
-                {
-                    @foreach (var item in Game.Player.ConsumableInventory)
-                    {
-                        @if(item.Quantity > 0)
+                        <button @onclick="() => Game.UseWeapon(Game.MonsterFight, Game)">@Game.Player.CharacterWeapon.ItemName</button>
+                        @foreach (var spell in Game.Player.SpellBook)
                         {
-                            <button @onclick="() => item.Use(Game)">@item.ItemName ( @item.Quantity )</button>        
+                            <button @onclick="() => Game.Action(spell, Game)">@spell.SpellName</button>
                         }
+                        <button @onclick="Game.SwitchFightInventory">go to inventaire</button>
                     }
-                    <button @onclick="Game.SwitchFightSpells">go to spells</button>
-                }
+                    else if (Game.ShowFightInventory)
+                    {
+                        @foreach (var item in Game.Player.ConsumableInventory)
+                        {
+                            @if (item.Quantity > 0)
+                            {
+                                <button @onclick="() => item.Use(Game)">@item.ItemName ( @item.Quantity )</button>
+                            }
+                        }
+                        <button @onclick="Game.SwitchFightSpells">go to spells</button>
+                    }
 
 
             </div>
         </div>
-        
-
+        }
+     
     </div>
 
 </div>
