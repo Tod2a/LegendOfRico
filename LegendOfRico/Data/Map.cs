@@ -118,7 +118,7 @@ namespace LegendOfRico.Data
         public static List<Type> poolOfHardForest = new List<Type> { typeof(Aragog) };
         public static List<Type> bossOfForest = new List<Type> { typeof(SonOfAragog) };
         //désert
-        public static List<Type> poolOfDesert = new List<Type> { typeof(SonOfAragog) };
+        public static List<Type> poolOfDesert = new List<Type> { typeof(LittleFlame) };
         public static List<Type> poolOfMediumDesert = new List<Type> { typeof(BigSonOfAragog) };
         public static List<Type> poolOfHardDesert = new List<Type> { typeof(Aragog) };
         public static List<Type> bossOfDesert = new List<Type> { typeof(SonOfAragog) };

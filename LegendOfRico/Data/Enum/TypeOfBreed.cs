@@ -4,6 +4,7 @@
     {
         Spider,
         Bat,
-        Dog
+        Dog,
+        FireElemental
     }
 }
