@@ -6,6 +6,7 @@
         Bat,
         Dog,
         FireElemental,
+        Ghost,
         Joybean,
         Sunwukong,
         Cheftontaton,
