@@ -171,10 +171,10 @@ namespace LegendOfRico.Data
         public Biomes bossGraveyard = new Biomes (TypeOfBiome.Graveyard, bossOfGraveyard, "img/biomes/cimetiereBoss.png", "img/layout/fondFightBossCimetiere.png");
         //village
         public Biomes village = new Biomes (TypeOfBiome.Village, poolOfVillage, "img/biomes/village.png", "img/layout/fondFightBossVillage.png");
-        public Biomes bossVillage = new Biomes (TypeOfBiome.Village, bossOfVillage, "img/biomes/villageBoss.png", "img/layout/fondFightBossVillage.png");
         public Biomes village2 = new Biomes (TypeOfBiome.Village, poolOfVillage, "img/biomes/village2.png", "img/layout/fondFightBossVillage.png");
         public Biomes village3 = new Biomes (TypeOfBiome.Village, poolOfVillage, "img/biomes/village3.png", "img/layout/fondFightBossVillage.png");
-   
+        public Biomes bossVillage = new Biomes(TypeOfBiome.Village, bossOfVillage, "img/biomes/villageBoss.png", "img/layout/fondFightBossVillage.png");
+
 
         private void TrippleSquare(int minI, int maxI, int minJ, int maxJ, Square[][] mapLayout, TypeOfBiome tBiome, string Name, double cTrigger)
         {
