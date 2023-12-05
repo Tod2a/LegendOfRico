@@ -219,10 +219,9 @@ public abstract class Character : INotifyPropertyChanged
             if(stuffWeapon.GetType() == typeof(Greatsword))
             {
                 UnequipWeapon();
-                if(CharacterShield.GetType() == typeof(FistShield))
-                {
-
-                }
+                UnequipShield();
+                CharacterWeapon = stuffWeapon;
+                CanEquipShield = false;
             }
             else
             {
@@ -268,6 +267,12 @@ public abstract class Character : INotifyPropertyChanged
             var ambidextrWeapon = (DoubleWeapon)CharacterWeapon;
             StuffInventory.Add(ambidextrWeapon.Weapon1);
             StuffInventory.Add(ambidextrWeapon.Weapon2);
+            CharacterWeapon = new Fist("Poing", "un poing", 0, 1, 3, 0);
+        }
+        if(CharacterWeapon.GetType() == typeof(Greatsword))
+        {
+            CanEquipShield = true;
+            StuffInventory.Add(CharacterWeapon);
             CharacterWeapon = new Fist("Poing", "un poing", 0, 1, 3, 0);
         }
         else if (!(CharacterWeapon.GetType() == typeof(Fist)))
