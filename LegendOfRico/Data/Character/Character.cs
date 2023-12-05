@@ -136,6 +136,7 @@ public abstract class Character : INotifyPropertyChanged
 
     public virtual string Hit(Monster target)
     {
+        string s = "";
         int weaponDamageRoll =
             (new Random()).Next(CharacterWeapon.MinimumWeaponDamage, CharacterWeapon.MaximumWeaponDamage + 1);
         weaponDamageRoll += (int)((Statistics / 50) * weaponDamageRoll);
@@ -143,15 +144,18 @@ public abstract class Character : INotifyPropertyChanged
         if ((new Random()).NextDouble() <= CharacterWeapon.WeaponCritChance) //Si l'arme crit dégâts x2
         {
             weaponDamageRoll *= 2;
+            s += "Coup critique ! ";
         }
 
         if (target.MonsterWeakness.Contains(CharacterWeapon.WeaponTypeOfDamage))
         {
             weaponDamageRoll *= 2;
+            s += "Efficace ! ";
         }
         target.TakeDamage(weaponDamageRoll);
+        s += "Vous frappez et infligez " + weaponDamageRoll + " points de dégats ! ";
 
-        return "Vous utiliser votre arme et infligez " + weaponDamageRoll + " dégats";
+        return s;
     }
 
     public void ReceiveHeal(int healAmount)
