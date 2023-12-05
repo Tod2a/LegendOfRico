@@ -31,7 +31,7 @@ public abstract class Character : INotifyPropertyChanged
     public abstract List<Spells> SpellBook { get; protected set; }
     public List<Consumable> ConsumableInventory { get; private set; }
     public List<Stuff> StuffInventory { get; private set; }
-    public List<Quest> Quests { get; private set; }
+    public List<Quest> QuestsBook { get; set; }
     public abstract Boolean CanEquipShield { get; protected set; }
     public virtual Beast Pet { get; protected set; } = new Bulldog();
     public int Coins { get; private set; } = 100000;
@@ -56,6 +56,10 @@ public abstract class Character : INotifyPropertyChanged
     private int positionI = 250;
     public Boolean IsFrozen { get; private set; } = false;
     public Boolean IsBurning { get; private set; } = false;
+    public bool Joydead { get; set; } = false;
+    public bool Scorpiodead { get; set; } = false;
+    public bool Wukongdead { get; set; } = false;
+    public bool Tontatondead { get; set; } = false;
 
 
 
@@ -99,8 +103,13 @@ public abstract class Character : INotifyPropertyChanged
             new Potion(3, "Grande potion de soin", 20, 20, 40, 0),
             new Potion(4, "Enorme potion de soin", 40, 40, 80, 0)
         };
-        StuffInventory = new List<Stuff>
+        StuffInventory = new List<Stuff>{};
+        QuestsBook = new List<Quest>
         {
+            new Quest("La recherche du scorpion éternel", "Le scorpion éternel se cache au find fond du désert éternel, trouvez le et battez le pour récupérer sa relique", TypeOfBreed.EternalScorpio, 1000, 1000),
+            new Quest("Le mystère du lugubre cimetière", "On entend dire que dans le cimetière des tontaton, leur chef est revenu d'entre les morts et détiendrait une relique", TypeOfBreed.Cheftontaton, 1000, 1000),
+            new Quest("A travers la forêt de Sherloop", "Se balancant d'arbres en arbres, le grand Sun Wukong nargue tout les voyageurs qu'il rencontre en agitant sa majestueuse relique", TypeOfBreed.Sunwukong, 1000, 1000),
+            new Quest("Le célèbre Joy Bean", "Joy Bean était connu pour être le roi de la cité la plus riche de l'ancien temps, le grand ricochico l'a asservit et il détient maintenant une relique", TypeOfBreed.Joybean, 1000, 1000)
         };
     }
     public void Burnt()

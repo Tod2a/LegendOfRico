@@ -116,22 +116,22 @@ namespace LegendOfRico.Data
         public static List<Type> poolOfForest = new List<Type> { typeof(SonOfAragog) };
         public static List<Type> poolOfMediumForest = new List<Type> { typeof(BigSonOfAragog) };
         public static List<Type> poolOfHardForest = new List<Type> { typeof(Aragog) };
-        public static List<Type> bossOfForest = new List<Type> { typeof(SonOfAragog) };
+        public static List<Type> bossOfForest = new List<Type> { typeof(Sunwukong) };
         //désert
         public static List<Type> poolOfDesert = new List<Type> { typeof(LittleFlame) };
         public static List<Type> poolOfMediumDesert = new List<Type> { typeof(BigSonOfAragog) };
         public static List<Type> poolOfHardDesert = new List<Type> { typeof(Aragog) };
-        public static List<Type> bossOfDesert = new List<Type> { typeof(SonOfAragog) };
+        public static List<Type> bossOfDesert = new List<Type> { typeof(EternalScorpio) };
         //Ruines
         public static List<Type> poolOfRuined = new List<Type> { typeof(Nosptipti) };
         public static List<Type> poolOfMediumRuined = new List<Type> { typeof(Nosalto) };
         public static List<Type> poolOfHardRuined = new List<Type> { typeof(Nosaffraid) };
-        public static List<Type> bossOfRuined = new List<Type> { typeof(SonOfAragog) };
+        public static List<Type> bossOfRuined = new List<Type> { typeof(JoyBean) };
         //cimetiere
         public static List<Type> poolOfGraveyard = new List<Type> { typeof(SonOfAragog) };
         public static List<Type> poolOfMediumGraveyard = new List<Type> { typeof(BigSonOfAragog) };
         public static List<Type> poolOfHardGraveyard = new List<Type> { typeof(Aragog) };
-        public static List<Type> bossOfGraveyard = new List<Type> { typeof(SonOfAragog) };
+        public static List<Type> bossOfGraveyard = new List<Type> { typeof(Cheftontaton) };
         //village
         public static List<Type> poolOfVillage = new List<Type> {  };
         public static List<Type> bossOfVillage = new List<Type> { typeof(SonOfAragog) };

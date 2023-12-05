@@ -53,7 +53,22 @@
                     </p>
                 }
             </p>
-            <p style="display: @(Game.ShowQuestList ? "block" : "none")">ici liste des quetes</p>
+            <p style="display: @(Game.ShowQuestList ? "block" : "none")">
+                <div class="bossTarget">
+                    <p>JoyBean Vaincu: @if (Game.Player.Joydead) {<img src="img/layout/valide.png" /> } else {<img src="img/layout/croix.png" />}</p>
+                    <p>Scorpion Vaincu: @if (Game.Player.Scorpiodead) {<img src="img/layout/valide.png" /> } else {<img src="img/layout/croix.png" />}</p>
+                    <p>Chef Tontaton Vaincu: @if (Game.Player.Tontatondead) {<img src="img/layout/valide.png" /> } else {<img src="img/layout/croix.png" />}</p>
+                    <p>Sun Wukong Vaincu: @if (Game.Player.Wukongdead) {<img src="img/layout/valide.png" /> } else {<img src="img/layout/croix.png" />}</p>
+                </div>
+                <p class="questTitle">Liste de quêtes:</p>
+                @foreach(var quest in Game.Player.QuestsBook)
+                {
+                <p data-toggle="tooltip" data-placement="top" title="@quest.Description" class="questTaget">
+                    @quest.QuestName 
+                        @if (quest.status) {<button>Valider</button>}
+                    </p>
+                }
+            </p>
         </div>
     </div>
 </div>

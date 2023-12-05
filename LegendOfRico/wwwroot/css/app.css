@@ -437,3 +437,15 @@ a, .btn-link {
 .itemShowName {
     flex: 3;
 }
+
+.bossTarget {
+    border-bottom: 4px solid black;
+}
+
+.questTaget {
+    border-bottom: 1px solid black;
+}
+
+.questTitle {
+    text-align: center;
+}

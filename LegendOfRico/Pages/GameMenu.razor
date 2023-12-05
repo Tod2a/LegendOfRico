@@ -30,8 +30,8 @@
     </p>
     @if(Game.FormShow == TypeOfShow.Map)
     {
-        <button @onclick="Game.SwitchShowInventoryList">Inventaire</button>
-        <button @onclick="Game.SwitchShowQuestList">Liste des quêtes</button>
+        <button @onclick="ShowInventory">Inventaire</button>
+        <button @onclick="ShowQuest">Liste des quêtes</button>
     }
     
     @if (Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].HasNPC == true)
@@ -48,6 +48,18 @@
     public Game Game { get; set; }
     [Parameter]
     public EventCallback TypeOfShowChange { get; set; }
+
+    void ShowQuest ()
+    {
+        Game.SwitchShowQuestList();
+        TypeOfShowChange.InvokeAsync();
+    }
+
+    void ShowInventory ()
+    {
+        Game.SwitchShowInventoryList();
+        TypeOfShowChange.InvokeAsync();
+    }
 
     void Deconnection()
     {

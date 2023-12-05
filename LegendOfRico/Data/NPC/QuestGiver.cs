@@ -12,12 +12,12 @@
 
         public void AddMonsterQuest(string name, string description,  TypeOfMonster target)
         {
-            Quests.Add(new MonsterQuest(name, description,target));
+            //Quests.Add(new MonsterQuest(name, description,target));
         }
 
         public void AddBreedQuest(string name, string description,  TypeOfBreed target)
         {
-            Quests.Add(new BreedQuest(name, description, target));
+            //Quests.Add(new BreedQuest(name, description, target));
         }
     }
 }
