@@ -145,8 +145,11 @@ namespace LegendOfRico.Data
 
         public void Action(Spells spell, Game game)
         {
-            FightMessage = spell.UseSpell(game);
-            FightMessage += " ";
+            if (game.MonsterFight.MonsterBreed != TypeOfBreed.RicoChico || (game.Player.Wukongdead && game.Player.Tontatondead && game.Player.Joydead && game.Player.Scorpiodead))
+            {
+                FightMessage = spell.UseSpell(game);
+                FightMessage += " ";
+            }
             if (game.MonsterFight.MonsterCurrentHP <= 0)
             {
                 FightVictory();
@@ -176,8 +179,11 @@ namespace LegendOfRico.Data
 
         public void UseWeapon (Monster target, Game game)
         {
-            FightMessage = Player.Hit(target);
-            FightMessage += " ";
+            if (target.MonsterBreed != TypeOfBreed.RicoChico || (Player.Wukongdead && Player.Tontatondead && Player.Joydead && Player.Scorpiodead))
+            {
+                FightMessage = Player.Hit(target);
+                FightMessage += " ";
+            }
             if (game.MonsterFight.MonsterCurrentHP <= 0)
             {
                 FightVictory();
@@ -240,7 +246,7 @@ namespace LegendOfRico.Data
         {
             if (MonsterFight.MonsterBreed == TypeOfBreed.RicoChico && !Player.Joydead && !Player.Scorpiodead && !Player.Tontatondead && !Player.Wukongdead)
             {
-                FightMessage = "Vous toucher le grand Rico Chico mais il vous rit au nez et vous balaye d'une main. Vous êtes Ko. Revener après avoir reconstruit la relique";
+                FightMessage = "Vous touchez le grand Rico Chico mais il vous rit au nez et vous balaye d'une main. Vous êtes Ko. Revenez après avoir reconstruit la relique";
                 Player.CurrentHitPoints = 0;
                 PlayerDead = true;
                 Player.CurrentXp = 0;
