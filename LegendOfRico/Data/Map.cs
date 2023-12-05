@@ -123,9 +123,9 @@ namespace LegendOfRico.Data
         public static List<Type> poolOfHardDesert = new List<Type> { typeof(Volcanis) };
         public static List<Type> bossOfDesert = new List<Type> { typeof(EternalScorpio) };
         //Ruines
-        public static List<Type> poolOfRuined = new List<Type> { typeof(Nosptipti) };
-        public static List<Type> poolOfMediumRuined = new List<Type> { typeof(Nosalto) };
-        public static List<Type> poolOfHardRuined = new List<Type> { typeof(Nosaffraid) };
+        public static List<Type> poolOfRuined = new List<Type> { typeof(Racaille) };
+        public static List<Type> poolOfMediumRuined = new List<Type> { typeof(Gangster) };
+        public static List<Type> poolOfHardRuined = new List<Type> { typeof(Mafieux) };
         public static List<Type> bossOfRuined = new List<Type> { typeof(JoyBean) };
         //cimetiere
         public static List<Type> poolOfGraveyard = new List<Type> { typeof(Fantominet) };

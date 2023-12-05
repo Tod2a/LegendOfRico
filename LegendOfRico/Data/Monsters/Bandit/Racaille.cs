@@ -1,6 +1,6 @@
-﻿namespace LegendOfRico.Data.Monsters.Bandit
+﻿namespace LegendOfRico.Data
 {
-    public class Voleur: Humanoid
+    public class Racaille: Humanoid
     {
         public override string MonsterName { get; set; } = "Racaille";
         public override int MonsterHP { get; set; } = 50;
