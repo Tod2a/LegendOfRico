@@ -75,18 +75,22 @@ namespace LegendOfRico.Data
             if (quest.Target == TypeOfBreed.Joybean)
             {
                 Player.Joydead = true;
+                GameMap.MapLayout[428][58].ChanceToTriggerFight = 0.0;
             }
             else if (quest.Target == TypeOfBreed.EternalScorpio)
             {
                 Player.Scorpiodead = true;
+                GameMap.MapLayout[499][499].ChanceToTriggerFight = 0.0;
             }
             else if (quest.Target == TypeOfBreed.Cheftontaton)
             {
                 Player.Tontatondead = true;
+                GameMap.MapLayout[36][401].ChanceToTriggerFight = 0.0;
             }
             else if (quest.Target == TypeOfBreed.Sunwukong) 
             {
                 Player.Wukongdead = true;
+                GameMap.MapLayout[72][53].ChanceToTriggerFight = 0.0;
             }
             
             Player.LootGold(quest.CoinsReward);
@@ -206,6 +210,10 @@ namespace LegendOfRico.Data
             FightMessage += "cela suffit à vaincre le monstre, cette victoire vous rapporte " + MonsterFight.XpGranted +
                 " points d'expérience ! ";
             FightMessage += CheckQuest();
+            if(MonsterFight.MonsterBreed == TypeOfBreed.RicoChico)
+            {
+                GameMap.MapLayout[246][250].ChanceToTriggerFight = 0.0;
+            }
             Player.CurrentXp += MonsterFight.XpGranted;
             MonsterDead = true;
             if (Player.CurrentXp >= Player.XpToLevel)

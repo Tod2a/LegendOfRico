@@ -10,6 +10,7 @@
         Joybean,
         Sunwukong,
         Cheftontaton,
-        EternalScorpio
+        EternalScorpio,
+        RicoChico
     }
 }
