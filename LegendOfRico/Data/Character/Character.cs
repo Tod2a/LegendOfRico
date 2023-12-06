@@ -20,9 +20,10 @@ public abstract class Character : INotifyPropertyChanged
     }
     public int CurrentXp { get; set; } = 0;
     public int XpToLevel { get; set; } = 1000;
-    public abstract int MaxHitPoints { get; }
+    public Boolean IsRested { get; private set; } = true;
+    public abstract int MaxHitPoints { get; protected set; }
     public abstract int CurrentHitPoints { get; set; }
-    public int Statistics { get; private set; }
+    public abstract int Statistics { get; protected set; }
     public abstract int ArmorAmount { get; protected set; }
     public abstract double ChanceToDodge { get; protected set; }
     public abstract Stuff CharacterWeapon { get; protected set; }
@@ -34,7 +35,7 @@ public abstract class Character : INotifyPropertyChanged
     public List<Quest> QuestsBook { get; set; }
     public abstract Boolean CanEquipShield { get; protected set; }
     public virtual Beast Pet { get; protected set; } = new Bulldog();
-    public int Coins { get; private set; } = 100000;
+    public int Coins { get; private set; } = 0;
     public virtual string fightImgUrl { get; }
     private string mapSprite;
     public string MapSprite
@@ -132,6 +133,7 @@ public abstract class Character : INotifyPropertyChanged
         {
             spell.RefreshSpell();
         }
+        SetIsRested(true);
     }
 
     public virtual string Hit(Monster target)
@@ -139,7 +141,7 @@ public abstract class Character : INotifyPropertyChanged
         string s = "";
         int weaponDamageRoll =
             (new Random()).Next(CharacterWeapon.MinimumWeaponDamage, CharacterWeapon.MaximumWeaponDamage + 1);
-        weaponDamageRoll += (int)((Statistics / 50) * weaponDamageRoll);
+        weaponDamageRoll += (int)((Statistics / 25) * weaponDamageRoll);
 
         if ((new Random()).NextDouble() <= CharacterWeapon.WeaponCritChance) //Si l'arme crit dégâts x2
         {
@@ -155,6 +157,7 @@ public abstract class Character : INotifyPropertyChanged
         target.TakeDamage(weaponDamageRoll);
         s += "Vous frappez et infligez " + weaponDamageRoll + " points de dégats ! ";
 
+        SetIsRested(false);
         return s;
     }
 
@@ -242,6 +245,7 @@ public abstract class Character : INotifyPropertyChanged
                 UnequipWeapon();
                 CharacterWeapon = stuff;
             }
+            Statistics += CharacterWeapon.BonusStats;
         }
         else if (stuff.TypeOfStuff == TypeOfStuff.Shield)
         {
@@ -281,17 +285,20 @@ public abstract class Character : INotifyPropertyChanged
             var ambidextrWeapon = (DoubleWeapon)CharacterWeapon;
             StuffInventory.Add(ambidextrWeapon.Weapon1);
             StuffInventory.Add(ambidextrWeapon.Weapon2);
+            Statistics -= CharacterWeapon.BonusStats;
             CharacterWeapon = new Fist("Poing", "un poing", 0, 1, 3, 0);
         }
         else if(CharacterWeapon.GetType() == typeof(Greatsword))
         {
             CanEquipShield = true;
             StuffInventory.Add(CharacterWeapon);
+            Statistics -= CharacterWeapon.BonusStats;
             CharacterWeapon = new Fist("Poing", "un poing", 0, 1, 3, 0);
         }
         else if (!(CharacterWeapon.GetType() == typeof(Fist)))
         {
             StuffInventory.Add(CharacterWeapon);
+            Statistics -= CharacterWeapon.BonusStats;
             CharacterWeapon = new Fist("Poing", "un poing", 0, 1, 3, 0);
         }
     }
@@ -329,10 +336,6 @@ public abstract class Character : INotifyPropertyChanged
             Coins -= boughtItem.Price;
             StuffInventory.Add(boughtItem);
         }
-        else
-        {
-            //To be defined
-        }
     }
 
     public void SellConsumable(Consumable consumable)
@@ -350,7 +353,26 @@ public abstract class Character : INotifyPropertyChanged
         }
     }
 
-    
+    //Getters / Setters
+    public string GetHpDisplay()
+    {
+        return CurrentHitPoints + "/" + MaxHitPoints;
+    }
+
+    public string GetXpDisplay()
+    {
+        return CurrentXp + "/" + XpToLevel;
+    }
+
+    public string GetStatsDisplay()
+    {
+        return "Armure : "+ArmorAmount+" | Puissance : "+Statistics;
+    }
+
+    public void SetIsRested(Boolean isRested)
+    {
+        IsRested = isRested;
+    }
 
     //gestion du changement des propriété lorsqu'on se déplace sur la carte, permet de réactualiser la carte lors d'un mouvement
     public event PropertyChangedEventHandler PropertyChanged;

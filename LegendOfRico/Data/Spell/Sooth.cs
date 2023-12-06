@@ -2,7 +2,7 @@
 
 public class Sooth : Spells
 {
-    public override string SpellName => "Apaiser";
+    public override string SpellName { get; protected set; } = "Apaiser (5/5)";
     public override int MaxNumberOfUses => 5;
     public override int CurrentNumberOfUses { get; protected set; } = 5;
     public TypeOfDamage SpellType = TypeOfDamage.None;
@@ -17,6 +17,7 @@ public class Sooth : Spells
                 var t = (Beast)currentGame.MonsterFight;
                 t.Soothed();
                 CurrentNumberOfUses--;
+                SpellName = "Apaiser (" + CurrentNumberOfUses + "/" + MaxNumberOfUses + ")";
                 s += "Vous avez apaisé votre cible !";
             }
             else
@@ -28,6 +29,7 @@ public class Sooth : Spells
         {
             s += "Vous ne pouvez plus lancer ce sort !";
         }
+        currentGame.Player.SetIsRested(false);
         return s;
     }
 }

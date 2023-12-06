@@ -2,7 +2,7 @@ namespace LegendOfRico.Data;
 
 public class Frostbolt : Spells
 {
-    public override string SpellName => "Frostbolt";
+    public override string SpellName { get; protected set; } = "Eclair de givre (15/15)";
     public override int MaxNumberOfUses => 15;
     public override int CurrentNumberOfUses { get; protected set; } = 15;
     public int MinValue => 15;
@@ -34,11 +34,13 @@ public class Frostbolt : Spells
             currentGame.MonsterFight.TakeDamage(damageRoll);
             s += "Vous infligez " + damageRoll + " points de dégâts à la cible ! ";
             CurrentNumberOfUses--;
+            SpellName = "Eclair de givre (" + CurrentNumberOfUses + "/" + MaxNumberOfUses + ")";
         }
         else
         {
             s += "Vous ne pouvez plus lancer ce sort !";
         }
+        currentGame.Player.SetIsRested(false);
         return s;
     }
 }

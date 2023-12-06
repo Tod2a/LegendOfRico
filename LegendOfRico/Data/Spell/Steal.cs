@@ -2,7 +2,7 @@
 
 public class Steal : Spells
 {
-    public override string SpellName => "Voler";
+    public override string SpellName { get; protected set; } = "Voler (3/3)";
     public override int MaxNumberOfUses => 3;
     public override int CurrentNumberOfUses { get; protected set; } = 3;
     public TypeOfDamage SpellType = TypeOfDamage.None;
@@ -18,6 +18,7 @@ public class Steal : Spells
                 int stolenCoins = t.DropsCoins();
                 currentGame.Player.LootGold(stolenCoins);
                 CurrentNumberOfUses--;
+                SpellName = "Voler (" + CurrentNumberOfUses + "/" + MaxNumberOfUses + ")";
                 s += "Vous avez volé " + stolenCoins + " à la cible !";
             }
             else
@@ -29,6 +30,7 @@ public class Steal : Spells
         {
             s += "Vous ne pouvez plus lancer ce sort !";
         }
+        currentGame.Player.SetIsRested(false);
         return s;
     }
 }

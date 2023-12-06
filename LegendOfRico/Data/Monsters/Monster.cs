@@ -12,7 +12,7 @@ public abstract class Monster
     public abstract TypeOfMonster MonsterType { get; set; }
     //ajout d'une race à chaque monstre pour faciliter la création de quête par après, on pourra faire des quetes qui cibles des bêtes ou des spiders
     public abstract TypeOfBreed MonsterBreed { get; set; }
-    public Item[] LootTable { get; private set; }
+    public virtual List<Stuff> LootTable { get; protected set; } = new List<Stuff>();
     public abstract int XpGranted { get; set; }
     public int MonsterMinDamage { get; set; }
     public int MonsterMaxDamage { get; set; }
@@ -116,5 +116,10 @@ public abstract class Monster
         {
             return MonsterName +" lance " + hitname + target.TakeDamage(damage);
         } 
+    }
+
+    public Stuff DropItem()
+    {
+        return LootTable[new Random().Next(0, LootTable.Count)];
     }
 }

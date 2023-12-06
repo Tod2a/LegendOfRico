@@ -2,7 +2,7 @@ namespace LegendOfRico.Data;
 
 public class DivineIntervention : Spells
 {
-    public override string SpellName => "Divine Intervention";
+    public override string SpellName { get; protected set; } = "Intervention divine (2/2)";
     public override int MaxNumberOfUses => 2;
     public override int CurrentNumberOfUses { get; protected set; } = 2;
     public int MinValue => 60;
@@ -31,11 +31,13 @@ public class DivineIntervention : Spells
             }
             s += "Vous infligez " + damageRoll + " points de dégâts à la cible et rendez " + healRoll + " points de vie à vos alliés !";
             CurrentNumberOfUses--;
+            SpellName = "Intervention divine (" + CurrentNumberOfUses + "/" + MaxNumberOfUses + ")s";
         }
         else
         {
             s += "Vous ne pouvez plus lancer ce sort !";
         }
+        currentGame.Player.SetIsRested(false);
         return s;
     }
 }

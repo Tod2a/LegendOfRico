@@ -2,11 +2,11 @@ namespace LegendOfRico.Data;
 
 public class Fireball : Spells
 {
-    public override string SpellName => "Fireball";
+    public override string SpellName { get; protected set; } = "Boule de feu (15/15)";
     public override int MaxNumberOfUses => 15;
     public override int CurrentNumberOfUses { get; protected set; } = 15;
     public int MinValue => 10;
-    public int MaxValue => 30;
+    public int MaxValue => 15;
     public TypeOfDamage SpellType = TypeOfDamage.Fire;
     public double CritChance = 0.05;
     public double BurnChance = 0.2;
@@ -32,11 +32,13 @@ public class Fireball : Spells
             currentGame.MonsterFight.TakeDamage(damageRoll);
             s += "Vous infligez " + damageRoll + " points de dégâts à la cible ! ";
             CurrentNumberOfUses--;
+            SpellName = "Boule de feu ("+CurrentNumberOfUses+"/"+MaxNumberOfUses+")";
         }
         else
         {
             s += "Vous ne pouvez plus lancer ce sort !";
         }
+        currentGame.Player.SetIsRested(false);
         return s;
     }
 }

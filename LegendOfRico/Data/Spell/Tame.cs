@@ -2,7 +2,7 @@
 
 public class Tame : Spells
 {
-    public override string SpellName => "Apprivoiser";
+    public override string SpellName { get; protected set; } = "Apprivoiser";
     public override int MaxNumberOfUses => 99;
     public override int CurrentNumberOfUses { get; protected set; } = 99;
     public TypeOfDamage SpellType = TypeOfDamage.None;
@@ -45,6 +45,7 @@ public class Tame : Spells
         {
             s += "Vous ne pouvez plus lancer ce sort !";
         }
+        currentGame.Player.SetIsRested(false);
         return s;
     }
 }

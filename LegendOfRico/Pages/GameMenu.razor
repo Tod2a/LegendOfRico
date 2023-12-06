@@ -4,8 +4,9 @@
     <p>Personnage: @Game.Player.Name</p>
     <p>Position: [@Game.Player.PositionI][@Game.Player.PositionJ]@Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].Name</p>
     <p>Niveau: @Game.Player.Level</p>
-    <p>Expérience: @Game.Player.CurrentXp</p>
-    <p>Expérience pour lvlup: @Game.Player.XpToLevel</p>
+    <p>HP: @Game.Player.GetHpDisplay()</p>
+    <p>@Game.Player.GetStatsDisplay()</p>
+    <p>Expérience: @Game.Player.GetXpDisplay()</p>
     <p>Argent: @Game.Player.Coins</p>
     <p data-toggle="tooltip" data-placement="top" title="@Game.Player.CharacterWeapon.Description">
         Arme: @Game.Player.CharacterWeapon.ItemName
@@ -41,6 +42,10 @@
     @if (Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].HasNPC == true)
     {
         <button @onclick="Merch">Marchand</button>
+    }
+    @if (Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].HasNPC == true && !Game.Player.IsRested)
+    {
+        <button @onclick="Game.Player.Rest">Se reposer</button>
     }
     <!--<button onclick="() => Save(game.Player)">Sauvegarde</button>-->
     <button @onclick="Deconnection">Deconnexion</button>

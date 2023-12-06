@@ -213,7 +213,7 @@ namespace LegendOfRico.Data
         private void FightVictory()
         {
             MonsterFight.MonsterCurrentHP = 0;
-            FightMessage += "cela suffit à vaincre le monstre, cette victoire vous rapporte " + MonsterFight.XpGranted +
+            FightMessage += "Cela suffit à vaincre le monstre, cette victoire vous rapporte " + MonsterFight.XpGranted +
                 " points d'expérience ! ";
             FightMessage += CheckQuest();
             if(MonsterFight.MonsterBreed == TypeOfBreed.RicoChico)
@@ -221,6 +221,12 @@ namespace LegendOfRico.Data
                 GameMap.MapLayout[246][250].ChanceToTriggerFight = 0.0;
             }
             Player.CurrentXp += MonsterFight.XpGranted;
+            if(new Random().Next(0,2) == 1)
+            {
+                Stuff droppedItem = MonsterFight.DropItem();
+                Player.LootStuff(droppedItem);
+                FightMessage += "Vous trouvez '" + droppedItem.ItemName + "' sur le cadavre de votre ennemi ! ";
+            }
             MonsterDead = true;
             if (Player.CurrentXp >= Player.XpToLevel)
             {
@@ -236,7 +242,7 @@ namespace LegendOfRico.Data
                 if(MonsterFight.MonsterBreed == quest.Target)
                 {
                     quest.status = true;
-                    message = " Cela vous permet aussi de valider une quête.";
+                    message = " Cela vous permet aussi de valider une quête. ";
                 }
             }
             return message;
@@ -249,7 +255,7 @@ namespace LegendOfRico.Data
                 FightMessage = "Vous touchez le grand Rico Chico mais il vous rit au nez et vous balaye d'une main. Vous êtes Ko. Revenez après avoir reconstruit la relique";
                 Player.CurrentHitPoints = 0;
                 PlayerDead = true;
-                Player.CurrentXp = 0;
+                Player.CurrentXp /= 2;
             }
             else
             {
@@ -258,9 +264,9 @@ namespace LegendOfRico.Data
                 {
                     game.Player.CurrentHitPoints = 0;
                     game.PlayerDead = true;
-                    game.FightMessage = "Vous êtes mort, des gobelins sortent de l'ombre pour vous emmener rapidement dans le dernier village que vous avez visité.";
-                    game.FightMessage += "Vous perdez toute votre expérience";
-                    game.Player.CurrentXp = 0;
+                    game.FightMessage = "Vous êtes mort, des goblins sortent de l'ombre pour vous emmener rapidement dans le dernier village que vous avez visité. ";
+                    game.FightMessage += "Vous perdez la moitié de votre expérience. ";
+                    game.Player.CurrentXp /= 2;
                 }
             }
         }

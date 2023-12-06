@@ -14,7 +14,7 @@
 
             StuffStock.Add(new Axe("Hache en bronze", "(3 - 6)", 50, 3, 6, 0));
             StuffStock.Add(new Bow("Arc en frêne", "(5 - 8)", 50, 5, 8, 0));
-            StuffStock.Add(new Dagger("Dague en bronze", "(2 - 6)", 50, 2, 6, 0));
+            StuffStock.Add(new Dagger("Dague en bronze", "(2 - 6)", 50, 3, 6, 0));
             StuffStock.Add(new Greatsword("Espadon en bronze", "(5 - 8)", 50, 5, 8, 0));
             StuffStock.Add(new Mace("Masse en bronze", "(2 - 5)", 50, 2, 5, 0));
             StuffStock.Add(new Staff("Baton en frêne", "(1 - 5) | Stats +2", 50, 1, 5, 2));

@@ -9,17 +9,20 @@
         public override Stuff CharacterArmor { get; protected set; } = new Armor("Haillons", "Des haillons", 5, TypeOfArmor.Light, 1);
         public override List<Spells> SpellBook { get; protected set; } = new List<Spells>() { new Fireball() };
         public override bool CanEquipShield { get; protected set; } = false;
-        public override int MaxHitPoints => 20;
+        public override int MaxHitPoints { get; protected set; } = 20;
         public override int CurrentHitPoints { get; set; } = 20;
         public override int ArmorAmount { get; protected set; } = 1;
         public override double ChanceToDodge { get; protected set; } = 0.05;
         public override string fightImgUrl { get; } = "img/Character/fightWizard.png";
+        public override int Statistics { get; protected set; } = 1;
 
         protected override void CheckLearnSpell()
         {
+            MaxHitPoints += MaxHitPoints / 10 + Level;
+            Statistics += (5 + Level) / 2;
             if (Level == 3)
             {
-                //Spell à défini
+                SpellBook.Add(new Incinerate());
             }
         }
     }

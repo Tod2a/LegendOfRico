@@ -2,7 +2,7 @@ namespace LegendOfRico.Data;
 
 public class Smite : Spells
 {
-    public override string SpellName => "Châtiment";
+    public override string SpellName { get; protected set; } = "Châtiment (15/15)";
     public override int MaxNumberOfUses => 15;
     public override int CurrentNumberOfUses { get; protected set; } = 15;
     public int MinValue => 10;
@@ -26,11 +26,13 @@ public class Smite : Spells
             }
             s += "Vous infligez " + damageRoll + " points de dégâts à la cible !";
             CurrentNumberOfUses--;
+            SpellName = "Châtiment (" + CurrentNumberOfUses + "/" + MaxNumberOfUses + ")";
         }
         else
         {
             s += "Vous ne pouvez plus lancer ce sort !";
         }
+        currentGame.Player.SetIsRested(false);
         return s;
     }
 }

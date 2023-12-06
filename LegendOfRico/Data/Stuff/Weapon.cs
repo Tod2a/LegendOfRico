@@ -3,7 +3,7 @@ namespace LegendOfRico.Data;
 
 public abstract class Weapon : Stuff
 {
-    public override double WeaponCritChance { get; }
+    public override double WeaponCritChance { get; protected set; }
     public override int MinimumWeaponDamage { get; protected set; }
     public override int MaximumWeaponDamage { get; protected set; }
     public override string Description {  get;  set; }

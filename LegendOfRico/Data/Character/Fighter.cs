@@ -10,11 +10,12 @@
         public override Stuff CharacterArmor { get; protected set; } = new Armor("Haillons", "Des haillons", 5, TypeOfArmor.Light, 1);
         public override bool CanEquipShield { get; protected set; } = true;
         public override List<Spells> SpellBook { get; protected set; } = new List<Spells>() { new Burst()};
-        public override int MaxHitPoints => 30;
+        public override int MaxHitPoints { get; protected set; } = 30;
         public override int CurrentHitPoints { get; set; } = 30;
         public override int ArmorAmount { get; protected set; } = 4;
         public override double ChanceToDodge { get; protected set; } = 0.1;
         public override string fightImgUrl { get; } = "img/Character/fightFighter.png";
+        public override int Statistics { get; protected set; } = 0;
 
         protected override void CheckLearnSpell()
         {

@@ -2,7 +2,7 @@ namespace LegendOfRico.Data;
 
 public class Pyroblast : Spells
 {
-    public override string SpellName => "Explosion pyrotechnique";
+    public override string SpellName { get; protected set; } = "Explosion pyrotechnique (3/3)";
     public override int MaxNumberOfUses => 3;
     public override int CurrentNumberOfUses { get; protected set; } = 3;
     public int MinValue => 70;
@@ -33,11 +33,13 @@ public class Pyroblast : Spells
             currentGame.MonsterFight.TakeDamage(damageRoll);
             s += "Vous infligez " + damageRoll + " points de dégâts à la cible ! ";
             CurrentNumberOfUses--;
+            SpellName = "Explosion pyrotechnique (" + CurrentNumberOfUses + "/" + MaxNumberOfUses + ")";
         }
         else
         {
             s += "Vous ne pouvez plus lancer ce sort !";
         }
+        currentGame.Player.SetIsRested(false);
         return s;
     }
 }

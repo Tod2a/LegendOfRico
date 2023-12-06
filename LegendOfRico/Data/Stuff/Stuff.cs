@@ -2,7 +2,7 @@
 {
     public abstract class Stuff : Item
     {
-        public virtual double WeaponCritChance { get; }
+        public virtual double WeaponCritChance { get; protected set; }
         public virtual int MinimumWeaponDamage { get; protected set; }
         public virtual int MaximumWeaponDamage { get; protected set; }
         public virtual TypeOfDamage WeaponTypeOfDamage { get; }
