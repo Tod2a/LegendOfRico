@@ -29,6 +29,10 @@
             <button @onclick=Game.Player.UnequipShield>Déséquiper</button>
         }
     </p>
+    @if (Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].SquareBiome.BiomeType == TypeOfBiome.Village && !Game.Player.IsRested)
+    {
+        <button @onclick="Game.Player.Rest">Se reposer</button>
+    }
     @if(Game.FormShow == TypeOfShow.Map)
     {
         <button @onclick="ShowInventory">Inventaire</button>
@@ -42,10 +46,6 @@
     @if (Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].HasNPC == true)
     {
         <button @onclick="Merch">Marchand</button>
-    }
-    @if (Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].HasNPC == true && !Game.Player.IsRested)
-    {
-        <button @onclick="Game.Player.Rest">Se reposer</button>
     }
     <!--<button onclick="() => Save(game.Player)">Sauvegarde</button>-->
     <button @onclick="Deconnection">Deconnexion</button>
