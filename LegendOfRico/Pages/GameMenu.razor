@@ -1,6 +1,7 @@
 ﻿@using LegendOfRico.Data
 
 <div class="gameMenu">
+    <!--<p><button @onclick="tp">Téléportation</button></p>-->
     <p>Personnage: @Game.Player.Name</p>
     <p>Position: [@Game.Player.PositionI][@Game.Player.PositionJ]@Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].Name</p>
     <p>Niveau: @Game.Player.Level</p>
@@ -57,6 +58,16 @@
     public Game Game { get; set; }
     [Parameter]
     public EventCallback TypeOfShowChange { get; set; }
+
+    //Bouton de téléportation pour tester des fonctions qu'on implémente
+    //il suffit de changer les coordonées dont vous avez besoin
+    void tp ()
+    {
+        Game.Player.PositionI = 166;
+        Game.Player.PositionJ = 224;
+        Game.GameMap.UpdateMapDisplay(Game.Player);
+        TypeOfShowChange.InvokeAsync();
+    }
 
     void ShowQuest ()
     {
