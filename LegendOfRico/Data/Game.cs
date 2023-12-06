@@ -223,7 +223,7 @@ namespace LegendOfRico.Data
                 GameMap.MapLayout[246][250].ChanceToTriggerFight = 0.0;
             }
             Player.CurrentXp += MonsterFight.XpGranted;
-            if(new Random().Next(0,2) == 1)
+            if(new Random().Next(0,2) == 1 || MonsterFight.MonsterBreed == TypeOfBreed.RicoChico)
             {
                 Stuff droppedItem = MonsterFight.DropItem();
                 Player.LootStuff(droppedItem);
