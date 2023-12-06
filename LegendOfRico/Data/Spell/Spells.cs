@@ -9,7 +9,7 @@ public abstract class Spells
     public void RefreshSpell()
     {
         CurrentNumberOfUses = MaxNumberOfUses;
-        string newSpellName = SpellName[..SpellName.IndexOf("(")];
+        string newSpellName = SpellName.Substring(0, SpellName.IndexOf("(") +1);
         newSpellName += MaxNumberOfUses + "/" + MaxNumberOfUses + ")";
         SpellName = newSpellName;
     }
