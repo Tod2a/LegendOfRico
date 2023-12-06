@@ -7,15 +7,15 @@ public class Tame : Spells
     public override int CurrentNumberOfUses { get; protected set; } = 99;
     public TypeOfDamage SpellType = TypeOfDamage.None;
 
-    public override string UseSpell(Game currentGame)
+    public override string UseSpell(Character player, Monster target)
     {
         string s = "";
         if (CurrentNumberOfUses > 0)
         {
-            if(currentGame.MonsterFight.MonsterType == TypeOfMonster.Beast)
+            if(target.MonsterType == TypeOfMonster.Beast)
             {
-                var beastMonster = (Beast)currentGame.MonsterFight;
-                if (currentGame.MonsterFight.MonsterCurrentHP >= currentGame.MonsterFight.MonsterHP / 2)
+                var beastMonster = (Beast)target;
+                if (target.MonsterCurrentHP >= target.MonsterHP / 2)
                 {
                     s += "La cible n'est pas encore assez affaiblie !";
                 }
@@ -29,7 +29,7 @@ public class Tame : Spells
                     }
                     else
                     {
-                        var ranger = (Ranger)currentGame.Player;
+                        var ranger = (Ranger)player;
                         ranger.NewPetTamed(beastMonster);
                         beastMonster.TakeDamage(99999);
                         s += "Vous avez apprivoisé un " + beastMonster.MonsterName + " !";
@@ -45,7 +45,7 @@ public class Tame : Spells
         {
             s += "Vous ne pouvez plus lancer ce sort !";
         }
-        currentGame.Player.SetIsRested(false);
+        player.SetIsRested(false);
         return s;
     }
 }

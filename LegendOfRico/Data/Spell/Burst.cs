@@ -7,14 +7,14 @@ public class Burst : Spells
     public override int CurrentNumberOfUses { get; protected set; } = 5;
     public TypeOfDamage SpellType = TypeOfDamage.None;
 
-    public override string UseSpell(Game currentGame)
+    public override string UseSpell(Character player, Monster target)
     {
         string s = "";
         if (CurrentNumberOfUses > 0)
         {
-            s += "Vous frappez votre cible deux fois dans un excès de rage !";
-            currentGame.Player.Hit(currentGame.MonsterFight);
-            currentGame.Player.Hit(currentGame.MonsterFight);
+            s += player.Name+" frappe la cible deux fois dans un excès de rage ! ";
+            player.Hit(target);
+            player.Hit(target);
             CurrentNumberOfUses--;
             SpellName = "Explosion (" + CurrentNumberOfUses + "/" + MaxNumberOfUses + ")";
         }
@@ -22,7 +22,7 @@ public class Burst : Spells
         {
             s += "Vous ne pouvez plus lancer ce sort !";
         }
-        currentGame.Player.SetIsRested(false);
+        player.SetIsRested(false);
         return s;
     }
 }

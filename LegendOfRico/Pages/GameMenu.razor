@@ -7,7 +7,11 @@
     <p>Personnage: @Game.Player.Name</p>
     <p>Position: [@Game.Player.PositionI][@Game.Player.PositionJ]@Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].Name</p>
     <p>Niveau: @Game.Player.Level</p>
-    <p>HP: @Game.Player.GetHpDisplay()</p>
+    <p>@Game.Player.Name HP: @Game.Player.GetHpDisplay()</p>
+    @if(Game.Player2.Name == "Gérard")
+    {
+        <p>@Game.Player2.Name HP: @Game.Player2.GetHpDisplay()</p>
+    }
     <p>@Game.Player.GetStatsDisplay()</p>
     <p>Expérience: @Game.Player.GetXpDisplay()</p>
     <p>Argent: @Game.Player.Coins</p>
@@ -34,7 +38,7 @@
     </p>
     @if (Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].SquareBiome.BiomeType == TypeOfBiome.Village && !Game.Player.IsRested)
     {
-        <button @onclick="Game.Player.Rest">Se reposer</button>
+        <button @onclick="Game.PartyRest">Se reposer</button>
     }
     @if(Game.FormShow == TypeOfShow.Map)
     {
@@ -113,6 +117,7 @@
     //fonction de cheat lvl up si besoin pour les tests
     void Lvl()
     {
-        Game.LevelUp();
+        Game.LevelUp(Game.Player);
+        Game.LevelUp(Game.Player2);
     }
 }

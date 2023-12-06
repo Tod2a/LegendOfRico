@@ -23,17 +23,17 @@ public abstract class Character : INotifyPropertyChanged
     public Boolean IsRested { get; private set; } = true;
     public abstract int MaxHitPoints { get; protected set; }
     public abstract int CurrentHitPoints { get; set; }
-    public abstract int Statistics { get; protected set; }
-    public abstract int ArmorAmount { get; protected set; }
+    public abstract int Statistics { get; set; }
+    public abstract int ArmorAmount { get; set; }
     public abstract double ChanceToDodge { get; protected set; }
-    public abstract Stuff CharacterWeapon { get; protected set; }
-    public abstract Stuff CharacterShield { get; protected set; }
-    public abstract Stuff CharacterArmor { get; protected set; }
+    public abstract Stuff CharacterWeapon { get; set; }
+    public abstract Stuff CharacterShield { get; set; }
+    public abstract Stuff CharacterArmor { get; set; }
     public abstract List<Spells> SpellBook { get; protected set; }
     public List<Consumable> ConsumableInventory { get; private set; }
     public List<Stuff> StuffInventory { get; private set; }
     public List<Quest> QuestsBook { get; set; }
-    public abstract Boolean CanEquipShield { get; protected set; }
+    public abstract Boolean CanEquipShield { get; set; }
     public virtual Beast Pet { get; protected set; } = new Bulldog();
     public int Coins { get; private set; } = 0;
     public virtual string fightImgUrl { get; }
@@ -155,7 +155,7 @@ public abstract class Character : INotifyPropertyChanged
             s += "Efficace ! ";
         }
         target.TakeDamage(weaponDamageRoll);
-        s += "Vous frappez et infligez " + weaponDamageRoll + " points de dégats ! ";
+        s += Name+" frappe et inflige " + weaponDamageRoll + " points de dégats ! ";
 
         SetIsRested(false);
         return s;

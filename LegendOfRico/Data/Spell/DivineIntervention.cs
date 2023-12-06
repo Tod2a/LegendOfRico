@@ -9,27 +9,27 @@ public class DivineIntervention : Spells
     public int MaxValue => 80;
     public TypeOfDamage SpellType = TypeOfDamage.Holy;
 
-    public override string UseSpell(Game currentGame)
+    public override string UseSpell(Character player, Monster target)
     {
         string s = "";
         if (CurrentNumberOfUses > 0)
         {
             int damageRoll = (new Random()).Next(MinValue, MaxValue + 1);
-            damageRoll += (int)((currentGame.Player.Statistics / 50) * damageRoll);
+            damageRoll += (int)(player.Statistics / 50 * damageRoll);
 
             int healRoll = (new Random()).Next(MinValue, MaxValue + 1);
-            healRoll += (int)((currentGame.Player.Statistics / 50) * healRoll);
+            healRoll += (int)(player.Statistics / 50 * healRoll);
 
-            currentGame.MonsterFight.TakeDamage(damageRoll);
-            currentGame.Player.ReceiveHeal(healRoll);
+            target.TakeDamage(damageRoll);
+            player.ReceiveHeal(healRoll);
 
-            if (currentGame.MonsterFight.MonsterType == TypeOfMonster.Undead)
+            if (target.MonsterType == TypeOfMonster.Undead)
             {
-                currentGame.MonsterFight.Burnt();
-                currentGame.MonsterFight.TakeDamage((int)(currentGame.MonsterFight.MonsterHP / 10));
+                target.Burnt();
+                target.TakeDamage(target.MonsterHP / 10);
                 s += s += "Votre cible brûle ! ";
             }
-            s += "Vous infligez " + damageRoll + " points de dégâts à la cible et rendez " + healRoll + " points de vie à vos alliés !";
+            s += player.Name + " inflige " + damageRoll + " points de dégâts à la cible et se rend " + healRoll + " points de vie !";
             CurrentNumberOfUses--;
             SpellName = "Intervention divine (" + CurrentNumberOfUses + "/" + MaxNumberOfUses + ")s";
         }
@@ -37,7 +37,7 @@ public class DivineIntervention : Spells
         {
             s += "Vous ne pouvez plus lancer ce sort !";
         }
-        currentGame.Player.SetIsRested(false);
+        player.SetIsRested(false);
         return s;
     }
 }

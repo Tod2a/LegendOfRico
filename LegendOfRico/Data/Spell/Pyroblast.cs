@@ -11,27 +11,27 @@ public class Pyroblast : Spells
     public double CritChance = 0.1;
     public double BurnChance = 0.25;
 
-    public override string UseSpell(Game currentGame)
+    public override string UseSpell(Character player, Monster target)
     {
         string s = "";
 
         if(CurrentNumberOfUses > 0)
         {
             int damageRoll = (new Random()).Next(MinValue, MaxValue + 1);
-            damageRoll += (int)((currentGame.Player.Statistics / 50) * damageRoll);
+            damageRoll += (int)((player.Statistics / 50) * damageRoll);
 
             if ((new Random()).NextDouble() <= CritChance)
             {
                 damageRoll *= 2;
                 s += "Coup critique ! ";
             }
-            if ((new Random()).NextDouble() <= BurnChance && !currentGame.MonsterFight.MonsterResistance.Contains(SpellType))
+            if ((new Random()).NextDouble() <= BurnChance && !target.MonsterResistance.Contains(SpellType))
             {
-                currentGame.MonsterFight.Burnt();
+                target.Burnt();
                 s += "Votre cible brûle ! ";
             }
-            currentGame.MonsterFight.TakeDamage(damageRoll);
-            s += "Vous infligez " + damageRoll + " points de dégâts à la cible ! ";
+            target.TakeDamage(damageRoll);
+            s += player.Name + " inflige " + damageRoll + " points de dégâts à la cible ! ";
             CurrentNumberOfUses--;
             SpellName = "Explosion pyrotechnique (" + CurrentNumberOfUses + "/" + MaxNumberOfUses + ")";
         }
@@ -39,7 +39,7 @@ public class Pyroblast : Spells
         {
             s += "Vous ne pouvez plus lancer ce sort !";
         }
-        currentGame.Player.SetIsRested(false);
+        player.SetIsRested(false);
         return s;
     }
 }

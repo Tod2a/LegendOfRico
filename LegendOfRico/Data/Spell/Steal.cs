@@ -7,19 +7,19 @@ public class Steal : Spells
     public override int CurrentNumberOfUses { get; protected set; } = 3;
     public TypeOfDamage SpellType = TypeOfDamage.None;
 
-    public override string UseSpell(Game currentGame)
+    public override string UseSpell(Character player, Monster target)
     {
         string s = "";
         if(CurrentNumberOfUses > 0)
         {
-            if (currentGame.MonsterFight.MonsterType == TypeOfMonster.Humanoid)
+            if (target.MonsterType == TypeOfMonster.Humanoid)
             {
-                var t = (Humanoid)currentGame.MonsterFight;
+                var t = (Humanoid)target;
                 int stolenCoins = t.DropsCoins();
-                currentGame.Player.LootGold(stolenCoins);
+                player.LootGold(stolenCoins);
                 CurrentNumberOfUses--;
                 SpellName = "Voler (" + CurrentNumberOfUses + "/" + MaxNumberOfUses + ")";
-                s += "Vous avez volé " + stolenCoins + " à la cible !";
+                s += player.Name + " a volé " + stolenCoins + " à la cible !";
             }
             else
             {
@@ -30,7 +30,7 @@ public class Steal : Spells
         {
             s += "Vous ne pouvez plus lancer ce sort !";
         }
-        currentGame.Player.SetIsRested(false);
+        player.SetIsRested(false);
         return s;
     }
 }

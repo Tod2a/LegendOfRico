@@ -8,15 +8,15 @@ public class Incinerate : Spells
     public TypeOfDamage SpellType = TypeOfDamage.Fire;
     public double BurnChance = 0.8;
 
-    public override string UseSpell(Game currentGame)
+    public override string UseSpell(Character player, Monster target)
     {
         string s = "";
         if (CurrentNumberOfUses > 0)
         {
-            if ((new Random()).NextDouble() <= BurnChance && !currentGame.MonsterFight.MonsterResistance.Contains(SpellType))
+            if ((new Random()).NextDouble() <= BurnChance && !target.MonsterResistance.Contains(SpellType))
             {
-                currentGame.MonsterFight.Incinerate();
-                s += "Votre brûlez votre cible ! ";
+                target.Incinerate();
+                s += player.Name + " incinère votre cible ! ";
             }
             else
             {
@@ -29,7 +29,7 @@ public class Incinerate : Spells
         {
             s += "Vous ne pouvez plus lancer ce sort !";
         }
-        currentGame.Player.SetIsRested(false);
+        player.SetIsRested(false);
         return s;
     }
 }

@@ -14,5 +14,5 @@ public abstract class Spells
         SpellName = newSpellName;
     }
 
-    public abstract string UseSpell(Game currentGame);
+    public abstract string UseSpell(Character player, Monster target);
 }

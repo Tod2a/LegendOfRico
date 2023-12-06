@@ -10,6 +10,16 @@ namespace LegendOfRico.Data
     {
         public Map GameMap { get; set; } = new Map();
         public Character Player { get; set; } = new Wizard { };
+        public Character Player2 { get; set; } = new Fighter 
+        { 
+            Name = "Gérard",
+            CharacterWeapon = new Greatsword("Espadon en fer", "(10 - 16) | Stats +4", 100, 10, 16, 4),
+            CharacterShield = new FistShield("Poing", "Un poing", 0, 0),
+            CharacterArmor = new Armor("Armure en fer", "Lourd | Armure : 8", 250, TypeOfArmor.Heavy, 8),
+            ArmorAmount = 8,
+            CanEquipShield = false,
+            Statistics = 4
+        };
         public Monster MonsterFight { get; set; } = new Bulldog { };
         public Merchant Merchant { get; set; } = new Merchant();
         public bool IsCurrentFight {  get; set; } = false;
@@ -28,13 +38,16 @@ namespace LegendOfRico.Data
 
 
 
-        public void LevelUp()
+        public void LevelUp(Character player)
         {
-            GameMap.MapLevel++;
-            Player.Level++;
-            FightMessage += "Vous gagnez un niveau !";
-            Player.CurrentXp -= Player.XpToLevel;
-            Player.XpToLevel += 250 * Player.Level;
+            if (player.Equals(Player))
+            {
+                GameMap.MapLevel++;
+            }
+            player.Level++;
+            FightMessage += player.Name+" gagne un niveau ! ";
+            player.CurrentXp -= player.XpToLevel;
+            player.XpToLevel += 250 * player.Level;
         }
 
 
@@ -149,7 +162,7 @@ namespace LegendOfRico.Data
         {
             if (game.MonsterFight.MonsterBreed != TypeOfBreed.RicoChico || (game.Player.Wukongdead && game.Player.Tontatondead && game.Player.Joydead && game.Player.Scorpiodead))
             {
-                FightMessage = spell.UseSpell(game);
+                FightMessage = spell.UseSpell(Player, MonsterFight);
                 FightMessage += " ";
             }
             if (game.MonsterFight.MonsterCurrentHP <= 0)
@@ -179,12 +192,42 @@ namespace LegendOfRico.Data
             }
         }
 
+        public string ChosePlayer2Action()
+        {
+            string s = "";
+            if(Player2.GetType() == typeof(Fighter)){
+                var player2 = (Fighter)Player2;
+                if (player2.SpellBook[0].CurrentNumberOfUses > 0 && Player.CurrentHitPoints <= Player.MaxHitPoints/2 || Player2.CurrentHitPoints <= Player2.MaxHitPoints / 2)
+                {
+                    s += player2.SpellBook[0].UseSpell(Player2, MonsterFight);
+                }
+                else
+                {
+                    s += player2.Hit(MonsterFight);
+                }
+            }
+            else if (Player2.GetType() == typeof(Rogue))
+            {
+                s += Player2.Hit(MonsterFight);
+            }
+            else if (Player2.GetType() == typeof(Wizard))
+            {
+                s += Player2.Hit(MonsterFight);
+            }
+            else if (Player2.GetType() == typeof(Cleric))
+            {
+                s += Player2.Hit(MonsterFight);
+            }
+            return s;
+        }
+
         public void UseWeapon (Monster target, Game game)
         {
             if (target.MonsterBreed != TypeOfBreed.RicoChico || (Player.Wukongdead && Player.Tontatondead && Player.Joydead && Player.Scorpiodead))
             {
                 FightMessage = Player.Hit(target);
                 FightMessage += " ";
+                FightMessage += ChosePlayer2Action();
             }
             if (game.MonsterFight.MonsterCurrentHP <= 0)
             {
@@ -223,6 +266,7 @@ namespace LegendOfRico.Data
                 GameMap.MapLayout[246][250].ChanceToTriggerFight = 0.0;
             }
             Player.CurrentXp += MonsterFight.XpGranted;
+            Player2.CurrentXp += MonsterFight.XpGranted;
             if(new Random().Next(0,2) == 1 || MonsterFight.MonsterBreed == TypeOfBreed.RicoChico)
             {
                 Stuff droppedItem = MonsterFight.DropItem();
@@ -232,8 +276,18 @@ namespace LegendOfRico.Data
             MonsterDead = true;
             if (Player.CurrentXp >= Player.XpToLevel)
             {
-                LevelUp();
+                LevelUp(Player);
             }
+            if (Player2.CurrentXp >= Player2.XpToLevel)
+            {
+                LevelUp(Player2);
+            }
+        }
+
+        public void PartyRest()
+        {
+            Player.Rest();
+            Player2.Rest();
         }
 
         private string CheckQuest()

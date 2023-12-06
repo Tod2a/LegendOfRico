@@ -9,22 +9,22 @@ public class Heal : Spells
     public int MaxValue => 15;
     public double CritChance = 0.05;
 
-    public override string UseSpell(Game currentGame)
+    public override string UseSpell(Character player, Monster target)
     {
         string s = "";
 
         if(CurrentNumberOfUses > 0)
         {
             int healRoll = (new Random()).Next(MinValue, MaxValue + 1);
-            healRoll += (int)((currentGame.Player.Statistics / 50) * healRoll);
+            healRoll += (int)((player.Statistics / 50) * healRoll);
 
             if ((new Random()).NextDouble() <= CritChance)
             {
                 s += "Coup critique !";
                 healRoll *= 2;
             }
-            currentGame.Player.ReceiveHeal(healRoll);
-            s += "Votre groupe est soigné de " + healRoll + " points de vie!";
+            player.ReceiveHeal(healRoll);
+            s += player.Name + " est soigné de " + healRoll + " points de vie!";
             CurrentNumberOfUses--;
             SpellName = "Soin (" + CurrentNumberOfUses + "/" + MaxNumberOfUses + ")";
         }
@@ -32,7 +32,7 @@ public class Heal : Spells
         {
             s += "Vous ne pouvez plus lancer ce sort !";
         }
-        currentGame.Player.SetIsRested(false);
+        player.SetIsRested(false);
         return s;
     }
 }
