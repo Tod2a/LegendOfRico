@@ -6,7 +6,7 @@ public class Heal : Spells
     public override int MaxNumberOfUses => 15;
     public override int CurrentNumberOfUses { get; protected set; } = 15;
     public int MinValue => 5;
-    public int MaxValue => 15;
+    public int MaxValue => 10;
     public double CritChance = 0.05;
 
     public override string UseSpell(Character player, Monster target)

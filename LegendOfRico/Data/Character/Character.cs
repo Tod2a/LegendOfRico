@@ -18,6 +18,7 @@ public abstract class Character : INotifyPropertyChanged
             }
         } 
     }
+    public int RecruitingPrice { get; set; }
     public int CurrentXp { get; set; } = 0;
     public int XpToLevel { get; set; } = 1000;
     public Boolean IsRested { get; private set; } = true;

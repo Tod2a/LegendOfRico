@@ -22,6 +22,7 @@
             StuffStock.Add(new Armor("Armure en jute", "Léger | Armure : 2", 50, TypeOfArmor.Light, 2));
             StuffStock.Add(new Armor("Armure en cuir brute", "Moyen | Armure : 3", 75, TypeOfArmor.Medium, 3));
             StuffStock.Add(new Armor("Armure en bronze", "Lourd | Armure : 4", 100, TypeOfArmor.Heavy, 4));
+            StuffStock.Add(new Shield("Bouclier en bronze", "Amure : 5", 50, 5));
 
             //Mid level gear
             StuffStock.Add(new Axe("Hache en fer", "(6 - 12) | Stats +2", 100, 6, 12, 2));
@@ -34,6 +35,7 @@
             StuffStock.Add(new Armor("Armure en lin", "Léger | Armure : 4", 150, TypeOfArmor.Light, 4));
             StuffStock.Add(new Armor("Armure en cuir fin", "Moyen | Armure : 6", 200, TypeOfArmor.Medium, 6));
             StuffStock.Add(new Armor("Armure en fer", "Lourd | Armure : 8", 250, TypeOfArmor.Heavy, 8));
+            StuffStock.Add(new Shield("Bouclier en fer", "Amure : 9", 100, 9));
 
             //High level gear
             StuffStock.Add(new Axe("Hache en acier", "(12 - 24) | Stats +4", 200, 12, 24, 4));
@@ -46,6 +48,7 @@
             StuffStock.Add(new Armor("Armure en coton", "Léger | Armure : 8", 450, TypeOfArmor.Light, 8));
             StuffStock.Add(new Armor("Armure en cuir épais", "Moyen | Armure : 12", 550, TypeOfArmor.Medium, 12));
             StuffStock.Add(new Armor("Armure en acier", "Lourd | Armure : 16", 650, TypeOfArmor.Heavy, 16));
+            StuffStock.Add(new Shield("Bouclier en acier", "Amure : 18", 250, 18));
 
             //Endgame gear
             StuffStock.Add(new Axe("Hache en mithril", "(24 - 48) | Stats +8", 400, 24, 48, 8));
@@ -58,6 +61,8 @@
             StuffStock.Add(new Armor("Armure en soie", "Léger | Armure : 16", 800, TypeOfArmor.Light, 16));
             StuffStock.Add(new Armor("Armure en cuir travaillé", "Moyen | Armure : 22", 1000, TypeOfArmor.Medium, 22));
             StuffStock.Add(new Armor("Armure en mithril", "Lourd | Armure : 30", 1200, TypeOfArmor.Heavy, 30));
+            StuffStock.Add(new Shield("Bouclier en mithril", "Amure : 35", 500, 35));
+
 
             //Miscellaneous
             ConsumableStock.Add(new Potion(1, "Petite potion de soin", 5, 1, 10));
