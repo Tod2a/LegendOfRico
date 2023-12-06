@@ -297,36 +297,56 @@ namespace LegendOfRico.Data
         //Gestion de déplacement et de trigger fight
         public void GoUp(Game game)
         {
+            if (ShowQuestGiver)
+            {
+                SwitchShowInventoryList();
+            }
             if (game.Player.PositionI > 0)
             {
                 game.Player.PositionI--;
+                GameMap.UpdateMapDisplay(Player);
                 IsFight(GameMap.MapLayout[Player.PositionI][Player.PositionJ]);
             }
         }
 
         public void GoDown(Game game)
         {
+            if (ShowQuestGiver)
+            {
+                SwitchShowInventoryList();
+            }
             if (game.Player.PositionI < 499)
             {
                 game.Player.PositionI++;
+                GameMap.UpdateMapDisplay(Player);
                 IsFight(GameMap.MapLayout[Player.PositionI][Player.PositionJ]);
             }
         }
 
         public void GoLeft(Game game)
         {
+            if (ShowQuestGiver)
+            {
+                SwitchShowInventoryList();
+            }
             if (game.Player.PositionJ > 0)
             {
                 game.Player.PositionJ--;
+                GameMap.UpdateMapDisplay(Player);
                 IsFight(GameMap.MapLayout[Player.PositionI][Player.PositionJ]);
             }
         }
 
         public void GoRight(Game game)
         {
+            if (ShowQuestGiver)
+            {
+                SwitchShowInventoryList();
+            }
             if (game.Player.PositionJ < 499)
             {
                 game.Player.PositionJ++;
+                GameMap.UpdateMapDisplay(Player);
                 IsFight(GameMap.MapLayout[Player.PositionI][Player.PositionJ]);
             }
         }
