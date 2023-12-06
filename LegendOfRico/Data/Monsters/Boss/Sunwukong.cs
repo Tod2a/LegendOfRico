@@ -3,6 +3,7 @@
     public class Sunwukong: Boss
     {
         public override string MonsterName { get; set; } = "Le roi singe, Sun Wukong";
+        public override TypeOfMonster MonsterType { get; set; } = TypeOfMonster.Beast;
         public override int MonsterCurrentHP { get; set; } = 5000;
         public override int MonsterHP { get; set; } = 5000;
         public override MonsterHit[] HitTable { get; set; } = new MonsterHit[] { };

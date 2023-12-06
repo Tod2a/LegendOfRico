@@ -3,6 +3,7 @@
     public class Cheftontaton: Boss
     {
         public override string MonsterName { get; set; } = "Le grand chef des Tontaton";
+        public override TypeOfMonster MonsterType { get; set; } = TypeOfMonster.Elemental;
         public override int MonsterCurrentHP { get; set; } = 5000;
         public override int MonsterHP { get; set; } = 5000;
         public override MonsterHit[] HitTable { get; set; } = new MonsterHit[] { };

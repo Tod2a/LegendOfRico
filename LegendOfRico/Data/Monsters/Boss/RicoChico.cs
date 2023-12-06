@@ -3,6 +3,7 @@
     public class RicoChico: Boss
     {
         public override string MonsterName { get; set; } = "Le monstrueux RicoChico";
+        public override TypeOfMonster MonsterType { get; set; } = TypeOfMonster.Humanoid;
         public override int MonsterCurrentHP { get; set; } = 10000;
         public override int MonsterHP { get; set; } = 10000;
         public override MonsterHit[] HitTable { get; set; } = new MonsterHit[] { };

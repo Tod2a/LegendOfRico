@@ -2,6 +2,7 @@
 {
     public class EternalScorpio: Boss
     {
+        public override TypeOfMonster MonsterType { get; set; } = TypeOfMonster.Beast;
         public override string MonsterName { get; set; } = "Le scorpion éternel";
         public override int MonsterCurrentHP { get; set; } = 5000;
         public override int MonsterHP { get; set; } = 5000;

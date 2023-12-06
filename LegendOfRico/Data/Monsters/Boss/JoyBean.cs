@@ -3,6 +3,7 @@
     public class JoyBean: Boss
     {
         public override string MonsterName { get; set; } = "Le grand Joy Bean";
+        public override TypeOfMonster MonsterType { get; set; } = TypeOfMonster.Humanoid;
         public override int MonsterCurrentHP { get; set; } = 5000;
         public override int MonsterHP { get; set; } = 5000;
         public override MonsterHit[] HitTable { get; set; } = new MonsterHit[] { };
