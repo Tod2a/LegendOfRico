@@ -173,6 +173,7 @@ namespace LegendOfRico.Data
         public Biomes village = new Biomes (TypeOfBiome.Village, poolOfVillage, "img/biomes/village.png", "img/layout/fondFightBossVillage.png");
         public Biomes village2 = new Biomes (TypeOfBiome.Village, poolOfVillage, "img/biomes/village2.png", "img/layout/fondFightBossVillage.png");
         public Biomes village3 = new Biomes (TypeOfBiome.Village, poolOfVillage, "img/biomes/village3.png", "img/layout/fondFightBossVillage.png");
+        public Biomes village4 = new Biomes(TypeOfBiome.Village, poolOfVillage, "img/biomes/village4.png", "img/layout/fondFightBossVillage.png");
         public Biomes bossVillage = new Biomes(TypeOfBiome.Village, bossOfVillage, "img/biomes/villageBoss.png", "img/layout/fondFightBossVillage.png");
 
 
@@ -389,6 +390,9 @@ namespace LegendOfRico.Data
             //creation des donneurs de quêtes et de leurs quêtes
             QuestGiver archibald = new QuestGiver("Archibald");
             archibald.AddQuest("Chasse une araignée", "va dans la forêt chasser une araignée", TypeOfBreed.Spider, 20, 20);
+            QuestGiver fatimaZorra = new QuestGiver("Fatima Zorra, la mystique");
+            fatimaZorra.AddQuest("Tue un monstre", "Montre moi ton ENORME courage en allant tuer un monstre dans les ruines", TypeOfBreed.Bat, 2000, 12000);
+            
 
 
             //ajout du village de départ astrub
@@ -397,6 +401,8 @@ namespace LegendOfRico.Data
             // ajout des différents villages
             mapLayout[152][82] = new Square { SquareBiome = village2, Name = "Logue Town", ChanceToTriggerFight = 0.0, HasNPC = true, HasQuestTarget = true };
             mapLayout[166][224] = new Square { SquareBiome = village3, Name = "Marine Ford", ChanceToTriggerFight = 0.0, HasNPC = true, HasQuestTarget = true };
+            mapLayout[196][249] = new Square { SquareBiome = village4, Name = "Ancien Village", ChanceToTriggerFight = 0.0, HasNPC = true, HasQuestTarget = true, MisterQuest=fatimaZorra };
+            
 
             
             
