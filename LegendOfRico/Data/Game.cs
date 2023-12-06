@@ -10,8 +10,9 @@ namespace LegendOfRico.Data
     {
         public Map GameMap { get; set; } = new Map();
         public Character Player { get; set; } = new Wizard { };
-        public Monster MonsterFight { get; set; }
+        public Monster MonsterFight { get; set; } = new Bulldog { };
         public Merchant Merchant { get; set; } = new Merchant();
+        public bool IsCurrentFight {  get; set; } = false;
         public string FightMessage { get; set; } = "";
         public bool PlayerDead = false;
         public bool MonsterDead = false;
@@ -139,6 +140,7 @@ namespace LegendOfRico.Data
             if(randomNumber < localisation.ChanceToTriggerFight)
             {
                 MonsterFight = SelectEnemy();
+                IsCurrentFight = true;
                 FormShow = TypeOfShow.Fight;
             }
         }

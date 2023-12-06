@@ -4,7 +4,8 @@
     {
         public int MinHeal { get; } = 10;
         public int MaxHeal { get; } = 30;
-       
+        private readonly Random random = new Random();
+
 
 
         public Potion(int id, string potionName, int potionPrice, int minHeal, int maxHeal)
@@ -35,13 +36,16 @@
             {
                 game.Player.CurrentHitPoints = game.Player.MaxHitPoints;
             }
-            game.FightMessage = "Vous vous soignez de " + value + " points de vie,";
-            game.MonsterHit(game);
+            if (game.IsCurrentFight)
+            {
+                game.FightMessage = "Vous vous soignez de " + value + " points de vie,";
+                game.MonsterHit(game);
+            }
         }
 
         public int RollHealValue() 
         {
-            return (new Random()).Next(MinHeal, MaxHeal + 1);
+            return (random.Next(MinHeal, MaxHeal + 1));
         }
     }
 }

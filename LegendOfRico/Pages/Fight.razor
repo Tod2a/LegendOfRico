@@ -79,6 +79,7 @@
     void Victory()
     {
         Game.FormShow = TypeOfShow.Map;
+        Game.IsCurrentFight = false;
         Game.MonsterDead = false;
         TypeOfShowChange.InvokeAsync();
     }
@@ -88,6 +89,7 @@
         Game.FormShow = TypeOfShow.Map;
         Game.Player.PositionI = Game.Player.lastRestVillageI;
         Game.Player.PositionJ = Game.Player.LastRestVillageJ;
+        Game.IsCurrentFight = false;
         Game.PlayerDead = false;
         Game.Player.Rest();
         Game.GameMap.UpdateMapDisplay(Game.Player);
