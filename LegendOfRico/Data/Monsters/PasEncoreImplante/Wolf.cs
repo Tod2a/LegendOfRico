@@ -1,6 +1,6 @@
 ﻿namespace LegendOfRico.Data
 {
-    public class Wolf : Beast
+    public abstract class Wolf : Beast
     {
         public override string MonsterName { get; set; } 
 

@@ -25,6 +25,16 @@ public class Ranger : Character
         }
     }
 
+    public override string Hit (Monster target)
+    {
+        string s = base.Hit (target);
+        int petDamage = new Random ().Next (Pet.PetMinDamage, Pet.PetMaxDamage+1);
+        target.TakeDamage(petDamage);
+        s += "votre fidèle compagnon inflige " + petDamage + " dégats à la cible.";
+        return s;
+
+    }
+
     public void NewPetTamed(Beast newPet)
     {
         Pet = newPet;

@@ -7,6 +7,9 @@ public abstract class Beast : Monster
     public override TypeOfMonster MonsterType { get; set; } = TypeOfMonster.Beast;
     public override TypeOfDamage[] MonsterWeakness => new[] { TypeOfDamage.Fire };
     public override MonsterHit[] HitTable { get; set; } = new MonsterHit[] { };
+    public abstract int PetMinDamage { get; protected set; }
+    public abstract int PetMaxDamage { get; protected set; }
+
 
 
     public void Soothed()

@@ -7,6 +7,8 @@
         public override int MonsterCurrentHP { get; set; } = 500;
         public override string fightImgUrl { get; set; } = "img/monster/spider/rottweiler.png";
         public override int XpGranted { get; set; } = 500;
+        public override int PetMinDamage { get; protected set; } = 25;
+        public override int PetMaxDamage { get; protected set; } = 50;
         public override List<Stuff> LootTable { get; protected set; } = new List<Stuff>() {
             new Axe("Hache en acier", "(12 - 24) | Stats +4", 200, 12, 24, 4),
             new Bow("Arc en chêne", "(20 - 32) | Stats +8", 200, 20, 32, 8),

@@ -7,6 +7,8 @@
         public override int MonsterCurrentHP { get; set; } = 250;
         public override string fightImgUrl { get; set; } = "img/monster/Bat/Nosalto.png";
         public override int XpGranted { get; set; } = 100;
+        public override int PetMinDamage { get; protected set; } = 15;
+        public override int PetMaxDamage { get; protected set; } = 25;
         public override List<Stuff> LootTable { get; protected set; } = new List<Stuff>() {
             new Axe("Hache en fer", "(6 - 12) | Stats +2", 100, 6, 12, 2),
             new Bow("Arc en noyer", "(10 - 16) | Stats +4", 100, 10, 16, 4),

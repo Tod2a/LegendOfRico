@@ -1,7 +1,9 @@
 ﻿@using LegendOfRico.Data
 
 <div class="gameMenu">
+    <!--<button @onclick="cheat">Cheat</button>-->
     <!--<p><button @onclick="tp">Téléportation</button></p>-->
+    <!--<button @onclick="Lvl">Lvlup</button>-->
     <p>Personnage: @Game.Player.Name</p>
     <p>Position: [@Game.Player.PositionI][@Game.Player.PositionJ]@Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].Name</p>
     <p>Niveau: @Game.Player.Level</p>
@@ -50,7 +52,6 @@
     }
     <!--<button onclick="() => Save(game.Player)">Sauvegarde</button>-->
     <button @onclick="Deconnection">Deconnexion</button>
-    <!--<button @onclick="Lvl">Lvlup</button>-->
 </div>
 
 @code {
@@ -58,16 +59,6 @@
     public Game Game { get; set; }
     [Parameter]
     public EventCallback TypeOfShowChange { get; set; }
-
-    //Bouton de téléportation pour tester des fonctions qu'on implémente
-    //il suffit de changer les coordonées dont vous avez besoin
-    void tp ()
-    {
-        Game.Player.PositionI = 166;
-        Game.Player.PositionJ = 224;
-        Game.GameMap.UpdateMapDisplay(Game.Player);
-        TypeOfShowChange.InvokeAsync();
-    }
 
     void ShowQuest ()
     {
@@ -93,14 +84,35 @@
         TypeOfShowChange.InvokeAsync();
     }
 
-    void Lvl()
-    {
-        Game.LevelUp();
-    }
-
     void Merch()
     {
         Game.FormShow = TypeOfShow.Merchant;
         TypeOfShowChange.InvokeAsync();
+    }
+
+    //bouton pour rendre RicoChico vulnérable si besoin
+    void cheat()
+    {
+        Game.Player.Wukongdead = true;
+        Game.Player.Tontatondead = true;
+        Game.Player.Scorpiodead = true;
+        Game.Player.Joydead = true;
+        TypeOfShowChange.InvokeAsync();
+    }
+
+    //Bouton de téléportation pour tester des fonctions qu'on implémente
+    //il suffit de changer les coordonées dont vous avez besoin
+    void tp()
+    {
+        Game.Player.PositionI = 166;
+        Game.Player.PositionJ = 224;
+        Game.GameMap.UpdateMapDisplay(Game.Player);
+        TypeOfShowChange.InvokeAsync();
+    }
+
+    //fonction de cheat lvl up si besoin pour les tests
+    void Lvl()
+    {
+        Game.LevelUp();
     }
 }
