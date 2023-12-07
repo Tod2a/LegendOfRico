@@ -1,0 +1,18 @@
+﻿@using LegendOfRico.Data
+
+<button @onclick="Valid">Valid quest</button>
+
+@code {
+    [Parameter]
+    public Game Game { get; set; }
+    [Parameter]
+    public EventCallback TypeOfShowChange { get; set; }
+    //[Parameter]
+    //public CollectQuest Quest { get; set; }
+
+    void Valid ()
+    {
+        Game.FormShow = TypeOfShow.Map;
+        TypeOfShowChange.InvokeAsync();
+    }
+}

@@ -80,6 +80,11 @@ namespace LegendOfRico.Data
 
         public void ValidQuest(Quest quest)
         {
+            if (quest.GetType() == typeof(CollectQuest))
+            {
+                CollectQuest collecquest = (CollectQuest)quest;
+                GameMap.MapLayout[collecquest.PositionI][collecquest.PositionJ].IsACollectDestination = false;
+            }
             if (quest.Target == TypeOfBreed.Joybean)
             {
                 Player.Joydead = true;
@@ -108,6 +113,11 @@ namespace LegendOfRico.Data
 
         public void TakeQuest(Quest quest)
         {
+            if (quest.GetType() == typeof(CollectQuest))
+            {
+                CollectQuest collecquest = (CollectQuest)quest;
+                GameMap.MapLayout[collecquest.PositionI][collecquest.PositionJ].IsACollectDestination = true;
+            }
             Player.QuestsBook.Add(quest);
             GameMap.MapLayout[Player.PositionI][Player.PositionJ].MisterQuest.Quests.Remove(quest);
         }

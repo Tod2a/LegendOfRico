@@ -6,6 +6,7 @@
         Map,
         Fight,
         Merchant,
-        Tavern
+        Tavern,
+        Collect
     }
 }

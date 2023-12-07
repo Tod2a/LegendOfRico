@@ -26,6 +26,10 @@ else if (Game.FormShow == TypeOfShow.Tavern)
 {
     <Tavern Game="Game" TypeOfShowChange="StateHasChanged"></Tavern>
 }
+else if (Game.FormShow == TypeOfShow.Collect)
+{
+    <Collect Game="Game" TypeOfShowChange="StateHasChanged"/>
+}
 
 @code{
     private CharacterModel characterModel = new CharacterModel();
