@@ -35,7 +35,7 @@ public abstract class Character : INotifyPropertyChanged
     public List<Stuff> StuffInventory { get; private set; }
     public List<Quest> QuestsBook { get; set; }
     public abstract Boolean CanEquipShield { get; set; }
-    public virtual Beast Pet { get; protected set; } = new Bulldog();
+    public virtual Beast Pet { get; set; } = new Bulldog();
     public int Coins { get; private set; } = 0;
     public virtual string fightImgUrl { get; }
     private string mapSprite;
@@ -355,6 +355,26 @@ public abstract class Character : INotifyPropertyChanged
     }
 
     //Getters / Setters
+    public string GetTypeDisplay()
+    {
+        if (fightImgUrl == "img/Character/fightRogue.png")
+        {
+            return "Voleur";
+        }
+        else if (fightImgUrl == "img/Character/fightWizard.png")
+        {
+            return "Magicien";
+        }
+        else if (fightImgUrl == "img/Character/fightFighter.png")
+        {
+            return "Guerrier";
+        }
+        else if (fightImgUrl == "img/Character/fightCleric.png")
+        {
+            return "Clerc";
+        }
+        else return "Ranger";
+    }
     public string GetHpDisplay()
     {
         return CurrentHitPoints + "/" + MaxHitPoints;

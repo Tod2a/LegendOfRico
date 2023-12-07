@@ -499,14 +499,33 @@ a, .btn-link {
 }
 
 .TavernShowcase {
-    display: flex;
     flex: 1;
+    display: flex;
     flex-direction: column;
     background-image: url("../img/layout/fondBois.jpg");
     background-size: cover;
     background-position: center;
 }
 
+.TavernMatesButton {
+    flex: 1;
+    text-align:center;
+}
+
 .TavernMates {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+}
+
+.TavernMates .name {
+    flex: 3;
+}
+
+.TavernMates .price {
+    flex: 1;
+}
+
+.TavernMates .button {
     flex: 1;
 }

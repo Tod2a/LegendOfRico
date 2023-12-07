@@ -11,11 +11,17 @@
             <div class="TavernShowcase">
                 @if (Game.Player2 != null)
                 {
-                    <button @onclick="Solo">Virer @Game.Player2.Name</button>
+                    <div class="TavernMatesButton"><button @onclick="Solo">Virer @Game.Player2.Name</button></div>
                 }
                 @foreach(var mates in Game.Tavernist.CharactersToRecruit)
                 {
-                    <div class="TavernMates" data-toggle="tooltip" data-placement="top" title="@mates.GetType()"><p>@mates.Name <button @onclick="() => Recrut(mates)">recruter</button></p></div>
+                    <div class="TavernMates" data-toggle="tooltip" data-placement="top" title="@mates.GetTypeDisplay()">
+                        
+                            <div class="name">@mates.Name</div> 
+                            <div class="price">@mates.RecruitingPrice</div> 
+                            <div class="button"><button @onclick="() => Recrut(mates)">recruter</button></div>
+                       
+                     </div>
                 }
             </div>
         </div>

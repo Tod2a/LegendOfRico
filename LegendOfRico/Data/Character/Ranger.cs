@@ -13,7 +13,7 @@ public class Ranger : Character
     public override int ArmorAmount { get; set; } = 1;
     public override double ChanceToDodge { get; protected set; } = 0.15;
     public override List<Spells> SpellBook { get; protected set; } = new List<Spells>() { new Sooth(), new Tame()};
-    public override Beast Pet { get; protected set; } = new Bulldog();
+    public override Beast Pet { get; set; } = new Bulldog();
     public override string fightImgUrl { get; } = "img/Character/fightRanger.png";
     public override int Statistics { get; set; } = 0;
 
