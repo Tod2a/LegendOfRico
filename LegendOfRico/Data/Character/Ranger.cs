@@ -12,18 +12,21 @@ public class Ranger : Character
     public override int CurrentHitPoints { get; set; } = 20;
     public override int ArmorAmount { get; set; } = 1;
     public override double ChanceToDodge { get; protected set; } = 0.15;
-    public override List<Spells> SpellBook { get; protected set; } = new List<Spells>() { new Sooth(), new Tame()};
+    public override List<Spells> SpellBook { get; protected set; } = new List<Spells>() { new Tame()};
     public override Beast Pet { get; set; } = new Bulldog();
     public override string fightImgUrl { get; } = "img/Character/fightRanger.png";
     public override int Statistics { get; set; } = 0;
 
     protected override void CheckLearnSpell()
     {
-        MaxHitPoints += MaxHitPoints / 10 + Level;
+        int gainedHP = MaxHitPoints / 10 + Level;
+        CurrentHitPoints += gainedHP;
+        MaxHitPoints += gainedHP;
         Statistics += (5 + Level) / 2;
+
         if (Level == 3)
         {
-            //Spell à défini
+            SpellBook.Add(new Sooth());
         }
     }
 

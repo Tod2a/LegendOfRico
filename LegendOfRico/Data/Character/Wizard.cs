@@ -18,9 +18,16 @@
 
         protected override void CheckLearnSpell()
         {
-            MaxHitPoints += MaxHitPoints / 10 + Level;
+            int gainedHP = MaxHitPoints / 10 + Level;
+            CurrentHitPoints += gainedHP;
+            MaxHitPoints += gainedHP;
             Statistics += (5 + Level) / 2;
-            if (Level == 3)
+
+            if(Level == 2)
+            {
+                SpellBook.Add(new Frostbolt());
+            }
+            if(Level == 3)
             {
                 SpellBook.Add(new Incinerate());
             }

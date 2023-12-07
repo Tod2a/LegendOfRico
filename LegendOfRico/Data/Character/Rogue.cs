@@ -19,8 +19,11 @@ public class Rogue : Character
 
     protected override void CheckLearnSpell()
     {
-        MaxHitPoints += MaxHitPoints/10 + Level;
+        int gainedHP = MaxHitPoints / 10 + Level;
+        CurrentHitPoints += gainedHP;
+        MaxHitPoints += gainedHP;
         Statistics += (5 + Level)/2;
+
         if (Level == 3)
         {
             //Spell à défini

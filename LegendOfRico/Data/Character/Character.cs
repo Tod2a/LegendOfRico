@@ -395,6 +395,11 @@ public abstract class Character : INotifyPropertyChanged
         IsRested = isRested;
     }
 
+    public void SetCoins(int coins)
+    {
+        Coins += coins;
+    }
+
     //gestion du changement des propriété lorsqu'on se déplace sur la carte, permet de réactualiser la carte lors d'un mouvement
     public event PropertyChangedEventHandler PropertyChanged;
 

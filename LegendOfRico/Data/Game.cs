@@ -436,6 +436,7 @@ namespace LegendOfRico.Data
             }
             player.CurrentXp = Player.CurrentXp;
             player.Rest();
+            Player.SetCoins(-player.RecruitingPrice);
         }
 
         public void Solo()

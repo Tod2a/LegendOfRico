@@ -17,11 +17,14 @@ public class Cleric : Character
     public override int Statistics { get; set; } = 0;
     protected override void CheckLearnSpell() 
     {
-        MaxHitPoints += MaxHitPoints / 10 + Level;
+        int gainedHP = MaxHitPoints / 10 + Level;
+        CurrentHitPoints += gainedHP;
+        MaxHitPoints += gainedHP;
         Statistics += (5 + Level) / 2;
-        if (Level == 3)
+
+        if (Level == 6)
         {
-            //Spell à définir
+            SpellBook.Add(new DivineIntervention());
         }
     }
 }
