@@ -39,7 +39,7 @@
             if (game.IsCurrentFight)
             {
                 game.FightMessage = "Vous vous soignez de " + value + " points de vie,";
-                game.MonsterHit(game);
+                game.MonsterHit();
             }
         }
 

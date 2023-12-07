@@ -10,15 +10,13 @@ namespace LegendOfRico.Data
     {
         public Map GameMap { get; set; } = new Map();
         public Character Player { get; set; } = new Wizard { };
-        public Character Player2 { get; set; } = new Fighter 
-        { 
-            Name = "Gérard",
-            CharacterWeapon = new Greatsword("Espadon en fer", "(10 - 16) | Stats +4", 100, 10, 16, 4),
-            CharacterShield = new FistShield("Poing", "Un poing", 0, 0),
-            CharacterArmor = new Armor("Armure en fer", "Lourd | Armure : 8", 250, TypeOfArmor.Heavy, 8),
-            ArmorAmount = 8,
-            CanEquipShield = false,
-            Statistics = 4
+        public Character Player2 { get; set; } = new Ranger
+        {
+            Name = "Louis",
+            CharacterWeapon = new Bow("Arc en frêne", "(5 - 8)", 50, 5, 8, 0),
+            CharacterArmor = new Armor("Armure en cuir brute", "Moyen | Armure : 3", 75, TypeOfArmor.Medium, 3),
+            ArmorAmount = 3,
+            RecruitingPrice = 150
         };
         public Monster MonsterFight { get; set; } = new Bulldog { };
         public Merchant Merchant { get; set; } = new Merchant();
@@ -34,6 +32,7 @@ namespace LegendOfRico.Data
         //gestion de l'interface de combat
         public bool ShowFightSpells = true;
         public bool ShowFightInventory = false;
+        public int Turncount = 0;
         public TypeOfShow FormShow { get; set; } = TypeOfShow.Connection;
 
 
@@ -164,12 +163,17 @@ namespace LegendOfRico.Data
             {
                 FightMessage = spell.UseSpell(Player, MonsterFight);
                 FightMessage += " ";
+                Turncount++;
+                if(Player2 == null || Player2.CurrentHitPoints <= 0)
+                {
+                    Turncount++;
+                }
             }
             if (game.MonsterFight.MonsterCurrentHP <= 0)
             {
                 FightVictory();
             }
-            else if (game.MonsterFight.IsBurning) //Le monstre perd 10% hp si il brûle
+            else if (game.MonsterFight.IsBurning && (Player2 == null || Player2.CurrentHitPoints <= 0)) //Le monstre perd 10% hp si il brûle
             {
                 FightMessage += "La cible brûle et subit "+game.MonsterFight.BurnTic()+" points de dégâts ! ";
                 if (game.MonsterFight.MonsterCurrentHP <= 0) //Check si meurt avec brûlure
@@ -178,57 +182,26 @@ namespace LegendOfRico.Data
                 }
                 else
                 {
-                    MonsterHit(game);
+                    MonsterHit();
                 }
             }
-            else if(FightMessage != "Vous ne pouvez plus lancer ce sort ! ") //Le monstre passe son tour si le joueur est con
+            else if(FightMessage != "Vous ne pouvez plus lancer ce sort ! " && (Player2 == null || Player2.CurrentHitPoints <= 0)) //Le monstre passe son tour si le joueur est con
             {
-                MonsterHit(game);
+                MonsterHit();
             }
-            else if(game.MonsterFight.IsFrozen) //Le monstre ne joue pas si gelé
+            else if(game.MonsterFight.IsFrozen && (Player2 == null || Player2.CurrentHitPoints <= 0)) //Le monstre ne joue pas si gelé
             {
                 FightMessage += "Vous avez gelé la cible !";
                 game.MonsterFight.Frozen(); //dégèle
             }
         }
 
-        public string ChosePlayer2Action()
-        {
-            string s = "";
-            if(Player2.GetType() == typeof(Fighter)){
-                var player2 = (Fighter)Player2;
-                if (player2.SpellBook[0].CurrentNumberOfUses > 0 && Player.CurrentHitPoints <= Player.MaxHitPoints/2 || Player2.CurrentHitPoints <= Player2.MaxHitPoints / 2)
-                {
-                    s += player2.SpellBook[0].UseSpell(Player2, MonsterFight);
-                }
-                else
-                {
-                    s += player2.Hit(MonsterFight);
-                }
-            }
-            else if (Player2.GetType() == typeof(Rogue))
-            {
-                s += Player2.Hit(MonsterFight);
-            }
-            else if (Player2.GetType() == typeof(Wizard))
-            {
-                s += Player2.Hit(MonsterFight);
-            }
-            else if (Player2.GetType() == typeof(Cleric))
-            {
-                s += Player2.Hit(MonsterFight);
-            }
-            return s;
-        }
-
-        public void UseWeapon (Monster target, Game game)
-        {
-            if (target.MonsterBreed != TypeOfBreed.RicoChico || (Player.Wukongdead && Player.Tontatondead && Player.Joydead && Player.Scorpiodead))
-            {
-                FightMessage = Player.Hit(target);
-                FightMessage += " ";
-                FightMessage += ChosePlayer2Action();
-            }
+        public void ActionPlayer2(Spells spell, Game game)
+        {            
+            FightMessage = spell.UseSpell(Player2, MonsterFight);
+            FightMessage += " ";
+            Turncount++;             
+            
             if (game.MonsterFight.MonsterCurrentHP <= 0)
             {
                 FightVictory();
@@ -242,12 +215,84 @@ namespace LegendOfRico.Data
                 }
                 else
                 {
-                    MonsterHit(game);
+                    MonsterHit();
                 }
             }
             else if (FightMessage != "Vous ne pouvez plus lancer ce sort ! ") //Le monstre passe son tour si le joueur est con
             {
-                MonsterHit(game);
+                MonsterHit();
+            }
+            else if (game.MonsterFight.IsFrozen) //Le monstre ne joue pas si gelé
+            {
+                FightMessage += "Vous avez gelé la cible !";
+                game.MonsterFight.Frozen(); //dégèle
+            }
+        }
+
+
+        public void UseWeapon (Monster target, Game game)
+        {
+            if (target.MonsterBreed != TypeOfBreed.RicoChico || (Player.Wukongdead && Player.Tontatondead && Player.Joydead && Player.Scorpiodead))
+            {
+                FightMessage = Player.Hit(target);
+                FightMessage += " ";
+                Turncount++;
+                if(Player2 == null || Player2.CurrentHitPoints <= 0)
+                {
+                    Turncount++;
+                }
+            }
+            if (game.MonsterFight.MonsterCurrentHP <= 0)
+            {
+                FightVictory();
+            }
+            else if (game.MonsterFight.IsBurning && (Player2 == null || Player2.CurrentHitPoints <= 0)) //Le monstre perd 10% hp si il brûle
+            {
+                FightMessage += "La cible brûle et subit " + game.MonsterFight.BurnTic() + " points de dégâts ! ";
+                if (game.MonsterFight.MonsterCurrentHP <= 0) //Check si meurt avec brûlure
+                {
+                    FightVictory();
+                }
+                else
+                {
+                    MonsterHit();
+                }
+            }
+            else if (FightMessage != "Vous ne pouvez plus lancer ce sort ! " && (Player2 == null || Player2.CurrentHitPoints <= 0)) //Le monstre passe son tour si le joueur est con
+            {
+                MonsterHit();
+            }
+            else if (game.MonsterFight.IsFrozen && (Player2 == null || Player2.CurrentHitPoints <= 0)) //Le monstre ne joue pas si gelé
+            {
+                FightMessage += "Vous avez gelé la cible !";
+                game.MonsterFight.Frozen(); //dégèle
+            }
+        }
+
+        public void UseWeaponPlayer2(Monster target, Game game)
+        {
+            FightMessage = Player2.Hit(target);
+            FightMessage += " ";
+            Turncount++;       
+            if (game.MonsterFight.MonsterCurrentHP <= 0)
+            {
+                FightVictory();
+            }
+            else if (game.MonsterFight.IsBurning) //Le monstre perd 10% hp si il brûle
+            {
+                FightMessage += "La cible brûle et subit " + game.MonsterFight.BurnTic() + " points de dégâts ! ";
+                if (game.MonsterFight.MonsterCurrentHP <= 0) //Check si meurt avec brûlure
+                {
+                    FightVictory();
+                }
+                else
+                {
+                    MonsterHit();
+                }
+            }
+            else if (FightMessage != "Vous ne pouvez plus lancer ce sort ! ") //Le monstre passe son tour si le joueur est con
+            {
+                MonsterHit();
             }
             else if (game.MonsterFight.IsFrozen) //Le monstre ne joue pas si gelé
             {
@@ -304,7 +349,7 @@ namespace LegendOfRico.Data
             return message;
         }
 
-        public void MonsterHit(Game game)
+        public void MonsterHit()
         {
             if (MonsterFight.MonsterBreed == TypeOfBreed.RicoChico && !Player.Joydead && !Player.Scorpiodead && !Player.Tontatondead && !Player.Wukongdead)
             {
@@ -315,14 +360,14 @@ namespace LegendOfRico.Data
             }
             else
             {
-                game.FightMessage += game.MonsterFight.Hit(game.Player);
-                if (game.Player.CurrentHitPoints <= 0 && !MonsterDead)
+                FightMessage += MonsterFight.Hit(Player);
+                if (Player.CurrentHitPoints <= 0 && !MonsterDead)
                 {
-                    game.Player.CurrentHitPoints = 0;
-                    game.PlayerDead = true;
-                    game.FightMessage = "Vous êtes mort, des goblins sortent de l'ombre pour vous emmener rapidement dans le dernier village que vous avez visité. ";
-                    game.FightMessage += "Vous perdez la moitié de votre expérience. ";
-                    game.Player.CurrentXp /= 2;
+                    Player.CurrentHitPoints = 0;
+                    PlayerDead = true;
+                    FightMessage = "Vous êtes mort, des goblins sortent de l'ombre pour vous emmener rapidement dans le dernier village que vous avez visité. ";
+                    FightMessage += "Vous perdez la moitié de votre expérience. ";
+                    Player.CurrentXp /= 2;
                 }
             }
         }

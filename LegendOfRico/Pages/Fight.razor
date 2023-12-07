@@ -13,56 +13,86 @@
             </p>
         </div>
         <div class="fightDisplay" style="background-image: url('@Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].SquareBiome.FightUrl');">
+            
+            <div class="player">
+                <div class="secondplayer">
+                    @if(Game.Player2 != null && Game.Player2.CurrentHitPoints > 0)
+                    {
+                        <div class="playerpetdisplay">
+                            <div class="spriteFlex"><img class="sprite" src="@Game.Player2.fightImgUrl" alt="Image fight Player2"></div>
+                            @if (Game.Player2.GetType() == typeof(Ranger))
+                            {
+                                <div class="spritepet"><img src="@Game.Player2.Pet.fightImgUrl" alt="votre pet" /></div>
+                            }
+                        </div>
+                        <div class="stats">
+                            <div class="Name"><p>@Game.Player2.Name</p></div>
+                            <div class="HPBar">@Game.Player2.CurrentHitPoints / @Game.Player2.MaxHitPoints</div>
+                        </div>
+                    }
+                </div>
+                <div class="firstplayer">
+                    <div class="playerpetdisplay">
+                        <div class="spriteFlex"><img class="sprite" src="@Game.Player.fightImgUrl" alt="Image fight Player"></div>
+                        @if (Game.Player.GetType() == typeof(Ranger))
+                        {
+                            <div class="spritepet"><img src="@Game.Player.Pet.fightImgUrl" alt="votre pet" /></div>
+                        }
+                    </div>
+                    <div class="stats">
+                        <div class="Name"><p>@Game.Player.Name</p></div>
+                        <div class="HPBar">@Game.Player.CurrentHitPoints / @Game.Player.MaxHitPoints</div>
+                    </div>
+                </div>
+                
+            </div>
             <div class="opponent">
                 <div class="spriteFlex"><img class="sprite" src="@Game.MonsterFight.fightImgUrl" alt="Image fight Monster"></div>
                 <div class="stats">
                     <div class="HPBar"><p>@Game.MonsterFight.MonsterCurrentHP / @Game.MonsterFight.MonsterHP</p></div>
                     <div class="Name"><p>@Game.MonsterFight.MonsterName</p></div>
                 </div>
-                
-            </div>
-            <div class="player">
-                <div class="playerpetdisplay">
-                    <div class="spriteFlex"><img class="sprite" src="@Game.Player.fightImgUrl" alt="Image fight Player"></div>
-                    @if (Game.Player.GetType() == typeof(Ranger))
-                    {
-                        <div class="spritepet"><img src="@Game.Player.Pet.fightImgUrl" alt="votre pet" /></div>
-                    }
-                </div>
-                <div class="stats">
-                    <div class="Name"><p>@Game.Player.Name</p></div>
-                    <div class="HPBar">@Game.Player.CurrentHitPoints / @Game.Player.MaxHitPoints</div>
-                </div>
-                
+
             </div>
         </div>
         @if (!@Game.MonsterDead && !Game.PlayerDead)
         {
             <div class="fightMenu">
-                <div class="actions">
-                    @if (Game.ShowFightSpells)
-                    {
-                        <button @onclick="() => Game.UseWeapon(Game.MonsterFight, Game)">@Game.Player.CharacterWeapon.ItemName</button>
-                        @foreach (var spell in Game.Player.SpellBook)
+                @if(Game.Turncount % 2 == 0)
+                {
+                    <div class="actions">
+                        @if (Game.ShowFightSpells)
                         {
-                            <button @onclick="() => Game.Action(spell, Game)">@spell.SpellName</button>
-                        }
-                        <button @onclick="Game.SwitchFightInventory">go to inventaire</button>
-                    }
-                    else if (Game.ShowFightInventory)
-                    {
-                        @foreach (var item in Game.Player.ConsumableInventory)
-                        {
-                            @if (item.Quantity > 0)
+                            <button @onclick="() => Game.UseWeapon(Game.MonsterFight, Game)">@Game.Player.CharacterWeapon.ItemName</button>
+                            @foreach (var spell in Game.Player.SpellBook)
                             {
-                                <button @onclick="() => item.Use(Game)">@item.ItemName ( @item.Quantity )</button>
+                                <button @onclick="() => Game.Action(spell, Game)">@spell.SpellName</button>
                             }
+                            <button @onclick="Game.SwitchFightInventory">go to inventaire</button>
                         }
-                        <button @onclick="Game.SwitchFightSpells">go to spells</button>
-                    }
-
-
-            </div>
+                        else if (Game.ShowFightInventory)
+                        {
+                            @foreach (var item in Game.Player.ConsumableInventory)
+                            {
+                                @if (item.Quantity > 0)
+                                {
+                                    <button @onclick="() => item.Use(Game)">@item.ItemName ( @item.Quantity )</button>
+                                }
+                            }
+                            <button @onclick="Game.SwitchFightSpells">go to spells</button>
+                        }
+                    </div>
+                }
+                else if (Game.Player2 != null && Game.Player2.CurrentHitPoints > 0)
+                {
+                    <div class="actions">
+                        <button @onclick="() => Game.UseWeaponPlayer2(Game.MonsterFight, Game)">@Game.Player2.CharacterWeapon.ItemName</button>
+                        @foreach (var spell in Game.Player2.SpellBook)
+                        {
+                            <button @onclick="() => Game.ActionPlayer2(spell, Game)">@spell.SpellName</button>
+                        }
+                    </div>
+                }
         </div>
         }
      
@@ -79,6 +109,7 @@
     void Victory()
     {
         Game.FormShow = TypeOfShow.Map;
+        Game.Turncount = 0;
         Game.IsCurrentFight = false;
         Game.MonsterDead = false;
         TypeOfShowChange.InvokeAsync();
@@ -89,6 +120,7 @@
         Game.FormShow = TypeOfShow.Map;
         Game.Player.PositionI = Game.Player.lastRestVillageI;
         Game.Player.PositionJ = Game.Player.LastRestVillageJ;
+        Game.Turncount = 0;
         Game.IsCurrentFight = false;
         Game.PlayerDead = false;
         Game.Player.Rest();

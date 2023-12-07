@@ -8,7 +8,7 @@
     <p>Position: [@Game.Player.PositionI][@Game.Player.PositionJ]@Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].Name</p>
     <p>Niveau: @Game.Player.Level</p>
     <p>@Game.Player.Name HP: @Game.Player.GetHpDisplay()</p>
-    @if(Game.Player2.Name == "Gérard")
+    @if(Game.Player2 != null)
     {
         <p>@Game.Player2.Name HP: @Game.Player2.GetHpDisplay()</p>
     }
