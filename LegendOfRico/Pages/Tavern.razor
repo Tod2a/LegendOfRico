@@ -19,7 +19,10 @@
                         
                             <div class="name">@mates.Name</div> 
                             <div class="price">@mates.RecruitingPrice</div> 
+                        @if(Game.Player.Coins >= mates.RecruitingPrice)
+                        {
                             <div class="button"><button @onclick="() => Recrut(mates)">recruter</button></div>
+                        }
                        
                      </div>
                 }
