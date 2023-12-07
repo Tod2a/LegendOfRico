@@ -12,7 +12,7 @@ public class Tame : Spells
         string s = "";
         if (CurrentNumberOfUses > 0)
         {
-            if(target.MonsterType == TypeOfMonster.Beast)
+            if(target.MonsterType == TypeOfMonster.Beast && target.GetType() != typeof(Boss))
             {
                 var beastMonster = (Beast)target;
                 if (target.MonsterCurrentHP >= target.MonsterHP / 2)
@@ -38,7 +38,7 @@ public class Tame : Spells
             }
             else
             {
-                s += "Vous ne pouvez apprivoiser que les bêtes !";
+                s += "Vous ne pouvez apprivoiser que les bêtes (non-boss) !";
             }
         }
         else
