@@ -29,7 +29,16 @@ public class DivineIntervention : Spells
                 target.TakeDamage(target.MonsterHP / 10);
                 s += s += "Votre cible brûle ! ";
             }
-            s += player.Name + " inflige " + damageRoll + " points de dégâts à la cible et se rend " + healRoll + " points de vie !";
+            if (player.PartyMember != null)
+            {
+                player.PartyMember.ReceiveHeal(healRoll);
+                s += player.Name + " soigne le groupe de " + healRoll + " points de vie ";
+            }
+            else
+            {
+                s += player.Name + " est soigné de " + healRoll + " points de vie ";
+            }
+            s += player.Name + "et inflige " + damageRoll + " points de dégâts à la cible ! ";
             CurrentNumberOfUses--;
             SpellName = "Intervention divine (" + CurrentNumberOfUses + "/" + MaxNumberOfUses + ")s";
         }
