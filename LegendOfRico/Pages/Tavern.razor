@@ -1,0 +1,43 @@
+﻿@using LegendOfRico.Data
+@using BootstrapBlazor
+
+<div class="displayGame">
+    <GameMenu Game="Game" TypeOfShowChange="TypeOfShowChange" />
+    <div class="TavernLayout">
+        <div class="TavernDisplay">
+            <div class="TavernImage">
+                <p class="TavernSpeak">Vous vous sentez seul, vous trouverez peut-être de la compagnie dans cette taverne.</p>
+            </div>
+            <div class="TavernShowcase">
+                @if (Game.Player2 != null)
+                {
+                    <button @onclick="Solo">Virer @Game.Player2.Name</button>
+                }
+                @foreach(var mates in Game.Tavernist.CharactersToRecruit)
+                {
+                    <div class="TavernMates" data-toggle="tooltip" data-placement="top" title="@mates.GetType()"><p>@mates.Name <button @onclick="() => Recrut(mates)">recruter</button></p></div>
+                }
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@code {
+    [Parameter]
+    public Game Game { get; set; }
+    [Parameter]
+    public EventCallback TypeOfShowChange { get; set; }
+
+    void Recrut (Character player)
+    {
+        Game.Recrut(player);
+        TypeOfShowChange.InvokeAsync();    
+    }
+
+    void Solo ()
+    {
+        Game.Solo();
+        TypeOfShowChange.InvokeAsync();
+    }
+}

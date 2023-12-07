@@ -50,9 +50,17 @@
         }
     }
     
-    @if (Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].HasNPC == true)
+    @if (Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].HasNPC == true && Game.FormShow == TypeOfShow.Map)
     {
         <button @onclick="Merch">Marchand</button>
+    }
+    @if (Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].HasNPC == true && Game.FormShow == TypeOfShow.Map)
+    {
+        <button @onclick="Tavern">Taverne</button>
+    }
+    @if (Game.FormShow == TypeOfShow.Merchant || Game.FormShow == TypeOfShow.Tavern)
+    {
+        <button @onclick="Leave">Quitter</button>
     }
     <!--<button onclick="() => Save(game.Player)">Sauvegarde</button>-->
     <button @onclick="Deconnection">Deconnexion</button>
@@ -91,6 +99,18 @@
     void Merch()
     {
         Game.FormShow = TypeOfShow.Merchant;
+        TypeOfShowChange.InvokeAsync();
+    }
+
+    void Tavern()
+    {
+        Game.FormShow = TypeOfShow.Tavern;
+        TypeOfShowChange.InvokeAsync();
+    }
+
+    void Leave()
+    {
+        Game.FormShow = TypeOfShow.Map;
         TypeOfShowChange.InvokeAsync();
     }
 

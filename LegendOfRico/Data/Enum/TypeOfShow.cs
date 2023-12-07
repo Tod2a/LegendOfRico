@@ -5,6 +5,7 @@
         Connection,
         Map,
         Fight,
-        Merchant
+        Merchant,
+        Tavern
     }
 }

@@ -466,3 +466,47 @@ a, .btn-link {
 .questTitle {
     text-align: center;
 }
+
+.TavernSpeak {
+    position: absolute;
+    display: inline-block;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #000;
+    border-radius: 10px;
+    top:10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.TavernImage {
+    flex: 4;
+    background-image: url('../img/layout/Taverne.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    text-align: right;
+}
+
+.TavernDisplay {
+    display: flex;
+    height: 100%;
+}
+
+.TavernLayout {
+    flex: 4;
+    border: 3px solid #8b4513;
+}
+
+.TavernShowcase {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    background-image: url("../img/layout/fondBois.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.TavernMates {
+    flex: 1;
+}

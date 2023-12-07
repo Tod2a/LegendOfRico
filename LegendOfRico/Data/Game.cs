@@ -18,9 +18,10 @@ namespace LegendOfRico.Data
             ArmorAmount = 3,
             RecruitingPrice = 150
         };
-        public Monster MonsterFight { get; set; } = new Bulldog { };
-        public Merchant Merchant { get; set; } = new Merchant();
-        public bool IsCurrentFight {  get; set; } = false;
+        public Monster MonsterFight { get; private set; } = new Bulldog { };
+        public Merchant Merchant { get; private set; } = new Merchant();
+        public TavernRecruits Tavernist { get; private set; } = new TavernRecruits();
+        public bool IsCurrentFight { get; set; } = false;
         public string FightMessage { get; set; } = "";
         public bool PlayerDead = false;
         public bool MonsterDead = false;
@@ -44,7 +45,7 @@ namespace LegendOfRico.Data
                 GameMap.MapLevel++;
             }
             player.Level++;
-            FightMessage += player.Name+" gagne un niveau ! ";
+            FightMessage += player.Name + " gagne un niveau ! ";
             player.CurrentXp -= player.XpToLevel;
             player.XpToLevel += 250 * player.Level;
         }
@@ -73,7 +74,7 @@ namespace LegendOfRico.Data
                 Player = new Ranger { Name = CName, MapSprite = "img/character/spriteRanger.png" };
             }
             FormShow = TypeOfShow.Map;
- 
+
         }
 
         public void Deconnection()
@@ -83,7 +84,7 @@ namespace LegendOfRico.Data
 
         //gestion des quetes
 
-        public void ValidQuest (Quest quest)
+        public void ValidQuest(Quest quest)
         {
             if (quest.Target == TypeOfBreed.Joybean)
             {
@@ -100,18 +101,18 @@ namespace LegendOfRico.Data
                 Player.Tontatondead = true;
                 GameMap.MapLayout[36][401].ChanceToTriggerFight = 0.0;
             }
-            else if (quest.Target == TypeOfBreed.Sunwukong) 
+            else if (quest.Target == TypeOfBreed.Sunwukong)
             {
                 Player.Wukongdead = true;
                 GameMap.MapLayout[72][53].ChanceToTriggerFight = 0.0;
             }
-            
+
             Player.LootGold(quest.CoinsReward);
             Player.CurrentXp += quest.XpReward;
             Player.QuestsBook.Remove(quest);
         }
 
-        public void TakeQuest (Quest quest)
+        public void TakeQuest(Quest quest)
         {
             Player.QuestsBook.Add(quest);
             GameMap.MapLayout[Player.PositionI][Player.PositionJ].MisterQuest.Quests.Remove(quest);
@@ -120,21 +121,21 @@ namespace LegendOfRico.Data
         //gestion du menu de droite pour les quetes et inventaire.
 
 
-        public void SwitchShowQuestList ()
+        public void SwitchShowQuestList()
         {
             ShowInventory = false;
             ShowQuestList = true;
             ShowQuestGiver = false;
         }
 
-        public void SwitchShowInventoryList ()
+        public void SwitchShowInventoryList()
         {
             ShowInventory = true;
             ShowQuestList = false;
             ShowQuestGiver = false;
         }
 
-        public void SwitchShowQuestGiver ()
+        public void SwitchShowQuestGiver()
         {
             ShowQuestGiver = true;
             ShowQuestList = false;
@@ -149,7 +150,7 @@ namespace LegendOfRico.Data
         {
             Random random = new Random();
             double randomNumber = random.NextDouble();
-            if(randomNumber < localisation.ChanceToTriggerFight)
+            if (randomNumber < localisation.ChanceToTriggerFight)
             {
                 MonsterFight = SelectEnemy();
                 IsCurrentFight = true;
@@ -164,7 +165,7 @@ namespace LegendOfRico.Data
                 FightMessage = spell.UseSpell(Player, MonsterFight);
                 FightMessage += " ";
                 Turncount++;
-                if(Player2 == null || Player2.CurrentHitPoints <= 0)
+                if (Player2 == null || Player2.CurrentHitPoints <= 0)
                 {
                     Turncount++;
                 }
@@ -175,7 +176,7 @@ namespace LegendOfRico.Data
             }
             else if (game.MonsterFight.IsBurning && (Player2 == null || Player2.CurrentHitPoints <= 0)) //Le monstre perd 10% hp si il brûle
             {
-                FightMessage += "La cible brûle et subit "+game.MonsterFight.BurnTic()+" points de dégâts ! ";
+                FightMessage += "La cible brûle et subit " + game.MonsterFight.BurnTic() + " points de dégâts ! ";
                 if (game.MonsterFight.MonsterCurrentHP <= 0) //Check si meurt avec brûlure
                 {
                     FightVictory();
@@ -185,11 +186,11 @@ namespace LegendOfRico.Data
                     MonsterHit();
                 }
             }
-            else if(FightMessage != "Vous ne pouvez plus lancer ce sort ! " && (Player2 == null || Player2.CurrentHitPoints <= 0)) //Le monstre passe son tour si le joueur est con
+            else if (FightMessage != "Vous ne pouvez plus lancer ce sort ! " && (Player2 == null || Player2.CurrentHitPoints <= 0)) //Le monstre passe son tour si le joueur est con
             {
                 MonsterHit();
             }
-            else if(game.MonsterFight.IsFrozen && (Player2 == null || Player2.CurrentHitPoints <= 0)) //Le monstre ne joue pas si gelé
+            else if (game.MonsterFight.IsFrozen && (Player2 == null || Player2.CurrentHitPoints <= 0)) //Le monstre ne joue pas si gelé
             {
                 FightMessage += "Vous avez gelé la cible !";
                 game.MonsterFight.Frozen(); //dégèle
@@ -197,11 +198,11 @@ namespace LegendOfRico.Data
         }
 
         public void ActionPlayer2(Spells spell, Game game)
-        {            
+        {
             FightMessage = spell.UseSpell(Player2, MonsterFight);
             FightMessage += " ";
-            Turncount++;             
-            
+            Turncount++;
+
             if (game.MonsterFight.MonsterCurrentHP <= 0)
             {
                 FightVictory();
@@ -230,14 +231,14 @@ namespace LegendOfRico.Data
         }
 
 
-        public void UseWeapon (Monster target, Game game)
+        public void UseWeapon(Monster target, Game game)
         {
             if (target.MonsterBreed != TypeOfBreed.RicoChico || (Player.Wukongdead && Player.Tontatondead && Player.Joydead && Player.Scorpiodead))
             {
                 FightMessage = Player.Hit(target);
                 FightMessage += " ";
                 Turncount++;
-                if(Player2 == null || Player2.CurrentHitPoints <= 0)
+                if (Player2 == null || Player2.CurrentHitPoints <= 0)
                 {
                     Turncount++;
                 }
@@ -273,7 +274,7 @@ namespace LegendOfRico.Data
         {
             FightMessage = Player2.Hit(target);
             FightMessage += " ";
-            Turncount++;       
+            Turncount++;
             if (game.MonsterFight.MonsterCurrentHP <= 0)
             {
                 FightVictory();
@@ -306,13 +307,13 @@ namespace LegendOfRico.Data
             FightMessage += "Cela suffit à vaincre le monstre, cette victoire vous rapporte " + MonsterFight.XpGranted +
                 " points d'expérience ! ";
             FightMessage += CheckQuest();
-            if(MonsterFight.MonsterBreed == TypeOfBreed.RicoChico)
+            if (MonsterFight.MonsterBreed == TypeOfBreed.RicoChico)
             {
                 GameMap.MapLayout[246][250].ChanceToTriggerFight = 0.0;
             }
             Player.CurrentXp += MonsterFight.XpGranted;
             Player2.CurrentXp += MonsterFight.XpGranted;
-            if(new Random().Next(0,2) == 1 || MonsterFight.MonsterBreed == TypeOfBreed.RicoChico)
+            if (new Random().Next(0, 2) == 1 || MonsterFight.MonsterBreed == TypeOfBreed.RicoChico)
             {
                 Stuff droppedItem = MonsterFight.DropItem();
                 Player.LootStuff(droppedItem);
@@ -329,18 +330,12 @@ namespace LegendOfRico.Data
             }
         }
 
-        public void PartyRest()
-        {
-            Player.Rest();
-            Player2.Rest();
-        }
-
         private string CheckQuest()
         {
             string message = "";
             foreach (var quest in Player.QuestsBook)
             {
-                if(MonsterFight.MonsterBreed == quest.Target)
+                if (MonsterFight.MonsterBreed == quest.Target)
                 {
                     quest.status = true;
                     message = " Cela vous permet aussi de valider une quête. ";
@@ -393,7 +388,23 @@ namespace LegendOfRico.Data
             return monster;
         }
 
-        
+        //gestion de l'équipe
+        public void PartyRest()
+        {
+            Player.Rest();
+            Player2.Rest();
+        }
+
+        public void Recrut(Character player)
+        {
+            Player2 = player;
+        }
+
+        public void Solo()
+        {
+            Player2 = null;
+        }
+
 
         //Gestion de déplacement et de trigger fight
         public void GoUp(Game game)
