@@ -178,7 +178,7 @@ public abstract class Character : INotifyPropertyChanged
     {
         int actualDamageTaken = ArmorAmount > damageTaken ? 0 : damageTaken - ArmorAmount;
         CurrentHitPoints -= actualDamageTaken;
-        return " et vous inflige " + actualDamageTaken + " points de dégats (" + damageTaken+" - "+ArmorAmount+").";
+        return " et inflige " + actualDamageTaken + " points de dégats (" + damageTaken+" - "+ArmorAmount+") à "+Name+" ! ";
     }
 
     //Gestion des équipements

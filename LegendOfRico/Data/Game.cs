@@ -10,13 +10,9 @@ namespace LegendOfRico.Data
     {
         public Map GameMap { get; set; } = new Map();
         public Character Player { get; set; } = new Wizard { };
-        public Character Player2 { get; set; } = new Ranger
+        public Character Player2 { get; set; } = new Cleric
         {
-            Name = "Louis",
-            CharacterWeapon = new Bow("Arc en frêne", "(5 - 8)", 50, 5, 8, 0),
-            CharacterArmor = new Armor("Armure en cuir brute", "Moyen | Armure : 3", 75, TypeOfArmor.Medium, 3),
-            ArmorAmount = 3,
-            RecruitingPrice = 150
+            Name = "Patrick (Clerc)"
         };
         public Monster MonsterFight { get; private set; } = new Bulldog { };
         public Merchant Merchant { get; private set; } = new Merchant();
@@ -35,8 +31,6 @@ namespace LegendOfRico.Data
         public bool ShowFightInventory = false;
         public int Turncount = 0;
         public TypeOfShow FormShow { get; set; } = TypeOfShow.Connection;
-
-
 
         public void LevelUp(Character player)
         {
@@ -355,7 +349,15 @@ namespace LegendOfRico.Data
             }
             else
             {
-                FightMessage += MonsterFight.Hit(Player);
+                int whoGetsHit = new Random().Next(0, 2);
+                if(whoGetsHit == 0 && Player2.CurrentHitPoints > 0)
+                {
+                    FightMessage += MonsterFight.Hit(Player2);
+                }
+                else
+                {
+                    FightMessage += MonsterFight.Hit(Player);
+                }
                 if (Player.CurrentHitPoints <= 0 && !MonsterDead)
                 {
                     Player.CurrentHitPoints = 0;
