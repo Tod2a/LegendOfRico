@@ -10,13 +10,13 @@
             NPCName = nPCName;
             Quests = new List<Quest>()
             {
-                new Quest("Chasse un chien", "va dans les plaines et chasse un chien", TypeOfBreed.Dog, 10, 10) 
+                new FightQuest("Chasse un chien", "va dans les plaines et chasse un chien", TypeOfBreed.Dog, 10, 10) 
             };
         }
 
-        public void AddQuest(string name, string description, TypeOfBreed target, int xpreward, int coinreward)
+        public void AddFightQuest(string name, string description, TypeOfBreed target, int xpreward, int coinreward)
         {
-            Quests.Add(new Quest(name, description, target,xpreward, coinreward));
+            Quests.Add(new FightQuest(name, description, target,xpreward, coinreward));
         }
 
         public void RemoveQuest(Quest quest) 

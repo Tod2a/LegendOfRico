@@ -2,6 +2,7 @@
 {
     public enum TypeOfBreed
     {
+        Null,
         Spider,
         Bat,
         Dog,

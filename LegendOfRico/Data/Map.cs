@@ -389,9 +389,9 @@ namespace LegendOfRico.Data
 
             //creation des donneurs de quêtes et de leurs quêtes
             QuestGiver archibald = new QuestGiver("Archibald");
-            archibald.AddQuest("Chasse une araignée", "va dans la forêt chasser une araignée", TypeOfBreed.Spider, 20, 20);
+            archibald.AddFightQuest("Chasse une araignée", "va dans la forêt chasser une araignée", TypeOfBreed.Spider, 20, 20);
             QuestGiver fatimaZorra = new QuestGiver("Fatima Zorra, la mystique");
-            fatimaZorra.AddQuest("Tue un monstre", "Montre moi ton ENORME courage en allant tuer un monstre dans les ruines", TypeOfBreed.Bat, 2000, 12000);
+            fatimaZorra.AddFightQuest("Tue un monstre", "Montre moi ton ENORME courage en allant tuer un monstre dans les ruines", TypeOfBreed.Bat, 2000, 12000);
             
 
 

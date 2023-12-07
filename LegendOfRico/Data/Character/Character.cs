@@ -108,11 +108,10 @@ public abstract class Character : INotifyPropertyChanged
         StuffInventory = new List<Stuff>{};
         QuestsBook = new List<Quest>
         {
-            new Quest("La recherche du scorpion éternel", "Le scorpion éternel se cache au find fond du désert éternel, trouvez le et battez le pour récupérer sa relique", TypeOfBreed.EternalScorpio, 1000, 1000),
-            new Quest("Le mystère du lugubre cimetière", "On entend dire que dans le cimetière des tontaton, leur chef est revenu d'entre les morts et détiendrait une relique", TypeOfBreed.Cheftontaton, 1000, 1000),
-            new Quest("A travers la forêt de Sherloop", "Se balancant d'arbres en arbres, le grand Sun Wukong nargue tout les voyageurs qu'il rencontre en agitant sa majestueuse relique", TypeOfBreed.Sunwukong, 1000, 1000),
-            new Quest("Le célèbre Joy Bean", "Joy Bean était connu pour être le roi de la cité la plus riche de l'ancien temps, le grand ricochico l'a asservit et il détient maintenant une relique", TypeOfBreed.Joybean, 1000, 1000),
-            new Quest("le test", "quete de test Pog", TypeOfBreed.Dog, 5, 5)
+            new FightQuest("La recherche du scorpion éternel", "Le scorpion éternel se cache au find fond du désert éternel, trouvez le et battez le pour récupérer sa relique", TypeOfBreed.EternalScorpio, 1000, 1000),
+            new FightQuest("Le mystère du lugubre cimetière", "On entend dire que dans le cimetière des tontaton, leur chef est revenu d'entre les morts et détiendrait une relique", TypeOfBreed.Cheftontaton, 1000, 1000),
+            new FightQuest("A travers la forêt de Sherloop", "Se balancant d'arbres en arbres, le grand Sun Wukong nargue tout les voyageurs qu'il rencontre en agitant sa majestueuse relique", TypeOfBreed.Sunwukong, 1000, 1000),
+            new FightQuest("Le célèbre Joy Bean", "Joy Bean était connu pour être le roi de la cité la plus riche de l'ancien temps, le grand ricochico l'a asservit et il détient maintenant une relique", TypeOfBreed.Joybean, 1000, 1000),
         };
     }
     public void Burnt()
