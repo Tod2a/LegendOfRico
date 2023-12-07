@@ -19,6 +19,8 @@
 
         protected override void CheckLearnSpell()
         {
+            MaxHitPoints += MaxHitPoints / 10 + Level;
+            Statistics += (5 + Level) / 2;
             if (Level == 3)
             {
                 //Spell à défini

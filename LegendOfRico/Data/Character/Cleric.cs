@@ -17,6 +17,8 @@ public class Cleric : Character
     public override int Statistics { get; set; } = 0;
     protected override void CheckLearnSpell() 
     {
+        MaxHitPoints += MaxHitPoints / 10 + Level;
+        Statistics += (5 + Level) / 2;
         if (Level == 3)
         {
             //Spell à définir
