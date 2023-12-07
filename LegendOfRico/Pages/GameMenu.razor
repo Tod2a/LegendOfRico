@@ -12,9 +12,9 @@
     <p>Position: [@Game.Player.PositionI][@Game.Player.PositionJ]@Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].Name</p>
     <p>Niveau: @Game.Player.Level</p>
     <p>@Game.Player.Name HP: @Game.Player.GetHpDisplay()</p>
-    @if(Game.Player2 != null)
+    @if (Game.Player.PartyMember != null)
     {
-        <p>@Game.Player2.Name HP: @Game.Player2.GetHpDisplay()</p>
+        <p>@Game.Player.PartyMember.Name HP: @Game.Player.PartyMember.GetHpDisplay()</p>
     }
     <p>@Game.Player.GetStatsDisplay()</p>
     <p>Expérience: @Game.Player.GetXpDisplay()</p>
@@ -148,6 +148,6 @@
     void Lvl()
     {
         Game.LevelUp(Game.Player);
-        Game.LevelUp(Game.Player2);
+        Game.LevelUp(Game.Player.PartyMember);
     }
 }

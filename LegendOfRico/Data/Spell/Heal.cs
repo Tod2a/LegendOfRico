@@ -6,7 +6,7 @@ public class Heal : Spells
     public override int MaxNumberOfUses => 15;
     public override int CurrentNumberOfUses { get; protected set; } = 15;
     public int MinValue => 5;
-    public int MaxValue => 10;
+    public int MaxValue => 7;
     public double CritChance = 0.05;
 
     public override string UseSpell(Character player, Monster target)
@@ -24,7 +24,16 @@ public class Heal : Spells
                 healRoll *= 2;
             }
             player.ReceiveHeal(healRoll);
-            s += player.Name + " est soigné de " + healRoll + " points de vie!";
+            if(player.PartyMember != null)
+            {
+                player.PartyMember.ReceiveHeal(healRoll);
+                s += player.Name + " soigne le groupe de " + healRoll + " points de vie!";
+            }
+            else
+            {
+                s += player.Name + " est soigné de " + healRoll + " points de vie!";
+            }
+            
             CurrentNumberOfUses--;
             SpellName = "Soin (" + CurrentNumberOfUses + "/" + MaxNumberOfUses + ")";
         }

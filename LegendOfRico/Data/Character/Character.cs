@@ -26,6 +26,7 @@ public abstract class Character : INotifyPropertyChanged
     public abstract int CurrentHitPoints { get; set; }
     public abstract int Statistics { get; set; }
     public abstract int ArmorAmount { get; set; }
+    public Character PartyMember { get; set; }
     public abstract double ChanceToDodge { get; protected set; }
     public abstract Stuff CharacterWeapon { get; set; }
     public abstract Stuff CharacterShield { get; set; }

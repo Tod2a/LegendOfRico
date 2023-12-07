@@ -10,10 +10,6 @@ namespace LegendOfRico.Data
     {
         public Map GameMap { get; set; } = new Map();
         public Character Player { get; set; } = new Wizard { };
-        public Character Player2 { get; set; } = new Cleric
-        {
-            Name = "Patrick (Clerc)"
-        };
         public Monster MonsterFight { get; private set; } = new Bulldog { };
         public Merchant Merchant { get; private set; } = new Merchant();
         public TavernRecruits Tavernist { get; private set; } = new TavernRecruits();
@@ -38,10 +34,13 @@ namespace LegendOfRico.Data
             {
                 GameMap.MapLevel++;
             }
-            player.Level++;
-            FightMessage += player.Name + " gagne un niveau ! ";
-            player.CurrentXp -= player.XpToLevel;
-            player.XpToLevel += 250 * player.Level;
+            while(player.CurrentXp >= player.XpToLevel)
+            {
+                player.Level++;
+                FightMessage += player.Name + " gagne un niveau ! ";
+                player.CurrentXp -= player.XpToLevel;
+                player.XpToLevel += 250 * player.Level;
+            }
         }
 
 
@@ -108,6 +107,19 @@ namespace LegendOfRico.Data
 
             Player.LootGold(quest.CoinsReward);
             Player.CurrentXp += quest.XpReward;
+            if(Player.PartyMember != null)
+            {
+                Player.PartyMember.CurrentXp += quest.XpReward;
+            }
+
+            if(Player.CurrentXp >= Player.XpToLevel)
+            {
+                LevelUp(Player);
+            }
+            if(Player.PartyMember != null && Player.PartyMember.CurrentXp >= Player.PartyMember.XpToLevel) 
+            {
+                LevelUp(Player.PartyMember);
+            }
             Player.QuestsBook.Remove(quest);
         }
 
@@ -169,7 +181,7 @@ namespace LegendOfRico.Data
                 FightMessage = spell.UseSpell(Player, MonsterFight);
                 FightMessage += " ";
                 Turncount++;
-                if (Player2 == null || Player2.CurrentHitPoints <= 0)
+                if (Player.PartyMember == null || Player.PartyMember.CurrentHitPoints <= 0)
                 {
                     Turncount++;
                 }
@@ -178,7 +190,7 @@ namespace LegendOfRico.Data
             {
                 FightVictory();
             }
-            else if (game.MonsterFight.IsBurning && (Player2 == null || Player2.CurrentHitPoints <= 0)) //Le monstre perd 10% hp si il brûle
+            else if (game.MonsterFight.IsBurning && (Player.PartyMember == null || Player.PartyMember.CurrentHitPoints <= 0)) //Le monstre perd 10% hp si il brûle
             {
                 FightMessage += "La cible brûle et subit " + game.MonsterFight.BurnTic() + " points de dégâts ! ";
                 if (game.MonsterFight.MonsterCurrentHP <= 0) //Check si meurt avec brûlure
@@ -190,11 +202,11 @@ namespace LegendOfRico.Data
                     MonsterHit();
                 }
             }
-            else if (FightMessage != "Vous ne pouvez plus lancer ce sort ! " && (Player2 == null || Player2.CurrentHitPoints <= 0)) //Le monstre passe son tour si le joueur est con
+            else if (FightMessage != "Vous ne pouvez plus lancer ce sort ! " && (Player.PartyMember == null || Player.PartyMember.CurrentHitPoints <= 0)) //Le monstre passe son tour si le joueur est con
             {
                 MonsterHit();
             }
-            else if (game.MonsterFight.IsFrozen && (Player2 == null || Player2.CurrentHitPoints <= 0)) //Le monstre ne joue pas si gelé
+            else if (game.MonsterFight.IsFrozen && (Player.PartyMember == null || Player.PartyMember.CurrentHitPoints <= 0)) //Le monstre ne joue pas si gelé
             {
                 FightMessage += "Vous avez gelé la cible !";
                 game.MonsterFight.Frozen(); //dégèle
@@ -203,7 +215,7 @@ namespace LegendOfRico.Data
 
         public void ActionPlayer2(Spells spell, Game game)
         {
-            FightMessage = spell.UseSpell(Player2, MonsterFight);
+            FightMessage = spell.UseSpell(Player.PartyMember, MonsterFight);
             FightMessage += " ";
             Turncount++;
 
@@ -242,7 +254,7 @@ namespace LegendOfRico.Data
                 FightMessage = Player.Hit(target);
                 FightMessage += " ";
                 Turncount++;
-                if (Player2 == null || Player2.CurrentHitPoints <= 0)
+                if (Player.PartyMember == null || Player.PartyMember.CurrentHitPoints <= 0)
                 {
                     Turncount++;
                 }
@@ -251,7 +263,7 @@ namespace LegendOfRico.Data
             {
                 FightVictory();
             }
-            else if (game.MonsterFight.IsBurning && (Player2 == null || Player2.CurrentHitPoints <= 0)) //Le monstre perd 10% hp si il brûle
+            else if (game.MonsterFight.IsBurning && (Player.PartyMember == null || Player.PartyMember.CurrentHitPoints <= 0)) //Le monstre perd 10% hp si il brûle
             {
                 FightMessage += "La cible brûle et subit " + game.MonsterFight.BurnTic() + " points de dégâts ! ";
                 if (game.MonsterFight.MonsterCurrentHP <= 0) //Check si meurt avec brûlure
@@ -263,11 +275,11 @@ namespace LegendOfRico.Data
                     MonsterHit();
                 }
             }
-            else if (FightMessage != "Vous ne pouvez plus lancer ce sort ! " && (Player2 == null || Player2.CurrentHitPoints <= 0)) //Le monstre passe son tour si le joueur est con
+            else if (FightMessage != "Vous ne pouvez plus lancer ce sort ! " && (Player.PartyMember == null || Player.PartyMember.CurrentHitPoints <= 0)) //Le monstre passe son tour si le joueur est con
             {
                 MonsterHit();
             }
-            else if (game.MonsterFight.IsFrozen && (Player2 == null || Player2.CurrentHitPoints <= 0)) //Le monstre ne joue pas si gelé
+            else if (game.MonsterFight.IsFrozen && (Player.PartyMember == null || Player.PartyMember.CurrentHitPoints <= 0)) //Le monstre ne joue pas si gelé
             {
                 FightMessage += "Vous avez gelé la cible !";
                 game.MonsterFight.Frozen(); //dégèle
@@ -276,7 +288,7 @@ namespace LegendOfRico.Data
 
         public void UseWeaponPlayer2(Monster target, Game game)
         {
-            FightMessage = Player2.Hit(target);
+            FightMessage = Player.PartyMember.Hit(target);
             FightMessage += " ";
             Turncount++;
             if (game.MonsterFight.MonsterCurrentHP <= 0)
@@ -316,7 +328,10 @@ namespace LegendOfRico.Data
                 GameMap.MapLayout[246][250].ChanceToTriggerFight = 0.0;
             }
             Player.CurrentXp += MonsterFight.XpGranted;
-            Player2.CurrentXp += MonsterFight.XpGranted;
+            if(Player.PartyMember != null)
+            {
+                Player.PartyMember.CurrentXp += MonsterFight.XpGranted;
+            }
             if (new Random().Next(0, 2) == 1 || MonsterFight.MonsterBreed == TypeOfBreed.RicoChico)
             {
                 Stuff droppedItem = MonsterFight.DropItem();
@@ -328,9 +343,9 @@ namespace LegendOfRico.Data
             {
                 LevelUp(Player);
             }
-            if (Player2.CurrentXp >= Player2.XpToLevel)
+            if (Player.PartyMember != null && Player.PartyMember.CurrentXp >= Player.PartyMember.XpToLevel)
             {
-                LevelUp(Player2);
+                LevelUp(Player.PartyMember);
             }
         }
 
@@ -360,9 +375,9 @@ namespace LegendOfRico.Data
             else
             {
                 int whoGetsHit = new Random().Next(0, 2);
-                if(whoGetsHit == 0 && Player2.CurrentHitPoints > 0)
+                if(Player.PartyMember != null && whoGetsHit == 0 && Player.PartyMember.CurrentHitPoints > 0)
                 {
-                    FightMessage += MonsterFight.Hit(Player2);
+                    FightMessage += MonsterFight.Hit(Player.PartyMember);
                 }
                 else
                 {
@@ -404,17 +419,28 @@ namespace LegendOfRico.Data
         public void PartyRest()
         {
             Player.Rest();
-            Player2.Rest();
+            if(Player.PartyMember != null)
+            {
+                Player.PartyMember.Rest();
+            }
         }
 
         public void Recrut(Character player)
         {
-            Player2 = player;
+            Player.PartyMember = player;
+            player.PartyMember = Player;
+            while(player.Level < Player.Level)
+            {
+                player.CurrentXp = player.XpToLevel;
+                LevelUp(player);
+            }
+            player.CurrentXp = Player.CurrentXp;
+            player.Rest();
         }
 
         public void Solo()
         {
-            Player2 = null;
+            Player.PartyMember = null;
         }
 
 

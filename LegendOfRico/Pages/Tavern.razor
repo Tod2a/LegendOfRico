@@ -9,9 +9,9 @@
                 <p class="TavernSpeak">Vous vous sentez seul, vous trouverez peut-être de la compagnie dans cette taverne.</p>
             </div>
             <div class="TavernShowcase">
-                @if (Game.Player2 != null)
+                @if (Game.Player.PartyMember != null)
                 {
-                    <div class="TavernMatesButton"><button @onclick="Solo">Virer @Game.Player2.Name</button></div>
+                    <div class="TavernMatesButton"><button @onclick="Solo">Virer @Game.Player.PartyMember.Name</button></div>
                 }
                 @foreach(var mates in Game.Tavernist.CharactersToRecruit)
                 {

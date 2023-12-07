@@ -6,7 +6,7 @@
         public override int MonsterHP { get; set; } = 15;
         public override int MonsterCurrentHP { get; set; } = 15;
         public override string fightImgUrl { get; set; } = "img/monster/Dog/bulldog.png";
-        public override int XpGranted { get; set; } = 1050;
+        public override int XpGranted { get; set; } = 50;
         public override int PetMinDamage { get; protected set; } = 5;
         public override int PetMaxDamage { get; protected set; } = 10;
         public override List<Stuff> LootTable { get; protected set; } = new List<Stuff>() { 

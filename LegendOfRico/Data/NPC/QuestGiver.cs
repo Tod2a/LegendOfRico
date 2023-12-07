@@ -10,7 +10,6 @@
             NPCName = nPCName;
             Quests = new List<Quest>()
             {
-                new FightQuest("Chasse un chien", "va dans les plaines et chasse un chien", TypeOfBreed.Dog, 10, 10) 
             };
         }
 
