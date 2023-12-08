@@ -6,7 +6,7 @@
         public string Description { get; protected set; }
         public int XpReward { get; protected set; } 
         public int CoinsReward { get; protected set; } 
-        public bool status { get; set; } = false;
+        public bool Status { get; set; } = false;
         public virtual TypeOfBreed Target { get; set; } = TypeOfBreed.Null;
         public Quest(string questName, string description, int xpreward, int coinreward)
         {

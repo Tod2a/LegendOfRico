@@ -1,6 +1,71 @@
 ﻿@using LegendOfRico.Data
 
-<button @onclick="Valid">Valid quest</button>
+<div class="layoutGame" @onkeydown="HandleKeyDown" @onkeydown:preventDefault=true tabindex="0">
+    <div class="displayGame">
+        <div class="gameMenu">
+            <p>Nombre à collecter: @Game.Player.CollectQuest.CurrentTarget</p>
+            @if (Game.Player.CollectQuest.QuestEnd && Game.Player.CollectQuest.CurrentTarget == 0)
+            {
+                <p><button @onclick="Valid">Valid quest</button></p>
+            }
+            <p><button @onclick="Quit">Quitter</button></p>
+        </div>
+        <div class="mapDisplay">
+            @if (!Game.Player.CollectQuest.QuestEnd)
+            {
+                <table border="1" class="CollectMap">
+                    @for (int i = 0; i < 10; i++)
+                    {
+                        <tr>
+                            @for (int j = 0; j < 10; j++)
+                            {
+                                @if (i == Game.Player.CollectPosI && j == Game.Player.CollectPosJ)
+                                {
+                                    <td>
+                                        <div style="background-image: url('@Game.Player.CollectQuest.CollectMap[i][j].SquareBiome.ImageUrl');">
+                                            <img src="@Game.Player.MapSprite" alt="Image Player" class="character-image">
+                                        </div>
+                                    </td>
+                                }
+                                else if (Game.Player.CollectQuest.CollectMap[i][j].HasQuestTarget)
+                                {
+                                    <td>
+                                        <div style="background-image: url('@Game.Player.CollectQuest.CollectMap[i][j].SquareBiome.ImageUrl');">
+                                            <img src="@Game.Player.CollectQuest.TargetUrl" alt="Image Target" class="character-image">
+                                        </div>
+                                    </td>
+                                }
+                                else if (Game.Player.CollectQuest.CollectMap[i][j].HasMonsterCollectQuest)
+                                {
+                                    <td>
+                                        <div style="background-image: url('@Game.Player.CollectQuest.CollectMap[i][j].SquareBiome.ImageUrl');">
+                                            <img src="@Game.Player.CollectQuest.MonsterUrl" alt="Image Monstre" class="character-image">
+                                        </div>
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        <div style="background-image: url('@Game.Player.CollectQuest.CollectMap[i][j].SquareBiome.ImageUrl');"></div>
+                                    </td>
+                                }
+
+                            }
+                        </tr>
+                    }
+                </table>
+            }
+            else if (Game.Player.CollectQuest.QuestEnd && Game.Player.CollectQuest.CurrentTarget > 0)
+            {
+                <p>Vous êtes tombé sur un monstre, essayez encore</p>
+            }
+            else 
+            {
+                <p>Vous avez tout collecté, bravo</p>
+            }
+        </div>
+    </div>
+</div>
 
 @code {
     [Parameter]
@@ -12,7 +77,42 @@
 
     void Valid ()
     {
+        Game.ValidQuestCollect();
+        TypeOfShowChange.InvokeAsync();
+    }
+
+    void Quit()
+    {
+        Game.Player.CollectPosI = 0;
+        Game.Player.CollectPosJ = 5;
+        Game.Player.CollectQuest.QuestEnd = false;
+        Game.Player.CollectQuest.CurrentTarget = 10;
         Game.FormShow = TypeOfShow.Map;
         TypeOfShowChange.InvokeAsync();
+    }
+
+    private void HandleKeyDown(KeyboardEventArgs e)
+    {
+
+        switch (e.Key)
+        {
+            case "ArrowLeft":
+                Game.GoLeftCollect();
+                TypeOfShowChange.InvokeAsync();
+                break;
+            case "ArrowRight":
+                Game.GoRightCollect();
+                TypeOfShowChange.InvokeAsync();
+                break;
+            case "ArrowUp":
+                Game.GoUpCollect();
+                TypeOfShowChange.InvokeAsync();
+                break;
+            case "ArrowDown":
+                Game.GoDownCollect();
+                TypeOfShowChange.InvokeAsync();
+                break;
+        }
+        Game.GameMap.UpdateMapDisplay(Game.Player);
     }
 }

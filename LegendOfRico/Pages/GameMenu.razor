@@ -1,7 +1,7 @@
 ﻿@using LegendOfRico.Data
 
 <div class="gameMenu">
-    @if(Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].IsACollectDestination)
+    @if(Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].IsACollectDestination && Game.FormShow == TypeOfShow.Map)
     {
         <button @onclick="StartCollect">Collecter</button>
     }
@@ -96,6 +96,8 @@
 
     void StartCollect ()
     {
+        Game.Player.SetCollectQuest();
+        Game.Player.CollectQuest.DisplayMap();
         Game.FormShow = TypeOfShow.Collect;
         TypeOfShowChange.InvokeAsync();
     }

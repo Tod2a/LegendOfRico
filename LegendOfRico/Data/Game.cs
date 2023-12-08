@@ -356,11 +356,35 @@ namespace LegendOfRico.Data
             {
                 if (MonsterFight.MonsterBreed == quest.Target)
                 {
-                    quest.status = true;
+                    quest.Status = true;
                     message = " Cela vous permet aussi de valider une quête. ";
                 }
             }
             return message;
+        }
+
+        private void CheckCollectQuest()
+        {
+            if (Player.CollectQuest.CollectMap[Player.CollectPosI][Player.CollectPosJ].HasMonsterCollectQuest)
+            {
+                Player.CollectQuest.QuestEnd = true;
+            }
+            else if (Player.CollectQuest.CollectMap[Player.CollectPosI][Player.CollectPosJ].HasQuestTarget)
+            {
+                Player.CollectQuest.CollectMap[Player.CollectPosI][Player.CollectPosJ].HasQuestTarget = false;
+                Player.CollectQuest.CurrentTarget--;
+                if (Player.CollectQuest.CurrentTarget == 0)
+                {
+                    Player.CollectQuest.QuestEnd = true;
+                }
+            }
+        }
+
+        public void ValidQuestCollect()
+        {
+            Player.CollectQuest.Status = true;
+            GameMap.MapLayout[Player.PositionI][Player.PositionJ].IsACollectDestination = false;
+            FormShow = TypeOfShow.Map;
         }
 
         public void MonsterHit()
@@ -446,59 +470,95 @@ namespace LegendOfRico.Data
 
 
         //Gestion de déplacement et de trigger fight
-        public void GoUp(Game game)
+        public void GoUp()
         {
             if (ShowQuestGiver)
             {
                 SwitchShowInventoryList();
             }
-            if (game.Player.PositionI > 0)
+            if (Player.PositionI > 0)
             {
-                game.Player.PositionI--;
+                Player.PositionI--;
                 GameMap.UpdateMapDisplay(Player);
                 IsFight(GameMap.MapLayout[Player.PositionI][Player.PositionJ]);
             }
         }
 
-        public void GoDown(Game game)
+        public void GoDown()
         {
             if (ShowQuestGiver)
             {
                 SwitchShowInventoryList();
             }
-            if (game.Player.PositionI < 499)
+            if (Player.PositionI < 499)
             {
-                game.Player.PositionI++;
+                Player.PositionI++;
                 GameMap.UpdateMapDisplay(Player);
                 IsFight(GameMap.MapLayout[Player.PositionI][Player.PositionJ]);
             }
         }
 
-        public void GoLeft(Game game)
+        public void GoLeft()
         {
             if (ShowQuestGiver)
             {
                 SwitchShowInventoryList();
             }
-            if (game.Player.PositionJ > 0)
+            if (Player.PositionJ > 0)
             {
-                game.Player.PositionJ--;
+                Player.PositionJ--;
                 GameMap.UpdateMapDisplay(Player);
                 IsFight(GameMap.MapLayout[Player.PositionI][Player.PositionJ]);
             }
         }
 
-        public void GoRight(Game game)
+        public void GoRight()
         {
             if (ShowQuestGiver)
             {
                 SwitchShowInventoryList();
             }
-            if (game.Player.PositionJ < 499)
+            if (Player.PositionJ < 499)
             {
-                game.Player.PositionJ++;
+                Player.PositionJ++;
                 GameMap.UpdateMapDisplay(Player);
                 IsFight(GameMap.MapLayout[Player.PositionI][Player.PositionJ]);
+            }
+        }
+
+        public void GoUpCollect()
+        {
+            if(Player.CollectPosI > 0)
+            {
+                Player.CollectPosI--;
+                CheckCollectQuest();
+            }
+        }
+
+        public void GoDownCollect()
+        {
+            if (Player.CollectPosI < 9)
+            {
+                Player.CollectPosI++;
+                CheckCollectQuest();
+            }
+        }
+
+        public void GoLeftCollect()
+        {
+            if (Player.CollectPosJ > 0)
+            {
+                Player.CollectPosJ--;
+                CheckCollectQuest();
+            }
+        }
+
+        public void GoRightCollect()
+        {
+            if (Player.CollectPosJ < 9)
+            {
+                Player.CollectPosJ++;
+                CheckCollectQuest();
             }
         }
     }

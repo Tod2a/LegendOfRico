@@ -19,6 +19,14 @@
                                     </div>
                                 </td>
                             }
+                            else if (Game.GameMap.MapLayout[i][j].IsACollectDestination)
+                            {
+                                <td>
+                                    <div style="background-image: url('@Game.GameMap.MapLayout[i][j].SquareBiome.ImageUrl');">
+                                        <img src="img/Collect/etoile.png" alt="Image Cible" class="character-image">
+                                    </div>
+                                </td>
+                            }
                             else
                             {
                                 <td>
@@ -65,7 +73,7 @@
                 {
                 <p data-toggle="tooltip" data-placement="top" title="@quest.Description" class="questTaget">
                     @quest.QuestName 
-                        @if (quest.status) {<button @onclick="() => Game.ValidQuest(quest)">Valider</button>}
+                        @if (quest.Status) {<button @onclick="() => Game.ValidQuest(quest)">Valider</button>}
                     </p>
                 }
             </p>
@@ -81,7 +89,7 @@
                     {
                     <p data-toggle="tooltip" data-placement="top" title="@quest.Description" class="questTaget">
                             @quest.QuestName
-                            <button @onclick="() => Game.TakeQuest(quest)">Valider</button>                            
+                            <button @onclick="() => TakeQuest(quest)">Valider</button>                            
                     </p>
                     }
                 }
@@ -99,8 +107,12 @@
     [Parameter]
     public EventCallback TypeOfShowChange { get; set; }
 
-   
 
+    void TakeQuest(Quest quest)
+    {
+        Game.TakeQuest(quest);
+        TypeOfShowChange.InvokeAsync();
+    }
 
     //Fonction de gestion des bouton clavier
     private void HandleKeyDown(KeyboardEventArgs e)
@@ -109,19 +121,19 @@
         switch (e.Key)
         {
             case "ArrowLeft":
-                Game.GoLeft(Game);
+                Game.GoLeft();
                 TypeOfShowChange.InvokeAsync();
                 break;
             case "ArrowRight":
-                Game.GoRight(Game);
+                Game.GoRight();
                 TypeOfShowChange.InvokeAsync();
                 break;
             case "ArrowUp":
-                Game.GoUp(Game);
+                Game.GoUp();
                 TypeOfShowChange.InvokeAsync();
                 break;
             case "ArrowDown":
-                Game.GoDown(Game);
+                Game.GoDown();
                 TypeOfShowChange.InvokeAsync();
                 break;
         }

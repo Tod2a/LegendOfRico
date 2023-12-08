@@ -9,14 +9,14 @@ public abstract class Character : INotifyPropertyChanged
     private int level = 1;
     public int Level {
         get { return level; }
-        set 
+        set
         {
             if (level != value)
             {
                 level = value;
                 CheckLearnSpell();
             }
-        } 
+        }
     }
     public int RecruitingPrice { get; set; }
     public int CurrentXp { get; set; } = 0;
@@ -35,6 +35,7 @@ public abstract class Character : INotifyPropertyChanged
     public List<Consumable> ConsumableInventory { get; private set; }
     public List<Stuff> StuffInventory { get; private set; }
     public List<Quest> QuestsBook { get; set; }
+    public CollectQuest CollectQuest { get; set; }
     public abstract Boolean CanEquipShield { get; set; }
     public virtual Beast Pet { get; set; } = new Bulldog();
     public int Coins { get; private set; } = 0;
@@ -56,14 +57,15 @@ public abstract class Character : INotifyPropertyChanged
     public abstract TypeOfArmor ArmorMastery { get; }
     public int lastRestVillageI { get; set; } = 250;
     public int LastRestVillageJ { get; set; } = 250;
-    private int positionI = 250;
     public Boolean IsFrozen { get; private set; } = false;
     public Boolean IsBurning { get; private set; } = false;
     public bool Joydead { get; set; } = false;
     public bool Scorpiodead { get; set; } = false;
     public bool Wukongdead { get; set; } = false;
     public bool Tontatondead { get; set; } = false;
-
+    public int CollectPosI = 0;
+    public int CollectPosJ = 5;
+    private int positionI = 250;
 
 
     public int PositionI
@@ -78,7 +80,7 @@ public abstract class Character : INotifyPropertyChanged
             }
         }
     }
-    private int positionJ = 250; 
+    private int positionJ = 250;
 
     public int PositionJ
     {
@@ -94,9 +96,9 @@ public abstract class Character : INotifyPropertyChanged
     }
 
 
-    
+
     protected abstract void CheckLearnSpell();
-    public Character() 
+    public Character()
     {
         ConsumableInventory = new List<Consumable>
         {
@@ -106,7 +108,7 @@ public abstract class Character : INotifyPropertyChanged
             new Potion(3, "Grande potion de soin", 20, 20, 40, 0),
             new Potion(4, "Enorme potion de soin", 40, 40, 80, 0)
         };
-        StuffInventory = new List<Stuff>{};
+        StuffInventory = new List<Stuff> { };
         QuestsBook = new List<Quest>
         {
             new FightQuest("La recherche du scorpion éternel", "Le scorpion éternel se cache au find fond du désert éternel, trouvez le et battez le pour récupérer sa relique", TypeOfBreed.EternalScorpio, 1000, 1000),
@@ -156,7 +158,7 @@ public abstract class Character : INotifyPropertyChanged
             s += "Efficace ! ";
         }
         target.TakeDamage(weaponDamageRoll);
-        s += Name+" frappe et inflige " + weaponDamageRoll + " points de dégats ! ";
+        s += Name + " frappe et inflige " + weaponDamageRoll + " points de dégats ! ";
 
         SetIsRested(false);
         return s;
@@ -178,7 +180,7 @@ public abstract class Character : INotifyPropertyChanged
     {
         int actualDamageTaken = ArmorAmount > damageTaken ? 0 : damageTaken - ArmorAmount;
         CurrentHitPoints -= actualDamageTaken;
-        return " et inflige " + actualDamageTaken + " points de dégats (" + damageTaken+" - "+ArmorAmount+") à "+Name+" ! ";
+        return " et inflige " + actualDamageTaken + " points de dégats (" + damageTaken + " - " + ArmorAmount + ") à " + Name + " ! ";
     }
 
     //Gestion des équipements
@@ -203,7 +205,7 @@ public abstract class Character : INotifyPropertyChanged
     }
     public void EquipStuff(Stuff stuff)
     {
-        if(stuff.TypeOfStuff == TypeOfStuff.Weapon) //Si veut équiper une arme
+        if (stuff.TypeOfStuff == TypeOfStuff.Weapon) //Si veut équiper une arme
         {
             var stuffWeapon = (Weapon)stuff;
             StuffInventory.Remove(stuff);
@@ -234,7 +236,7 @@ public abstract class Character : INotifyPropertyChanged
                         weapon1, stuff);
                 }
             }
-            else if(stuffWeapon.GetType() == typeof(Greatsword))
+            else if (stuffWeapon.GetType() == typeof(Greatsword))
             {
                 UnequipWeapon();
                 UnequipShield();
@@ -259,7 +261,7 @@ public abstract class Character : INotifyPropertyChanged
         {
             var stuffArmor = (Armor)stuff;
 
-            if(stuffArmor.ArmorType <= ArmorMastery)
+            if (stuffArmor.ArmorType <= ArmorMastery)
             {
                 UnequipArmor();
                 CharacterArmor = stuff;
@@ -271,7 +273,7 @@ public abstract class Character : INotifyPropertyChanged
 
     public void UnequipShield()
     {
-        if(!(CharacterShield.GetType() == typeof(FistShield)))
+        if (!(CharacterShield.GetType() == typeof(FistShield)))
         {
             StuffInventory.Add(CharacterShield);
             ArmorAmount -= CharacterShield.ShieldBonusArmor;
@@ -281,7 +283,7 @@ public abstract class Character : INotifyPropertyChanged
 
     public void UnequipWeapon()
     {
-        if(CharacterWeapon.GetType() == typeof(DoubleWeapon))
+        if (CharacterWeapon.GetType() == typeof(DoubleWeapon))
         {
             var ambidextrWeapon = (DoubleWeapon)CharacterWeapon;
             StuffInventory.Add(ambidextrWeapon.Weapon1);
@@ -289,7 +291,7 @@ public abstract class Character : INotifyPropertyChanged
             Statistics -= CharacterWeapon.BonusStats;
             CharacterWeapon = new Fist("Poing", "un poing", 0, 1, 3, 0);
         }
-        else if(CharacterWeapon.GetType() == typeof(Greatsword))
+        else if (CharacterWeapon.GetType() == typeof(Greatsword))
         {
             CanEquipShield = true;
             StuffInventory.Add(CharacterWeapon);
@@ -387,7 +389,7 @@ public abstract class Character : INotifyPropertyChanged
 
     public string GetStatsDisplay()
     {
-        return "Armure : "+ArmorAmount+" | Puissance : "+Statistics;
+        return "Armure : " + ArmorAmount + " | Puissance : " + Statistics;
     }
 
     public void SetIsRested(Boolean isRested)
@@ -398,6 +400,21 @@ public abstract class Character : INotifyPropertyChanged
     public void SetCoins(int coins)
     {
         Coins += coins;
+    }
+
+    public void SetCollectQuest()
+    {
+        foreach(var quest in QuestsBook)
+        {
+            if(quest.GetType() == typeof(CollectQuest)) 
+            {
+                CollectQuest cquest = (CollectQuest)quest;
+                if (PositionI == cquest.PositionI && PositionJ == cquest.PositionJ)
+                {
+                    CollectQuest = cquest;
+                }
+            }
+        }
     }
 
     //gestion du changement des propriété lorsqu'on se déplace sur la carte, permet de réactualiser la carte lors d'un mouvement
