@@ -24,7 +24,7 @@
         {
             return new MonsterHit[]
             {
-                new MonsterHit {Name ="Brulure", MinDamage = 9, MaxDamage = 14},
+                new MonsterHit {Name ="Brulure", MinDamage = 1, MaxDamage = 2, chanceToBurn = 1.0},
                 new MonsterHit { Name = "Lance-Flamme", MinDamage = 15, MaxDamage = 25 }
             };
 

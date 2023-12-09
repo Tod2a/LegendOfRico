@@ -24,8 +24,8 @@
         {
             return new MonsterHit[]
             {
-                new MonsterHit {Name ="Surchauffe", MinDamage = 26, MaxDamage = 35},
-                new MonsterHit { Name = "Déflagration", MinDamage = 36, MaxDamage = 45 }
+                new MonsterHit {Name ="Surchauffe", MinDamage = 26, MaxDamage = 35, chanceToBurn = 0.3},
+                new MonsterHit { Name = "Déflagration", MinDamage = 36, MaxDamage = 45, chanceToBurn = 0.1 }
             };
 
         }
