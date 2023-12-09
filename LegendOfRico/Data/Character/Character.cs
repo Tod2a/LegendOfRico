@@ -29,8 +29,6 @@ public abstract class Character : INotifyPropertyChanged
     public Character PartyMember { get; set; }
     public Boolean IsMainCharacter { get; set; } = true;
     public abstract double ChanceToDodge { get; protected set; }
-    public bool IsBurning { get; set; } = false;
-    public int BurnDuration { get; set; } = 0;
     public abstract Stuff CharacterWeapon { get; set; }
     public abstract Stuff CharacterShield { get; set; }
     public abstract Stuff CharacterArmor { get; set; }
@@ -61,7 +59,8 @@ public abstract class Character : INotifyPropertyChanged
     public int lastRestVillageI { get; set; } = 250;
     public int LastRestVillageJ { get; set; } = 250;
     public Boolean IsFrozen { get; private set; } = false;
-    public Boolean IsBurning { get; private set; } = false;
+    public bool IsBurning { get; set; } = false;
+    public int BurnDuration { get; set; } = 0;
     public Boolean IsProtected { get; private set; } = false;
     public int ProtectDuration { get; private set; } = 0;
     public bool Joydead { get; set; } = false;
