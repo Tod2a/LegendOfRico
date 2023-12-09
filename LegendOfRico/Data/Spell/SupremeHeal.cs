@@ -2,9 +2,12 @@
 
 public class SupremeHeal : Spells
 {
-    public override string SpellName { get; protected set; } = "Soin suprême (1/1)";
-    public override int MaxNumberOfUses => 1;
-    public override int CurrentNumberOfUses { get; protected set; } = 1;
+    public override string SpellName { get; protected set; } = "Soin suprême (5/5)";
+    public override int MaxNumberOfUses => 5;
+    public override int CurrentNumberOfUses { get; protected set; } = 5;
+    public int MinValue => 30;
+    public int MaxValue => 40;
+    public double CritChance = 0.25;
 
     public override string UseSpell(Character player, Monster target)
     {
@@ -12,15 +15,23 @@ public class SupremeHeal : Spells
 
         if (CurrentNumberOfUses > 0)
         {
-            player.ReceiveHeal(player.MaxHitPoints);
+            int healRoll = (new Random()).Next(MinValue, MaxValue + 1);
+            healRoll += (player.Statistics / 50) * healRoll;
+
+            if ((new Random()).NextDouble() <= CritChance)
+            {
+                s += "Coup critique !";
+                healRoll *= 2;
+            }
+            player.ReceiveHeal(healRoll);
             if (player.PartyMember != null)
             {
-                player.PartyMember.ReceiveHeal(player.PartyMember.MaxHitPoints);
-                s += player.Name + " rend tous ses points de vie au groupe ! ";
+                player.PartyMember.ReceiveHeal(healRoll);
+                s += player.Name + " soigne le groupe de " + healRoll + " points de vie ! ";
             }
             else
             {
-                s += player.Name + " s'est rendu tous ses points de vie ! ";
+                s += player.Name + " est soigné de " + healRoll + " points de vie ! ";
             }
 
             CurrentNumberOfUses--;

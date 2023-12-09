@@ -27,11 +27,11 @@ public class GreaterHeal : Spells
             if (player.PartyMember != null)
             {
                 player.PartyMember.ReceiveHeal(healRoll);
-                s += player.Name + " soigne le groupe de " + healRoll + " points de vie!";
+                s += player.Name + " soigne le groupe de " + healRoll + " points de vie ! ";
             }
             else
             {
-                s += player.Name + " est soigné de " + healRoll + " points de vie!";
+                s += player.Name + " est soigné de " + healRoll + " points de vie ! ";
             }
 
             CurrentNumberOfUses--;

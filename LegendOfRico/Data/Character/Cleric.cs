@@ -40,6 +40,10 @@ public class Cleric : Character
         }
         if (Level == 6)
         {
+            SpellBook.Add(new Recons());
+        }
+        if (Level == 7)
+        {
             SpellBook.Add(new DivineIntervention());
         }
     }
