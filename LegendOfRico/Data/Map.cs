@@ -109,72 +109,72 @@ namespace LegendOfRico.Data
         //contenu des pool encore à définir mais divers pool déjà créés pour faire la map
 
         //plaine
-        public List<Type> poolOfPlain = new List<Type> { typeof(Bulldog) };
-        public List<Type> poolOfMediumPlain = new List<Type> { typeof(Americanstaff) };
-        public List<Type> poolOfHardPlain = new List<Type> { typeof(Rottweiler) };
+        public static List<Type> poolOfPlain = new List<Type> { typeof(Bulldog) };
+        public static List<Type> poolOfMediumPlain = new List<Type> { typeof(Americanstaff) };
+        public static List<Type> poolOfHardPlain = new List<Type> { typeof(Rottweiler) };
         //forêt
-        public List<Type> poolOfForest = new List<Type> { typeof(SonOfAragog) };
-        public List<Type> poolOfMediumForest = new List<Type> { typeof(BigSonOfAragog) };
-        public List<Type> poolOfHardForest = new List<Type> { typeof(Aragog) };
-        public List<Type> bossOfForest = new List<Type> { typeof(Sunwukong) };
+        public static List<Type> poolOfForest = new List<Type> { typeof(SonOfAragog) };
+        public static List<Type> poolOfMediumForest = new List<Type> { typeof(BigSonOfAragog) };
+        public static List<Type> poolOfHardForest = new List<Type> { typeof(Aragog) };
+        public static List<Type> bossOfForest = new List<Type> { typeof(Sunwukong) };
         //désert
-        public List<Type> poolOfDesert = new List<Type> { typeof(LittleFlame) };
-        public List<Type> poolOfMediumDesert = new List<Type> { typeof(Flame) };
-        public List<Type> poolOfHardDesert = new List<Type> { typeof(Volcanis) };
-        public List<Type> bossOfDesert = new List<Type> { typeof(EternalScorpio) };
+        public static List<Type> poolOfDesert = new List<Type> { typeof(LittleFlame) };
+        public static List<Type> poolOfMediumDesert = new List<Type> { typeof(Flame) };
+        public static List<Type> poolOfHardDesert = new List<Type> { typeof(Volcanis) };
+        public static List<Type> bossOfDesert = new List<Type> { typeof(EternalScorpio) };
         //Ruines
-        public List<Type> poolOfRuined = new List<Type> { typeof(Racaille), typeof(Nosptipti) };
-        public List<Type> poolOfMediumRuined = new List<Type> { typeof(Gangster), typeof(Nosalto) };
-        public List<Type> poolOfHardRuined = new List<Type> { typeof(Mafieux), typeof(Nosaffraid) };
-        public List<Type> bossOfRuined = new List<Type> { typeof(JoyBean) };
+        public static List<Type> poolOfRuined = new List<Type> { typeof(Racaille), typeof(Nosptipti) };
+        public static List<Type> poolOfMediumRuined = new List<Type> { typeof(Gangster), typeof(Nosalto) };
+        public static List<Type> poolOfHardRuined = new List<Type> { typeof(Mafieux), typeof(Nosaffraid) };
+        public static List<Type> bossOfRuined = new List<Type> { typeof(JoyBean) };
         //cimetiere
-        public List<Type> poolOfGraveyard = new List<Type> { typeof(Fantominet) };
-        public List<Type> poolOfMediumGraveyard = new List<Type> { typeof(Spectre) };
-        public List<Type> poolOfHardGraveyard = new List<Type> { typeof(Cauchemar) };
-        public List<Type> bossOfGraveyard = new List<Type> { typeof(Cheftontaton) };
+        public static List<Type> poolOfGraveyard = new List<Type> { typeof(Fantominet) };
+        public static List<Type> poolOfMediumGraveyard = new List<Type> { typeof(Spectre) };
+        public static List<Type> poolOfHardGraveyard = new List<Type> { typeof(Cauchemar) };
+        public static List<Type> bossOfGraveyard = new List<Type> { typeof(Cheftontaton) };
         //village
-        public List<Type> poolOfVillage = new List<Type> {  };
-        public List<Type> bossOfVillage = new List<Type> { typeof(RicoChico) };
+        public static List<Type> poolOfVillage = new List<Type> {  };
+        public static List<Type> bossOfVillage = new List<Type> { typeof(RicoChico) };
 
         //création des différents Biomes 3 par types pour les différentes images, un pour les cases dangereuses et un pour les boss
         //sauf pour le village et la plaine
 
         //Plaine
-        public Biomes plain => new Biomes(TypeOfBiome.Plain, poolOfPlain, "img/biomes/plaine.png", "img/layout/fondFightPlaine.png");
-        public Biomes plain1 => new Biomes(TypeOfBiome.Plain, poolOfPlain, "img/biomes/plaine1.png", "img/layout/fondFightPlaine.png");
-        public Biomes plain2 => new Biomes(TypeOfBiome.Plain, poolOfPlain, "img/biomes/plaine2.png", "img/layout/fondFightPlaine.png");
+        public Biomes plain = new Biomes(TypeOfBiome.Plain, poolOfPlain, "img/biomes/plaine.png", "img/layout/fondFightPlaine.png");
+        public Biomes plain1 = new Biomes(TypeOfBiome.Plain, poolOfPlain, "img/biomes/plaine1.png", "img/layout/fondFightPlaine.png");
+        public Biomes plain2 = new Biomes(TypeOfBiome.Plain, poolOfPlain, "img/biomes/plaine2.png", "img/layout/fondFightPlaine.png");
         //forêt
-        public Biomes forest => new Biomes (TypeOfBiome.Forest,  poolOfForest, "img/biomes/foret.png", "img/layout/fondFightBois.png" );
-        public Biomes forest1 => new Biomes (TypeOfBiome.Forest, poolOfForest, "img/biomes/foret1.png", "img/layout/fondFightBois.png");
-        public Biomes forest2 => new Biomes (TypeOfBiome.Forest, poolOfForest, "img/biomes/foret2.png", "img/layout/fondFightBois.png");
-        public Biomes forest3 => new Biomes (TypeOfBiome.ForestDifficult, poolOfForest, "img/biomes/foret3.png", "img/layout/fondFightBois.png");
-        public Biomes bossForest => new Biomes (TypeOfBiome.Forest, bossOfForest, "img/biomes/foretBoss.png", "img/layout/fondFightBossBois.png");
+        public Biomes forest = new Biomes (TypeOfBiome.Forest,  poolOfForest, "img/biomes/foret.png", "img/layout/fondFightBois.png" );
+        public Biomes forest1 = new Biomes (TypeOfBiome.Forest, poolOfForest, "img/biomes/foret1.png", "img/layout/fondFightBois.png");
+        public Biomes forest2 = new Biomes (TypeOfBiome.Forest, poolOfForest, "img/biomes/foret2.png", "img/layout/fondFightBois.png");
+        public Biomes forest3 = new Biomes (TypeOfBiome.ForestDifficult, poolOfForest, "img/biomes/foret3.png", "img/layout/fondFightBois.png");
+        public Biomes bossForest = new Biomes (TypeOfBiome.Forest, bossOfForest, "img/biomes/foretBoss.png", "img/layout/fondFightBossBois.png");
         //désert
-        public Biomes desert => new Biomes (TypeOfBiome.Desert, poolOfDesert, "img/biomes/desert.png", "img/layout/fondFightDesert.png");
-        public Biomes desert1 => new Biomes (TypeOfBiome.Desert, poolOfDesert, "img/biomes/desert1.png", "img/layout/fondFightDesert.png");
-        public Biomes desert2 => new Biomes (TypeOfBiome.Desert, poolOfDesert, "img/biomes/desert2.png", "img/layout/fondFightDesert.png");
-        public Biomes desert3 => new Biomes (TypeOfBiome.DesertDifficult, poolOfDesert, "img/biomes/desert3.png", "img/layout/fondFightDesert.png");
-        public Biomes desert4 => new Biomes (TypeOfBiome.DesertDifficult, poolOfDesert, "img/biomes/desert4.png", "img/layout/fondFightDesert.png");
-        public Biomes desert5 => new Biomes (TypeOfBiome.DesertDifficult, poolOfDesert, "img/biomes/desert5.png", "img/layout/fondFightDesert.png");
-        public Biomes bossDesert => new Biomes (TypeOfBiome.Desert, bossOfDesert, "img/biomes/desertBoss.png", "img/layout/fondFightBossDesert.png");
+        public Biomes desert = new Biomes (TypeOfBiome.Desert, poolOfDesert, "img/biomes/desert.png", "img/layout/fondFightDesert.png");
+        public Biomes desert1 = new Biomes (TypeOfBiome.Desert, poolOfDesert, "img/biomes/desert1.png", "img/layout/fondFightDesert.png");
+        public Biomes desert2 = new Biomes (TypeOfBiome.Desert, poolOfDesert, "img/biomes/desert2.png", "img/layout/fondFightDesert.png");
+        public Biomes desert3 = new Biomes (TypeOfBiome.DesertDifficult, poolOfDesert, "img/biomes/desert3.png", "img/layout/fondFightDesert.png");
+        public Biomes desert4 = new Biomes (TypeOfBiome.DesertDifficult, poolOfDesert, "img/biomes/desert4.png", "img/layout/fondFightDesert.png");
+        public Biomes desert5 = new Biomes (TypeOfBiome.DesertDifficult, poolOfDesert, "img/biomes/desert5.png", "img/layout/fondFightDesert.png");
+        public Biomes bossDesert = new Biomes (TypeOfBiome.Desert, bossOfDesert, "img/biomes/desertBoss.png", "img/layout/fondFightBossDesert.png");
         //ruines
-        public Biomes ruinedVillage => new Biomes (TypeOfBiome.AbandonedVillage, poolOfRuined, "img/biomes/ruine.png", "img/layout/fondFightRuine.png");
-        public Biomes ruinedVillage1 => new Biomes (TypeOfBiome.AbandonedVillage, poolOfRuined, "img/biomes/ruine1.png", "img/layout/fondFightRuine.png");
-        public Biomes ruinedVillage2 => new Biomes (TypeOfBiome.AbandonedVillage, poolOfRuined, "img/biomes/ruine2.png", "img/layout/fondFightRuine.png");
-        public Biomes ruinedVillage3 => new Biomes (TypeOfBiome.AbandonedVillageDifficult, poolOfRuined, "img/biomes/ruine3.png", "img/layout/fondFightRuine.png");
-        public Biomes bossRuinedVillage => new Biomes (TypeOfBiome.AbandonedVillage, bossOfRuined, "img/biomes/ruineBoss.png", "img/layout/fondFightBossRuine.png");
+        public Biomes ruinedVillage = new Biomes (TypeOfBiome.AbandonedVillage, poolOfRuined, "img/biomes/ruine.png", "img/layout/fondFightRuine.png");
+        public Biomes ruinedVillage1 = new Biomes (TypeOfBiome.AbandonedVillage, poolOfRuined, "img/biomes/ruine1.png", "img/layout/fondFightRuine.png");
+        public Biomes ruinedVillage2 = new Biomes (TypeOfBiome.AbandonedVillage, poolOfRuined, "img/biomes/ruine2.png", "img/layout/fondFightRuine.png");
+        public Biomes ruinedVillage3 = new Biomes (TypeOfBiome.AbandonedVillageDifficult, poolOfRuined, "img/biomes/ruine3.png", "img/layout/fondFightRuine.png");
+        public Biomes bossRuinedVillage = new Biomes (TypeOfBiome.AbandonedVillage, bossOfRuined, "img/biomes/ruineBoss.png", "img/layout/fondFightBossRuine.png");
         //cimetiere
-        public Biomes graveyard => new Biomes (TypeOfBiome.Graveyard, poolOfGraveyard, "img/biomes/cimetiere.png", "img/layout/fondFightCimetiere.png");
-        public Biomes graveyard1 => new Biomes (TypeOfBiome.Graveyard, poolOfGraveyard, "img/biomes/cimetiere1.png", "img/layout/fondFightCimetiere.png");
-        public Biomes graveyard2 => new Biomes (TypeOfBiome.Graveyard, poolOfGraveyard, "img/biomes/cimetiere2.png", "img/layout/fondFightCimetiere.png");
-        public Biomes graveyard3 => new Biomes (TypeOfBiome.GraveyardDifficult, poolOfGraveyard, "img/biomes/cimetiere3.png", "img/layout/fondFightCimetiere.png");
-        public Biomes bossGraveyard => new Biomes (TypeOfBiome.Graveyard, bossOfGraveyard, "img/biomes/cimetiereBoss.png", "img/layout/fondFightBossCimetiere.png");
+        public Biomes graveyard = new Biomes (TypeOfBiome.Graveyard, poolOfGraveyard, "img/biomes/cimetiere.png", "img/layout/fondFightCimetiere.png");
+        public Biomes graveyard1 = new Biomes (TypeOfBiome.Graveyard, poolOfGraveyard, "img/biomes/cimetiere1.png", "img/layout/fondFightCimetiere.png");
+        public Biomes graveyard2 = new Biomes (TypeOfBiome.Graveyard, poolOfGraveyard, "img/biomes/cimetiere2.png", "img/layout/fondFightCimetiere.png");
+        public Biomes graveyard3 = new Biomes (TypeOfBiome.GraveyardDifficult, poolOfGraveyard, "img/biomes/cimetiere3.png", "img/layout/fondFightCimetiere.png");
+        public Biomes bossGraveyard = new Biomes (TypeOfBiome.Graveyard, bossOfGraveyard, "img/biomes/cimetiereBoss.png", "img/layout/fondFightBossCimetiere.png");
         //village
-        public Biomes village => new Biomes (TypeOfBiome.Village, poolOfVillage, "img/biomes/village.png", "img/layout/fondFightBossVillage.png");
-        public Biomes village2 => new Biomes (TypeOfBiome.Village, poolOfVillage, "img/biomes/village2.png", "img/layout/fondFightBossVillage.png");
-        public Biomes village3 => new Biomes (TypeOfBiome.Village, poolOfVillage, "img/biomes/village3.png", "img/layout/fondFightBossVillage.png");
-        public Biomes village4 => new Biomes(TypeOfBiome.Village, poolOfVillage, "img/biomes/village4.png", "img/layout/fondFightBossVillage.png");
-        public Biomes bossVillage => new Biomes(TypeOfBiome.Village, bossOfVillage, "img/biomes/villageBoss.png", "img/layout/fondFightBossVillage.png");
+        public Biomes village = new Biomes (TypeOfBiome.Village, poolOfVillage, "img/biomes/village.png", "img/layout/fondFightBossVillage.png");
+        public Biomes village2 = new Biomes (TypeOfBiome.Village, poolOfVillage, "img/biomes/village2.png", "img/layout/fondFightBossVillage.png");
+        public Biomes village3 = new Biomes (TypeOfBiome.Village, poolOfVillage, "img/biomes/village3.png", "img/layout/fondFightBossVillage.png");
+        public Biomes village4 = new Biomes(TypeOfBiome.Village, poolOfVillage, "img/biomes/village4.png", "img/layout/fondFightBossVillage.png");
+        public Biomes bossVillage = new Biomes(TypeOfBiome.Village, bossOfVillage, "img/biomes/villageBoss.png", "img/layout/fondFightBossVillage.png");
 
 
         private void TrippleSquare(int minI, int maxI, int minJ, int maxJ, Square[][] mapLayout, TypeOfBiome tBiome, string Name, double cTrigger)
