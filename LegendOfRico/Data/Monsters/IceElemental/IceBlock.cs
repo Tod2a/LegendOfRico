@@ -1,6 +1,6 @@
 ﻿namespace LegendOfRico.Data
 {
-    public class IceBlock: IceElemental
+    public class IceBlock : IceElemental
     {
         public override string MonsterName { get; set; } = "Bloc de glace";
         public override int MonsterHP { get; set; } = 100;
@@ -28,4 +28,6 @@
                 new MonsterHit { Name = "Chute de glace", MinDamage = 15, MaxDamage = 25 }
             };
         }
+    }
 }
+

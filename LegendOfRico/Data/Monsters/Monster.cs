@@ -14,12 +14,13 @@ public abstract class Monster
     public abstract TypeOfBreed MonsterBreed { get; set; }
     public virtual List<Stuff> LootTable { get; protected set; } = new List<Stuff>();
     public abstract int XpGranted { get; set; }
-    public MonsterHit MonsterHit { get; set; }
+    public MonsterHit MonsterHit { get; set; } = new MonsterHit();
     public abstract MonsterHit[] HitTable { get; set; }
     public Boolean IsBurning { get; private set; }
     public int BurnDuration { get; private set; }
     public Boolean IsFrozen { get; private set;}
     public abstract string fightImgUrl {  get; set; }
+    public bool IsCold { get; set; } = false;
     
     public void TakeDamage(int damageReceived)
     {

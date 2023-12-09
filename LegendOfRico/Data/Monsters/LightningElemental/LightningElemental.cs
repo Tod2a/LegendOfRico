@@ -14,4 +14,4 @@
         protected abstract MonsterHit[] BuildHitTable();
     }
 }
-}
+ 
