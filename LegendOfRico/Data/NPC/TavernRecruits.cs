@@ -13,27 +13,32 @@
                 new Fighter
                 {
                     Name = "Kévin",
-                    RecruitingPrice = 1
+                    RecruitingPrice = 1,
+                    IsMainCharacter = false
                 },
                 new Wizard
                 {
                     Name = "Killian",
-                    RecruitingPrice = 1
+                    RecruitingPrice = 1,
+                    IsMainCharacter = false
                 },
                 new Rogue
                 {
                     Name = "Dark Sasuke",
-                    RecruitingPrice = 1
+                    RecruitingPrice = 1,
+                    IsMainCharacter = false
                 },
                 new Ranger
                 {
                     Name = "Thomas",
-                    RecruitingPrice = 1
+                    RecruitingPrice = 1,
+                    IsMainCharacter = false
                 },
                 new Cleric
                 {
                     Name = "Patrick",
-                    RecruitingPrice = 1
+                    RecruitingPrice = 1,
+                    IsMainCharacter = false
                 },
 
                 //Recrue débutante
@@ -45,7 +50,8 @@
                     CharacterArmor = new Armor("Armure en bronze", "Lourd | Armure : 4", 100, TypeOfArmor.Heavy, 4),
                     ArmorAmount = 4,
                     CanEquipShield = false,
-                    RecruitingPrice = 150
+                    RecruitingPrice = 150,
+                    IsMainCharacter = false
                 },
                 new Wizard
                 {
@@ -54,7 +60,8 @@
                     CharacterArmor = new Armor("Armure en jute", "Léger | Armure : 2", 50, TypeOfArmor.Light, 2),
                     ArmorAmount = 2,
                     Statistics = 2,
-                    RecruitingPrice = 150
+                    RecruitingPrice = 150,
+                    IsMainCharacter = false
                 },
                 new Rogue
                 {
@@ -63,7 +70,8 @@
                         ,0,3,9,0,new Dagger("Dague en bronze", "(2 - 6)", 50, 3, 6, 0),new Dagger("Dague en bronze", "(2 - 6)", 50, 3, 6, 0)),
                     CharacterArmor = new Armor("Armure en cuir brute", "Moyen | Armure : 3", 75, TypeOfArmor.Medium, 3),
                     ArmorAmount = 3,
-                    RecruitingPrice = 150
+                    RecruitingPrice = 150,
+                    IsMainCharacter = false
                 },
                 new Ranger
                 {
@@ -71,7 +79,8 @@
                     CharacterWeapon = new Bow("Arc en frêne", "(5 - 8)", 50, 5, 8, 0),
                     CharacterArmor = new Armor("Armure en cuir brute", "Moyen | Armure : 3", 75, TypeOfArmor.Medium, 3),
                     ArmorAmount = 3,
-                    RecruitingPrice = 150
+                    RecruitingPrice = 150,
+                    IsMainCharacter = false
                 },
                 new Cleric
                 {
@@ -80,7 +89,8 @@
                     CharacterShield = new Shield("Bouclier en bronze", "Amure : 5", 50, 5),
                     CharacterArmor = new Armor("Armure en cuir brute", "Moyen | Armure : 3", 75, TypeOfArmor.Medium, 3),
                     ArmorAmount = 8,
-                    RecruitingPrice = 150
+                    RecruitingPrice = 150,
+                    IsMainCharacter = false
                 },
 
                 //Recrue amatrice
@@ -93,7 +103,8 @@
                     ArmorAmount = 8,
                     CanEquipShield = false,
                     Statistics = 4,
-                    RecruitingPrice = 400
+                    RecruitingPrice = 400,
+                    IsMainCharacter = false
                 },
                 new Wizard
                 {
@@ -102,7 +113,8 @@
                     CharacterArmor = new Armor("Armure en lin", "Léger | Armure : 4", 150, TypeOfArmor.Light, 4),
                     ArmorAmount = 4,
                     Statistics = 4,
-                    RecruitingPrice = 400
+                    RecruitingPrice = 400,
+                    IsMainCharacter = false
                 },
                 new Rogue
                 {
@@ -112,7 +124,8 @@
                     CharacterArmor = new Armor("Armure en cuir fin", "Moyen | Armure : 6", 200, TypeOfArmor.Medium, 6),
                     ArmorAmount = 6,
                     Statistics = 2,
-                    RecruitingPrice = 400
+                    RecruitingPrice = 400,
+                    IsMainCharacter = false
                 },
                 new Ranger
                 {
@@ -122,7 +135,8 @@
                     ArmorAmount = 6,
                     Statistics = 4,
                     RecruitingPrice = 400,
-                    Pet = new Americanstaff()
+                    Pet = new Americanstaff(),
+                    IsMainCharacter = false
                 },
                 new Cleric
                 {
@@ -132,7 +146,8 @@
                     CharacterArmor = new Armor("Armure en cuir fin", "Moyen | Armure : 6", 200, TypeOfArmor.Medium, 6),
                     ArmorAmount = 15,
                     Statistics = 2,
-                    RecruitingPrice = 400
+                    RecruitingPrice = 400,
+                    IsMainCharacter = false
                 },
                 
                 //Recrue compétente
@@ -145,7 +160,8 @@
                     ArmorAmount = 16,
                     CanEquipShield = false,
                     Statistics = 8,
-                    RecruitingPrice = 850
+                    RecruitingPrice = 850,
+                    IsMainCharacter = false
                 },
                 new Wizard
                 {
@@ -154,7 +170,8 @@
                     CharacterArmor = new Armor("Armure en coton", "Léger | Armure : 8", 450, TypeOfArmor.Light, 8),
                     ArmorAmount = 8,
                     Statistics = 8,
-                    RecruitingPrice = 850
+                    RecruitingPrice = 850,
+                    IsMainCharacter = false
                 },
                 new Rogue
                 {
@@ -164,7 +181,8 @@
                     CharacterArmor = new Armor("Armure en cuir épais", "Moyen | Armure : 12", 550, TypeOfArmor.Medium, 12),
                     ArmorAmount = 12,
                     Statistics = 4,
-                    RecruitingPrice = 850
+                    RecruitingPrice = 850,
+                    IsMainCharacter = false
                 },
                 new Ranger
                 {
@@ -174,7 +192,8 @@
                     ArmorAmount = 12,
                     Statistics = 8,
                     RecruitingPrice = 850,
-                    Pet = new Americanstaff()
+                    Pet = new Americanstaff(),
+                    IsMainCharacter = false
                 },
                 new Cleric
                 {
@@ -184,7 +203,8 @@
                     CharacterArmor = new Armor("Armure en cuir épais", "Moyen | Armure : 12", 550, TypeOfArmor.Medium, 12),
                     ArmorAmount = 30,
                     Statistics = 4,
-                    RecruitingPrice = 850
+                    RecruitingPrice = 850,
+                    IsMainCharacter = false
                 },
 
                 //Recrue experte
@@ -197,7 +217,8 @@
                     ArmorAmount = 30,
                     CanEquipShield = false,
                     Statistics = 16,
-                    RecruitingPrice = 1250
+                    RecruitingPrice = 1250,
+                    IsMainCharacter = false
                 },
                 new Wizard
                 {
@@ -206,7 +227,8 @@
                     CharacterArmor = new Armor("Armure en soie", "Léger | Armure : 16", 800, TypeOfArmor.Light, 16),
                     ArmorAmount = 16,
                     Statistics = 16,
-                    RecruitingPrice = 1250
+                    RecruitingPrice = 1250,
+                    IsMainCharacter = false
                 },
                 new Rogue
                 {
@@ -216,7 +238,8 @@
                     CharacterArmor = new Armor("Armure en cuir travaillé", "Moyen | Armure : 22", 1000, TypeOfArmor.Medium, 22),
                     ArmorAmount = 22,
                     Statistics = 8,
-                    RecruitingPrice = 1250
+                    RecruitingPrice = 1250,
+                    IsMainCharacter = false
                 },
                 new Ranger
                 {
@@ -226,7 +249,8 @@
                     ArmorAmount = 22,
                     Statistics = 16,
                     RecruitingPrice = 1250,
-                    Pet = new Rottweiler()
+                    Pet = new Rottweiler(),
+                    IsMainCharacter = false
                 },
                 new Cleric
                 {
@@ -236,7 +260,8 @@
                     CharacterArmor = new Armor("Armure en cuir travaillé", "Moyen | Armure : 22", 1000, TypeOfArmor.Medium, 22),
                     ArmorAmount = 57,
                     Statistics = 8,
-                    RecruitingPrice = 1250
+                    RecruitingPrice = 1250,
+                    IsMainCharacter = false
                 }
             };
         }
