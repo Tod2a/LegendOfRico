@@ -132,7 +132,7 @@ public abstract class Monster
             s += MonsterName +" lance " + hitname + target.TakeDamage(damage);
             if(burnt)
             {
-                s += " et l'attaque vous brule";
+                s += " et l'attaque vous brûle ";
             }
         }
         return s;
@@ -141,5 +141,10 @@ public abstract class Monster
     public Stuff DropItem()
     {
         return LootTable[new Random().Next(0, LootTable.Count)];
+    }
+
+    public void SetIsCold(bool isCold)
+    {
+        IsCold = isCold;
     }
 }
