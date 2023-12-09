@@ -14,8 +14,7 @@ public abstract class Monster
     public abstract TypeOfBreed MonsterBreed { get; set; }
     public virtual List<Stuff> LootTable { get; protected set; } = new List<Stuff>();
     public abstract int XpGranted { get; set; }
-    public int MonsterMinDamage { get; set; }
-    public int MonsterMaxDamage { get; set; }
+    public MonsterHit MonsterHit { get; set; }
     public abstract MonsterHit[] HitTable { get; set; }
     public Boolean IsBurning { get; private set; }
     public int BurnDuration { get; private set; }
@@ -81,17 +80,8 @@ public abstract class Monster
     {
         MonsterHit hit = HitTable[dice.Next(HitTable.Length)];
 
-        // Vérifie si MinDamage est inférieur à MaxDamage
-        if (hit.MinDamage > hit.MaxDamage)
-        {
-            // Inverse les valeurs si nécessaire
-            int temp = hit.MinDamage;
-            hit.MinDamage = hit.MaxDamage;
-            hit.MaxDamage = temp;
-        }
-
-        MonsterMinDamage = hit.MinDamage;
-        MonsterMaxDamage = hit.MaxDamage;
+                
+        MonsterHit = hit;
 
         return hit.Name;
     }
@@ -100,9 +90,7 @@ public abstract class Monster
     {
         string s = "";
         string hitname = SelectHit();
-        Console.WriteLine(MonsterMinDamage);
-        Console.WriteLine(MonsterMaxDamage);
-        int damage = dice.Next(MonsterMinDamage, MonsterMaxDamage + 1);
+        int damage = dice.Next(MonsterHit.MinDamage, MonsterHit.MaxDamage + 1);
         if(this.MonsterType == TypeOfMonster.Beast)
         {
             if(this.GetType() == typeof(EternalScorpio) || this.GetType() == typeof(Sunwukong))
