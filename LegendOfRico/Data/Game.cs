@@ -200,11 +200,13 @@ namespace LegendOfRico.Data
                 else
                 {
                     MonsterHit();
+                    FightMessage += CharactBurn();
                 }
             }
             else if (FightMessage != "Vous ne pouvez plus lancer ce sort ! " && (Player.PartyMember == null || Player.PartyMember.CurrentHitPoints <= 0)) //Le monstre passe son tour si le joueur est con
             {
                 MonsterHit();
+                FightMessage += CharactBurn();
             }
             else if (game.MonsterFight.IsFrozen && (Player.PartyMember == null || Player.PartyMember.CurrentHitPoints <= 0)) //Le monstre ne joue pas si gelé
             {
@@ -233,11 +235,13 @@ namespace LegendOfRico.Data
                 else
                 {
                     MonsterHit();
+                    FightMessage += CharactBurn();
                 }
             }
             else if (FightMessage != "Vous ne pouvez plus lancer ce sort ! ") //Le monstre passe son tour si le joueur est con
             {
                 MonsterHit();
+                FightMessage += CharactBurn();
             }
             else if (game.MonsterFight.IsFrozen) //Le monstre ne joue pas si gelé
             {
@@ -273,11 +277,13 @@ namespace LegendOfRico.Data
                 else
                 {
                     MonsterHit();
+                    FightMessage += CharactBurn();
                 }
             }
             else if (FightMessage != "Vous ne pouvez plus lancer ce sort ! " && (Player.PartyMember == null || Player.PartyMember.CurrentHitPoints <= 0)) //Le monstre passe son tour si le joueur est con
             {
                 MonsterHit();
+                FightMessage += CharactBurn();
             }
             else if (game.MonsterFight.IsFrozen && (Player.PartyMember == null || Player.PartyMember.CurrentHitPoints <= 0)) //Le monstre ne joue pas si gelé
             {
@@ -305,11 +311,13 @@ namespace LegendOfRico.Data
                 else
                 {
                     MonsterHit();
+                    FightMessage += CharactBurn();
                 }
             }
             else if (FightMessage != "Vous ne pouvez plus lancer ce sort ! ") //Le monstre passe son tour si le joueur est con
             {
                 MonsterHit();
+                FightMessage += CharactBurn();
             }
             else if (game.MonsterFight.IsFrozen) //Le monstre ne joue pas si gelé
             {
@@ -420,6 +428,34 @@ namespace LegendOfRico.Data
                     Player.PartyMember.CurrentHitPoints = 0;
                 }
             }
+        }
+
+        private string CharactBurn()
+        {
+            string s = "";
+            if(Player.IsBurning)
+            {
+                int damage = Player.CurrentHitPoints / 20;
+                Player.CurrentHitPoints -= damage;
+                s += "vous brulez et subissez " + damage + " dégats";
+                Player.BurnDuration--;
+                if(Player.BurnDuration == 0)
+                {
+                    Player.IsBurning = false;
+                }
+            }
+            if (Player.PartyMember != null && Player.PartyMember.IsBurning)
+            {
+                int damage = Player.PartyMember.CurrentHitPoints / 20;
+                Player.PartyMember.CurrentHitPoints -= damage;
+                s += Player.PartyMember.Name + " brule et subit " + damage + " dégats";
+                Player.PartyMember.BurnDuration--;
+                if (Player.PartyMember.BurnDuration == 0)
+                {
+                    Player.PartyMember.IsBurning = false;
+                }
+            }
+            return s;
         }
         public void SwitchFightSpells()
         {
