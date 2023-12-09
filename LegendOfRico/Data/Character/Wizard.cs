@@ -26,10 +26,17 @@
             if(Level == 2)
             {
                 SpellBook.Add(new Frostbolt());
+                SpellBook.Add(new FrostArmor());
             }
             if(Level == 3)
             {
                 SpellBook.Add(new Incinerate());
+            }
+            if(Level == 4)
+            {
+                SpellBook.Add(new IceLance());
+                SpellBook.Remove(new FrostArmor());
+                SpellBook.Add(new FrostArmor2());
             }
         }
     }

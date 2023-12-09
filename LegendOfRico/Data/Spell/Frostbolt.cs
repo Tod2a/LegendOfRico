@@ -33,6 +33,7 @@ public class Frostbolt : Spells
             }
             target.TakeDamage(damageRoll);
             s += player.Name + " inflige " + damageRoll + " points de dégâts à la cible ! ";
+            target.SetIsCold(true);
             CurrentNumberOfUses--;
             SpellName = "Eclair de givre (" + CurrentNumberOfUses + "/" + MaxNumberOfUses + ")";
         }
