@@ -104,8 +104,16 @@ public abstract class Monster
         int damage = dice.Next(MonsterMinDamage, MonsterMaxDamage + 1);
         if(this.MonsterType == TypeOfMonster.Beast)
         {
-            var soothedBeast = (Beast)this;
-            damage = soothedBeast.DamageSoothed(damage);
+            if(this.GetType() != typeof(Boss))
+            {
+                var soothedBeast = (Beast)this;
+                damage = soothedBeast.DamageSoothed(damage);
+            }
+            else
+            {
+                var soothedBeast = (Boss)this;
+                damage = soothedBeast.DamageSoothed(damage);
+            }
         }
         double dodge = dice.NextDouble();
         if (dodge < target.ChanceToDodge)

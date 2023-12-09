@@ -59,7 +59,8 @@
                 new Rogue
                 {
                     Name = "Antoine",
-                    CharacterWeapon = new Dagger("Dague en bronze", "(2 - 6)", 50, 3, 6, 0),
+                    CharacterWeapon = new DoubleWeapon("Dague en bronze/Dague en bronze","(2 - 6)/(2 - 6)"
+                        ,0,3,9,0,new Dagger("Dague en bronze", "(2 - 6)", 50, 3, 6, 0),new Dagger("Dague en bronze", "(2 - 6)", 50, 3, 6, 0)),
                     CharacterArmor = new Armor("Armure en cuir brute", "Moyen | Armure : 3", 75, TypeOfArmor.Medium, 3),
                     ArmorAmount = 3,
                     RecruitingPrice = 150
