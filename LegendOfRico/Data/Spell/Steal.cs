@@ -16,7 +16,14 @@ public class Steal : Spells
             {
                 var t = (Humanoid)target;
                 int stolenCoins = t.DropsCoins();
-                player.LootGold(stolenCoins);
+                if (player.IsMainCharacter)
+                {
+                    player.LootGold(stolenCoins);
+                }
+                else
+                {
+                    player.PartyMember.LootGold(stolenCoins);
+                }
                 CurrentNumberOfUses--;
                 SpellName = "Voler (" + CurrentNumberOfUses + "/" + MaxNumberOfUses + ")";
                 s += player.Name + " a volé " + stolenCoins + " à la cible !";

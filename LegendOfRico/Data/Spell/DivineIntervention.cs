@@ -2,9 +2,9 @@ namespace LegendOfRico.Data;
 
 public class DivineIntervention : Spells
 {
-    public override string SpellName { get; protected set; } = "Intervention divine (2/2)";
-    public override int MaxNumberOfUses => 2;
-    public override int CurrentNumberOfUses { get; protected set; } = 2;
+    public override string SpellName { get; protected set; } = "Intervention divine (3/3)";
+    public override int MaxNumberOfUses => 3;
+    public override int CurrentNumberOfUses { get; protected set; } = 3;
     public int MinValue => 60;
     public int MaxValue => 80;
     public TypeOfDamage SpellType = TypeOfDamage.Holy;
@@ -40,7 +40,7 @@ public class DivineIntervention : Spells
             }
             s += player.Name + "et inflige " + damageRoll + " points de dégâts à la cible ! ";
             CurrentNumberOfUses--;
-            SpellName = "Intervention divine (" + CurrentNumberOfUses + "/" + MaxNumberOfUses + ")s";
+            SpellName = "Intervention divine (" + CurrentNumberOfUses + "/3)";
         }
         else
         {

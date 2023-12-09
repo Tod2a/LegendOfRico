@@ -123,7 +123,7 @@
         Game.Turncount = 0;
         Game.IsCurrentFight = false;
         Game.PlayerDead = false;
-        Game.Player.Rest();
+        Game.PartyRest();
         Game.GameMap.UpdateMapDisplay(Game.Player);
         TypeOfShowChange.InvokeAsync();
     }
