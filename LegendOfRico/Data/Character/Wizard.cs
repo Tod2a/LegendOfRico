@@ -18,6 +18,7 @@
 
         protected override void CheckLearnSpell()
         {
+            Spells frostArmor = new FrostArmor();
             int gainedHP = MaxHitPoints / 10 + Level;
             CurrentHitPoints += gainedHP;
             MaxHitPoints += gainedHP;
@@ -26,7 +27,7 @@
             if(Level == 2)
             {
                 SpellBook.Add(new Frostbolt());
-                SpellBook.Add(new FrostArmor());
+                SpellBook.Add(frostArmor);
             }
             if(Level == 3)
             {
@@ -35,8 +36,9 @@
             if(Level == 4)
             {
                 SpellBook.Add(new IceLance());
-                SpellBook.Remove(new FrostArmor());
-                SpellBook.Add(new FrostArmor2());
+                SpellBook.Remove(frostArmor);
+                frostArmor = new FrostArmor2(); //RESET L'ARMOR DANS CHARACTER
+                SpellBook.Add(frostArmor);
             }
         }
     }
