@@ -128,9 +128,25 @@ public abstract class Character : INotifyPropertyChanged
         IsBurning = true;
     }
 
+    public void UnBurn()
+    {
+        IsBurning = false;
+    }
+
     public void Frozen()
     {
         IsFrozen = true;
+    }
+
+    public void Unfreeze()
+    {
+        IsFrozen = false;
+    }
+
+    public void HealAffliction ()
+    {
+        UnBurn();
+        Unfreeze();
     }
 
     public void Rest()
@@ -144,6 +160,7 @@ public abstract class Character : INotifyPropertyChanged
         {
             spell.RefreshSpell();
         }
+        HealAffliction();
         SetIsRested(true);
         if (HasFrostArmor)
         {

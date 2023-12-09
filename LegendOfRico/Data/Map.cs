@@ -151,24 +151,24 @@ namespace LegendOfRico.Data
         public List<Type> poolOfMediumPlain = new List<Type> { typeof(Americanstaff) };
         public List<Type> poolOfHardPlain = new List<Type> { typeof(Rottweiler) };
         //forêt
-        public List<Type> poolOfForest = new List<Type> { typeof(SonOfAragog) };
-        public List<Type> poolOfMediumForest = new List<Type> { typeof(BigSonOfAragog) };
-        public List<Type> poolOfHardForest = new List<Type> { typeof(Aragog) };
+        public List<Type> poolOfForest = new List<Type> { typeof(SonOfAragog), typeof(OmegaWolf) };
+        public List<Type> poolOfMediumForest = new List<Type> { typeof(BigSonOfAragog), typeof(BetaWolf) };
+        public List<Type> poolOfHardForest = new List<Type> { typeof(Aragog), typeof(AlphaWolf) };
         public List<Type> bossOfForest = new List<Type> { typeof(Sunwukong) };
         //désert
-        public List<Type> poolOfDesert = new List<Type> { typeof(LittleFlame) };
-        public List<Type> poolOfMediumDesert = new List<Type> { typeof(Flame) };
-        public List<Type> poolOfHardDesert = new List<Type> { typeof(Volcanis) };
+        public List<Type> poolOfDesert = new List<Type> { typeof(LittleFlame), typeof(LittleScorpio) };
+        public List<Type> poolOfMediumDesert = new List<Type> { typeof(Flame), typeof(RockScorpio) };
+        public List<Type> poolOfHardDesert = new List<Type> { typeof(Volcanis), typeof(EmperorScorpio) };
         public List<Type> bossOfDesert = new List<Type> { typeof(EternalScorpio) };
         //Ruines
-        public List<Type> poolOfRuined = new List<Type> { typeof(Racaille), typeof(Nosptipti) };
-        public List<Type> poolOfMediumRuined = new List<Type> { typeof(Gangster), typeof(Nosalto) };
-        public List<Type> poolOfHardRuined = new List<Type> { typeof(Mafieux), typeof(Nosaffraid) };
+        public List<Type> poolOfRuined = new List<Type> { typeof(Racaille), typeof(Nosptipti), typeof(FlashOfLighting) };
+        public List<Type> poolOfMediumRuined = new List<Type> { typeof(Gangster), typeof(Nosalto), typeof(Thunderstorm) };
+        public List<Type> poolOfHardRuined = new List<Type> { typeof(Mafieux), typeof(Nosaffraid), typeof(Ener) };
         public List<Type> bossOfRuined = new List<Type> { typeof(JoyBean) };
         //cimetiere
-        public List<Type> poolOfGraveyard = new List<Type> { typeof(Fantominet) };
-        public List<Type> poolOfMediumGraveyard = new List<Type> { typeof(Spectre) };
-        public List<Type> poolOfHardGraveyard = new List<Type> { typeof(Cauchemar) };
+        public List<Type> poolOfGraveyard = new List<Type> { typeof(Fantominet), typeof(IceCube) };
+        public List<Type> poolOfMediumGraveyard = new List<Type> { typeof(Spectre), typeof(IceBlock) };
+        public List<Type> poolOfHardGraveyard = new List<Type> { typeof(Cauchemar), typeof(Iceberg) };
         public List<Type> bossOfGraveyard = new List<Type> { typeof(Cheftontaton) };
         //village
         public List<Type> poolOfVillage = new List<Type> {  };

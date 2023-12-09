@@ -1,10 +1,10 @@
 ﻿namespace LegendOfRico.Data
 {
-    public abstract class Wolf : Beast
+    public abstract class Scorpio: Beast
     {
-        public override TypeOfBreed MonsterBreed { get; set; } = TypeOfBreed.Wolf;
+        public override TypeOfBreed MonsterBreed { get; set; } = TypeOfBreed.Scorpio;
 
-        public Wolf()
+        public Scorpio()
         {
             HitTable = BuildHitTable();
         }

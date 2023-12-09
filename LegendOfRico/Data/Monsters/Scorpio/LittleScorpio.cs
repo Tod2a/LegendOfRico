@@ -1,12 +1,14 @@
 ﻿namespace LegendOfRico.Data
 {
-    public class IceCube: IceElemental
+    public class LittleScorpio: Scorpio
     {
-        public override string MonsterName { get; set; } = "Glaçon";
-        public override int MonsterHP { get; set; } = 50;
-        public override int MonsterCurrentHP { get; set; } = 50;
-        public override string fightImgUrl { get; set; } = "img/monster/iceelemental/icecube.png";
+        public override string MonsterName { get; set; } = "Petit Scorpion";
+        public override int MonsterHP { get; set; } = 100;
+        public override int MonsterCurrentHP { get; set; } = 100;
+        public override string fightImgUrl { get; set; } = "img/monster/Scorpio/littlescorpio.png";
         public override int XpGranted { get; set; } = 50;
+        public override int PetMinDamage { get; protected set; } = 5;
+        public override int PetMaxDamage { get; protected set; } = 10;
         public override List<Stuff> LootTable { get; protected set; } = new List<Stuff>() {
             new Axe("Hache en bronze", "(3 - 6)", 50, 3, 6, 0),
             new Bow("Arc en frêne", "(5 - 8)", 50, 5, 8, 0),
@@ -23,10 +25,10 @@
         protected override MonsterHit[] BuildHitTable()
         {
             return new MonsterHit[]
-            {
-                new MonsterHit {Name ="Refroidissement", MinDamage = 5, MaxDamage = 10},
-                new MonsterHit { Name = "Vent glaçé", MinDamage = 7, MaxDamage = 12, IsGroupHit = true } // Possibilité de gel ?
-            };
+                {
+                    new MonsterHit{Name = "Morsure", MinDamage = 10, MaxDamage = 15 },
+                    new MonsterHit{Name = "Piqure", MinDamage = 5, MaxDamage = 10}
+                };
         }
     }
 }

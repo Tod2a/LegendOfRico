@@ -1,12 +1,14 @@
 ﻿namespace LegendOfRico.Data
 {
-    public class IceBlock : IceElemental
+    public class RockScorpio: Scorpio
     {
-        public override string MonsterName { get; set; } = "Bloc de glace";
-        public override int MonsterHP { get; set; } = 100;
-        public override int MonsterCurrentHP { get; set; } = 100;
-        public override string fightImgUrl { get; set; } = "img/monster/iceelemental/iceblock.png";
+        public override string MonsterName { get; set; } = "Scorpion de roche";
+        public override int MonsterHP { get; set; } = 250;
+        public override int MonsterCurrentHP { get; set; } = 250;
+        public override string fightImgUrl { get; set; } = "img/monster/Scorpio/rockscorpio.png";
         public override int XpGranted { get; set; } = 100;
+        public override int PetMinDamage { get; protected set; } = 15;
+        public override int PetMaxDamage { get; protected set; } = 25;
         public override List<Stuff> LootTable { get; protected set; } = new List<Stuff>() {
             new Axe("Hache en fer", "(6 - 12) | Stats +2", 100, 6, 12, 2),
             new Bow("Arc en noyer", "(10 - 16) | Stats +4", 100, 10, 16, 4),
@@ -23,11 +25,10 @@
         protected override MonsterHit[] BuildHitTable()
         {
             return new MonsterHit[]
-            {
-                new MonsterHit {Name ="Poing glace", MinDamage = 9, MaxDamage = 14},
-                new MonsterHit { Name = "Chute de glace", MinDamage = 15, MaxDamage = 25, IsGroupHit = true }
-            };
+                {
+                    new MonsterHit{Name = "Déchirure", MinDamage = 15, MaxDamage = 20 },
+                    new MonsterHit{Name = "Perforation", MinDamage = 10, MaxDamage = 15}
+                };
         }
     }
 }
-

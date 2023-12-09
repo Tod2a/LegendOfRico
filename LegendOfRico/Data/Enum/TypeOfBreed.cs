@@ -3,6 +3,8 @@
     public enum TypeOfBreed
     {
         Null,
+        Scorpio,
+        Wolf,
         Spider,
         Bat,
         Dog,
