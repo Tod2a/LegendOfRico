@@ -52,7 +52,7 @@
                 do {
                     posi = Random.Next(0, 10);
                     posj = Random.Next(0, 10);
-                } while (map[posi][posj].HasMonsterCollectQuest || (posi == 0 && posj == 5));
+                } while (map[posi][posj].HasMonsterCollectQuest || (posi == 0 && posj == 5) || map[posi][posj].HasQuestTarget);
                 map[posi][posj].HasQuestTarget = true;
             }
 
