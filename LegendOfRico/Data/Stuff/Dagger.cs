@@ -10,5 +10,5 @@ public class Dagger : Weapon
 
     public override TypeOfWeapon WeaponType => TypeOfWeapon.Dagger;
     public override TypeOfDamage WeaponTypeOfDamage => TypeOfDamage.Piercing;
-    public override double WeaponCritChance => 0.2;
+    public override double WeaponCritChance => 0.3;
 }

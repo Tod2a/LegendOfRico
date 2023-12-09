@@ -415,6 +415,10 @@ namespace LegendOfRico.Data
                     FightMessage += "Vous perdez la moitié de votre expérience. ";
                     Player.CurrentXp /= 2;
                 }
+                if(Player.PartyMember.CurrentHitPoints < 0)
+                {
+                    Player.PartyMember.CurrentHitPoints = 0;
+                }
             }
         }
         public void SwitchFightSpells()
