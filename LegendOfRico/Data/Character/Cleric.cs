@@ -30,6 +30,14 @@ public class Cleric : Character
         {
             SpellBook.Add(new Protection());
         }
+        if(Level == 4)
+        {
+            SpellBook.Add(new GreaterHeal());
+        }
+        if(Level == 5)
+        {
+            SpellBook.Add(new SupremeHeal());
+        }
         if (Level == 6)
         {
             SpellBook.Add(new DivineIntervention());

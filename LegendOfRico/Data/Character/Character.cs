@@ -59,8 +59,7 @@ public abstract class Character : INotifyPropertyChanged
     public int lastRestVillageI { get; set; } = 250;
     public int LastRestVillageJ { get; set; } = 250;
     public Boolean IsFrozen { get; private set; } = false;
-    public bool IsBurning { get; set; } = false;
-    public int BurnDuration { get; set; } = 0;
+    public Boolean IsBurning { get; private set; } = false;
     public Boolean IsProtected { get; private set; } = false;
     public int ProtectDuration { get; private set; } = 0;
     public bool Joydead { get; set; } = false;
