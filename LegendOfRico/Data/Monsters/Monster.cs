@@ -104,7 +104,7 @@ public abstract class Monster
         int damage = dice.Next(MonsterMinDamage, MonsterMaxDamage + 1);
         if(this.MonsterType == TypeOfMonster.Beast)
         {
-            if(this.GetType() == typeof(EternalScorpio))
+            if(this.GetType() == typeof(EternalScorpio) || this.GetType() == typeof(Sunwukong))
             {
                 var soothedBeast = (Boss)this;
                 damage = soothedBeast.DamageSoothed(damage);
