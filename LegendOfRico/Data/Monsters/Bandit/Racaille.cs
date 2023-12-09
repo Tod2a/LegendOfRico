@@ -5,7 +5,7 @@
         public override string MonsterName { get; set; } = "Racaille";
         public override int MonsterHP { get; set; } = 50;
         public override int MonsterCurrentHP { get; set; } = 50;
-        public override string fightImgUrl { get; set; } = "img/monster/bandit/Racaille.png";
+        public override string fightImgUrl { get; set; } = "img/monster/Bandit/Racaille.png";
         public override int XpGranted { get; set; } = 50;
         public override List<Stuff> LootTable { get; protected set; } = new List<Stuff>() {
             new Axe("Hache en bronze", "(3 - 6)", 50, 3, 6, 0),
