@@ -393,7 +393,8 @@ namespace LegendOfRico.Data
             archibald.AddCollecQuest("Collectest", "Allez en 254 250", 20, 20, 254, 250, mapLayout[254][250].SquareBiome.BiomeType);
             archibald.AddFightQuest("Chasse un chien", "(CONSEILLÉ) Va dans les plaines et chasse un chien", TypeOfBreed.Dog, 950, 10);
             QuestGiver fatimaZorra = new QuestGiver("Fatima Zorra, la mystique");
-            fatimaZorra.AddFightQuest("Tue un monstre", "Montre moi ton ENORME courage en allant tuer un monstre dans les ruines", TypeOfBreed.Bat, 2000, 12000);
+            fatimaZorra.AddFightQuest("Tue un monstre", "Montre moi ton ENORME courage en allant tuer un monstre dans les ruines", TypeOfBreed.Bat, 20, 20);
+            fatimaZorra.AddCollecQuest("Une beeeeellle récompense", "Un item se trouve dans les ruines, va le récupérer au péril de ta vie", 25, 25, 161, 281, mapLayout[161][281].SquareBiome.BiomeType);
             
 
 
