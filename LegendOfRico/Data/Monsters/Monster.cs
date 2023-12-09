@@ -98,6 +98,7 @@ public abstract class Monster
 
     public string Hit(Character target)
     {
+        string s = "";
         string hitname = SelectHit();
         Console.WriteLine(MonsterMinDamage);
         Console.WriteLine(MonsterMaxDamage);
@@ -115,15 +116,22 @@ public abstract class Monster
                 damage = soothedBeast.DamageSoothed(damage);
             }
         }
+        if (target.IsProtected)
+        {
+            damage = (damage*2)/3;
+            target.SetProtectDuration(-1);
+        }
+
         double dodge = dice.NextDouble();
         if (dodge < target.ChanceToDodge)
         {
-            return "Le monstre attaque mais vous esquivez !";
+            s += "Le monstre attaque mais vous esquivez !";
         }
         else
         {
-            return MonsterName +" lance " + hitname + target.TakeDamage(damage);
-        } 
+            s += MonsterName +" lance " + hitname + target.TakeDamage(damage);
+        }
+        return s;
     }
 
     public Stuff DropItem()

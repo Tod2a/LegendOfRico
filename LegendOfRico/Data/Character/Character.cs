@@ -60,6 +60,8 @@ public abstract class Character : INotifyPropertyChanged
     public int LastRestVillageJ { get; set; } = 250;
     public Boolean IsFrozen { get; private set; } = false;
     public Boolean IsBurning { get; private set; } = false;
+    public Boolean IsProtected { get; private set; } = false;
+    public int ProtectDuration { get; private set; } = 0;
     public bool Joydead { get; set; } = false;
     public bool Scorpiodead { get; set; } = false;
     public bool Wukongdead { get; set; } = false;
@@ -133,6 +135,8 @@ public abstract class Character : INotifyPropertyChanged
         lastRestVillageI = positionI;
         LastRestVillageJ = positionJ;
         CurrentHitPoints = MaxHitPoints;
+        ProtectDuration = 0;
+        IsProtected = false;
         foreach (var spell in SpellBook)
         {
             spell.RefreshSpell();
@@ -414,6 +418,23 @@ public abstract class Character : INotifyPropertyChanged
                 {
                     CollectQuest = cquest;
                 }
+            }
+        }
+    }
+
+    public void SetProtectDuration(int duration)
+    {
+        ProtectDuration += duration;
+        if(ProtectDuration <= 0)
+        {
+            IsProtected = false;
+        }
+        else if(!IsProtected && ProtectDuration > 0)
+        {
+            IsProtected = true;
+            if(ProtectDuration > 10)
+            {
+                ProtectDuration = 10;
             }
         }
     }

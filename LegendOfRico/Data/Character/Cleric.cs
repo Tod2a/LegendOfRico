@@ -12,7 +12,7 @@ public class Cleric : Character
     public override int CurrentHitPoints { get; set; } = 25;
     public override int ArmorAmount { get; set; } = 4;
     public override double ChanceToDodge { get; protected set; } = 0.05;
-    public override List<Spells> SpellBook { get; protected set; } = new List<Spells>() { new Smite(), new Heal()};
+    public override List<Spells> SpellBook { get; protected set; } = new List<Spells>() { new Smite()};
     public override string fightImgUrl { get;  } = "img/Character/fightCleric.png";
     public override int Statistics { get; set; } = 0;
     protected override void CheckLearnSpell() 
@@ -22,6 +22,14 @@ public class Cleric : Character
         MaxHitPoints += gainedHP;
         Statistics += (5 + Level) / 2;
 
+        if(Level == 2)
+        {
+            SpellBook.Add(new Heal());
+        }
+        if(Level == 3)
+        {
+            SpellBook.Add(new Protection());
+        }
         if (Level == 6)
         {
             SpellBook.Add(new DivineIntervention());
