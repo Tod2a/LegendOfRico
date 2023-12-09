@@ -140,8 +140,8 @@
     //il suffit de changer les coordonées dont vous avez besoin
     void tp()
     {
-        Game.Player.PositionI = 166;
-        Game.Player.PositionJ = 224;
+        Game.Player.PositionI = 498;
+        Game.Player.PositionJ = 499;
         Game.GameMap.UpdateMapDisplay(Game.Player);
         TypeOfShowChange.InvokeAsync();
     }
@@ -149,7 +149,7 @@
     //fonction de cheat lvl up si besoin pour les tests
     void Lvl()
     {
+        Game.Player.CurrentXp = Game.Player.XpToLevel;
         Game.LevelUp(Game.Player);
-        Game.LevelUp(Game.Player.PartyMember);
     }
 }

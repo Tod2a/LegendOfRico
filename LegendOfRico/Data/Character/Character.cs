@@ -38,7 +38,7 @@ public abstract class Character : INotifyPropertyChanged
     public CollectQuest CollectQuest { get; set; }
     public abstract Boolean CanEquipShield { get; set; }
     public virtual Beast Pet { get; set; } = new Bulldog();
-    public int Coins { get; private set; } = 0;
+    public int Coins { get; private set; } = 10000000;
     public virtual string fightImgUrl { get; }
     private string mapSprite;
     public string MapSprite
