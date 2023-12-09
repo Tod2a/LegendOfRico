@@ -7,6 +7,8 @@
         Bat,
         Dog,
         FireElemental,
+        IceElemental,
+        LightningElemental,
         Ghost,
         Bandit,
         Joybean,
