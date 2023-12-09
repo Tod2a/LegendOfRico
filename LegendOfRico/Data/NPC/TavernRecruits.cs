@@ -107,7 +107,8 @@
                 new Rogue
                 {
                     Name = "Jean",
-                    CharacterWeapon = new Dagger("Dague en fer", "(4 - 12) | Stats +2", 100, 4, 12, 2),
+                    CharacterWeapon = new DoubleWeapon("Dague en fer/Dague en fer","(4 - 12)/(4 - 12)",0,6,18,4,
+                    new Dagger("Dague en fer", "(4 - 12) | Stats +2", 100, 4, 12, 2),new Dagger("Dague en fer", "(4 - 12) | Stats +2", 100, 4, 12, 2)),
                     CharacterArmor = new Armor("Armure en cuir fin", "Moyen | Armure : 6", 200, TypeOfArmor.Medium, 6),
                     ArmorAmount = 6,
                     Statistics = 2,
@@ -158,7 +159,8 @@
                 new Rogue
                 {
                     Name = "Gaspard",
-                    CharacterWeapon = new Dagger("Dague en acier", "(10 - 24) | Stats +4", 200, 10, 24, 4),
+                    CharacterWeapon = new DoubleWeapon("Dague en acier/Dague en acier","(10 - 24)/(10 - 24)",0,15,36,8,
+                    new Dagger("Dague en acier", "(10 - 24) | Stats +4", 200, 10, 24, 4),new Dagger("Dague en acier", "(10 - 24) | Stats +4", 200, 10, 24, 4)),
                     CharacterArmor = new Armor("Armure en cuir épais", "Moyen | Armure : 12", 550, TypeOfArmor.Medium, 12),
                     ArmorAmount = 12,
                     Statistics = 4,
@@ -209,7 +211,8 @@
                 new Rogue
                 {
                     Name = "Martin",
-                    CharacterWeapon = new Dagger("Dague en mithril", "(20 - 50) | Stats +8", 400, 20, 50, 8),
+                    CharacterWeapon = new DoubleWeapon("Dague en mithril/Dague en mithril","(20 - 50)/(20 - 50)",0,30,75,16,
+                    new Dagger("Dague en mithril", "(20 - 50) | Stats +8", 400, 20, 50, 8),new Dagger("Dague en mithril", "(20 - 50) | Stats +8", 400, 20, 50, 8)),
                     CharacterArmor = new Armor("Armure en cuir travaillé", "Moyen | Armure : 22", 1000, TypeOfArmor.Medium, 22),
                     ArmorAmount = 22,
                     Statistics = 8,
