@@ -397,7 +397,7 @@ namespace LegendOfRico.Data
 
         public void MonsterHit()
         {
-            if (MonsterFight.MonsterBreed == TypeOfBreed.RicoChico && !Player.Joydead && !Player.Scorpiodead && !Player.Tontatondead && !Player.Wukongdead)
+            if (MonsterFight.MonsterBreed == TypeOfBreed.RicoChico && (!Player.Joydead || !Player.Scorpiodead || !Player.Tontatondead || !Player.Wukongdead))
             {
                 FightMessage = "Vous touchez le grand Rico Chico mais il vous rit au nez et vous balaye d'une main. Vous êtes Ko. Revenez après avoir reconstruit la relique";
                 Player.CurrentHitPoints = 0;
