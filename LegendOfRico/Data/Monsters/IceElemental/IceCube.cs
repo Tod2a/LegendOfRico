@@ -25,7 +25,7 @@
             return new MonsterHit[]
             {
                 new MonsterHit {Name ="Refroidissement", MinDamage = 5, MaxDamage = 10},
-                new MonsterHit { Name = "Vent glaçé", MinDamage = 7, MaxDamage = 12 } // Possibilité de gel ?
+                new MonsterHit { Name = "Vent glaçé", MinDamage = 7, MaxDamage = 12, IsGroupHit = true } // Possibilité de gel ?
             };
         }
     }

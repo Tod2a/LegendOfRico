@@ -25,41 +25,41 @@ namespace LegendOfRico.Data
         }
         
         public Map() { 
-            plain = new Biomes(TypeOfBiome.Plain, poolOfPlain, "img/biomes/plaine.png", "img/layout/fondFightPlaine.png");
-            plain1 = new Biomes(TypeOfBiome.Plain, poolOfPlain, "img/biomes/plaine1.png", "img/layout/fondFightPlaine.png");
-            plain2 = new Biomes(TypeOfBiome.Plain, poolOfPlain, "img/biomes/plaine2.png", "img/layout/fondFightPlaine.png");
+            Plain = new Biomes(TypeOfBiome.Plain, PoolOfPlain, "img/biomes/plaine.png", "img/layout/fondFightPlaine.png");
+            Plain1 = new Biomes(TypeOfBiome.Plain, PoolOfPlain, "img/biomes/plaine1.png", "img/layout/fondFightPlaine.png");
+            Plain2 = new Biomes(TypeOfBiome.Plain, PoolOfPlain, "img/biomes/plaine2.png", "img/layout/fondFightPlaine.png");
 
-            forest = new Biomes(TypeOfBiome.Forest, poolOfForest, "img/biomes/foret.png", "img/layout/fondFightBois.png");
-            forest1 = new Biomes(TypeOfBiome.Forest, poolOfForest, "img/biomes/foret1.png", "img/layout/fondFightBois.png");
-            forest2 = new Biomes(TypeOfBiome.Forest, poolOfForest, "img/biomes/foret2.png", "img/layout/fondFightBois.png");
-            forest3 = new Biomes(TypeOfBiome.ForestDifficult, poolOfForest, "img/biomes/foret3.png", "img/layout/fondFightBois.png");
-            bossForest = new Biomes(TypeOfBiome.ForestBoss, bossOfForest, "img/biomes/foretBoss.png", "img/layout/fondFightBossBois.png");
+            Forest = new Biomes(TypeOfBiome.Forest, PoolOfForest, "img/biomes/foret.png", "img/layout/fondFightBois.png");
+            Forest1 = new Biomes(TypeOfBiome.Forest, PoolOfForest, "img/biomes/foret1.png", "img/layout/fondFightBois.png");
+            Forest2 = new Biomes(TypeOfBiome.Forest, PoolOfForest, "img/biomes/foret2.png", "img/layout/fondFightBois.png");
+            Forest3 = new Biomes(TypeOfBiome.ForestDifficult, PoolOfForest, "img/biomes/foret3.png", "img/layout/fondFightBois.png");
+            BossForest = new Biomes(TypeOfBiome.ForestBoss, PossOfForest, "img/biomes/foretBoss.png", "img/layout/fondFightBossBois.png");
 
-            desert = new Biomes(TypeOfBiome.Desert, poolOfDesert, "img/biomes/desert.png", "img/layout/fondFightDesert.png");
-            desert1 = new Biomes(TypeOfBiome.Desert, poolOfDesert, "img/biomes/desert1.png", "img/layout/fondFightDesert.png");
-            desert2 = new Biomes(TypeOfBiome.Desert, poolOfDesert, "img/biomes/desert2.png", "img/layout/fondFightDesert.png");
-            desert3 = new Biomes(TypeOfBiome.DesertDifficult, poolOfDesert, "img/biomes/desert3.png", "img/layout/fondFightDesert.png");
-            desert4 = new Biomes(TypeOfBiome.DesertDifficult, poolOfDesert, "img/biomes/desert4.png", "img/layout/fondFightDesert.png");
-            desert5 = new Biomes(TypeOfBiome.DesertDifficult, poolOfDesert, "img/biomes/desert5.png", "img/layout/fondFightDesert.png");
-            bossDesert = new Biomes(TypeOfBiome.DesertBoss, bossOfDesert, "img/biomes/desertBoss.png", "img/layout/fondFightBossDesert.png");
+            Desert = new Biomes(TypeOfBiome.Desert, PoolOfDesert, "img/biomes/desert.png", "img/layout/fondFightDesert.png");
+            Desert1 = new Biomes(TypeOfBiome.Desert, PoolOfDesert, "img/biomes/desert1.png", "img/layout/fondFightDesert.png");
+            Desert2 = new Biomes(TypeOfBiome.Desert, PoolOfDesert, "img/biomes/desert2.png", "img/layout/fondFightDesert.png");
+            Desert3 = new Biomes(TypeOfBiome.DesertDifficult, PoolOfDesert, "img/biomes/desert3.png", "img/layout/fondFightDesert.png");
+            Desert4 = new Biomes(TypeOfBiome.DesertDifficult, PoolOfDesert, "img/biomes/desert4.png", "img/layout/fondFightDesert.png");
+            Desert5 = new Biomes(TypeOfBiome.DesertDifficult, PoolOfDesert, "img/biomes/desert5.png", "img/layout/fondFightDesert.png");
+            BossDesert = new Biomes(TypeOfBiome.DesertBoss, BossOfDesert, "img/biomes/desertBoss.png", "img/layout/fondFightBossDesert.png");
 
-            ruinedVillage = new Biomes(TypeOfBiome.AbandonedVillage, poolOfRuined, "img/biomes/ruine.png", "img/layout/fondFightRuine.png");
-            ruinedVillage1 = new Biomes(TypeOfBiome.AbandonedVillage, poolOfRuined, "img/biomes/ruine1.png", "img/layout/fondFightRuine.png");
-            ruinedVillage2 = new Biomes(TypeOfBiome.AbandonedVillage, poolOfRuined, "img/biomes/ruine2.png", "img/layout/fondFightRuine.png");
-            ruinedVillage3 = new Biomes(TypeOfBiome.AbandonedVillageDifficult, poolOfRuined, "img/biomes/ruine3.png", "img/layout/fondFightRuine.png");
-            bossRuinedVillage = new Biomes(TypeOfBiome.AbandonedVillageBoss, bossOfRuined, "img/biomes/ruineBoss.png", "img/layout/fondFightBossRuine.png");
+            RuinedVillage = new Biomes(TypeOfBiome.AbandonedVillage, PoolOfRuined, "img/biomes/ruine.png", "img/layout/fondFightRuine.png");
+            RuinedVillage1 = new Biomes(TypeOfBiome.AbandonedVillage, PoolOfRuined, "img/biomes/ruine1.png", "img/layout/fondFightRuine.png");
+            RuinedVillage2 = new Biomes(TypeOfBiome.AbandonedVillage, PoolOfRuined, "img/biomes/ruine2.png", "img/layout/fondFightRuine.png");
+            RuinedVillage3 = new Biomes(TypeOfBiome.AbandonedVillageDifficult, PoolOfRuined, "img/biomes/ruine3.png", "img/layout/fondFightRuine.png");
+            BossRuinedVillage = new Biomes(TypeOfBiome.AbandonedVillageBoss, BossOfRuined, "img/biomes/ruineBoss.png", "img/layout/fondFightBossRuine.png");
 
-            graveyard = new Biomes(TypeOfBiome.Graveyard, poolOfGraveyard, "img/biomes/cimetiere.png", "img/layout/fondFightCimetiere.png");
-            graveyard1 = new Biomes(TypeOfBiome.Graveyard, poolOfGraveyard, "img/biomes/cimetiere1.png", "img/layout/fondFightCimetiere.png");
-            graveyard2 = new Biomes(TypeOfBiome.Graveyard, poolOfGraveyard, "img/biomes/cimetiere2.png", "img/layout/fondFightCimetiere.png");
-            graveyard3 = new Biomes(TypeOfBiome.GraveyardDifficult, poolOfGraveyard, "img/biomes/cimetiere3.png", "img/layout/fondFightCimetiere.png");
-            bossGraveyard = new Biomes(TypeOfBiome.GraveyardBoss, bossOfGraveyard, "img/biomes/cimetiereBoss.png", "img/layout/fondFightBossCimetiere.png");
+            Graveyard = new Biomes(TypeOfBiome.Graveyard, PoolOfGraveyard, "img/biomes/cimetiere.png", "img/layout/fondFightCimetiere.png");
+            Graveyard1 = new Biomes(TypeOfBiome.Graveyard, PoolOfGraveyard, "img/biomes/cimetiere1.png", "img/layout/fondFightCimetiere.png");
+            Graveyard2 = new Biomes(TypeOfBiome.Graveyard, PoolOfGraveyard, "img/biomes/cimetiere2.png", "img/layout/fondFightCimetiere.png");
+            Graveyard3 = new Biomes(TypeOfBiome.GraveyardDifficult, PoolOfGraveyard, "img/biomes/cimetiere3.png", "img/layout/fondFightCimetiere.png");
+            BossGraveyard = new Biomes(TypeOfBiome.GraveyardBoss, BossOfGraveyard, "img/biomes/cimetiereBoss.png", "img/layout/fondFightBossCimetiere.png");
 
-            village = new Biomes(TypeOfBiome.Village, poolOfVillage, "img/biomes/village.png", "img/layout/fondFightBossVillage.png");
-            village2 = new Biomes(TypeOfBiome.Village, poolOfVillage, "img/biomes/village2.png", "img/layout/fondFightBossVillage.png");
-            village3 = new Biomes(TypeOfBiome.Village, poolOfVillage, "img/biomes/village3.png", "img/layout/fondFightBossVillage.png");
-            village4 = new Biomes(TypeOfBiome.Village, poolOfVillage, "img/biomes/village4.png", "img/layout/fondFightBossVillage.png");
-            bossVillage = new Biomes(TypeOfBiome.VillageBoss, bossOfVillage, "img/biomes/villageBoss.png", "img/layout/fondFightBossVillage.png");
+            Village = new Biomes(TypeOfBiome.Village, PoolOfVillage, "img/biomes/village.png", "img/layout/fondFightBossVillage.png");
+            Village2 = new Biomes(TypeOfBiome.Village, PoolOfVillage, "img/biomes/village2.png", "img/layout/fondFightBossVillage.png");
+            Village3 = new Biomes(TypeOfBiome.Village, PoolOfVillage, "img/biomes/village3.png", "img/layout/fondFightBossVillage.png");
+            Village4 = new Biomes(TypeOfBiome.Village, PoolOfVillage, "img/biomes/village4.png", "img/layout/fondFightBossVillage.png");
+            BossVillage = new Biomes(TypeOfBiome.VillageBoss, BossOfVillage, "img/biomes/villageBoss.png", "img/layout/fondFightBossVillage.png");
 
             MapLayout = CreateMapLayout(); 
         }
@@ -88,23 +88,23 @@ namespace LegendOfRico.Data
                     {
                         if (square.SquareBiome.BiomeType == TypeOfBiome.Plain)
                         { 
-                            square.SquareBiome.MonsterPool = poolOfMediumPlain; 
+                            square.SquareBiome.MonsterPool = PoolOfMediumPlain; 
                         }
                         else if (square.SquareBiome.BiomeType == TypeOfBiome.Forest || square.SquareBiome.BiomeType == TypeOfBiome.ForestDifficult)
                         {
-                            square.SquareBiome.MonsterPool = poolOfMediumForest;
+                            square.SquareBiome.MonsterPool = PoolOfMediumForest;
                         }
                         else if (square.SquareBiome.BiomeType == TypeOfBiome.Graveyard || square.SquareBiome.BiomeType == TypeOfBiome.GraveyardDifficult)
                         {
-                            square.SquareBiome.MonsterPool = poolOfMediumGraveyard;
+                            square.SquareBiome.MonsterPool = PoolOfMediumGraveyard;
                         }
                         else if (square.SquareBiome.BiomeType == TypeOfBiome.Desert || square.SquareBiome.BiomeType == TypeOfBiome.DesertDifficult)
                         {
-                            square.SquareBiome.MonsterPool = poolOfMediumDesert;
+                            square.SquareBiome.MonsterPool = PoolOfMediumDesert;
                         }
                         else if (square.SquareBiome.BiomeType == TypeOfBiome.AbandonedVillage || square.SquareBiome.BiomeType == TypeOfBiome.AbandonedVillageDifficult)
                         {
-                            square.SquareBiome.MonsterPool = poolOfMediumRuined;
+                            square.SquareBiome.MonsterPool = PoolOfMediumRuined;
                         }                
                     }
                 }
@@ -117,23 +117,23 @@ namespace LegendOfRico.Data
                     {
                         if (square.SquareBiome.BiomeType == TypeOfBiome.Plain)
                         {
-                            square.SquareBiome.MonsterPool = poolOfHardPlain;
+                            square.SquareBiome.MonsterPool = PoolOfHardPlain;
                         }
                         else if (square.SquareBiome.BiomeType == TypeOfBiome.Forest || square.SquareBiome.BiomeType == TypeOfBiome.ForestDifficult)
                         {
-                            square.SquareBiome.MonsterPool = poolOfHardForest;
+                            square.SquareBiome.MonsterPool = PoolOfHardForest;
                         }
                         else if (square.SquareBiome.BiomeType == TypeOfBiome.Graveyard || square.SquareBiome.BiomeType == TypeOfBiome.GraveyardDifficult)
                         {
-                            square.SquareBiome.MonsterPool = poolOfHardGraveyard;
+                            square.SquareBiome.MonsterPool = PoolOfHardGraveyard;
                         }
                         else if (square.SquareBiome.BiomeType == TypeOfBiome.Desert || square.SquareBiome.BiomeType == TypeOfBiome.DesertDifficult)
                         {
-                            square.SquareBiome.MonsterPool = poolOfHardDesert;
+                            square.SquareBiome.MonsterPool = PoolOfHardDesert;
                         }
                         else if (square.SquareBiome.BiomeType == TypeOfBiome.AbandonedVillage || square.SquareBiome.BiomeType == TypeOfBiome.AbandonedVillageDifficult)
                         {
-                            square.SquareBiome.MonsterPool = poolOfHardRuined;
+                            square.SquareBiome.MonsterPool = PoolOfHardRuined;
                         }
                     }
                 }
@@ -147,121 +147,121 @@ namespace LegendOfRico.Data
         //contenu des pool encore à définir mais divers pool déjà créés pour faire la map
 
         //plaine
-        public List<Type> poolOfPlain = new List<Type> { typeof(Bulldog) };
-        public List<Type> poolOfMediumPlain = new List<Type> { typeof(Americanstaff) };
-        public List<Type> poolOfHardPlain = new List<Type> { typeof(Rottweiler) };
+        public List<Type> PoolOfPlain = new List<Type> { typeof(Bulldog) };
+        public List<Type> PoolOfMediumPlain = new List<Type> { typeof(Americanstaff) };
+        public List<Type> PoolOfHardPlain = new List<Type> { typeof(Rottweiler) };
         //forêt
-        public List<Type> poolOfForest = new List<Type> { typeof(SonOfAragog) };
-        public List<Type> poolOfMediumForest = new List<Type> { typeof(BigSonOfAragog) };
-        public List<Type> poolOfHardForest = new List<Type> { typeof(Aragog) };
-        public List<Type> bossOfForest = new List<Type> { typeof(Sunwukong) };
+        public List<Type> PoolOfForest = new List<Type> { typeof(SonOfAragog), typeof(OmegaWolf) };
+        public List<Type> PoolOfMediumForest = new List<Type> { typeof(BigSonOfAragog), typeof(BetaWolf) };
+        public List<Type> PoolOfHardForest = new List<Type> { typeof(Aragog), typeof(AlphaWolf) };
+        public List<Type> PossOfForest = new List<Type> { typeof(Sunwukong) };
         //désert
-        public List<Type> poolOfDesert = new List<Type> { typeof(LittleFlame) };
-        public List<Type> poolOfMediumDesert = new List<Type> { typeof(Flame) };
-        public List<Type> poolOfHardDesert = new List<Type> { typeof(Volcanis) };
-        public List<Type> bossOfDesert = new List<Type> { typeof(EternalScorpio) };
+        public List<Type> PoolOfDesert = new List<Type> { typeof(LittleFlame), typeof(LittleScorpio) };
+        public List<Type> PoolOfMediumDesert = new List<Type> { typeof(Flame), typeof(RockScorpio) };
+        public List<Type> PoolOfHardDesert = new List<Type> { typeof(Volcanis), typeof(EmperorScorpio) };
+        public List<Type> BossOfDesert = new List<Type> { typeof(EternalScorpio) };
         //Ruines
-        public List<Type> poolOfRuined = new List<Type> { typeof(Racaille), typeof(Nosptipti) };
-        public List<Type> poolOfMediumRuined = new List<Type> { typeof(Gangster), typeof(Nosalto) };
-        public List<Type> poolOfHardRuined = new List<Type> { typeof(Mafieux), typeof(Nosaffraid) };
-        public List<Type> bossOfRuined = new List<Type> { typeof(JoyBean) };
+        public List<Type> PoolOfRuined = new List<Type> { typeof(Racaille), typeof(Nosptipti), typeof(FlashOfLighting) };
+        public List<Type> PoolOfMediumRuined = new List<Type> { typeof(Gangster), typeof(Nosalto), typeof(Thunderstorm) };
+        public List<Type> PoolOfHardRuined = new List<Type> { typeof(Mafieux), typeof(Nosaffraid), typeof(Ener) };
+        public List<Type> BossOfRuined = new List<Type> { typeof(JoyBean) };
         //cimetiere
-        public List<Type> poolOfGraveyard = new List<Type> { typeof(Fantominet) };
-        public List<Type> poolOfMediumGraveyard = new List<Type> { typeof(Spectre) };
-        public List<Type> poolOfHardGraveyard = new List<Type> { typeof(Cauchemar) };
-        public List<Type> bossOfGraveyard = new List<Type> { typeof(Cheftontaton) };
+        public List<Type> PoolOfGraveyard = new List<Type> { typeof(Fantominet), typeof(IceCube) };
+        public List<Type> PoolOfMediumGraveyard = new List<Type> { typeof(Spectre), typeof(IceBlock) };
+        public List<Type> PoolOfHardGraveyard = new List<Type> { typeof(Cauchemar), typeof(Iceberg) };
+        public List<Type> BossOfGraveyard = new List<Type> { typeof(Cheftontaton) };
         //village
-        public List<Type> poolOfVillage = new List<Type> {  };
-        public List<Type> bossOfVillage = new List<Type> { typeof(RicoChico) };
+        public List<Type> PoolOfVillage = new List<Type> {  };
+        public List<Type> BossOfVillage = new List<Type> { typeof(RicoChico) };
 
         //création des différents Biomes 3 par types pour les différentes images, un pour les cases dangereuses et un pour les boss
         //sauf pour le village et la plaine
 
         //Plaine
-        public Biomes plain { get; private set; } 
-        public Biomes plain1 { get; private set; }
-        public Biomes plain2 { get; private set; }
+        public Biomes Plain { get; private set; } 
+        public Biomes Plain1 { get; private set; }
+        public Biomes Plain2 { get; private set; }
         //forêt
-        public Biomes forest {get; private set;}
-        public Biomes forest1 { get; private set;}
-        public Biomes forest2 {get; private set;}
-        public Biomes forest3 { get; private set; }
-        public Biomes bossForest { get; private set; }
+        public Biomes Forest {get; private set;}
+        public Biomes Forest1 { get; private set;}
+        public Biomes Forest2 {get; private set;}
+        public Biomes Forest3 { get; private set; }
+        public Biomes BossForest { get; private set; }
         //désert
-        public Biomes desert { get; private set; }
-        public Biomes desert1 { get; private set; }
-        public Biomes desert2 { get; private set; }
-        public Biomes desert3 { get; private set; }
-        public Biomes desert4 { get; private set; }
-        public Biomes desert5 { get; private set; }
-        public Biomes bossDesert { get; private set; }
+        public Biomes Desert { get; private set; }
+        public Biomes Desert1 { get; private set; }
+        public Biomes Desert2 { get; private set; }
+        public Biomes Desert3 { get; private set; }
+        public Biomes Desert4 { get; private set; }
+        public Biomes Desert5 { get; private set; }
+        public Biomes BossDesert { get; private set; }
         //ruines
-        public Biomes ruinedVillage { get; private set; }
-        public Biomes ruinedVillage1 { get; private set; }
-        public Biomes ruinedVillage2 { get; private set; }
-        public Biomes ruinedVillage3 { get; private set; }
-        public Biomes bossRuinedVillage { get; private set; }
+        public Biomes RuinedVillage { get; private set; }
+        public Biomes RuinedVillage1 { get; private set; }
+        public Biomes RuinedVillage2 { get; private set; }
+        public Biomes RuinedVillage3 { get; private set; }
+        public Biomes BossRuinedVillage { get; private set; }
         //cimetiere
-        public Biomes graveyard { get; private set; }
-        public Biomes graveyard1 {  get; private set; }
-        public Biomes graveyard2 {  get; private set; }
-        public Biomes graveyard3 { get; private set; }
-        public Biomes bossGraveyard { get; private set; }
+        public Biomes Graveyard { get; private set; }
+        public Biomes Graveyard1 {  get; private set; }
+        public Biomes Graveyard2 {  get; private set; }
+        public Biomes Graveyard3 { get; private set; }
+        public Biomes BossGraveyard { get; private set; }
         //village
-        public Biomes village { get; private set; }
-        public Biomes village2 { get; private set; }
-        public Biomes village3 {get; private set; }
-        public Biomes village4 {  get; private set; }
-        public Biomes bossVillage { get; private set; }
+        public Biomes Village { get; private set; }
+        public Biomes Village2 { get; private set; }
+        public Biomes Village3 {get; private set; }
+        public Biomes Village4 {  get; private set; }
+        public Biomes BossVillage { get; private set; }
 
 
         private void TrippleSquare(int minI, int maxI, int minJ, int maxJ, Square[][] mapLayout, TypeOfBiome tBiome, string Name, double cTrigger)
         {
-            Biomes b0 = plain;
-            Biomes b1 = plain1;
-            Biomes b2 = plain2;
+            Biomes b0 = Plain;
+            Biomes b1 = Plain1;
+            Biomes b2 = Plain2;
 
             switch (tBiome)
             {
                 case TypeOfBiome.Forest:
-                    b0 = forest;
-                    b1 = forest1;
-                    b2 = forest2;
+                    b0 = Forest;
+                    b1 = Forest1;
+                    b2 = Forest2;
                     break;
                 case TypeOfBiome.AbandonedVillage:
-                    b0 = ruinedVillage;
-                    b1 = ruinedVillage1;
-                    b2 = ruinedVillage2;
+                    b0 = RuinedVillage;
+                    b1 = RuinedVillage1;
+                    b2 = RuinedVillage2;
                     break;
                 case TypeOfBiome.Desert:
-                    b0 = desert;
-                    b1 = desert1;
-                    b2 = desert2;
+                    b0 = Desert;
+                    b1 = Desert1;
+                    b2 = Desert2;
                     break;
                 case TypeOfBiome.Graveyard:
-                    b0 = graveyard;
-                    b1 = graveyard1;
-                    b2 = graveyard2;
+                    b0 = Graveyard;
+                    b1 = Graveyard1;
+                    b2 = Graveyard2;
                     break;
                 case TypeOfBiome.DesertDifficult:
-                    b0 = desert3;
-                    b1 = desert4;
-                    b2 = desert5;
+                    b0 = Desert3;
+                    b1 = Desert4;
+                    b2 = Desert5;
                     break;
                 case TypeOfBiome.GraveyardDifficult:
-                    b0 = graveyard3;
-                    b1 = graveyard3;
-                    b2 = graveyard3;
+                    b0 = Graveyard3;
+                    b1 = Graveyard3;
+                    b2 = Graveyard3;
                     break;
                 case TypeOfBiome.AbandonedVillageDifficult:
-                    b0 = ruinedVillage3;
-                    b1 = ruinedVillage3;
-                    b2 = ruinedVillage3;
+                    b0 = RuinedVillage3;
+                    b1 = RuinedVillage3;
+                    b2 = RuinedVillage3;
                     break;
                 case TypeOfBiome.ForestDifficult:
-                    b0 = forest3;
-                    b1 = forest3;
-                    b2 = forest3;
+                    b0 = Forest3;
+                    b1 = Forest3;
+                    b2 = Forest3;
                     break;
 
             }
@@ -304,15 +304,15 @@ namespace LegendOfRico.Data
                     //utilisation des 3 images différentes en fonction du modulo des coordonées de chaque square
                     if (j % 3 == 0 && i % 3 == 0)
                     {
-                        mapLayout[i][j] = new Square {SquareBiome = plain2, Name = "Plaine tranquille", ChanceToTriggerFight = 0.025 };
+                        mapLayout[i][j] = new Square {SquareBiome = Plain2, Name = "Plaine tranquille", ChanceToTriggerFight = 0.025 };
                     }
                     else if (j % 3 == 0 && i % 4 == 0)
                     {
-                        mapLayout[i][j] = new Square {SquareBiome = plain, Name = "Plaine Tranquille", ChanceToTriggerFight = 0.025 }; 
+                        mapLayout[i][j] = new Square {SquareBiome = Plain, Name = "Plaine Tranquille", ChanceToTriggerFight = 0.025 }; 
                     }
                     else
                     {
-                        mapLayout[i][j] = new Square {SquareBiome = plain1, Name = "Plaine Tranquille", ChanceToTriggerFight = 0.025 }; 
+                        mapLayout[i][j] = new Square {SquareBiome = Plain1, Name = "Plaine Tranquille", ChanceToTriggerFight = 0.025 }; 
                     }
                 }
             }
@@ -371,7 +371,7 @@ namespace LegendOfRico.Data
             TrippleSquare(90, 110, 110, 142, mapLayout, TypeOfBiome.ForestDifficult, "Forêt de Sherloop", 0.25);
 
             //zone de boss de la forêt
-            mapLayout[72][53] = new Square { SquareBiome = bossForest, Name = "Sun Wukong", ChanceToTriggerFight = 1.0 };
+            mapLayout[72][53] = new Square { SquareBiome = BossForest, Name = "Sun Wukong", ChanceToTriggerFight = 1.0 };
 
            
 
@@ -391,7 +391,7 @@ namespace LegendOfRico.Data
             TrippleSquare(469, 498, 476, 496, mapLayout, TypeOfBiome.DesertDifficult, "La dune éternelle", 0.1);
 
             //zone de boss de ce desert
-            mapLayout[499][499] = new Square { SquareBiome = bossDesert, Name = "Le scorpion éternel", ChanceToTriggerFight = 1.0 };
+            mapLayout[499][499] = new Square { SquareBiome = BossDesert, Name = "Le scorpion éternel", ChanceToTriggerFight = 1.0 };
 
 
 
@@ -405,7 +405,7 @@ namespace LegendOfRico.Data
             TrippleSquare(357, 376, 120, 135, mapLayout, TypeOfBiome.AbandonedVillageDifficult, "l'ancienne cité de Joy Bean", 0.25);
 
             //zone de boss de cette cité en ruine
-            mapLayout[428][58] = new Square { SquareBiome = bossRuinedVillage, Name = "Le grand Joy Bean", ChanceToTriggerFight = 1.0 };
+            mapLayout[428][58] = new Square { SquareBiome = BossRuinedVillage, Name = "Le grand Joy Bean", ChanceToTriggerFight = 1.0 };
 
 
 
@@ -419,10 +419,10 @@ namespace LegendOfRico.Data
             TrippleSquare(90, 110, 369, 385, mapLayout, TypeOfBiome.GraveyardDifficult, "Cimetière des tontaton", 0.25);
 
             //zone de boss du cimetière
-            mapLayout[36][401] = new Square { SquareBiome = bossGraveyard, Name = "Chef tontaton revenu", ChanceToTriggerFight = 1.0 };
+            mapLayout[36][401] = new Square { SquareBiome = BossGraveyard, Name = "Chef tontaton revenu", ChanceToTriggerFight = 1.0 };
 
             //ajout du chateau du boss final du jeu
-            mapLayout[246][250] = new Square { SquareBiome = bossVillage, Name = "Le chateau du grand Rico Chico", ChanceToTriggerFight = 1.0 };
+            mapLayout[246][250] = new Square { SquareBiome = BossVillage, Name = "Le chateau du grand Rico Chico", ChanceToTriggerFight = 1.0 };
 
 
             //creation des donneurs de quêtes et de leurs quêtes
@@ -437,12 +437,12 @@ namespace LegendOfRico.Data
 
 
             //ajout du village de départ astrub
-            mapLayout[250][250] = new Square { SquareBiome = village, Name = "Astrub", ChanceToTriggerFight = 0.0, HasNPC = true, HasQuestTarget = true, MisterQuest=archibald };
+            mapLayout[250][250] = new Square { SquareBiome = Village, Name = "Astrub", ChanceToTriggerFight = 0.0, HasNPC = true, HasQuestTarget = true, MisterQuest=archibald };
 
             // ajout des différents villages
-            mapLayout[152][82] = new Square { SquareBiome = village2, Name = "Logue Town", ChanceToTriggerFight = 0.0, HasNPC = true, HasQuestTarget = true };
-            mapLayout[166][224] = new Square { SquareBiome = village3, Name = "Marine Ford", ChanceToTriggerFight = 0.0, HasNPC = true, HasQuestTarget = true };
-            mapLayout[196][249] = new Square { SquareBiome = village4, Name = "Ancien Village", ChanceToTriggerFight = 0.0, HasNPC = true, HasQuestTarget = true, MisterQuest=fatimaZorra };
+            mapLayout[152][82] = new Square { SquareBiome = Village2, Name = "Logue Town", ChanceToTriggerFight = 0.0, HasNPC = true, HasQuestTarget = true };
+            mapLayout[166][224] = new Square { SquareBiome = Village3, Name = "Marine Ford", ChanceToTriggerFight = 0.0, HasNPC = true, HasQuestTarget = true };
+            mapLayout[196][249] = new Square { SquareBiome = Village4, Name = "Ancien Village", ChanceToTriggerFight = 0.0, HasNPC = true, HasQuestTarget = true, MisterQuest=fatimaZorra };
             
 
             

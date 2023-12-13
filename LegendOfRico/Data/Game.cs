@@ -406,14 +406,22 @@ namespace LegendOfRico.Data
             }
             else
             {
-                int whoGetsHit = new Random().Next(0, 2);
-                if(Player.PartyMember != null && whoGetsHit == 0 && Player.PartyMember.CurrentHitPoints > 0)
+                MonsterFight.SelectHit();
+                if (MonsterFight.MonsterHit.IsGroupHit && Player.PartyMember != null)
                 {
-                    FightMessage += MonsterFight.Hit(Player.PartyMember);
+                    FightMessage += MonsterFight.DoubleHit(Player, Player.PartyMember);
                 }
                 else
-                {
-                    FightMessage += MonsterFight.Hit(Player);
+                { 
+                    int whoGetsHit = new Random().Next(0, 2);
+                    if (Player.PartyMember != null && whoGetsHit == 0 && Player.PartyMember.CurrentHitPoints > 0)
+                    {
+                        FightMessage += MonsterFight.Hit(Player.PartyMember);
+                    }
+                    else
+                    {
+                        FightMessage += MonsterFight.Hit(Player);
+                    }
                 }
                 if (Player.CurrentHitPoints <= 0 && !MonsterDead)
                 {
@@ -423,10 +431,11 @@ namespace LegendOfRico.Data
                     FightMessage += "Vous perdez la moitié de votre expérience. ";
                     Player.CurrentXp /= 2;
                 }
-                if(Player.PartyMember != null && Player.PartyMember.CurrentHitPoints < 0)
+                if (Player.PartyMember != null && Player.PartyMember.CurrentHitPoints < 0)
                 {
                     Player.PartyMember.CurrentHitPoints = 0;
                 }
+                
             }
         }
 
