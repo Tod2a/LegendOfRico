@@ -39,7 +39,7 @@ public abstract class Character : INotifyPropertyChanged
     public CollectQuest CollectQuest { get; set; }
     public abstract Boolean CanEquipShield { get; set; }
     public virtual Beast Pet { get; set; } = new Bulldog();
-    public int Coins { get; private set; } = 10000000;
+    public int Coins { get; private set; } = 100000;
     public virtual string fightImgUrl { get; }
     private string mapSprite;
     public string MapSprite
@@ -244,6 +244,7 @@ public abstract class Character : INotifyPropertyChanged
             {
                 if (CharacterWeapon.GetType() != typeof(DoubleWeapon)) //Si pas de main gauche
                 {
+                    Statistics -= CharacterWeapon.BonusStats;
                     CharacterWeapon = new DoubleWeapon(CharacterWeapon.ItemName + "/" + stuff.ItemName,
                         CharacterWeapon.Description + "/" + stuff.Description,
                         CharacterWeapon.Price + stuff.Price,
@@ -258,6 +259,7 @@ public abstract class Character : INotifyPropertyChanged
                     Stuff weapon1 = ambidextrWeapon.Weapon1;
                     Stuff weapon2 = ambidextrWeapon.Weapon2;
                     StuffInventory.Add(weapon2);
+                    Statistics -= CharacterWeapon.BonusStats;
                     CharacterWeapon = new DoubleWeapon(weapon1.ItemName + "/" + stuff.ItemName,
                         weapon1.Description + "/" + stuff.Description,
                         weapon1.Price + stuff.Price,

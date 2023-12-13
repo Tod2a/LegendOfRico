@@ -3,8 +3,8 @@
     public class OmegaWolf: Wolf
     {
         public override string MonsterName { get; set; } = "Loup Omega";
-        public override int MonsterHP { get; set; } = 100;
-        public override int MonsterCurrentHP { get; set; } = 100;
+        public override int MonsterHP { get; set; } = 25;
+        public override int MonsterCurrentHP { get; set; } = 25;
         public override string fightImgUrl { get; set; } = "img/monster/Wolf/omegawolf.png";
         public override int XpGranted { get; set; } = 50;
         public override int PetMinDamage { get; protected set; } = 5;
@@ -26,8 +26,7 @@
         {
             return new MonsterHit[]
                 {
-                    new MonsterHit{Name = "Morsure", MinDamage = 10, MaxDamage = 15 },
-                    new MonsterHit{Name = "Piqure", MinDamage = 5, MaxDamage = 10}
+                    new MonsterHit{Name = "Morsure", MinDamage = 3, MaxDamage = 12 }
                 };
         }
     }

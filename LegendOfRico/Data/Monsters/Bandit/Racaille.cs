@@ -19,6 +19,8 @@
             new Armor("Armure en bronze", "Lourd | Armure : 4", 100, TypeOfArmor.Heavy, 4),
             new Armor("Armure en cuir brute", "Moyen | Armure : 3", 75, TypeOfArmor.Medium, 3)
         };
+        public override int MinCoins { get; protected set; } = 5;
+        public override int MaxCoins { get; protected set; } = 20;
 
         protected override MonsterHit[] BuildHitTable()
         {

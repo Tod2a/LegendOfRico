@@ -9,8 +9,8 @@ public abstract class Humanoid : Monster
     public override int MonsterCurrentHP { get; set; }
     public override string fightImgUrl { get; set; }
     public override int XpGranted { get; set; }
-    public int MinCoins { get; private set; }
-    public int MaxCoins { get; private set; }
+    public abstract int MinCoins { get; protected set; }
+    public abstract int MaxCoins { get; protected set; }
 
   
     public int DropsCoins()

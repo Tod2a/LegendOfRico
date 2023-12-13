@@ -2,7 +2,7 @@
 
 public class Tame : Spells
 {
-    public override string SpellName { get; protected set; } = "Apprivoiser";
+    public override string SpellName { get; protected set; } = "Apprivoiser (99/99)";
     public override int MaxNumberOfUses => 99;
     public override int CurrentNumberOfUses { get; protected set; } = 99;
     public TypeOfDamage SpellType = TypeOfDamage.None;

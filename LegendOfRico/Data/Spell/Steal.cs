@@ -26,7 +26,7 @@ public class Steal : Spells
                 }
                 CurrentNumberOfUses--;
                 SpellName = "Voler (" + CurrentNumberOfUses + "/" + MaxNumberOfUses + ")";
-                s += player.Name + " a volé " + stolenCoins + " à la cible !";
+                s += player.Name + " a volé " + stolenCoins + " pièces à la cible !";
             }
             else
             {

@@ -346,6 +346,11 @@ namespace LegendOfRico.Data
                 Player.LootStuff(droppedItem);
                 FightMessage += "Vous trouvez '" + droppedItem.ItemName + "' sur le cadavre de votre ennemi ! ";
             }
+            if(MonsterFight.GetType() == typeof(Humanoid))
+            {
+                var humanoidMob = (Humanoid)MonsterFight;
+                Player.LootGold(humanoidMob.DropsCoins());
+            }
             MonsterDead = true;
             if (Player.CurrentXp >= Player.XpToLevel)
             {

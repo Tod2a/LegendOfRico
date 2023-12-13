@@ -19,6 +19,8 @@
             new Armor("Armure en cuir fin", "Moyen | Armure : 6", 200, TypeOfArmor.Medium, 6),
             new Armor("Armure en fer", "Lourd | Armure : 8", 250, TypeOfArmor.Heavy, 8)
         };
+        public override int MinCoins { get; protected set; } = 15;
+        public override int MaxCoins { get; protected set; } = 50;
 
         protected override MonsterHit[] BuildHitTable()
         {
