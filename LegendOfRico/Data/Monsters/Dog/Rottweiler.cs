@@ -5,7 +5,7 @@
         public override string MonsterName { get; set; } = "Rottweiler";
         public override int MonsterHP { get; set; } = 500;
         public override int MonsterCurrentHP { get; set; } = 500;
-        public override string fightImgUrl { get; set; } = "img/monster/spider/rottweiler.png";
+        public override string fightImgUrl { get; set; } = "img/monster/dog/rottweiler.png";
         public override int XpGranted { get; set; } = 500;
         public override int PetMinDamage { get; protected set; } = 25;
         public override int PetMaxDamage { get; protected set; } = 50;
