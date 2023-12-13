@@ -39,7 +39,7 @@ namespace LegendOfRico.Data
                 player.Level++;
                 FightMessage += player.Name + " gagne un niveau ! ";
                 player.CurrentXp -= player.XpToLevel;
-                player.XpToLevel += 250 * player.Level;
+                player.XpToLevel += 125 * (player.Level - 1);
             }
         }
 

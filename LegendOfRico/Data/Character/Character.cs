@@ -467,8 +467,11 @@ public abstract class Character : INotifyPropertyChanged
 
     public void SetHasFrostArmor(int additionalArmor)
     {
+        ArmorAmount -= FrostArmorAdditionalArmor;
+        FrostArmorAdditionalArmor = 0;
+
         HasFrostArmor = true;
-        FrostArmorAdditionalArmor = additionalArmor;
+        FrostArmorAdditionalArmor += additionalArmor;
         ArmorAmount += FrostArmorAdditionalArmor;
     }
 
