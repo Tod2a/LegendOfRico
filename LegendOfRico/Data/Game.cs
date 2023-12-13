@@ -186,6 +186,10 @@ namespace LegendOfRico.Data
                     Turncount++;
                 }
             }
+            else
+            {
+                MonsterHit();
+            }
             if (game.MonsterFight.MonsterCurrentHP <= 0)
             {
                 FightVictory();
@@ -262,6 +266,10 @@ namespace LegendOfRico.Data
                 {
                     Turncount++;
                 }
+            }
+            else
+            {
+                MonsterHit();
             }
             if (game.MonsterFight.MonsterCurrentHP <= 0)
             {
