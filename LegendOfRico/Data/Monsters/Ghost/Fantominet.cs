@@ -6,7 +6,7 @@
         public override int MonsterHP { get; set; } = 50;
         public override int MonsterCurrentHP { get; set; } = 50;
         public override string fightImgUrl { get; set; } = "img/monster/ghost/fantominet.png";
-        public override int XpGranted { get; set; } = 50;
+        public override int XpGranted { get; set; } = 100;
         public override List<Stuff> LootTable { get; protected set; } = new List<Stuff>() {
             new Axe("Hache en bronze", "(3 - 6)", 50, 3, 6, 0),
             new Bow("Arc en frêne", "(5 - 8)", 50, 5, 8, 0),
@@ -19,7 +19,6 @@
             new Armor("Armure en bronze", "Lourd | Armure : 4", 100, TypeOfArmor.Heavy, 4),
             new Armor("Armure en cuir brute", "Moyen | Armure : 3", 75, TypeOfArmor.Medium, 3)
         };
-
         protected override MonsterHit[] BuildHitTable()
         {
             return new MonsterHit[]

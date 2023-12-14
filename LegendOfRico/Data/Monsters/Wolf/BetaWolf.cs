@@ -3,10 +3,10 @@
     public class BetaWolf: Wolf
     {
         public override string MonsterName { get; set; } = "Loup Beta";
-        public override int MonsterHP { get; set; } = 250;
-        public override int MonsterCurrentHP { get; set; } = 250;
+        public override int MonsterHP { get; set; } = 85;
+        public override int MonsterCurrentHP { get; set; } = 85;
         public override string fightImgUrl { get; set; } = "img/monster/Wolf/betawolf.png";
-        public override int XpGranted { get; set; } = 100;
+        public override int XpGranted { get; set; } = 140;
         public override int PetMinDamage { get; protected set; } = 15;
         public override int PetMaxDamage { get; protected set; } = 25;
         public override List<Stuff> LootTable { get; protected set; } = new List<Stuff>() {

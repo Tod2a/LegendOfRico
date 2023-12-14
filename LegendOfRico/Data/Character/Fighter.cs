@@ -22,12 +22,7 @@
             int gainedHP = MaxHitPoints / 10 + Level;
             CurrentHitPoints += gainedHP;
             MaxHitPoints += gainedHP;
-            Statistics += (5 + Level) / 2;
-
-            if (Level == 3)
-            {
-                //Spell à défini
-            }
+            Statistics += 5 + Level;
         }
     }
 }

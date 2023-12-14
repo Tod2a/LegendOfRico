@@ -3,10 +3,10 @@
     public class Nosalto: Bat
     {
         public override string MonsterName { get; set; } = "Nosalto";
-        public override int MonsterHP { get; set; } = 250;
-        public override int MonsterCurrentHP { get; set; } = 250;
+        public override int MonsterHP { get; set; } = 80;
+        public override int MonsterCurrentHP { get; set; } = 80;
         public override string fightImgUrl { get; set; } = "img/monster/Bat/Nosalto.png";
-        public override int XpGranted { get; set; } = 100;
+        public override int XpGranted { get; set; } = 120;
         public override int PetMinDamage { get; protected set; } = 15;
         public override int PetMaxDamage { get; protected set; } = 25;
         public override List<Stuff> LootTable { get; protected set; } = new List<Stuff>() {

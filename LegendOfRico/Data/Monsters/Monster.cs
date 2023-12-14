@@ -10,7 +10,7 @@ public abstract class Monster
     public abstract int MonsterHP { get; set; }
     public abstract int MonsterCurrentHP { get; set; }
     public abstract TypeOfDamage[] MonsterWeakness { get; }
-    public TypeOfDamage[] MonsterResistance { get; private set; } = new TypeOfDamage[] { };
+    public abstract TypeOfDamage[] MonsterResistance { get; }
     public abstract TypeOfMonster MonsterType { get; set; }
     //ajout d'une race à chaque monstre pour faciliter la création de quête par après, on pourra faire des quetes qui cibles des bêtes ou des spiders
     public abstract TypeOfBreed MonsterBreed { get; set; }
@@ -114,9 +114,14 @@ public abstract class Monster
         }
 
         double dodge = dice.NextDouble();
-        if (dodge < target.ChanceToDodge)
+        if (target.IsEvading)
         {
-            s += "Le monstre attaque mais vous esquivez !";
+            s += "Le monstre attaque " + target.Name + " mais "+target.Name+" se confond dans les ombres !";
+            target.SetEvadeDuration(-1);
+        }
+        else if (dodge < target.ChanceToDodge)
+        {
+            s += "Le monstre attaque " + target.Name + " mais c'est esquivé !";
         }
         else
         {

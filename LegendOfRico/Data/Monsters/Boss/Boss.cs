@@ -3,6 +3,7 @@
     public abstract class Boss: Monster
     {
         public override TypeOfDamage[] MonsterWeakness { get; } = new TypeOfDamage[] { };
+        public override TypeOfDamage[] MonsterResistance { get; } = new TypeOfDamage[] { };
         public Boss()
         {
             HitTable = BuildHitTable();

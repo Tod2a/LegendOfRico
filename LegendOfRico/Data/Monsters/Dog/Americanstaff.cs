@@ -3,8 +3,8 @@
     public class Americanstaff: StrayDog
     {
         public override string MonsterName { get; set; } = "American Staff";
-        public override int MonsterHP { get; set; } = 250;
-        public override int MonsterCurrentHP { get; set; } = 250;
+        public override int MonsterHP { get; set; } = 50;
+        public override int MonsterCurrentHP { get; set; } = 50;
         public override string fightImgUrl { get; set; } = "img/monster/Dog/americanstaff.png";
         public override int XpGranted { get; set; } = 100;
         public override int PetMinDamage { get; protected set; } = 15;
@@ -26,8 +26,8 @@
         {
             return new MonsterHit[]
                 {
-                    new MonsterHit{Name = "Déchirure", MinDamage = 15, MaxDamage = 20 },
-                    new MonsterHit{Name = "Perforation", MinDamage = 10, MaxDamage = 15}
+                    new MonsterHit{Name = "Déchirure", MinDamage = 8, MaxDamage = 12 },
+                    new MonsterHit{Name = "Perforation", MinDamage = 10, MaxDamage = 10}
                 };
         }
 

@@ -5,6 +5,7 @@
         public override MonsterHit[] HitTable { get; set; }
         public override TypeOfBreed MonsterBreed { get; set; } = TypeOfBreed.IceElemental;
         public override TypeOfDamage[] MonsterWeakness => new[] { TypeOfDamage.Fire };
+        public override TypeOfDamage[] MonsterResistance => new[] { TypeOfDamage.Cold };
 
         public IceElemental()
         {

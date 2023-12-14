@@ -33,7 +33,7 @@ namespace LegendOfRico.Data
             Forest1 = new Biomes(TypeOfBiome.Forest, PoolOfForest, "img/biomes/foret1.png", "img/layout/fondFightBois.png");
             Forest2 = new Biomes(TypeOfBiome.Forest, PoolOfForest, "img/biomes/foret2.png", "img/layout/fondFightBois.png");
             Forest3 = new Biomes(TypeOfBiome.ForestDifficult, PoolOfForest, "img/biomes/foret3.png", "img/layout/fondFightBois.png");
-            BossForest = new Biomes(TypeOfBiome.ForestBoss, PossOfForest, "img/biomes/foretBoss.png", "img/layout/fondFightBossBois.png");
+            BossForest = new Biomes(TypeOfBiome.ForestBoss, BossOfForest, "img/biomes/foretBoss.png", "img/layout/fondFightBossBois.png");
 
             Desert = new Biomes(TypeOfBiome.Desert, PoolOfDesert, "img/biomes/desert.png", "img/layout/fondFightDesert.png");
             Desert1 = new Biomes(TypeOfBiome.Desert, PoolOfDesert, "img/biomes/desert1.png", "img/layout/fondFightDesert.png");
@@ -154,7 +154,7 @@ namespace LegendOfRico.Data
         public List<Type> PoolOfForest = new List<Type> { typeof(SonOfAragog), typeof(OmegaWolf) };
         public List<Type> PoolOfMediumForest = new List<Type> { typeof(BigSonOfAragog), typeof(BetaWolf) };
         public List<Type> PoolOfHardForest = new List<Type> { typeof(Aragog), typeof(AlphaWolf) };
-        public List<Type> PossOfForest = new List<Type> { typeof(Sunwukong) };
+        public List<Type> BossOfForest = new List<Type> { typeof(Sunwukong) };
         //désert
         public List<Type> PoolOfDesert = new List<Type> { typeof(LittleFlame), typeof(LittleScorpio) };
         public List<Type> PoolOfMediumDesert = new List<Type> { typeof(Flame), typeof(RockScorpio) };

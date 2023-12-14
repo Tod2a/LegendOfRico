@@ -6,7 +6,7 @@
         public override int MonsterHP { get; set; } = 50;
         public override int MonsterCurrentHP { get; set; } = 50;
         public override string fightImgUrl { get; set; } = "img/monster/iceelemental/icecube.png";
-        public override int XpGranted { get; set; } = 50;
+        public override int XpGranted { get; set; } = 100;
         public override List<Stuff> LootTable { get; protected set; } = new List<Stuff>() {
             new Axe("Hache en bronze", "(3 - 6)", 50, 3, 6, 0),
             new Bow("Arc en frêne", "(5 - 8)", 50, 5, 8, 0),
@@ -25,7 +25,7 @@
             return new MonsterHit[]
             {
                 new MonsterHit {Name ="Refroidissement", MinDamage = 5, MaxDamage = 10},
-                new MonsterHit { Name = "Vent glaçé", MinDamage = 7, MaxDamage = 12, IsGroupHit = true } // Possibilité de gel ?
+                new MonsterHit { Name = "Vent glaçé", MinDamage = 7, MaxDamage = 12, IsGroupHit = true } // Possibilité de gel ? NON
             };
         }
     }

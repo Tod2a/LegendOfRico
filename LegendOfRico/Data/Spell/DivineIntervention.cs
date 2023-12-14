@@ -26,7 +26,6 @@ public class DivineIntervention : Spells
             if (target.MonsterType == TypeOfMonster.Undead)
             {
                 target.Burnt();
-                target.TakeDamage(target.MonsterHP / 10);
                 s += s += "Votre cible brûle ! ";
             }
             if (player.PartyMember != null)
@@ -38,6 +37,19 @@ public class DivineIntervention : Spells
             {
                 s += player.Name + " est soigné de " + healRoll + " points de vie ";
             }
+
+            if (target.MonsterResistance.Contains(SpellType))
+            {
+                damageRoll /= 2;
+                s += "Peu efficace ! ";
+            }
+            else if (target.MonsterWeakness.Contains(SpellType))
+            {
+                damageRoll *= 2;
+                s += "Efficace ! ";
+            }
+
+
             s += player.Name + "et inflige " + damageRoll + " points de dégâts à la cible ! ";
             CurrentNumberOfUses--;
             SpellName = "Intervention divine (" + CurrentNumberOfUses + "/3)";

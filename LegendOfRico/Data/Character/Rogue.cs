@@ -22,11 +22,15 @@ public class Rogue : Character
         int gainedHP = MaxHitPoints / 10 + Level;
         CurrentHitPoints += gainedHP;
         MaxHitPoints += gainedHP;
-        Statistics += (5 + Level)/2;
+        Statistics += (7 + Level)/2;
 
         if (Level == 3)
         {
-            //Spell à défini
+            SpellBook.Add(new Evade());
+        }
+        if( Level == 5)
+        {
+            SpellBook.Add(new Assassinate());
         }
     }
 }

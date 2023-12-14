@@ -3,10 +3,10 @@
     public class Spectre: Ghost
     {
         public override string MonsterName { get; set; } = "Spectre";
-        public override int MonsterHP { get; set; } = 100;
-        public override int MonsterCurrentHP { get; set; } = 100;
+        public override int MonsterHP { get; set; } = 55;
+        public override int MonsterCurrentHP { get; set; } = 55;
         public override string fightImgUrl { get; set; } = "img/monster/ghost/Spectre.png";
-        public override int XpGranted { get; set; } = 100;
+        public override int XpGranted { get; set; } = 160;
         public override List<Stuff> LootTable { get; protected set; } = new List<Stuff>() {
             new Axe("Hache en fer", "(6 - 12) | Stats +2", 100, 6, 12, 2),
             new Bow("Arc en noyer", "(10 - 16) | Stats +4", 100, 10, 16, 4),

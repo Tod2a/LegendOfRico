@@ -3,10 +3,10 @@
     public class Rottweiler: StrayDog
     {
         public override string MonsterName { get; set; } = "Rottweiler";
-        public override int MonsterHP { get; set; } = 500;
-        public override int MonsterCurrentHP { get; set; } = 500;
+        public override int MonsterHP { get; set; } = 100;
+        public override int MonsterCurrentHP { get; set; } = 100;
         public override string fightImgUrl { get; set; } = "img/monster/dog/rottweiler.png";
-        public override int XpGranted { get; set; } = 500;
+        public override int XpGranted { get; set; } = 160;
         public override int PetMinDamage { get; protected set; } = 25;
         public override int PetMaxDamage { get; protected set; } = 50;
         public override List<Stuff> LootTable { get; protected set; } = new List<Stuff>() {
@@ -26,8 +26,8 @@
         {
             return new MonsterHit[]
                 {
-                    new MonsterHit{Name = "Balafre", MinDamage = 5, MaxDamage = 8 },
-                    new MonsterHit{Name = "éviscération", MinDamage = 25, MaxDamage = 30}
+                    new MonsterHit{Name = "Balafre", MinDamage = 5, MaxDamage = 30 },
+                    new MonsterHit{Name = "éviscération", MinDamage = 15, MaxDamage = 20}
                 };
         }
     }

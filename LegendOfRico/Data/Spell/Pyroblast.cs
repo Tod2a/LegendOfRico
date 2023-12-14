@@ -30,6 +30,16 @@ public class Pyroblast : Spells
                 target.Burnt();
                 s += "Votre cible brûle ! ";
             }
+            if (target.MonsterResistance.Contains(SpellType))
+            {
+                damageRoll /= 2;
+                s += "Peu efficace ! ";
+            }
+            else if (target.MonsterWeakness.Contains(SpellType))
+            {
+                damageRoll *= 2;
+                s += "Efficace ! ";
+            }
             target.TakeDamage(damageRoll);
             s += player.Name + " inflige " + damageRoll + " points de dégâts à la cible ! ";
             CurrentNumberOfUses--;

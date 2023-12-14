@@ -15,15 +15,25 @@ public class Smite : Spells
         if (CurrentNumberOfUses > 0)
         {
             int damageRoll = (new Random()).Next(MinValue, MaxValue + 1);
-            damageRoll += (int)((player.Statistics / 50) * damageRoll);
+            damageRoll += player.Statistics / 50 * damageRoll;
 
             target.TakeDamage(damageRoll);
             if (target.MonsterType == TypeOfMonster.Undead)
             {
                 target.Burnt();
-                target.TakeDamage((int)(target.MonsterHP / 10));
                 s += "Votre cible brûle ! ";
             }
+            if (target.MonsterResistance.Contains(SpellType))
+            {
+                damageRoll /= 2;
+                s += "Peu efficace ! ";
+            }
+            else if (target.MonsterWeakness.Contains(SpellType))
+            {
+                damageRoll *= 2;
+                s += "Efficace ! ";
+            }
+            target.TakeDamage(damageRoll);
             s += player.Name + " inflige " + damageRoll + " points de dégâts à la cible !";
             CurrentNumberOfUses--;
             SpellName = "Châtiment (" + CurrentNumberOfUses + "/" + MaxNumberOfUses + ")";

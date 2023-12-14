@@ -65,6 +65,8 @@ public abstract class Character : INotifyPropertyChanged
     public int BurnDuration { get; set; } = 0;
     public Boolean IsProtected { get; private set; } = false;
     public int ProtectDuration { get; private set; } = 0;
+    public bool IsEvading { get; private set; } = false;
+    public int EvadeDuration { get; private set; } = 0;
     public bool Joydead { get; set; } = false;
     public bool Scorpiodead { get; set; } = false;
     public bool Wukongdead { get; set; } = false;
@@ -174,10 +176,10 @@ public abstract class Character : INotifyPropertyChanged
     {
         string s = "";
         int weaponDamageRoll =
-            (new Random()).Next(CharacterWeapon.MinimumWeaponDamage, CharacterWeapon.MaximumWeaponDamage + 1);
-        weaponDamageRoll += (int)((Statistics / 25) * weaponDamageRoll);
+            new Random().Next(CharacterWeapon.MinimumWeaponDamage, CharacterWeapon.MaximumWeaponDamage + 1);
+        weaponDamageRoll += Statistics / 5 * weaponDamageRoll;
 
-        if ((new Random()).NextDouble() <= CharacterWeapon.WeaponCritChance) //Si l'arme crit dégâts x2
+        if (new Random().NextDouble() <= CharacterWeapon.WeaponCritChance) //Si l'arme crit dégâts x2
         {
             weaponDamageRoll *= 2;
             s += "Coup critique ! ";
@@ -188,6 +190,12 @@ public abstract class Character : INotifyPropertyChanged
             weaponDamageRoll *= 2;
             s += "Efficace ! ";
         }
+        else if (target.MonsterResistance.Contains(CharacterWeapon.WeaponTypeOfDamage))
+        {
+            weaponDamageRoll /= 2;
+            s += "Peu efficace ! ";
+        }
+
         target.TakeDamage(weaponDamageRoll);
         s += Name + " frappe et inflige " + weaponDamageRoll + " points de dégats ! ";
 
@@ -456,6 +464,7 @@ public abstract class Character : INotifyPropertyChanged
         if(ProtectDuration <= 0)
         {
             IsProtected = false;
+            ProtectDuration = 0;
         }
         else if(!IsProtected && ProtectDuration > 0)
         {
@@ -463,6 +472,24 @@ public abstract class Character : INotifyPropertyChanged
             if(ProtectDuration > 10)
             {
                 ProtectDuration = 10;
+            }
+        }
+    }
+
+    public void SetEvadeDuration(int duration)
+    {
+        EvadeDuration += duration;
+        if (EvadeDuration <= 0)
+        {
+            IsEvading = false;
+            EvadeDuration = 0;
+        }
+        else if (!IsEvading && EvadeDuration > 0)
+        {
+            IsEvading = true;
+            if (EvadeDuration > 5)
+            {
+                EvadeDuration = 5;
             }
         }
     }

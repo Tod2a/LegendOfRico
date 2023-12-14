@@ -9,7 +9,7 @@ public abstract class Beast : Monster
     public override MonsterHit[] HitTable { get; set; } = new MonsterHit[] { };
     public abstract int PetMinDamage { get; protected set; }
     public abstract int PetMaxDamage { get; protected set; }
-
+    public override TypeOfDamage[] MonsterResistance => new TypeOfDamage[] { };
 
 
     public void Soothed()

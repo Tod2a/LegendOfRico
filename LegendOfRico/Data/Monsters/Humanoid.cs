@@ -11,8 +11,9 @@ public abstract class Humanoid : Monster
     public override int XpGranted { get; set; }
     public abstract int MinCoins { get; protected set; }
     public abstract int MaxCoins { get; protected set; }
+    public override TypeOfDamage[] MonsterResistance => new TypeOfDamage[] { };
 
-  
+
     public int DropsCoins()
     {
         return (new Random()).Next(MinCoins, MaxCoins + 1);

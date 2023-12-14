@@ -3,10 +3,10 @@
     public class BigSonOfAragog: Spider
     {
         public override string MonsterName { get; set; } = "L'ainé de Aragog";
-        public override int MonsterHP { get; set; } = 250;
-        public override int MonsterCurrentHP { get; set; } = 250;
+        public override int MonsterHP { get; set; } = 75;
+        public override int MonsterCurrentHP { get; set; } = 75;
         public override string fightImgUrl { get; set; } = "img/monster/spider/BigSonOfAragog.png";
-        public override int XpGranted { get; set; } = 100;
+        public override int XpGranted { get; set; } = 130;
         public override int PetMinDamage { get; protected set; } = 15;
         public override int PetMaxDamage { get; protected set; } = 25;
         public override List<Stuff> LootTable { get; protected set; } = new List<Stuff>() {
@@ -26,7 +26,7 @@
         {
             return new MonsterHit[]
                 {
-                    new MonsterHit{Name = "Déchirure", MinDamage = 15, MaxDamage = 20 },
+                    new MonsterHit{Name = "Déchirure", MinDamage = 15, MaxDamage = 18 },
                     new MonsterHit{Name = "Perforation", MinDamage = 10, MaxDamage = 15}
                 };
         }

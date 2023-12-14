@@ -15,7 +15,7 @@ public class Protection : Spells
             player.SetProtectDuration(10);
             if(player.PartyMember != null) 
             { 
-                player.PartyMember.SetProtectDuration(3);
+                player.PartyMember.SetProtectDuration(10);
                 s += player.Name + " lance Protection sur votre groupe ! ";
             }
             else
