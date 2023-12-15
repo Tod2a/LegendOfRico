@@ -40,7 +40,7 @@ namespace LegendOfRico.Data
             {
                 character.CurrentHitPoints = character.MaxHitPoints;
             }
-            return "Vous vous soignez de " + value + " points de vie,";
+            return "La potion soigne " + character.Name + " de " + value + " points de vie,";
         }
         public int RollHealValue() 
         {

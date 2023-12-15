@@ -86,10 +86,25 @@
                 else if (Game.Player.PartyMember != null && Game.Player.PartyMember.CurrentHitPoints > 0)
                 {
                     <div class="actions">
-                        <button @onclick="() => Game.UseWeapon(Game.MonsterFight)">@Game.Player.PartyMember.CharacterWeapon.ItemName</button>
-                        @foreach (var spell in Game.Player.PartyMember.SpellBook)
+                        @if (Game.ShowFightSpells)
                         {
-                            <button @onclick="() => Game.Action(spell)">@spell.SpellName</button>
+                            <button @onclick="() => Game.UseWeapon(Game.MonsterFight)">@Game.Player.PartyMember.CharacterWeapon.ItemName</button>
+                            @foreach (var spell in Game.Player.PartyMember.SpellBook)
+                            {
+                                <button @onclick="() => Game.Action(spell)">@spell.SpellName</button>
+                            }
+                            <button @onclick="Game.SwitchFightInventory">go to inventaire</button>
+                        }
+                        else if (Game.ShowFightInventory)
+                        {
+                            @foreach (var item in Game.Player.ConsumableInventory)
+                            {
+                                @if (item.Quantity > 0 && item.CanBeUsedInFight)
+                                {
+                                    <button @onclick="() => Game.UseConsumableFight(item)">@item.ItemName ( @item.Quantity )</button>
+                                }
+                            }
+                            <button @onclick="Game.SwitchFightSpells">go to spells</button>
                         }
                     </div>
                 }

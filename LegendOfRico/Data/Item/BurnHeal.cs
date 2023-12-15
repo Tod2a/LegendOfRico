@@ -20,7 +20,7 @@
             base.UseInBattle(character);
             character.IsBurning = false;
             character.BurnDuration = 0;
-            return "Vous vous aspegez d'anti-brulure, cela vous soulage de vos maux ";
+            return character.Name + " s'aspege d'anti-brulure, cela le soulage de ses maux ";
         }
     }
 }
