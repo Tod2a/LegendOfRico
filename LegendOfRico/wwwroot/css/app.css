@@ -98,13 +98,13 @@ a, .btn-link {
     height: 100px;
     padding: 0;
     position: relative;
-    border: 1px solid #000;
+    /*border: 1px solid #000;*/
 }
 
 .Map td div {
     width: 100%;
     height: 100%;
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
 }
@@ -136,6 +136,15 @@ a, .btn-link {
     flex-direction: column;
     margin-left: 2em;
     border: 5px solid #8b4513;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .gameMenu {
@@ -535,6 +544,10 @@ a, .btn-link {
     border-spacing: 0;
 }
 
+.CollectMap tr {
+    aspect-ratio: 1; 
+}
+
 .CollectMap td {
     width: 100px;
     height: 100px;
@@ -545,7 +558,7 @@ a, .btn-link {
 .CollectMap td div {
     width: 100%;
     height: 100%;
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
 }
