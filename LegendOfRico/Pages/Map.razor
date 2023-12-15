@@ -50,9 +50,13 @@
                             @item.ItemName ( @item.Quantity ) 
                             @if (item.CanBeUsedOutOfFight)
                                 {
-                                    <button @onclick="() => UseConsumable(item)">Use</button> 
+                                    <button @onclick="() => UseConsumable(item, Game.Player)">Use</button> 
                                 
                                 }
+                            @if (item.CanBeUsedOnMate && Game.Player.PartyMember != null)
+                            {
+                            <button @onclick="() => UseConsumable(item, Game.Player.PartyMember)">Use pour @Game.Player.PartyMember.Name</button>
+                            }
                         </p>
                      }
                 }
@@ -114,9 +118,9 @@
     [Parameter]
     public EventCallback TypeOfShowChange { get; set; }
 
-    void UseConsumable(Consumable consumable)
+    void UseConsumable(Consumable consumable, Character target)
     {
-        Game.UseConsumable(consumable);
+        Game.UseConsumable(consumable, target);
         Game.GameMap.UpdateMapDisplay(Game.Player);
         TypeOfShowChange.InvokeAsync();
     }

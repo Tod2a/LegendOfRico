@@ -114,9 +114,9 @@ namespace LegendOfRico.Data
             GameMap.MapLayout[Player.PositionI][Player.PositionJ].MisterQuest.Quests.Remove(quest);
         }
 
-        public void UseConsumable(Consumable consumable)
+        public void UseConsumable(Consumable consumable, Character target)
         {
-            consumable.Use(Player);
+            consumable.Use(target);
         }
 
         //gestion du menu de droite pour les quetes et inventaire.

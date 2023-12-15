@@ -11,10 +11,22 @@
     <p>Personnage: @Game.Player.Name</p>
     <p>Position: [@Game.Player.PositionI][@Game.Player.PositionJ]@Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].Name</p>
     <p>Niveau: @Game.Player.Level</p>
-    <p>@Game.Player.Name HP: @Game.Player.GetHpDisplay()</p>
+    <p>
+        @Game.Player.Name HP: @Game.Player.GetHpDisplay()
+        @if(Game.Player.IsBurning)
+        {
+            <img src="img/layout/flamme.png" alt="Brule" />
+        }
+    </p>
     @if (Game.Player.PartyMember != null)
     {
-        <p>@Game.Player.PartyMember.Name HP: @Game.Player.PartyMember.GetHpDisplay()</p>
+        <p>
+            @Game.Player.PartyMember.Name HP: @Game.Player.PartyMember.GetHpDisplay()
+            @if (Game.Player.PartyMember.IsBurning)
+            {
+                <img src="img/layout/flamme.png" alt="Brule" />
+            }
+        </p>
     }
     <p>@Game.Player.GetStatsDisplay()</p>
     <p>Expérience: @Game.Player.GetXpDisplay()</p>

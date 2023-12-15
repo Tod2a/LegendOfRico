@@ -6,6 +6,7 @@ namespace LegendOfRico.Data
     {
         public override bool CanBeUsedInFight { get; protected set; } = true;
         public override bool CanBeUsedOutOfFight { get; protected set; } = true;
+        public override bool CanBeUsedOnMate { get; protected set; } = true;
         public int MinHeal { get; } = 10;
         public int MaxHeal { get; } = 30;
         private readonly Random random = new Random();

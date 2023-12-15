@@ -4,7 +4,7 @@
     {
         public override bool CanBeUsedInFight { get; protected set; } = true;
         public override bool CanBeUsedOutOfFight { get; protected set; } = true;
-
+        public override bool CanBeUsedOnMate { get; protected set; } = true;
 
         public BurnHeal(string name, string description, int price) : base(name,description, price) { }
 

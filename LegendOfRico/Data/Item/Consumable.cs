@@ -11,6 +11,7 @@
         public int Quantity { get; set; } = 0;
         public abstract bool CanBeUsedInFight { get; protected set; }
         public abstract bool CanBeUsedOutOfFight { get; protected set; }
+        public virtual bool CanBeUsedOnMate { get; protected set; } = false;
         public virtual bool DodgeFight { get; protected set; } = false;
 
         public Consumable(string name, string description, int price) 
