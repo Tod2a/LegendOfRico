@@ -64,11 +64,6 @@
             StuffStock.Add(new Shield("Bouclier en mithril", "Amure : 35", 500, 35));
 
 
-            //Miscellaneous
-            ConsumableStock.Add(new Potion(1, "Petite potion de soin", 5, 1, 10));
-            ConsumableStock.Add(new Potion(2, "Potion de soin", 10, 10, 20));
-            ConsumableStock.Add(new Potion(3, "Grande potion de soin", 20, 20, 40));
-            ConsumableStock.Add(new Potion(4, "Enorme potion de soin", 40, 40, 80));
         }
     }
 }

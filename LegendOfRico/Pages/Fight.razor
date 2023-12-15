@@ -74,9 +74,9 @@
                         {
                             @foreach (var item in Game.Player.ConsumableInventory)
                             {
-                                @if (item.Quantity > 0)
+                                @if (item.Quantity > 0 && item.CanBeUsedInFight)
                                 {
-                                    <button @onclick="() => item.Use(Game)">@item.ItemName ( @item.Quantity )</button>
+                                    <button @onclick="() => Game.UseConsumableFight(item)">@item.ItemName ( @item.Quantity )</button>
                                 }
                             }
                             <button @onclick="Game.SwitchFightSpells">go to spells</button>

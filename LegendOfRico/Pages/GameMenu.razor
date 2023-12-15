@@ -40,7 +40,7 @@
             <button @onclick=Game.Player.UnequipShield>Déséquiper</button>
         }
     </p>
-    @if (Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].SquareBiome.BiomeType == TypeOfBiome.Village && !Game.Player.IsRested)
+    @if ((Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].SquareBiome.BiomeType == TypeOfBiome.Village || Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].SquareBiome.BiomeType == TypeOfBiome.VillageBoss) && !Game.Player.IsRested)
     {
         <button @onclick="Game.PartyRest">Se reposer</button>
     }

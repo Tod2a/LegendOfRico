@@ -110,11 +110,14 @@ public abstract class Character : INotifyPropertyChanged
     {
         ConsumableInventory = new List<Consumable>
         {
-            new Potion(0, "Potion de départ", 0, 1, 10, 5),
-            new Potion(1, "Petite potion de soin", 5, 1, 10, 0),
-            new Potion(2, "Potion de soin", 10, 10, 20, 0),
-            new Potion(3, "Grande potion de soin", 20, 20, 40, 0),
-            new Potion(4, "Enorme potion de soin", 40, 40, 80, 0)
+            new Potion("Petite potion de soin","Cette potion vous soignera entre 1 et 10 points de vie en combat ou hors combat", 5, 1, 10, 5),
+            new Potion("Potion de soin","Cette potion vous soignera entre 10 et 20 points de vie en combat ou hors combat", 10, 10, 20, 0),
+            new Potion("Grande potion de soin","Cette potion vous soignera entre 20 et 40 points de vie en combat ou hors combat", 20, 20, 40, 0),
+            new Potion("Enorme potion de soin","Cette potion vous soignera entre 40 et 80 points de vie en combat ou hors combat", 40, 40, 80, 0),
+            new BurnHeal("Anti-brulure","Un objet raffraichissant qui vous soulagera de la brulure la plus sévère", 10),
+            new SmokedBall("Boule fumée","Cela pourrait s'avérer utile si le combat devient trop dangereux", 50),
+            new MagicWhistle("Sifflet Magique","Ce sifflet appelera un griffon majesteux ou que vous soyez pour vous ramener en lieux sur, mais il ne fonctionne pas en combat", 50),
+            new WoodFire("Feu de bois", "Ce feu de bois offre une occasion de se reposer seul ou à deux et de retrouver des forces pour l'aventure", 50)
         };
         StuffInventory = new List<Stuff> { };
         QuestsBook = new List<Quest>
@@ -153,8 +156,6 @@ public abstract class Character : INotifyPropertyChanged
 
     public void Rest()
     {
-        lastRestVillageI = positionI;
-        LastRestVillageJ = positionJ;
         CurrentHitPoints = MaxHitPoints;
         ProtectDuration = 0;
         IsProtected = false;
@@ -163,7 +164,6 @@ public abstract class Character : INotifyPropertyChanged
             spell.RefreshSpell();
         }
         HealAffliction();
-        SetIsRested(true);
         if (HasFrostArmor)
         {
             HasFrostArmor = false;
@@ -356,7 +356,7 @@ public abstract class Character : INotifyPropertyChanged
             CharacterArmor = new Topless("Rien", "Bah rien", 0, TypeOfArmor.None, 0); ;
         }
     }
-
+    
     public void LootStuff(Stuff droppedItem)
     {
         StuffInventory.Add(droppedItem);
@@ -384,7 +384,7 @@ public abstract class Character : INotifyPropertyChanged
 
     public void SellConsumable(Consumable consumable)
     {
-        ConsumableInventory[consumable.Id].Quantity--;
+        consumable.Quantity--;
         Coins += (int)(consumable.Price) / 4;
     }
 
@@ -393,9 +393,10 @@ public abstract class Character : INotifyPropertyChanged
         if (boughtConsumable.Price <= Coins)
         {
             Coins -= boughtConsumable.Price;
-            ConsumableInventory[boughtConsumable.Id].Quantity++;
+            boughtConsumable.Quantity++;
         }
     }
+
 
     //Getters / Setters
     public string GetTypeDisplay()

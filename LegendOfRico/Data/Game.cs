@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using Microsoft.JSInterop;
 using System.Runtime.CompilerServices;
+using LegendOfRico.Pages;
 
 namespace LegendOfRico.Data
 {
@@ -132,6 +133,11 @@ namespace LegendOfRico.Data
             }
             Player.QuestsBook.Add(quest);
             GameMap.MapLayout[Player.PositionI][Player.PositionJ].MisterQuest.Quests.Remove(quest);
+        }
+
+        public void UseConsumable(Consumable consumable)
+        {
+            consumable.Use(Player);
         }
 
         //gestion du menu de droite pour les quetes et inventaire.
@@ -333,6 +339,63 @@ namespace LegendOfRico.Data
                 game.MonsterFight.Frozen(); //dégèle
             }
         }
+        public void UseConsumableFight(Consumable consumable)
+        {
+            if(!consumable.DodgeFight)
+            { 
+                if (MonsterFight.MonsterBreed != TypeOfBreed.RicoChico || (Player.Wukongdead && Player.Tontatondead && Player.Joydead && Player.Scorpiodead))
+                {
+                    if (Turncount % 2 == 0)
+                    {
+                        FightMessage = consumable.UseInBattle(Player);
+                        FightMessage += " ";
+                        Turncount++;
+                        if (Player.PartyMember == null || Player.PartyMember.CurrentHitPoints <= 0)
+                        {
+                            Turncount++;
+                        }
+                    }
+                    else
+                    {
+                        FightMessage = consumable.UseInBattle(Player.PartyMember);
+                        FightMessage += " ";
+                        Turncount++;
+                    }
+                }
+                else
+                {
+                    MonsterHit();
+                }
+                if (MonsterFight.IsBurning && (Player.PartyMember == null || Player.PartyMember.CurrentHitPoints <= 0)) //Le monstre perd 10% hp si il brûle
+                {
+                    FightMessage += "La cible brûle et subit " + MonsterFight.BurnTic() + " points de dégâts ! ";
+                    if (MonsterFight.MonsterCurrentHP <= 0) //Check si meurt avec brûlure
+                    {
+                        FightVictory();
+                    }
+                    else
+                    {
+                        MonsterHit();
+                        FightMessage += CharactBurn();
+                    }
+                }
+                else if (FightMessage != "Vous ne pouvez plus lancer ce sort ! " && (Player.PartyMember == null || Player.PartyMember.CurrentHitPoints <= 0)) //Le monstre passe son tour si le joueur est con
+                {
+                    MonsterHit();
+                    FightMessage += CharactBurn();
+                }
+                else if (MonsterFight.IsFrozen && (Player.PartyMember == null || Player.PartyMember.CurrentHitPoints <= 0)) //Le monstre ne joue pas si gelé
+                {
+                    FightMessage += "Vous avez gelé la cible !";
+                    MonsterFight.Frozen(); //dégèle
+                }
+            }
+            else
+            {
+                FightMessage = consumable.UseInBattle(Player);
+                MonsterDead = true;
+            }
+        }
         private void FightVictory()
         {
             MonsterFight.MonsterCurrentHP = 0;
@@ -504,10 +567,14 @@ namespace LegendOfRico.Data
         //gestion de l'équipe
         public void PartyRest()
         {
+            Player.lastRestVillageI = Player.PositionI;
+            Player.LastRestVillageJ = Player.PositionJ;
             Player.Rest();
-            if(Player.PartyMember != null)
+            Player.SetIsRested(true);
+            if (Player.PartyMember != null)
             {
                 Player.PartyMember.Rest();
+                Player.PartyMember.SetIsRested(true);
             }
         }
 

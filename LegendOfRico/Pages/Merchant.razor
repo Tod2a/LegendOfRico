@@ -35,10 +35,10 @@
                     }
                     else
                     {
-                        @foreach (var item in Game.Merchant.ConsumableStock)
+                        @foreach (var item in Game.Player.ConsumableInventory)
                         {
                             <div class="itemFlex">
-                                <div class="itemShowName">@item.ItemName</div>
+                                <div data-toggle="tooltip" data-placement="top" title="@item.Description" class="itemShowName">@item.ItemName</div>
                                 <div class="itemShow">@item.Price</div>
                                 <div class="itemShow"><button @onclick="() => Game.Player.BuyConsumable(item)">Acheter</button></div>
                             </div>
@@ -74,7 +74,7 @@
                             @if (item.Quantity > 0)
                             {
                                 <div class="itemFlex">
-                                    <div class="itemShowName">@item.ItemName (@item.Quantity)</div>
+                                    <div data-toggle="tooltip" data-placement="top" title="@item.Description"  class="itemShowName">@item.ItemName (@item.Quantity)</div>
                                     <div class="itemShow">@item.Price</div>
                                     <div class="itemShow"><button @onclick="() => Game.Player.SellConsumable(item)">Vendre</button></div>
                                 </div>

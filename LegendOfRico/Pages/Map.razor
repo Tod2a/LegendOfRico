@@ -46,8 +46,15 @@
                 {
                     @if (item.Quantity > 0)
                     {
-                        <p>@item.ItemName ( @item.Quantity ) <button @onclick="() => item.Use(Game)">Use</button> </p>
-                    }
+                        <p data-toggle="tooltip" data-placement="top" title="@item.Description">
+                            @item.ItemName ( @item.Quantity ) 
+                            @if (item.CanBeUsedOutOfFight)
+                                {
+                                    <button @onclick="() => UseConsumable(item)">Use</button> 
+                                
+                                }
+                        </p>
+                     }
                 }
                 <p>Inventaire Stuff:</p>
                 @foreach (var item in Game.Player.StuffInventory)
@@ -107,6 +114,12 @@
     [Parameter]
     public EventCallback TypeOfShowChange { get; set; }
 
+    void UseConsumable(Consumable consumable)
+    {
+        Game.UseConsumable(consumable);
+        Game.GameMap.UpdateMapDisplay(Game.Player);
+        TypeOfShowChange.InvokeAsync();
+    }
 
     void TakeQuest(Quest quest)
     {
