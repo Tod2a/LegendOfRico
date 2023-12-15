@@ -85,27 +85,6 @@ namespace LegendOfRico.Data
                 CollectQuest collecquest = (CollectQuest)quest;
                 GameMap.MapLayout[collecquest.PositionI][collecquest.PositionJ].IsACollectDestination = false;
             }
-            if (quest.Target == TypeOfBreed.Joybean)
-            {
-                Player.Joydead = true;
-                GameMap.MapLayout[428][58].ChanceToTriggerFight = 0.0;
-            }
-            else if (quest.Target == TypeOfBreed.EternalScorpio)
-            {
-                Player.Scorpiodead = true;
-                GameMap.MapLayout[499][499].ChanceToTriggerFight = 0.0;
-            }
-            else if (quest.Target == TypeOfBreed.Cheftontaton)
-            {
-                Player.Tontatondead = true;
-                GameMap.MapLayout[36][401].ChanceToTriggerFight = 0.0;
-            }
-            else if (quest.Target == TypeOfBreed.Sunwukong)
-            {
-                Player.Wukongdead = true;
-                GameMap.MapLayout[72][53].ChanceToTriggerFight = 0.0;
-            }
-
             Player.LootGold(quest.CoinsReward);
             Player.CurrentXp += quest.XpReward;
             if(Player.PartyMember != null)
@@ -180,15 +159,24 @@ namespace LegendOfRico.Data
             }
         }
 
-        public void Action(Spells spell, Game game)
+        public void Action(Spells spell)
         {
-            if (game.MonsterFight.MonsterBreed != TypeOfBreed.RicoChico || (game.Player.Wukongdead && game.Player.Tontatondead && game.Player.Joydead && game.Player.Scorpiodead))
+            if (MonsterFight.MonsterBreed != TypeOfBreed.RicoChico || (Player.Wukongdead && Player.Tontatondead && Player.Joydead && Player.Scorpiodead))
             {
-                FightMessage = spell.UseSpell(Player, MonsterFight);
-                FightMessage += " ";
-                Turncount++;
-                if (Player.PartyMember == null || Player.PartyMember.CurrentHitPoints <= 0)
+                if (Turncount % 2 == 0)
                 {
+                    FightMessage = spell.UseSpell(Player, MonsterFight);
+                    FightMessage += " ";
+                    Turncount++;
+                    if (!CheckGroup())
+                    {
+                        Turncount++;
+                    }
+                }
+                else
+                {
+                    FightMessage = spell.UseSpell(Player.PartyMember, MonsterFight);
+                    FightMessage += " ";
                     Turncount++;
                 }
             }
@@ -196,80 +184,28 @@ namespace LegendOfRico.Data
             {
                 MonsterHit();
             }
-            if (game.MonsterFight.MonsterCurrentHP <= 0)
-            {
-                FightVictory();
-            }
-            else if (game.MonsterFight.IsBurning && (Player.PartyMember == null || Player.PartyMember.CurrentHitPoints <= 0)) //Le monstre perd 10% hp si il brûle
-            {
-                FightMessage += "La cible brûle et subit " + game.MonsterFight.BurnTic() + " points de dégâts ! ";
-                if (game.MonsterFight.MonsterCurrentHP <= 0) //Check si meurt avec brûlure
-                {
-                    FightVictory();
-                }
-                else
-                {
-                    MonsterHit();
-                    FightMessage += CharactBurn();
-                }
-            }
-            else if (FightMessage != "Vous ne pouvez plus lancer ce sort ! " && (Player.PartyMember == null || Player.PartyMember.CurrentHitPoints <= 0)) //Le monstre passe son tour si le joueur est con
-            {
-                MonsterHit();
-                FightMessage += CharactBurn();
-            }
-            else if (game.MonsterFight.IsFrozen && (Player.PartyMember == null || Player.PartyMember.CurrentHitPoints <= 0)) //Le monstre ne joue pas si gelé
-            {
-                FightMessage += "Vous avez gelé la cible !";
-                game.MonsterFight.Frozen(); //dégèle
-            }
+            FightChecking();
         }
 
-        public void ActionPlayer2(Spells spell, Game game)
-        {
-            FightMessage = spell.UseSpell(Player.PartyMember, MonsterFight);
-            FightMessage += " ";
-            Turncount++;
-
-            if (game.MonsterFight.MonsterCurrentHP <= 0)
-            {
-                FightVictory();
-            }
-            else if (game.MonsterFight.IsBurning) //Le monstre perd 10% hp si il brûle
-            {
-                FightMessage += "La cible brûle et subit " + game.MonsterFight.BurnTic() + " points de dégâts ! ";
-                if (game.MonsterFight.MonsterCurrentHP <= 0) //Check si meurt avec brûlure
-                {
-                    FightVictory();
-                }
-                else
-                {
-                    MonsterHit();
-                    FightMessage += CharactBurn();
-                }
-            }
-            else if (FightMessage != "Vous ne pouvez plus lancer ce sort ! ") //Le monstre passe son tour si le joueur est con
-            {
-                MonsterHit();
-                FightMessage += CharactBurn();
-            }
-            else if (game.MonsterFight.IsFrozen) //Le monstre ne joue pas si gelé
-            {
-                FightMessage += "Vous avez gelé la cible !";
-                game.MonsterFight.Frozen(); //dégèle
-            }
-        }
-
-
-        public void UseWeapon(Monster target, Game game)
+        
+        public void UseWeapon(Monster target)
         {
             if (target.MonsterBreed != TypeOfBreed.RicoChico || (Player.Wukongdead && Player.Tontatondead && Player.Joydead && Player.Scorpiodead))
             {
-                FightMessage = Player.Hit(target);
-                FightMessage += " ";
-                Turncount++;
-                if (Player.PartyMember == null || Player.PartyMember.CurrentHitPoints <= 0)
+                if (Turncount % 2 == 0)
                 {
+                    FightMessage = Player.Hit(target);
+                    FightMessage += " ";
+                    Turncount++;
+                    if (!CheckGroup())
+                    {
+                        Turncount++;
+                    }
+                }
+                else
+                {
+                    FightMessage = Player.PartyMember.Hit(target);
+                    FightMessage += " ";
                     Turncount++;
                 }
             }
@@ -277,68 +213,9 @@ namespace LegendOfRico.Data
             {
                 MonsterHit();
             }
-            if (game.MonsterFight.MonsterCurrentHP <= 0)
-            {
-                FightVictory();
-            }
-            else if (game.MonsterFight.IsBurning && (Player.PartyMember == null || Player.PartyMember.CurrentHitPoints <= 0)) //Le monstre perd 10% hp si il brûle
-            {
-                FightMessage += "La cible brûle et subit " + game.MonsterFight.BurnTic() + " points de dégâts ! ";
-                if (game.MonsterFight.MonsterCurrentHP <= 0) //Check si meurt avec brûlure
-                {
-                    FightVictory();
-                }
-                else
-                {
-                    MonsterHit();
-                    FightMessage += CharactBurn();
-                }
-            }
-            else if (FightMessage != "Vous ne pouvez plus lancer ce sort ! " && (Player.PartyMember == null || Player.PartyMember.CurrentHitPoints <= 0)) //Le monstre passe son tour si le joueur est con
-            {
-                MonsterHit();
-                FightMessage += CharactBurn();
-            }
-            else if (game.MonsterFight.IsFrozen && (Player.PartyMember == null || Player.PartyMember.CurrentHitPoints <= 0)) //Le monstre ne joue pas si gelé
-            {
-                FightMessage += "Vous avez gelé la cible !";
-                game.MonsterFight.Frozen(); //dégèle
-            }
+            FightChecking();
         }
 
-        public void UseWeaponPlayer2(Monster target, Game game)
-        {
-            FightMessage = Player.PartyMember.Hit(target);
-            FightMessage += " ";
-            Turncount++;
-            if (game.MonsterFight.MonsterCurrentHP <= 0)
-            {
-                FightVictory();
-            }
-            else if (game.MonsterFight.IsBurning) //Le monstre perd 10% hp si il brûle
-            {
-                FightMessage += "La cible brûle et subit " + game.MonsterFight.BurnTic() + " points de dégâts ! ";
-                if (game.MonsterFight.MonsterCurrentHP <= 0) //Check si meurt avec brûlure
-                {
-                    FightVictory();
-                }
-                else
-                {
-                    MonsterHit();
-                    FightMessage += CharactBurn();
-                }
-            }
-            else if (FightMessage != "Vous ne pouvez plus lancer ce sort ! ") //Le monstre passe son tour si le joueur est con
-            {
-                MonsterHit();
-                FightMessage += CharactBurn();
-            }
-            else if (game.MonsterFight.IsFrozen) //Le monstre ne joue pas si gelé
-            {
-                FightMessage += "Vous avez gelé la cible !";
-                game.MonsterFight.Frozen(); //dégèle
-            }
-        }
         public void UseConsumableFight(Consumable consumable)
         {
             if(!consumable.DodgeFight)
@@ -350,7 +227,7 @@ namespace LegendOfRico.Data
                         FightMessage = consumable.UseInBattle(Player);
                         FightMessage += " ";
                         Turncount++;
-                        if (Player.PartyMember == null || Player.PartyMember.CurrentHitPoints <= 0)
+                        if (!CheckGroup())
                         {
                             Turncount++;
                         }
@@ -366,7 +243,24 @@ namespace LegendOfRico.Data
                 {
                     MonsterHit();
                 }
-                if (MonsterFight.IsBurning && (Player.PartyMember == null || Player.PartyMember.CurrentHitPoints <= 0)) //Le monstre perd 10% hp si il brûle
+                FightChecking();
+            }
+            else
+            {
+                FightMessage = consumable.UseInBattle(Player);
+                MonsterDead = true;
+            }
+        }
+
+        private void FightChecking ()
+        {
+            if (MonsterFight.MonsterCurrentHP <= 0)
+            {
+                FightVictory();
+            }
+            else if (!CheckGroup() || (CheckGroup() && Turncount%2 == 0))
+            {
+                if (MonsterFight.IsBurning) //Le monstre perd 10% hp si il brûle
                 {
                     FightMessage += "La cible brûle et subit " + MonsterFight.BurnTic() + " points de dégâts ! ";
                     if (MonsterFight.MonsterCurrentHP <= 0) //Check si meurt avec brûlure
@@ -379,21 +273,16 @@ namespace LegendOfRico.Data
                         FightMessage += CharactBurn();
                     }
                 }
-                else if (FightMessage != "Vous ne pouvez plus lancer ce sort ! " && (Player.PartyMember == null || Player.PartyMember.CurrentHitPoints <= 0)) //Le monstre passe son tour si le joueur est con
+                else if (FightMessage != "Vous ne pouvez plus lancer ce sort ! ") //Le monstre passe son tour si le joueur est con
                 {
                     MonsterHit();
                     FightMessage += CharactBurn();
                 }
-                else if (MonsterFight.IsFrozen && (Player.PartyMember == null || Player.PartyMember.CurrentHitPoints <= 0)) //Le monstre ne joue pas si gelé
+                else if (MonsterFight.IsFrozen) //Le monstre ne joue pas si gelé
                 {
                     FightMessage += "Vous avez gelé la cible !";
                     MonsterFight.Frozen(); //dégèle
                 }
-            }
-            else
-            {
-                FightMessage = consumable.UseInBattle(Player);
-                MonsterDead = true;
             }
         }
         private void FightVictory()
@@ -405,6 +294,26 @@ namespace LegendOfRico.Data
             if (MonsterFight.MonsterBreed == TypeOfBreed.RicoChico)
             {
                 GameMap.MapLayout[246][250].ChanceToTriggerFight = 0.0;
+            }
+            if (MonsterFight.MonsterBreed == TypeOfBreed.Joybean)
+            {
+                GameMap.MapLayout[428][58].ChanceToTriggerFight = 0.0;
+                Player.Joydead = true;
+            }
+            if (MonsterFight.MonsterBreed == TypeOfBreed.EternalScorpio)
+            {
+                GameMap.MapLayout[499][499].ChanceToTriggerFight = 0.0;
+                Player.Scorpiodead = true;
+            }
+            if (MonsterFight.MonsterBreed == TypeOfBreed.Cheftontaton)
+            {
+                GameMap.MapLayout[36][401].ChanceToTriggerFight = 0.0;
+                Player.Tontatondead = true;
+            }
+            if (MonsterFight.MonsterBreed == TypeOfBreed.Sunwukong)
+            {
+                GameMap.MapLayout[72][53].ChanceToTriggerFight = 0.0;
+                Player.Wukongdead = true;
             }
             Player.CurrentXp += MonsterFight.XpGranted;
             if(Player.PartyMember != null)
@@ -431,6 +340,11 @@ namespace LegendOfRico.Data
             {
                 LevelUp(Player.PartyMember);
             }
+        }
+
+        private bool CheckGroup()
+        {
+            return Player.PartyMember != null && Player.PartyMember.CurrentHitPoints >= 0;
         }
 
         private string CheckQuest()
