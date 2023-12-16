@@ -7,7 +7,7 @@ public class IceLance : Spells
     public override int CurrentNumberOfUses { get; protected set; } = 10;
     public int MinValue => 20;
     public int MaxValue => 25;
-    public TypeOfDamage SpellType = TypeOfDamage.Cold;
+    public override TypeOfDamage SpellType { get; protected set; } = TypeOfDamage.Cold;
 
     public override string UseSpell(Character player, Monster target)
     {

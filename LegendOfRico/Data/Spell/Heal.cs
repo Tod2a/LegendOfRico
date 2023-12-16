@@ -8,6 +8,7 @@ public class Heal : Spells
     public int MinValue => 5;
     public int MaxValue => 7;
     public double CritChance = 0.05;
+    public override TypeOfDamage SpellType { get; protected set; } = TypeOfDamage.Holy;
 
     public override string UseSpell(Character player, Monster target)
     {

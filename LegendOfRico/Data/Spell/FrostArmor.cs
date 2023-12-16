@@ -5,6 +5,7 @@ public class FrostArmor : Spells
     public override string SpellName { get; protected set; } = "Armure de glace (1/1)";
     public override int MaxNumberOfUses => 1;
     public override int CurrentNumberOfUses { get; protected set; } = 1;
+    public override TypeOfDamage SpellType { get; protected set; } = TypeOfDamage.Cold;
 
     public override string UseSpell(Character player, Monster target)
     {

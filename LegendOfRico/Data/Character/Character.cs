@@ -136,6 +136,7 @@ public abstract class Character : INotifyPropertyChanged
     public void UnBurn()
     {
         IsBurning = false;
+        BurnDuration = 0;
     }
 
     public void Frozen()
@@ -177,7 +178,7 @@ public abstract class Character : INotifyPropertyChanged
         string s = "";
         int weaponDamageRoll =
             new Random().Next(CharacterWeapon.MinimumWeaponDamage, CharacterWeapon.MaximumWeaponDamage + 1);
-        weaponDamageRoll += Statistics / 5 * weaponDamageRoll;
+        weaponDamageRoll += Statistics / 10 * weaponDamageRoll;
 
         if (new Random().NextDouble() <= CharacterWeapon.WeaponCritChance) //Si l'arme crit dégâts x2
         {

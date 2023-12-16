@@ -7,7 +7,7 @@ public class Fireball : Spells
     public override int CurrentNumberOfUses { get; protected set; } = 15;
     public int MinValue => 10;
     public int MaxValue => 15;
-    public TypeOfDamage SpellType = TypeOfDamage.Fire;
+    public override TypeOfDamage SpellType { get; protected set; } = TypeOfDamage.Fire;
     public double CritChance = 0.05;
     public double BurnChance = 0.2;
 

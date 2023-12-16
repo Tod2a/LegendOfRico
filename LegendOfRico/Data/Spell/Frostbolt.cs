@@ -7,7 +7,7 @@ public class Frostbolt : Spells
     public override int CurrentNumberOfUses { get; protected set; } = 15;
     public int MinValue => 15;
     public int MaxValue => 25;
-    public TypeOfDamage SpellType = TypeOfDamage.Cold;
+    public override TypeOfDamage SpellType { get; protected set; } = TypeOfDamage.Cold;
     public double CritChance = 0.2;
     public double FreezeChance = 0.05;
 

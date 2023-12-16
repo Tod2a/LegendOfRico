@@ -7,8 +7,7 @@ public class DivineIntervention : Spells
     public override int CurrentNumberOfUses { get; protected set; } = 3;
     public int MinValue => 60;
     public int MaxValue => 80;
-    public TypeOfDamage SpellType = TypeOfDamage.Holy;
-
+    public override TypeOfDamage SpellType { get; protected set; } = TypeOfDamage.Holy;
     public override string UseSpell(Character player, Monster target)
     {
         string s = "";
