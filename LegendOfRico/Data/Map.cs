@@ -321,8 +321,8 @@ namespace LegendOfRico.Data
 
             //ajout d'une ruine au nord de la map
 
-            TrippleSquare(0, 54, 161, 201, mapLayout, TypeOfBiome.AbandonedVillage, "Les ruines de raftool", 0.1);
-            TrippleSquare(20, 32, 187, 194, mapLayout, TypeOfBiome.AbandonedVillageDifficult, "Les ruines de raftool", 0.2);
+            TrippleSquare(0, 54, 161, 201, mapLayout, TypeOfBiome.AbandonedVillage, "Les ruines de Raftool", 0.1);
+            TrippleSquare(20, 32, 187, 194, mapLayout, TypeOfBiome.AbandonedVillageDifficult, "Les ruines de Raftool", 0.2);
 
             //ajout foret
             TrippleSquare(60, 110, 234, 327, mapLayout, TypeOfBiome.Forest, "Forêt de Nibel", 0.1);
@@ -340,10 +340,10 @@ namespace LegendOfRico.Data
             TrippleSquare(243, 312, 22, 110, mapLayout, TypeOfBiome.Forest, "Forêt de Yasopp", 0.1);
 
             //un désert
-            TrippleSquare(61, 165, 157, 221, mapLayout, TypeOfBiome.Desert, "désert aride", 0.1);
+            TrippleSquare(61, 165, 157, 221, mapLayout, TypeOfBiome.Desert, "Désert aride", 0.1);
 
             //une ruine
-            TrippleSquare(121, 201, 231, 321, mapLayout, TypeOfBiome.AbandonedVillage, "ruines de zilda", 0.1);
+            TrippleSquare(121, 201, 231, 321, mapLayout, TypeOfBiome.AbandonedVillage, "Ruines de Zilda", 0.1);
 
             //une forêt
             TrippleSquare(154, 334, 375, 465, mapLayout, TypeOfBiome.Forest, "Forêt de Yasopp", 0.1);
@@ -352,10 +352,10 @@ namespace LegendOfRico.Data
             TrippleSquare(387, 487, 178, 320, mapLayout, TypeOfBiome.Graveyard, "Cimetière sombre", 0.1);
 
             //une forêt
-            TrippleSquare(268, 324, 275, 311, mapLayout, TypeOfBiome.Forest, "Forêt d'elwyne", 0.1);
+            TrippleSquare(268, 324, 275, 311, mapLayout, TypeOfBiome.Forest, "Forêt d'Elwyne", 0.1);
 
             // un désert
-            TrippleSquare(275, 323, 175, 212, mapLayout, TypeOfBiome.Desert, "désert humide", 0.1);
+            TrippleSquare(275, 323, 175, 212, mapLayout, TypeOfBiome.Desert, "Désert humide", 0.1);
 
             
            

@@ -35,12 +35,21 @@ namespace LegendOfRico.Data
             {
                 GameMap.MapLevel++;
             }
+            int i = 0;
             while(player.CurrentXp >= player.XpToLevel)
             {
+                i++;
                 player.Level++;
-                FightMessage += player.Name + " gagne un niveau ! ";
                 player.CurrentXp -= player.XpToLevel;
                 player.XpToLevel += 125 * (player.Level - 1);
+            }
+            if(i > 1)
+            {
+                FightMessage += player.Name + " gagne " + i + " niveaux ! ";
+            }
+            else
+            {
+                FightMessage += player.Name + " gagne un niveau ! ";
             }
         }
 
@@ -336,7 +345,9 @@ namespace LegendOfRico.Data
             if(MonsterFight.GetType() == typeof(Humanoid))
             {
                 var humanoidMob = (Humanoid)MonsterFight;
-                Player.LootGold(humanoidMob.DropsCoins());
+                int droppedMoney = humanoidMob.DropsCoins();
+                Player.LootGold(droppedMoney);
+                FightMessage += "L'ennemi avait " + droppedMoney + " pièces d'or sur lui ! ";
             }
             MonsterDead = true;
             if (Player.CurrentXp >= Player.XpToLevel)

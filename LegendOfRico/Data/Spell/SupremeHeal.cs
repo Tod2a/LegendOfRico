@@ -21,7 +21,7 @@ public class SupremeHeal : Spells
 
             if ((new Random()).NextDouble() <= CritChance)
             {
-                s += "Coup critique !";
+                s += "Coup critique ! ";
                 healRoll *= 2;
             }
             player.ReceiveHeal(healRoll);
