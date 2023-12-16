@@ -140,6 +140,17 @@ public abstract class Monster
             {
                 s += " et l'attaque vous brûle ";
             }
+
+            if (MonsterHit.chanceToPoisoned > 0)
+            {
+                double test = dice.NextDouble();
+                if (test < MonsterHit.chanceToPoisoned)
+                {
+                    target.IsPoisoned = true;
+                    s += " et l'attaque vous empoisonne ";
+                    
+                }
+            }
         }
         return s;
     }

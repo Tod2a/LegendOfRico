@@ -61,6 +61,8 @@ public abstract class Character : INotifyPropertyChanged
     public Boolean HasFrostArmor { get; private set; } = false;
     public int FrostArmorAdditionalArmor { get; private set; } = 0;
     public Boolean IsFrozen { get; private set; } = false;
+    public bool IsPoisoned { get; set; } = false;
+    public int PoisonDamage { get; set; } = 1;
     public Boolean IsBurning { get; set; } = false;
     public int BurnDuration { get; set; } = 0;
     public Boolean IsProtected { get; private set; } = false;
@@ -115,6 +117,7 @@ public abstract class Character : INotifyPropertyChanged
             new Potion("Grande potion de soin","Cette potion vous soignera entre 20 et 40 points de vie en combat ou hors combat", 20, 20, 40, 0),
             new Potion("Enorme potion de soin","Cette potion vous soignera entre 40 et 80 points de vie en combat ou hors combat", 40, 40, 80, 0),
             new BurnHeal("Anti-brulure","Un objet raffraichissant qui vous soulagera de la brulure la plus sévère", 10),
+            new PoisonedHeal("Antidote", "Un anti-poison qui vous soigne de l'empoisonnement", 5),
             new SmokedBall("Boule fumée","Cela pourrait s'avérer utile si le combat devient trop dangereux", 50),
             new MagicWhistle("Sifflet Magique","Ce sifflet appelera un griffon majesteux ou que vous soyez pour vous ramener en lieux sur, mais il ne fonctionne pas en combat", 50),
             new WoodFire("Feu de bois", "Ce feu de bois offre une occasion de se reposer seul ou à deux et de retrouver des forces pour l'aventure", 50)
@@ -139,6 +142,17 @@ public abstract class Character : INotifyPropertyChanged
         BurnDuration = 0;
     }
 
+    public void Poisoned()
+    {
+        IsPoisoned = true;
+    }
+
+    public void UnPoisoned()
+    {
+        IsPoisoned = false;
+        PoisonDamage = 1;
+    }
+
     public void Frozen()
     {
         IsFrozen = true;
@@ -153,6 +167,7 @@ public abstract class Character : INotifyPropertyChanged
     {
         UnBurn();
         Unfreeze();
+        UnPoisoned();
     }
 
     public void Rest()
