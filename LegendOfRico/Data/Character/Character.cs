@@ -139,6 +139,7 @@ public abstract class Character : INotifyPropertyChanged
     public void UnBurn()
     {
         IsBurning = false;
+        BurnDuration = 0;
     }
 
     public void Poisoned()
