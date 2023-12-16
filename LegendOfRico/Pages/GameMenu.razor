@@ -90,7 +90,7 @@
     }
     @if (Game.FormShow == TypeOfShow.Map)
     {
-        <!--<button onclick="Save">Sauvegarde</button>-->
+        <button @onclick="Save">Sauvegarde</button>
     }
     <button @onclick="Deconnection">Deconnexion</button>
 </div>
@@ -171,8 +171,11 @@
 
     async Task Save()
     {
-        var saving = JsonSerializer.Serialize(Game);
-        await JS.InvokeVoidAsync("localStorage.setItem", "Saving", saving);
+        Saving save = new Saving(Game.Player);
+        var saving = JsonSerializer.Serialize(save);
+        await JS.InvokeVoidAsync("localStorage.setItem", "SavingType", saving);
+        var player = JsonSerializer.Serialize(Game.Player);
+        await JS.InvokeVoidAsync("localStorage.setItem", "SavingPlayer", player);
         Game.FormShow = TypeOfShow.Connection;
         TypeOfShowChange.InvokeAsync();
     }
