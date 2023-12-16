@@ -3,8 +3,8 @@
     public class Volcanis : FireElemental
     {
         public override string MonsterName { get; set; } = "Volcanis";
-        public override int MonsterHP { get; set; } = 200;
-        public override int MonsterCurrentHP { get; set; } = 200;
+        public override int MonsterHP { get; set; } = 350;
+        public override int MonsterCurrentHP { get; set; } = 350;
         public override string fightImgUrl { get; set; } = "img/monster/fireelemental/volcanis.png";
         public override int XpGranted { get; set; } = 200;
         public override List<Stuff> LootTable { get; protected set; } = new List<Stuff>() {
@@ -24,8 +24,8 @@
         {
             return new MonsterHit[]
             {
-                new MonsterHit {Name ="Surchauffe", MinDamage = 26, MaxDamage = 35, chanceToBurn = 0.3},
-                new MonsterHit { Name = "Déflagration", MinDamage = 36, MaxDamage = 45, chanceToBurn = 0.1 }
+                new MonsterHit {Name ="Surchauffe", MinDamage = 20, MaxDamage = 27, chanceToBurn = 0.3},
+                new MonsterHit { Name = "Déflagration", MinDamage = 26, MaxDamage = 30, chanceToBurn = 0.1 }
             };
 
         }

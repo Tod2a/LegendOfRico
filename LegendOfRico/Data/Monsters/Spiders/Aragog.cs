@@ -3,10 +3,10 @@
     public class Aragog: Spider
     {
         public override string MonsterName { get; set; } = "Aragog";
-        public override int MonsterHP { get; set; } = 500;
-        public override int MonsterCurrentHP { get; set; } = 500;
+        public override int MonsterHP { get; set; } = 400;
+        public override int MonsterCurrentHP { get; set; } = 400;
         public override string fightImgUrl { get; set; } = "img/monster/spider/Aragog.png";
-        public override int XpGranted { get; set; } = 500;
+        public override int XpGranted { get; set; } = 300;
         public override int PetMinDamage { get; protected set; } = 25;
         public override int PetMaxDamage { get; protected set; } = 50;
         public override List<Stuff> LootTable { get; protected set; } = new List<Stuff>() {
@@ -26,7 +26,7 @@
         {
             return new MonsterHit[]
                 {
-                    new MonsterHit{Name = "Balafre", MinDamage = 5, MaxDamage = 8 },
+                    new MonsterHit{Name = "Balafre", MinDamage = 5, MaxDamage = 60 },
                     new MonsterHit{Name = "Eviscération", MinDamage = 25, MaxDamage = 30}
                 };
         }

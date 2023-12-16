@@ -4,11 +4,11 @@
     {
         public override TypeOfMonster MonsterType { get; set; } = TypeOfMonster.Beast;
         public override string MonsterName { get; set; } = "Le scorpion éternel";
-        public override int MonsterCurrentHP { get; set; } = 5000;
-        public override int MonsterHP { get; set; } = 5000;
+        public override int MonsterCurrentHP { get; set; } = 900;
+        public override int MonsterHP { get; set; } = 900;
         public override MonsterHit[] HitTable { get; set; } = new MonsterHit[] { };
         public override TypeOfBreed MonsterBreed { get; set; } = TypeOfBreed.EternalScorpio;
-        public override int XpGranted { get; set; } = 2500;
+        public override int XpGranted { get; set; } = 1250;
         public override string fightImgUrl { get; set; } = "img/monster/Boss/Escorpio.png";
         public override List<Stuff> LootTable { get; protected set; } = new List<Stuff>() {
             new Axe("Hache en mithril", "(24 - 48) | Stats +8", 400, 24, 48, 8),
@@ -27,7 +27,7 @@
         {
             return new MonsterHit[]
             {
-                new MonsterHit{Name = "Aiguille d'Antarès", MinDamage = 100, MaxDamage = 200}
+                new MonsterHit{Name = "Aiguille d'Antarès", MinDamage = 80, MaxDamage = 100}
             };
         }
     }

@@ -3,10 +3,10 @@
     public class Ener: LightningElemental
     {
         public override string MonsterName { get; set; } = "Ener";
-        public override int MonsterHP { get; set; } = 200;
-        public override int MonsterCurrentHP { get; set; } = 200;
+        public override int MonsterHP { get; set; } = 360;
+        public override int MonsterCurrentHP { get; set; } = 360;
         public override string fightImgUrl { get; set; } = "img/monster/lightningelemental/ener.png";
-        public override int XpGranted { get; set; } = 200;
+        public override int XpGranted { get; set; } = 250;
         public override List<Stuff> LootTable { get; protected set; } = new List<Stuff>() {
             new Axe("Hache en acier", "(12 - 24) | Stats +4", 200, 12, 24, 4),
             new Bow("Arc en chêne", "(20 - 32) | Stats +8", 200, 20, 32, 8),
@@ -24,7 +24,7 @@
         {
             return new MonsterHit[]
             {
-                new MonsterHit {Name ="Jugement divin", MinDamage = 26, MaxDamage = 35}, //Ener amasse de l'électricité au-dessus de sa cible avant de faire tomber un énorme éclair droit sur elle
+                new MonsterHit {Name ="Jugement divin", MinDamage = 26, MaxDamage = 35},
                 new MonsterHit { Name = "30 Millions de Volts", MinDamage = 36, MaxDamage = 45 }
             };
 

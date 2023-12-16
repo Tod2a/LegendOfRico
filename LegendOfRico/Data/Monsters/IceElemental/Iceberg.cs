@@ -3,8 +3,8 @@
     public class Iceberg: IceElemental
     {
         public override string MonsterName { get; set; } = "Iceberg";
-        public override int MonsterHP { get; set; } = 200;
-        public override int MonsterCurrentHP { get; set; } = 200;
+        public override int MonsterHP { get; set; } = 300;
+        public override int MonsterCurrentHP { get; set; } = 300;
         public override string fightImgUrl { get; set; } = "img/monster/iceelemental/iceberg.png";
         public override int XpGranted { get; set; } = 200;
         public override List<Stuff> LootTable { get; protected set; } = new List<Stuff>() {

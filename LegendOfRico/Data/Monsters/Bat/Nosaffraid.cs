@@ -3,10 +3,10 @@
     public class Nosaffraid: Bat
     {
         public override string MonsterName { get; set; } = "Nosaffraid";
-        public override int MonsterHP { get; set; } = 500;
-        public override int MonsterCurrentHP { get; set; } = 500;
+        public override int MonsterHP { get; set; } = 300;
+        public override int MonsterCurrentHP { get; set; } = 300;
         public override string fightImgUrl { get; set; } = "img/monster/Bat/Nosaffraid.png";
-        public override int XpGranted { get; set; } = 250;
+        public override int XpGranted { get; set; } = 200;
         public override int PetMinDamage { get; protected set; } = 25;
         public override int PetMaxDamage { get; protected set; } = 50;
         public override List<Stuff> LootTable { get; protected set; } = new List<Stuff>() {
@@ -26,8 +26,8 @@
         {
             return new MonsterHit[]
                 {
-                    new MonsterHit{Name = "Morsure", MinDamage = 10, MaxDamage = 15 },
-                    new MonsterHit{Name = "Piqure", MinDamage = 5, MaxDamage = 10}
+                    new MonsterHit{Name = "Morsure", MinDamage = 20, MaxDamage = 30 },
+                    new MonsterHit{Name = "Piqure", MinDamage = 10, MaxDamage = 40}
                 };
         }
     }
