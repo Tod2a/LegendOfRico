@@ -1,4 +1,6 @@
 ﻿@using LegendOfRico.Data
+@using System.Text.Json
+@inject IJSRuntime JS
 
 <div class="gameMenu">
     @if(Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].IsACollectDestination && Game.FormShow == TypeOfShow.Map)
@@ -86,7 +88,10 @@
     {
         <button @onclick="Leave">Quitter</button>
     }
-    <!--<button onclick="() => Save(game.Player)">Sauvegarde</button>-->
+    @if (Game.FormShow == TypeOfShow.Map)
+    {
+        <!--<button onclick="Save">Sauvegarde</button>-->
+    }
     <button @onclick="Deconnection">Deconnexion</button>
 </div>
 
@@ -161,6 +166,14 @@
     void Leave()
     {
         Game.FormShow = TypeOfShow.Map;
+        TypeOfShowChange.InvokeAsync();
+    }
+
+    async Task Save()
+    {
+        var saving = JsonSerializer.Serialize(Game);
+        await JS.InvokeVoidAsync("localStorage.setItem", "Saving", saving);
+        Game.FormShow = TypeOfShow.Connection;
         TypeOfShowChange.InvokeAsync();
     }
 

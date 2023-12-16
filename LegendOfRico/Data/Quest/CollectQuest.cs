@@ -29,7 +29,7 @@
             int posi;
             int posj;
             Square[][] map = new Square[10][];
-            List<Type> pool = new List<Type>();
+            List<Monster> pool = new List<Monster>();
             Biomes biomes = new Biomes(LocalBiome, pool, Imgurl, Imgurl);
             for(int i = 0; i<10;i++)
             {
