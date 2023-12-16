@@ -550,6 +550,13 @@ button {
 
 .TavernMates .button {
     flex: 1;
+    background-color: #4CAF50;
+    color: white;
+    margin-top: 0.05em;
+    margin-bottom: 0.05em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .CollectMap table {
