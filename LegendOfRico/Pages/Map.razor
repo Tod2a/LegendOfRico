@@ -1,11 +1,11 @@
 ﻿@using LegendOfRico.Data
 @using BootstrapBlazor
 
-<div class="layoutGame" @onkeydown="HandleKeyDown" @onkeydown:preventDefault=true tabindex="0">
+<div class="layoutGame" @onkeydown="HandleKeyDown" @onkeydown:preventDefault=true>
     <div class="displayGame">
         <GameMenu Game="Game" TypeOfShowChange="TypeOfShowChange" />
         <div class="mapDisplay">
-            <table border="1" class="Map">
+            <table border="1" class="Map" @ref="mapref" tabindex="0" autofocus>
                 @for (int i = Game.GameMap.StartI; i < Game.GameMap.MaxI; i++)
                 {
                     <tr>
@@ -117,6 +117,7 @@
     public Game Game { get; set; }
     [Parameter]
     public EventCallback TypeOfShowChange { get; set; }
+    public ElementReference mapref;
 
     void UseConsumable(Consumable consumable, Character target)
     {
@@ -129,6 +130,12 @@
     {
         Game.TakeQuest(quest);
         TypeOfShowChange.InvokeAsync();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+            await mapref.FocusAsync();
     }
 
     //Fonction de gestion des bouton clavier
