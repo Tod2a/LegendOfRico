@@ -147,32 +147,32 @@ namespace LegendOfRico.Data
         //contenu des pool encore à définir mais divers pool déjà créés pour faire la map
 
         //plaine
-        public List<Type> PoolOfPlain = new List<Type> { typeof(Bulldog) };
-        public List<Type> PoolOfMediumPlain = new List<Type> { typeof(Americanstaff) };
-        public List<Type> PoolOfHardPlain = new List<Type> { typeof(Rottweiler) };
+        public List<Monster> PoolOfPlain = new List<Monster> {  new Bulldog() };
+        public List<Monster> PoolOfMediumPlain = new List<Monster> { new Americanstaff() };
+        public List<Monster> PoolOfHardPlain = new List<Monster> { new Rottweiler() };
         //forêt
-        public List<Type> PoolOfForest = new List<Type> { typeof(SonOfAragog), typeof(OmegaWolf) };
-        public List<Type> PoolOfMediumForest = new List<Type> { typeof(BigSonOfAragog), typeof(BetaWolf) };
-        public List<Type> PoolOfHardForest = new List<Type> { typeof(Aragog), typeof(AlphaWolf) };
-        public List<Type> BossOfForest = new List<Type> { typeof(Sunwukong) };
+        public List<Monster> PoolOfForest = new List<Monster> { new SonOfAragog(), new OmegaWolf() };
+        public List<Monster> PoolOfMediumForest = new List<Monster> { new BigSonOfAragog() };
+        public List<Monster> PoolOfHardForest = new List<Monster> { new Aragog() };
+        public List<Monster> BossOfForest = new List<Monster> { new Sunwukong() };
         //désert
-        public List<Type> PoolOfDesert = new List<Type> { typeof(LittleFlame), typeof(LittleScorpio) };
-        public List<Type> PoolOfMediumDesert = new List<Type> { typeof(Flame), typeof(RockScorpio) };
-        public List<Type> PoolOfHardDesert = new List<Type> { typeof(Volcanis), typeof(EmperorScorpio) };
-        public List<Type> BossOfDesert = new List<Type> { typeof(EternalScorpio) };
+        public List<Monster> PoolOfDesert = new List<Monster> { new LittleFlame(), new LittleScorpio() };
+        public List<Monster> PoolOfMediumDesert = new List<Monster> { new Flame() };
+        public List<Monster> PoolOfHardDesert = new List<Monster> { new Volcanis() };
+        public List<Monster> BossOfDesert = new List<Monster> { new EternalScorpio() };
         //Ruines
-        public List<Type> PoolOfRuined = new List<Type> { typeof(Racaille), typeof(Nosptipti), typeof(FlashOfLighting) };
-        public List<Type> PoolOfMediumRuined = new List<Type> { typeof(Gangster), typeof(Nosalto), typeof(Thunderstorm) };
-        public List<Type> PoolOfHardRuined = new List<Type> { typeof(Mafieux), typeof(Nosaffraid), typeof(Ener) };
-        public List<Type> BossOfRuined = new List<Type> { typeof(JoyBean) };
+        public List<Monster> PoolOfRuined = new List<Monster> { new Racaille(), new Nosptipti(), new FlashOfLighting() };
+        public List<Monster> PoolOfMediumRuined = new List<Monster> { new Gangster(), new Nosalto(), new Thunderstorm() };
+        public List<Monster> PoolOfHardRuined = new List<Monster> { new Mafieux(), new Nosaffraid(), new Ener() };
+        public List<Monster> BossOfRuined = new List<Monster> { new JoyBean() };
         //cimetiere
-        public List<Type> PoolOfGraveyard = new List<Type> { typeof(Fantominet), typeof(IceCube) };
-        public List<Type> PoolOfMediumGraveyard = new List<Type> { typeof(Spectre), typeof(IceBlock) };
-        public List<Type> PoolOfHardGraveyard = new List<Type> { typeof(Cauchemar), typeof(Iceberg) };
-        public List<Type> BossOfGraveyard = new List<Type> { typeof(Cheftontaton) };
+        public List<Monster> PoolOfGraveyard = new List<Monster> { new Fantominet(), new IceCube() };
+        public List<Monster> PoolOfMediumGraveyard = new List<Monster> { new Spectre(), new IceBlock() };
+        public List<Monster> PoolOfHardGraveyard = new List<Monster> { new Cauchemar(), new Iceberg() };
+        public List<Monster> BossOfGraveyard = new List<Monster> { new Cheftontaton() };
         //village
-        public List<Type> PoolOfVillage = new List<Type> {  };
-        public List<Type> BossOfVillage = new List<Type> { typeof(RicoChico) };
+        public List<Monster> PoolOfVillage = new List<Monster> {  };
+        public List<Monster> BossOfVillage = new List<Monster> { new RicoChico() };
 
         //création des différents Biomes 3 par types pour les différentes images, un pour les cases dangereuses et un pour les boss
         //sauf pour le village et la plaine

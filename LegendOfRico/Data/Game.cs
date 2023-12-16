@@ -501,11 +501,18 @@ namespace LegendOfRico.Data
         //Fonction qui va choisir aléatoirement un monstre dans le pool du Biome
         private Monster SelectEnemy()
         {
-            List<Type> list = GameMap.MapLayout[Player.PositionI][Player.PositionJ].SquareBiome.MonsterPool;
-            Type randomClassType = list[new Random().Next(list.Count)];
-            dynamic monster = Activator.CreateInstance(randomClassType);
+            List<Monster> list = GameMap.MapLayout[Player.PositionI][Player.PositionJ].SquareBiome.MonsterPool;
+            Monster monster = list[new Random().Next(list.Count)];
             FightMessage = "Vous êtes agressé par " + monster.MonsterName + ", il faut le vaincre pour survivre.";
             return monster;
+        }
+
+        public void MonsterSwitch()
+        {
+            Type newmonster = MonsterFight.GetType();
+            var monster = Activator.CreateInstance(newmonster)as Monster;
+            GameMap.MapLayout[Player.PositionI][Player.PositionJ].SquareBiome.MonsterPool.Add(monster); 
+            GameMap.MapLayout[Player.PositionI][Player.PositionJ].SquareBiome.MonsterPool.Remove(MonsterFight);
         }
 
         //gestion de l'équipe

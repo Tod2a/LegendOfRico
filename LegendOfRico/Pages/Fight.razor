@@ -125,6 +125,7 @@
     {
         Game.FormShow = TypeOfShow.Map;
         Game.Turncount = 0;
+        Game.MonsterSwitch();
         Game.IsCurrentFight = false;
         Game.MonsterDead = false;
         TypeOfShowChange.InvokeAsync();
@@ -132,6 +133,7 @@
 
     void Defeat()
     {
+        Game.MonsterSwitch();
         Game.FormShow = TypeOfShow.Map;
         Game.Player.PositionI = Game.Player.lastRestVillageI;
         Game.Player.PositionJ = Game.Player.LastRestVillageJ;
