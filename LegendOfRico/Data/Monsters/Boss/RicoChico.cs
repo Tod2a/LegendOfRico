@@ -11,7 +11,7 @@
         public override int XpGranted { get; set; } = 100000;
         public override string fightImgUrl { get; set; } = "img/monster/Boss/RicoChico.png";
         public override List<Stuff> LootTable { get; protected set; } = new List<Stuff>() {
-            new Armor("ArmureDivine", "Divin | Armure : 45", 10000, TypeOfArmor.Light, 45),
+            new Armor("Armure divine", "Armure : 45", 10000, TypeOfArmor.Light, 45),
         };
 
         protected override MonsterHit[] BuildHitTable()

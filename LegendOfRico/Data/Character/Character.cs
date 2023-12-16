@@ -483,7 +483,7 @@ public abstract class Character : INotifyPropertyChanged
             IsProtected = false;
             ProtectDuration = 0;
         }
-        else if(!IsProtected && ProtectDuration > 0)
+        else
         {
             IsProtected = true;
             if(ProtectDuration > 10)
