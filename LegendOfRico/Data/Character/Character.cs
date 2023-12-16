@@ -34,12 +34,12 @@ public abstract class Character : INotifyPropertyChanged
     public abstract Stuff CharacterArmor { get; set; }
     public abstract List<Spells> SpellBook { get; protected set; }
     public List<Consumable> ConsumableInventory { get; private set; }
-    public virtual List<Stuff> StuffInventory { get; private set; }
+    public List<Stuff> StuffInventory { get; private set; }
     public List<Quest> QuestsBook { get; set; }
     public CollectQuest CollectQuest { get; set; }
     public abstract Boolean CanEquipShield { get; set; }
     public virtual Beast Pet { get; set; } = new Bulldog();
-    public int Coins { get; private set; } = 100000;
+    public int Coins { get; private set; } = 0;
     public virtual string fightImgUrl { get; }
     private string mapSprite;
     public string MapSprite
