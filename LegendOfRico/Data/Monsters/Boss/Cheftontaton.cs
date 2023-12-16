@@ -4,11 +4,11 @@
     {
         public override string MonsterName { get; set; } = "Le grand chef des Tontaton";
         public override TypeOfMonster MonsterType { get; set; } = TypeOfMonster.Undead;
-        public override int MonsterCurrentHP { get; set; } = 5000;
-        public override int MonsterHP { get; set; } = 5000;
+        public override int MonsterCurrentHP { get; set; } = 750;
+        public override int MonsterHP { get; set; } = 750;
         public override MonsterHit[] HitTable { get; set; } = new MonsterHit[] { };
         public override TypeOfBreed MonsterBreed { get; set; } = TypeOfBreed.Cheftontaton;
-        public override int XpGranted { get; set; } = 2500;
+        public override int XpGranted { get; set; } = 1000;
         public override string fightImgUrl { get; set; } = "img/monster/Boss/cheftontaton.png";
         public override List<Stuff> LootTable { get; protected set; } = new List<Stuff>() {
             new Axe("Hache en mithril", "(24 - 48) | Stats +8", 400, 24, 48, 8),
@@ -27,7 +27,7 @@
         {
             return new MonsterHit[]
             {
-                new MonsterHit{Name = "Assaut multiple", MinDamage = 100, MaxDamage = 200}
+                new MonsterHit{Name = "Assaut multiple", MinDamage = 60, MaxDamage = 85}
             };
         }
     }
