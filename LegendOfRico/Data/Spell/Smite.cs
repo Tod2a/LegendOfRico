@@ -7,7 +7,7 @@ public class Smite : Spells
     public override int CurrentNumberOfUses { get; protected set; } = 15;
     public int MinValue => 10;
     public int MaxValue => 20;
-    public TypeOfDamage SpellType = TypeOfDamage.Holy;
+    public override TypeOfDamage SpellType { get; protected set; } = TypeOfDamage.Holy;
 
     public override string UseSpell(Character player, Monster target)
     {

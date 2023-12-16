@@ -29,6 +29,7 @@ public class Cleric : Character
         if(Level == 3)
         {
             SpellBook.Add(new Protection());
+            SpellBook.Add(new Cleanse());
         }
         if(Level == 4)
         {

@@ -5,7 +5,7 @@ public class Incinerate : Spells
     public override string SpellName { get; protected set; } = "Incinérer (10/10)";
     public override int MaxNumberOfUses => 10;
     public override int CurrentNumberOfUses { get; protected set; } = 10;
-    public TypeOfDamage SpellType = TypeOfDamage.Fire;
+    public override TypeOfDamage SpellType { get; protected set; } = TypeOfDamage.Fire;
     public double BurnChance = 0.8;
 
     public override string UseSpell(Character player, Monster target)
