@@ -19,7 +19,6 @@ public class DivineIntervention : Spells
             int healRoll = (new Random()).Next(MinValue, MaxValue + 1);
             healRoll += (int)(player.Statistics / 50 * healRoll);
 
-            target.TakeDamage(damageRoll);
             player.ReceiveHeal(healRoll);
 
             if (target.MonsterType == TypeOfMonster.Undead)
@@ -47,7 +46,7 @@ public class DivineIntervention : Spells
                 damageRoll *= 2;
                 s += "Efficace ! ";
             }
-
+            target.TakeDamage(damageRoll);
 
             s += player.Name + "et inflige " + damageRoll + " points de dégâts à la cible ! ";
             CurrentNumberOfUses--;

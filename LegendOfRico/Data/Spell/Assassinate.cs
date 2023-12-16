@@ -11,8 +11,8 @@ public class Assassinate : Spells
         string s = "";
         if (CurrentNumberOfUses > 0)
         {
-            if(new Random().NextDouble() <= 0.75 && (target.GetType() != typeof(Sunwukong) || target.GetType() != typeof(Cheftontaton) || 
-                target.GetType() != typeof(EternalScorpio) || target.GetType() != typeof(JoyBean) || target.GetType() != typeof(RicoChico)))
+            if(new Random().NextDouble() <= 0.75 && target.GetType() != typeof(Sunwukong) && target.GetType() != typeof(Cheftontaton) && 
+                target.GetType() != typeof(EternalScorpio) && target.GetType() != typeof(JoyBean) && target.GetType() != typeof(RicoChico))
             {
                 target.TakeDamage(target.MonsterCurrentHP);
                 s += player.Name + " assassine la cible ! ";

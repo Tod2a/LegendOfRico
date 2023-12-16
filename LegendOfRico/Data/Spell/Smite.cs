@@ -17,7 +17,6 @@ public class Smite : Spells
             int damageRoll = (new Random()).Next(MinValue, MaxValue + 1);
             damageRoll += player.Statistics / 50 * damageRoll;
 
-            target.TakeDamage(damageRoll);
             if (target.MonsterType == TypeOfMonster.Undead)
             {
                 target.Burnt();

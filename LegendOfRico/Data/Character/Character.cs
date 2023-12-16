@@ -193,7 +193,7 @@ public abstract class Character : INotifyPropertyChanged
         string s = "";
         int weaponDamageRoll =
             new Random().Next(CharacterWeapon.MinimumWeaponDamage, CharacterWeapon.MaximumWeaponDamage + 1);
-        weaponDamageRoll += Statistics / 10 * weaponDamageRoll;
+        weaponDamageRoll += Statistics / 50 * weaponDamageRoll;
 
         if (new Random().NextDouble() <= CharacterWeapon.WeaponCritChance) //Si l'arme crit dégâts x2
         {
