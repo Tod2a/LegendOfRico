@@ -23,6 +23,11 @@
             CurrentHitPoints += gainedHP;
             MaxHitPoints += gainedHP;
             Statistics += 5 + Level;
+
+            if(Level == 2)
+            {
+                SpellBook.Add(new Execute());
+            }
         }
     }
 }
