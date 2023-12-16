@@ -43,21 +43,21 @@
         Arme: @Game.Player.CharacterWeapon.ItemName
         @if (!(Game.Player.CharacterWeapon.GetType() == typeof(Fist)) && Game.FormShow != TypeOfShow.Fight)
         {
-            <button @onclick=Game.Player.UnequipWeapon>Déséquiper</button>
+            <button @onclick=UnequipWeapon>Déséquiper</button>
         }
     </p>
     <p data-toggle="tooltip" data-placement="top" title="@Game.Player.CharacterArmor.Description">
         Armure: @Game.Player.CharacterArmor.ItemName
         @if (!(Game.Player.CharacterArmor.GetType() == typeof(Topless)) && Game.FormShow != TypeOfShow.Fight)
         {
-            <button @onclick=Game.Player.UnequipArmor>Déséquiper</button>
+            <button @onclick=UnequipArmor>Déséquiper</button>
         }
     </p>
     <p data-toggle="tooltip" data-placement="top" title="@Game.Player.CharacterShield.Description">
         Bouclier: @Game.Player.CharacterShield.ItemName
         @if (!(Game.Player.CharacterShield.GetType() == typeof(FistShield)) && Game.FormShow != TypeOfShow.Fight)
         {
-            <button @onclick=Game.Player.UnequipShield>Déséquiper</button>
+            <button @onclick=UnequipShield>Déséquiper</button>
         }
     </p>
     @if ((Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].SquareBiome.BiomeType == TypeOfBiome.Village || Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].SquareBiome.BiomeType == TypeOfBiome.VillageBoss) && !Game.Player.IsRested)
@@ -119,6 +119,24 @@
         Game.Player.SetCollectQuest();
         Game.Player.CollectQuest.DisplayMap();
         Game.FormShow = TypeOfShow.Collect;
+        TypeOfShowChange.InvokeAsync();
+    }
+
+    void UnequipWeapon ()
+    {
+        Game.Player.UnequipWeapon();
+        TypeOfShowChange.InvokeAsync();
+    }
+
+    void UnequipArmor ()
+    {
+        Game.Player.UnequipArmor();
+        TypeOfShowChange.InvokeAsync();
+    }
+
+    void UnequipShield ()
+    {
+        Game.Player.UnequipShield();
         TypeOfShowChange.InvokeAsync();
     }
 
