@@ -16,6 +16,7 @@
         public override double ChanceToDodge { get; protected set; } = 0.1;
         public override string fightImgUrl { get; } = "img/Character/fightFighter.png";
         public override int Statistics { get; set; } = 0;
+        public override List<Stuff> StuffInventory => new List<Stuff>() { new Greatsword("Espadon en bois", "(3 - 5)", 1, 3, 5, 0) };
 
         protected override void CheckLearnSpell()
         {
