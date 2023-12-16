@@ -13,7 +13,7 @@
         <div class="mapDisplay">
             @if (!Game.Player.CollectQuest.QuestEnd)
             {
-                <table border="1" class="CollectMap">
+                <table border="1" class="CollectMap" @ref="mapref" tabindex="0" autofocus>
                     @for (int i = 0; i < 10; i++)
                     {
                         <tr>
@@ -72,8 +72,7 @@
     public Game Game { get; set; }
     [Parameter]
     public EventCallback TypeOfShowChange { get; set; }
-    //[Parameter]
-    //public CollectQuest Quest { get; set; }
+    public ElementReference mapref;
 
     void Valid ()
     {
@@ -89,6 +88,12 @@
         Game.Player.CollectQuest.CurrentTarget = 10;
         Game.FormShow = TypeOfShow.Map;
         TypeOfShowChange.InvokeAsync();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+            await mapref.FocusAsync();
     }
 
     private void HandleKeyDown(KeyboardEventArgs e)
