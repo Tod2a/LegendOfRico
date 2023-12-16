@@ -183,6 +183,7 @@ namespace LegendOfRico.Data
             else
             {
                 MonsterHit();
+                CheckCharactDead();
             }
             FightChecking();
         }
@@ -212,6 +213,7 @@ namespace LegendOfRico.Data
             else
             {
                 MonsterHit();
+                CheckCharactDead();
             }
             FightChecking();
         }
@@ -242,6 +244,7 @@ namespace LegendOfRico.Data
                 else
                 {
                     MonsterHit();
+                    CheckCharactDead();
                 }
                 FightChecking();
             }
@@ -271,12 +274,16 @@ namespace LegendOfRico.Data
                     {
                         MonsterHit();
                         FightMessage += CharactBurn();
+                        FightMessage += CharacterPoisoned();
+                        CheckCharactDead();
                     }
                 }
                 else if (FightMessage != "Vous ne pouvez plus lancer ce sort ! ") //Le monstre passe son tour si le joueur est con
                 {
                     MonsterHit();
                     FightMessage += CharactBurn();
+                    FightMessage += CharacterPoisoned(); 
+                    CheckCharactDead();
                 }
                 else if (MonsterFight.IsFrozen) //Le monstre ne joue pas si gelé
                 {
@@ -413,14 +420,6 @@ namespace LegendOfRico.Data
                         FightMessage += MonsterFight.Hit(Player);
                     }
                 }
-                if (Player.CurrentHitPoints <= 0 && !MonsterDead)
-                {
-                    Player.CurrentHitPoints = 0;
-                    PlayerDead = true;
-                    FightMessage = "Vous êtes mort, des goblins sortent de l'ombre pour vous emmener rapidement dans le dernier village que vous avez visité. ";
-                    FightMessage += "Vous perdez la moitié de votre expérience. ";
-                    Player.CurrentXp /= 2;
-                }
                 if (Player.PartyMember != null && Player.PartyMember.CurrentHitPoints < 0)
                 {
                     Player.PartyMember.CurrentHitPoints = 0;
@@ -429,12 +428,24 @@ namespace LegendOfRico.Data
             }
         }
 
+        private void CheckCharactDead ()
+        {
+            if (Player.CurrentHitPoints <= 0 && !MonsterDead)
+            {
+                Player.CurrentHitPoints = 0;
+                PlayerDead = true;
+                FightMessage = "Vous êtes mort, des goblins sortent de l'ombre pour vous emmener rapidement dans le dernier village que vous avez visité. ";
+                FightMessage += "Vous perdez la moitié de votre expérience. ";
+                Player.CurrentXp /= 2;
+            }
+        }
+
         private string CharactBurn()
         {
             string s = "";
             if(Player.IsBurning)
             {
-                int damage = Player.CurrentHitPoints / 20;
+                int damage = Player.CurrentHitPoints / 10;
                 Player.CurrentHitPoints -= damage;
                 s += "vous brulez et subissez " + damage + " dégats";
                 Player.BurnDuration--;
@@ -445,7 +456,7 @@ namespace LegendOfRico.Data
             }
             if (Player.PartyMember != null && Player.PartyMember.IsBurning)
             {
-                int damage = Player.PartyMember.CurrentHitPoints / 20;
+                int damage = Player.PartyMember.CurrentHitPoints / 10;
                 Player.PartyMember.CurrentHitPoints -= damage;
                 s += Player.PartyMember.Name + " brule et subit " + damage + " dégats";
                 Player.PartyMember.BurnDuration--;
@@ -453,6 +464,25 @@ namespace LegendOfRico.Data
                 {
                     Player.PartyMember.IsBurning = false;
                 }
+            }
+            return s;
+        }
+
+        public string CharacterPoisoned()
+        {
+            string s = "";
+            if(Player.IsPoisoned)
+            {
+                Player.CurrentHitPoints -= Player.PoisonDamage;
+                s += "vous etes empoisonné et subissez " + Player.PoisonDamage + " dégats ";
+                Player.PoisonDamage = Player.PoisonDamage * 2;
+            }
+
+            if (Player.PartyMember != null && Player.PartyMember.IsPoisoned)
+            {
+                Player.PartyMember.CurrentHitPoints -= Player.PartyMember.PoisonDamage;
+                s += Player.PartyMember.Name + " est empoisonné et subissez " + Player.PartyMember.PoisonDamage + " dégats ";
+                Player.PartyMember.PoisonDamage = Player.PartyMember.PoisonDamage * 2;
             }
             return s;
         }
