@@ -4,11 +4,11 @@
     {
         public override string MonsterName { get; set; } = "Le roi singe, Sun Wukong";
         public override TypeOfMonster MonsterType { get; set; } = TypeOfMonster.Beast;
-        public override int MonsterCurrentHP { get; set; } = 5000;
-        public override int MonsterHP { get; set; } = 5000;
+        public override int MonsterCurrentHP { get; set; } = 800;
+        public override int MonsterHP { get; set; } = 800;
         public override MonsterHit[] HitTable { get; set; } = new MonsterHit[] { };
         public override TypeOfBreed MonsterBreed { get; set; } = TypeOfBreed.Sunwukong;
-        public override int XpGranted { get; set; } = 2500;
+        public override int XpGranted { get; set; } = 1100;
         public override string fightImgUrl { get; set; } = "img/monster/Boss/Sunwukong.png";
         public override List<Stuff> LootTable { get; protected set; } = new List<Stuff>() {
             new Axe("Hache en mithril", "(24 - 48) | Stats +8", 400, 24, 48, 8),
@@ -27,7 +27,7 @@
         {
             return new MonsterHit[]
             {
-                new MonsterHit{Name = "Baton magique", MinDamage = 100, MaxDamage = 200}
+                new MonsterHit{Name = "Baton magique", MinDamage = 65, MaxDamage = 80}
             };
         }
     }

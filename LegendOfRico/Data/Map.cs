@@ -322,16 +322,16 @@ namespace LegendOfRico.Data
             //ajout d'une ruine au nord de la map
 
             TrippleSquare(0, 54, 161, 201, mapLayout, TypeOfBiome.AbandonedVillage, "Les ruines de raftool", 0.1);
-            TrippleSquare(20, 32, 187, 194, mapLayout, TypeOfBiome.AbandonedVillageDifficult, "Les ruines de raftool", 0.25);
+            TrippleSquare(20, 32, 187, 194, mapLayout, TypeOfBiome.AbandonedVillageDifficult, "Les ruines de raftool", 0.2);
 
             //ajout foret
             TrippleSquare(60, 110, 234, 327, mapLayout, TypeOfBiome.Forest, "Forêt de Nibel", 0.1);
-            TrippleSquare(89, 101, 249, 265, mapLayout, TypeOfBiome.ForestDifficult, "Forêt de Nibel", 0.25);
+            TrippleSquare(89, 101, 249, 265, mapLayout, TypeOfBiome.ForestDifficult, "Forêt de Nibel", 0.2);
 
             //ajout d'un désert
 
             TrippleSquare(165, 230, 24, 74, mapLayout, TypeOfBiome.Desert, "Les milles et une boucles", 0.1);
-            TrippleSquare(184, 198, 43, 63, mapLayout, TypeOfBiome.DesertDifficult, "Les milles et une boucles", 0.25);
+            TrippleSquare(184, 198, 43, 63, mapLayout, TypeOfBiome.DesertDifficult, "Les milles et une boucles", 0.2);
 
             //ajout d'un cimetiere nord-ouest de la map
             TrippleSquare(154, 198, 83, 180, mapLayout, TypeOfBiome.Graveyard, "Cimetière des héros", 0.1);
@@ -365,10 +365,10 @@ namespace LegendOfRico.Data
             TrippleSquare(0, 150, 0, 150, mapLayout, TypeOfBiome.Forest, "Forêt de sherloop", 0.1);
 
             //zone dangereuse de cette forêt
-            TrippleSquare(20, 80, 10, 65, mapLayout, TypeOfBiome.ForestDifficult, "Forêt de Sherloop", 0.25);
+            TrippleSquare(20, 80, 10, 65, mapLayout, TypeOfBiome.ForestDifficult, "Forêt de Sherloop", 0.2);
 
             //deuxieme zone dangereuse de cette forêt
-            TrippleSquare(90, 110, 110, 142, mapLayout, TypeOfBiome.ForestDifficult, "Forêt de Sherloop", 0.25);
+            TrippleSquare(90, 110, 110, 142, mapLayout, TypeOfBiome.ForestDifficult, "Forêt de Sherloop", 0.2);
 
             //zone de boss de la forêt
             mapLayout[72][53] = new Square { SquareBiome = BossForest, Name = "Sun Wukong", ChanceToTriggerFight = 1.0 };
@@ -399,10 +399,10 @@ namespace LegendOfRico.Data
             TrippleSquare(349, 500, 0, 150, mapLayout, TypeOfBiome.AbandonedVillage, "l'ancienne cité de Joy Bean", 0.1);
 
             //zone dangereuse de cette cité en ruine
-            TrippleSquare(420, 468, 56, 98, mapLayout, TypeOfBiome.AbandonedVillageDifficult, "l'ancienne cité de Joy Bean", 0.25);
+            TrippleSquare(420, 468, 56, 98, mapLayout, TypeOfBiome.AbandonedVillageDifficult, "l'ancienne cité de Joy Bean", 0.2);
 
             //deuxieme zone dangereuse de cette cité en ruine
-            TrippleSquare(357, 376, 120, 135, mapLayout, TypeOfBiome.AbandonedVillageDifficult, "l'ancienne cité de Joy Bean", 0.25);
+            TrippleSquare(357, 376, 120, 135, mapLayout, TypeOfBiome.AbandonedVillageDifficult, "l'ancienne cité de Joy Bean", 0.2);
 
             //zone de boss de cette cité en ruine
             mapLayout[428][58] = new Square { SquareBiome = BossRuinedVillage, Name = "Le grand Joy Bean", ChanceToTriggerFight = 1.0 };
@@ -413,10 +413,10 @@ namespace LegendOfRico.Data
             TrippleSquare(0, 150, 349, 500, mapLayout, TypeOfBiome.Graveyard, "Cimetière des tontaton", 0.1);
 
             //zone dangereuse de ce cimetière
-            TrippleSquare(20, 60, 390, 435, mapLayout, TypeOfBiome.GraveyardDifficult, "Cimetière des tontaton", 0.25);
+            TrippleSquare(20, 60, 390, 435, mapLayout, TypeOfBiome.GraveyardDifficult, "Cimetière des tontaton", 0.2);
 
             //deuxieme zone dangereuse de ce cimetiere
-            TrippleSquare(90, 110, 369, 385, mapLayout, TypeOfBiome.GraveyardDifficult, "Cimetière des tontaton", 0.25);
+            TrippleSquare(90, 110, 369, 385, mapLayout, TypeOfBiome.GraveyardDifficult, "Cimetière des tontaton", 0.2);
 
             //zone de boss du cimetière
             mapLayout[36][401] = new Square { SquareBiome = BossGraveyard, Name = "Chef tontaton revenu", ChanceToTriggerFight = 1.0 };

@@ -3,10 +3,10 @@
     public class AlphaWolf: Wolf
     {
         public override string MonsterName { get; set; } = "Loup Alpha";
-        public override int MonsterHP { get; set; } = 500;
-        public override int MonsterCurrentHP { get; set; } = 500;
+        public override int MonsterHP { get; set; } = 250;
+        public override int MonsterCurrentHP { get; set; } = 250;
         public override string fightImgUrl { get; set; } = "img/monster/Wolf/alphawolf.png";
-        public override int XpGranted { get; set; } = 500;
+        public override int XpGranted { get; set; } = 180;
         public override int PetMinDamage { get; protected set; } = 25;
         public override int PetMaxDamage { get; protected set; } = 50;
         public override List<Stuff> LootTable { get; protected set; } = new List<Stuff>() {
@@ -26,7 +26,7 @@
         {
             return new MonsterHit[]
                 {
-                    new MonsterHit{Name = "Balafre", MinDamage = 5, MaxDamage = 8 },
+                    new MonsterHit{Name = "Balafre", MinDamage = 15, MaxDamage = 45 },
                     new MonsterHit{Name = "Eviscération", MinDamage = 25, MaxDamage = 30}
                 };
         }
