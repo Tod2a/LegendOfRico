@@ -8,6 +8,8 @@
         public int CoinsReward { get; protected set; } 
         public bool Status { get; set; } = false;
         public virtual TypeOfBreed Target { get; set; } = TypeOfBreed.Null;
+
+        //Constructeur basique d'une quête sans prendre en compte son type
         public Quest(string questName, string description, int xpreward, int coinreward)
         {
             QuestName = questName;

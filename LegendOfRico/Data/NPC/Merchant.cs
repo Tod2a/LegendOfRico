@@ -4,12 +4,10 @@
     {
         public override string NPCName { get; protected set; } = "Marchand louche";
         public List<Stuff> StuffStock { get; private set; }
-        public List<Consumable> ConsumableStock { get; private set; }
 
         public Merchant()
         {
             StuffStock = new List<Stuff>();
-            ConsumableStock = new List<Consumable>();
             //Low level gear
 
             StuffStock.Add(new Axe("Hache en bronze", "(3 - 6)", 50, 3, 6, 0));

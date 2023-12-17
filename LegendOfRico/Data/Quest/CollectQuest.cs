@@ -7,6 +7,7 @@
         public string Imgurl { get; set; }
         public string MonsterUrl { get; set; } = "img/Collect/Monstre.png";
         public string TargetUrl { get; set; }
+        //Initialisation des paramètres de collecte, il y aura toujours 10 cibles et 10 monstres dans les quêtes de collecte
         public int NumberOfMonster { get; set; } = 10;
         public int NumberOfTarget { get; set; } = 10;
         public int CurrentTarget { get; set; } = 10;
@@ -14,6 +15,8 @@
         public Square[][] CollectMap { get; set; }
         public int PositionI { get; set; }
         public int PositionJ { get; set; }
+
+        //Ajout des informations necessaire dans le construceur, la position de la quête et son biome
         public CollectQuest(string questName, string description, int xpreward, int coinreward, int positioni, int positionj, TypeOfBiome localBiome)
             : base(questName, description, xpreward, coinreward)
         {
@@ -24,13 +27,16 @@
             TargetUrl = SetTargetUrl(localBiome);
         }
 
+        //Fonction de création de la map de collect qui sera générée à chaque tentative
         public void DisplayMap ()
         {
             int posi;
             int posj;
+            //Création d'une map de 10 lignes et d'un pool vide pour le biome de collecte
             Square[][] map = new Square[10][];
             List<Monster> pool = new List<Monster>();
             Biomes biomes = new Biomes(LocalBiome, pool, Imgurl, Imgurl);
+            //Création de chaque lignes de la map qui contiendra 10 square
             for(int i = 0; i<10;i++)
             {
                 map[i] = new Square[10];
@@ -39,6 +45,8 @@
                     map[i][j] = new Square { SquareBiome = biomes};
                 }
             }
+            //Implantation des 10 monstres qui ne peuvent pas se trouver sur la case de départ du personnage (0,5)
+            //Si 2 monstres son généré sur la même case, c'est que la chance du personnage a joué en sa faveur
             for(int i = 0; i < NumberOfMonster; i++)
             {
                 do {
@@ -47,6 +55,7 @@
                 } while (posi == 0 && posj == 5);
                 map[posi][posj].HasMonsterCollectQuest = true;
             }
+            //Implantation des 10 cibles qui ne peuvent ni être en (0,5) ni sur un monstre, ni 2 cibles au même endroit
             for (int i = 0; i < NumberOfTarget; i++)
             {
                 do {
@@ -59,6 +68,7 @@
             CollectMap = map;
         }
 
+        //Automatisation de l'image de fond de la quête en fonction du biome ciblé
         private string SetUrl(TypeOfBiome localBiome)
         {
             switch (localBiome)
@@ -84,6 +94,7 @@
             }
         }
 
+        //Automatisation de l'image de la cible de la collecte en fonction du biome ciblé
         private string SetTargetUrl(TypeOfBiome localBiome)
         {
             switch (localBiome)
