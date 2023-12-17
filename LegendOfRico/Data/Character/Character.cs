@@ -83,9 +83,9 @@ public abstract class Character
         ConsumableInventory = new List<Consumable>
         {
             new Potion("Petite potion de soin","Cette potion vous soignera entre 1 et 10 points de vie en combat ou hors combat", 5, 1, 10, 5),
-            new Potion("Potion de soin","Cette potion vous soignera entre 10 et 20 points de vie en combat ou hors combat", 10, 10, 20, 0),
-            new Potion("Grande potion de soin","Cette potion vous soignera entre 20 et 40 points de vie en combat ou hors combat", 20, 20, 40, 0),
-            new Potion("Enorme potion de soin","Cette potion vous soignera entre 40 et 80 points de vie en combat ou hors combat", 40, 40, 80, 0),
+            new Potion("Potion de soin","Cette potion vous soignera entre 10 et 20 points de vie en combat ou hors combat", 10, 10, 20),
+            new Potion("Grande potion de soin","Cette potion vous soignera entre 20 et 40 points de vie en combat ou hors combat", 20, 20, 40),
+            new Potion("Enorme potion de soin","Cette potion vous soignera entre 40 et 80 points de vie en combat ou hors combat", 40, 40, 80),
             new BurnHeal("Anti-brulure","Un objet raffraichissant qui vous soulagera de la brulure la plus sévère", 10),
             new PoisonedHeal("Antidote", "Un anti-poison qui vous soigne de l'empoisonnement", 5),
             new SmokedBall("Boule fumée","Cela pourrait s'avérer utile si le combat devient trop dangereux", 50),
