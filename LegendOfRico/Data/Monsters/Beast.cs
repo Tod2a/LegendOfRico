@@ -11,13 +11,17 @@ public abstract class Beast : Monster
     public abstract int PetMaxDamage { get; protected set; }
     public override TypeOfDamage[] MonsterResistance => new TypeOfDamage[] { };
 
+    //Fonctions propres aux bêtes qui peuvent être apaisées par le ranger
 
+    //Fonction qui va apaiser la bêtre et mettre la durée à 5 tours
     public void Soothed()
     {
         IsSoothed = true;
         SoothDuration = 5;
     }
 
+    //Fonction qui va vérifier si la bête est apaisée, modifier les dégats si c'est le cas et ensuite retourner un int qui sont
+    //les dégats après cette vérification
     public int DamageSoothed(int damageToSooth)
     {
         int postSoothDamage = damageToSooth;

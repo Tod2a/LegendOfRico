@@ -12,8 +12,8 @@ public abstract class Humanoid : Monster
     public abstract int MinCoins { get; protected set; }
     public abstract int MaxCoins { get; protected set; }
     public override TypeOfDamage[] MonsterResistance => new TypeOfDamage[] { };
-
-
+    
+    //Fonction propre au humanoïdes qui peuvent se faire voler de l'argent par le Rogue
     public int DropsCoins()
     {
         return (new Random()).Next(MinCoins, MaxCoins + 1);
