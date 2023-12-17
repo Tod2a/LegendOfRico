@@ -2,10 +2,10 @@ using System.ComponentModel;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace LegendOfRico.Data;
-
-public abstract class Character : INotifyPropertyChanged
+public abstract class Character 
 {
     public string Name { get; set; }
+    //Variable + propriétés de niveau qui va permettre de trigger la fonction à chaque changement de niveau
     private int level = 1;
     public int Level {
         get { return level; }
@@ -18,96 +18,66 @@ public abstract class Character : INotifyPropertyChanged
             }
         }
     }
-    public int RecruitingPrice { get; set; }
     public int CurrentXp { get; set; } = 0;
     public int XpToLevel { get; set; } = 1000;
-    public Boolean IsRested { get; private set; } = true;
+    //Paramètres de gestion des points de vies
     public abstract int MaxHitPoints { get; protected set; }
     public abstract int CurrentHitPoints { get; set; }
-    public abstract int Statistics { get; set; }
-    public abstract int ArmorAmount { get; set; }
+    //Paramètres nécessaire à la création des personnages à recruter à la taverne et à la gestion de groupe
     public Character PartyMember { get; set; }
-    public Boolean IsMainCharacter { get; set; } = true;
-    public abstract double ChanceToDodge { get; protected set; }
+    public int RecruitingPrice { get; set; }
+    public bool IsMainCharacter { get; set; } = true;
+    //Paramètres de gestion d'inventaire, équipements, sorts, inventaire, quêtes
+    public int Coins { get; private set; } = 0;
     public abstract Stuff CharacterWeapon { get; set; }
     public abstract Stuff CharacterShield { get; set; }
+    public abstract bool CanEquipShield { get; set; }
     public abstract Stuff CharacterArmor { get; set; }
+    public abstract List<TypeOfWeapon> WeaponMastery { get; }
+    public abstract TypeOfArmor ArmorMastery { get; }
     public abstract List<Spells> SpellBook { get; protected set; }
     public List<Consumable> ConsumableInventory { get; private set; }
     public List<Stuff> StuffInventory { get; private set; }
     public List<Quest> QuestsBook { get; set; }
     public CollectQuest CollectQuest { get; set; }
-    public abstract Boolean CanEquipShield { get; set; }
-    public virtual Beast Pet { get; set; } = new Bulldog();
-    public int Coins { get; private set; } = 0;
+    //Paramètre de familier utilisé pour le Ranger
+    public virtual Beast Pet { get; set; }
+    //Paramètres utilisé pour l'affichage sur la map, en combat et en collecte
     public virtual string fightImgUrl { get; }
-    private string mapSprite;
-    public string MapSprite
-    {
-        get { return mapSprite; }
-        set
-        {
-            if (mapSprite != value)
-            {
-                mapSprite = value;
-                OnPropertyChanged(nameof(MapSprite));
-            }
-        }
-    }
-    public abstract List<TypeOfWeapon> WeaponMastery { get; }
-    public abstract TypeOfArmor ArmorMastery { get; }
+    public string MapSprite {  get ; set;}
+    public int CollectPosI = 0;
+    public int CollectPosJ = 5;
+    public int PositionI { get; set; } = 250;
+    public int PositionJ { get; set; } = 250;
+    //Paramètres de gestion de repos et utilisés en cas de défaite au combat
+    public bool IsRested { get; private set; } = true;
     public int lastRestVillageI { get; set; } = 250;
     public int LastRestVillageJ { get; set; } = 250;
-    public Boolean HasFrostArmor { get; private set; } = false;
+    //Paramètres de gestion de statistiques utilisée pour les combats
+    public abstract int Statistics { get; set; }
+    public abstract int ArmorAmount { get; set; }
+    public abstract double ChanceToDodge { get; protected set; }
+    public bool HasFrostArmor { get; private set; } = false;
     public int FrostArmorAdditionalArmor { get; private set; } = 0;
-    public Boolean IsFrozen { get; private set; } = false;
-    public bool IsPoisoned { get; set; } = false;
-    public int PoisonDamage { get; set; } = 1;
-    public Boolean IsBurning { get; set; } = false;
-    public int BurnDuration { get; set; } = 0;
-    public Boolean IsProtected { get; private set; } = false;
+    public bool IsProtected { get; private set; } = false;
     public int ProtectDuration { get; private set; } = 0;
     public bool IsEvading { get; private set; } = false;
     public int EvadeDuration { get; private set; } = 0;
+    //Paramètres d'état pour vérifier si le personnage souffre d'afflictions
+    public bool IsFrozen { get; private set; } = false;
+    public bool IsPoisoned { get; set; } = false;
+    public int PoisonDamage { get; set; } = 1;
+    public bool IsBurning { get; set; } = false;
+    public int BurnDuration { get; set; } = 0;
+    //Paramètres de gestion de l'avancée sur la quêtre principale du jeu, voir si le charcater à vaincu un boss
     public bool Joydead { get; set; } = false;
     public bool Scorpiodead { get; set; } = false;
     public bool Wukongdead { get; set; } = false;
     public bool Tontatondead { get; set; } = false;
-    public int CollectPosI = 0;
-    public int CollectPosJ = 5;
-    private int positionI = 250;
-
-
-    public int PositionI
-    {
-        get { return positionI; }
-        set
-        {
-            if (value != positionI)
-            {
-                positionI = value;
-                OnPropertyChanged(nameof(PositionI));
-            }
-        }
-    }
-    private int positionJ = 250;
-
-    public int PositionJ
-    {
-        get { return positionJ; }
-        set
-        {
-            if (value != positionJ)
-            {
-                positionJ = value;
-                OnPropertyChanged(nameof(PositionJ));
-            }
-        }
-    }
 
 
 
-    protected abstract void CheckLearnSpell();
+    //Constructeur sans paramètre qui initialisera les inventaires et le livre de quête avec les quêtes de base du jeu
     public Character()
     {
         ConsumableInventory = new List<Consumable>
@@ -131,9 +101,15 @@ public abstract class Character : INotifyPropertyChanged
             new FightQuest("Le célèbre Joy Bean", "Joy Bean était connu pour être le roi de la cité la plus riche de l'ancien temps, le grand ricochico l'a asservit et il détient maintenant une relique", TypeOfBreed.Joybean, 1000, 1000),
         };
     }
+
+    //Fonction abstract qui sera trigger à chaque montée de niveau, contenu différent pour chaque class définit au sein de celle-ci
+    protected abstract void CheckLearnSpell();
+
+    //Fonctions de gestion des afflictions
     public void Burnt()
     {
         IsBurning = true;
+        BurnDuration = 3;
     }
 
     public void UnBurn()
@@ -170,6 +146,7 @@ public abstract class Character : INotifyPropertyChanged
         UnPoisoned();
     }
 
+    //Fonction de repos en ville qui va rechagers les sorts, soigner les Hp et les afflictions
     public void Rest()
     {
         CurrentHitPoints = MaxHitPoints;
@@ -188,33 +165,38 @@ public abstract class Character : INotifyPropertyChanged
         }
     }
 
+    //Gestion des combats
+
+    //Fonction qui sert a utiliser son arme, retourne un string pour pouvoir afficher les dégats infligés au monstre
     public virtual string Hit(Monster target)
     {
         string s = "";
+        //Calcul des dégats
         int weaponDamageRoll =
             new Random().Next(CharacterWeapon.MinimumWeaponDamage, CharacterWeapon.MaximumWeaponDamage + 1);
         weaponDamageRoll += Statistics / 50 * weaponDamageRoll;
-
+        //Vérification de coup critique
         if (new Random().NextDouble() <= CharacterWeapon.WeaponCritChance) //Si l'arme crit dégâts x2
         {
             weaponDamageRoll *= 2;
             s += "Coup critique ! ";
         }
-
+        //Vérifie si le monstre est faible au type de l'arme
         if (target.MonsterWeakness.Contains(CharacterWeapon.WeaponTypeOfDamage))
         {
             weaponDamageRoll *= 2;
             s += "Efficace ! ";
         }
+        //Sinon vérifie si il lui est résistant
         else if (target.MonsterResistance.Contains(CharacterWeapon.WeaponTypeOfDamage))
         {
             weaponDamageRoll /= 2;
             s += "Peu efficace ! ";
         }
-
+        //Inflige les dégats au monstre et formate la phrase affichée sur l'interface
         target.TakeDamage(weaponDamageRoll);
         s += Name + " frappe et inflige " + weaponDamageRoll + " points de dégats ! ";
-
+        //indique que le personage n'est plus reposé et retourne la phrase à afficher
         SetIsRested(false);
         return s;
     }
@@ -231,6 +213,7 @@ public abstract class Character : INotifyPropertyChanged
         }
     }
 
+    //Fonction qui va calculer la réduction de dégats si l'armure le permet et retourne un string à afficher sur l'interface
     public string TakeDamage(int damageTaken)
     {
         int actualDamageTaken = ArmorAmount > damageTaken ? 0 : damageTaken - ArmorAmount;
@@ -238,8 +221,10 @@ public abstract class Character : INotifyPropertyChanged
         return " et inflige " + actualDamageTaken + " points de dégats (" + damageTaken + " - " + ArmorAmount + ") à " + Name + " ! ";
     }
 
-    //Gestion des équipements
 
+
+    //Gestion d'équipement, déséquipement
+    //Fonction qui vérifie si on peut équiper un stuff et retourne un bool en fonction
     public bool CanEquip(Stuff stuff)
     {
         if (stuff.TypeOfStuff == TypeOfStuff.Weapon)
@@ -258,13 +243,16 @@ public abstract class Character : INotifyPropertyChanged
         }
         return false;
     }
+    //Fonction d'équipement de stuff
     public void EquipStuff(Stuff stuff)
     {
-        if (stuff.TypeOfStuff == TypeOfStuff.Weapon) //Si veut équiper une arme
+        //Si veut équiper une arme
+        if (stuff.TypeOfStuff == TypeOfStuff.Weapon)
         {
             var stuffWeapon = (Weapon)stuff;
             StuffInventory.Remove(stuff);
-            if (this.GetType() == typeof(Rogue) && CharacterWeapon.GetType() != typeof(Fist)) //Si c'est un rogue avec une arme
+            //Si c'est un rogue avec une arme
+            if (this.GetType() == typeof(Rogue) && CharacterWeapon.GetType() != typeof(Fist)) 
             {
                 if (CharacterWeapon.GetType() != typeof(DoubleWeapon)) //Si pas de main gauche
                 {
@@ -293,6 +281,7 @@ public abstract class Character : INotifyPropertyChanged
                         weapon1, stuff);
                 }
             }
+            //Si l'arme que l'on équipe est une arme a deux main, on ne peut plus porter de bouclier
             else if (stuffWeapon.GetType() == typeof(Greatsword))
             {
                 UnequipWeapon();
@@ -307,6 +296,7 @@ public abstract class Character : INotifyPropertyChanged
             }
             Statistics += CharacterWeapon.BonusStats;
         }
+        //Si c'est un bouclier
         else if (stuff.TypeOfStuff == TypeOfStuff.Shield)
         {
             UnequipShield();
@@ -314,6 +304,7 @@ public abstract class Character : INotifyPropertyChanged
             StuffInventory.Remove(stuff);
             ArmorAmount += stuff.ShieldBonusArmor;
         }
+        //Si c'est une armure
         else if (stuff.TypeOfStuff == TypeOfStuff.Armor)
         {
             var stuffArmor = (Armor)stuff;
@@ -328,6 +319,7 @@ public abstract class Character : INotifyPropertyChanged
         }
     }
 
+    //Fonction qui retire le bouclier
     public void UnequipShield()
     {
         if (!(CharacterShield.GetType() == typeof(FistShield)))
@@ -338,8 +330,10 @@ public abstract class Character : INotifyPropertyChanged
         }
     }
 
+    //Fonction qui retire l'arme
     public void UnequipWeapon()
     {
+        //Si c'est une arme double
         if (CharacterWeapon.GetType() == typeof(DoubleWeapon))
         {
             var ambidextrWeapon = (DoubleWeapon)CharacterWeapon;
@@ -348,6 +342,7 @@ public abstract class Character : INotifyPropertyChanged
             Statistics -= CharacterWeapon.BonusStats;
             CharacterWeapon = new Fist("Poing", "un poing", 0, 1, 3, 0);
         }
+        //Si c'est une épée à deux mains
         else if (CharacterWeapon.GetType() == typeof(Greatsword))
         {
             CanEquipShield = true;
@@ -355,6 +350,7 @@ public abstract class Character : INotifyPropertyChanged
             Statistics -= CharacterWeapon.BonusStats;
             CharacterWeapon = new Fist("Poing", "un poing", 0, 1, 3, 0);
         }
+        //Si ce n'est pas une main nue
         else if (!(CharacterWeapon.GetType() == typeof(Fist)))
         {
             StuffInventory.Add(CharacterWeapon);
@@ -363,6 +359,7 @@ public abstract class Character : INotifyPropertyChanged
         }
     }
 
+    //Déséquipement de l'armure, on se retrouve torse nu
     public void UnequipArmor()
     {
         if (!(CharacterArmor.GetType() == typeof(Topless)))
@@ -373,6 +370,8 @@ public abstract class Character : INotifyPropertyChanged
         }
     }
     
+
+    //Gestion des loots et d'achats/vente au marchand
     public void LootStuff(Stuff droppedItem)
     {
         StuffInventory.Add(droppedItem);
@@ -521,11 +520,5 @@ public abstract class Character : INotifyPropertyChanged
         ArmorAmount += FrostArmorAdditionalArmor;
     }
 
-    //gestion du changement des propriété lorsqu'on se déplace sur la carte, permet de réactualiser la carte lors d'un mouvement
-    public event PropertyChangedEventHandler PropertyChanged;
 
-    protected virtual void OnPropertyChanged(string propertyName)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
 }

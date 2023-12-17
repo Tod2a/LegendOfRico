@@ -400,6 +400,8 @@ namespace LegendOfRico.Data
         {
             Player.CollectQuest.Status = true;
             GameMap.MapLayout[Player.PositionI][Player.PositionJ].IsACollectDestination = false;
+            Player.CollectPosI = 0;
+            Player.CollectPosJ = 5;
             FormShow = TypeOfShow.Map;
         }
 

@@ -92,7 +92,6 @@ public abstract class Monster
     {
         string s = "";
         string hitname = MonsterHit.Name;
-        bool burnt = false;
         int damage = dice.Next(MonsterHit.MinDamage, MonsterHit.MaxDamage + 1);
         if(this.MonsterType == TypeOfMonster.Beast)
         {
@@ -125,28 +124,22 @@ public abstract class Monster
         }
         else
         {
+            s += MonsterName + " lance " + hitname + target.TakeDamage(damage);
             if (MonsterHit.chanceToBurn > 0)
             {
                 double Test = dice.NextDouble();
                 if (Test < MonsterHit.chanceToBurn)
                 {
-                    target.IsBurning = true;
-                    target.BurnDuration = 3;
-                    burnt = true;
+                    target.Burnt();
+                    s += " et l'attaque vous brûle ";
                 }
             }
-            s += MonsterName +" lance " + hitname + target.TakeDamage(damage);
-            if(burnt)
-            {
-                s += " et l'attaque vous brûle ";
-            }
-
             if (MonsterHit.chanceToPoisoned > 0)
             {
                 double test = dice.NextDouble();
                 if (test < MonsterHit.chanceToPoisoned)
                 {
-                    target.IsPoisoned = true;
+                    target.Poisoned();
                     s += " et l'attaque vous empoisonne ";
                     
                 }
