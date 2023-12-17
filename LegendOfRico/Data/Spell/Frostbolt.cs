@@ -11,48 +11,40 @@ public class Frostbolt : Spells
     public double CritChance = 0.2;
     public double FreezeChance = 0.05;
 
-    public override string UseSpell(Character player, Monster target)
+    protected override string SpellEffect(Character player, Monster target)
     {
         string s = "";
 
         int damageRoll = (new Random()).Next(MinValue, MaxValue + 1);
         damageRoll += (int)((player.Statistics / 50) * damageRoll);
 
-        if (CurrentNumberOfUses > 0)
+        if ((new Random()).NextDouble() <= CritChance)
         {
-            if ((new Random()).NextDouble() <= CritChance)
-            {
-                damageRoll *= 2;
-                s += "Coup critique ! ";
-            }
-            if ((new Random()).NextDouble() <= FreezeChance && !target.MonsterResistance.Contains(SpellType)
-                && !target.IsFrozen)
-            {
-                target.Frozen();
-                s += player.Name + " a gelé votre cible ! ";
-            }
+            damageRoll *= 2;
+            s += "Coup critique ! ";
+        }
+        if ((new Random()).NextDouble() <= FreezeChance && !IsResistant(target) && !target.IsFrozen)
+        {
+            target.Frozen();
+            s += player.Name + " a gelé votre cible ! ";
+        }
 
-            if (target.MonsterResistance.Contains(SpellType))
-            {
-                damageRoll /= 2;
-                s += "Peu efficace ! ";
-            }
-            else if (target.MonsterWeakness.Contains(SpellType))
-            {
-                damageRoll *= 2;
-                s += "Efficace ! ";
-            }
-            target.TakeDamage(damageRoll);
-            s += player.Name + " inflige " + damageRoll + " points de dégâts à la cible ! ";
-            target.SetIsCold(true);
-            CurrentNumberOfUses--;
-            SpellName = "Eclair de givre (" + CurrentNumberOfUses + "/" + MaxNumberOfUses + ")";
-        }
-        else
+        if (IsResistant(target))
         {
-            s += "Vous ne pouvez plus lancer ce sort !";
+            damageRoll /= 2;
+            s += "Peu efficace ! ";
         }
-        player.SetIsRested(false);
+        else if (IsWeak(target))
+        {
+            damageRoll *= 2;
+            s += "Efficace ! ";
+        }
+        target.TakeDamage(damageRoll);
+        s += player.Name + " inflige " + damageRoll + " points de dégâts à la cible ! ";
+        target.SetIsCold(true);
+        CurrentNumberOfUses--;
+        SpellName = "Eclair de givre (" + CurrentNumberOfUses + "/" + MaxNumberOfUses + ")";
+      
         return s;
     }
 }

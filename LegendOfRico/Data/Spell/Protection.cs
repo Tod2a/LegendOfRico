@@ -7,29 +7,19 @@ public class Protection : Spells
     public override int CurrentNumberOfUses { get; protected set; } = 5;
     public override TypeOfDamage SpellType { get; protected set; } = TypeOfDamage.Holy;
 
-    public override string UseSpell(Character player, Monster target)
+    protected override string SpellEffect(Character player, Monster target)
     {
-        string s = "";
-        if (CurrentNumberOfUses > 0)
-        {
-            player.SetProtectDuration(10);
-            if(player.PartyMember != null) 
-            { 
-                player.PartyMember.SetProtectDuration(10);
-                s += player.Name + " lance Protection sur votre groupe ! ";
-            }
-            else
-            {
-                s += player.Name + " se protège ! ";
-            }
-            CurrentNumberOfUses--;
-            SpellName = "Protection (" + CurrentNumberOfUses + "/" + MaxNumberOfUses + ")";
+        CurrentNumberOfUses--;
+        SpellName = "Protection (" + CurrentNumberOfUses + "/" + MaxNumberOfUses + ")";
+        player.SetProtectDuration(10);
+        if(player.PartyMember != null) 
+        { 
+            player.PartyMember.SetProtectDuration(10);
+            return player.Name + " lance Protection sur votre groupe ! ";
         }
         else
         {
-            s += "Vous ne pouvez plus lancer ce sort !";
+            return player.Name + " se protège ! ";
         }
-        player.SetIsRested(false);
-        return s;
     }
 }

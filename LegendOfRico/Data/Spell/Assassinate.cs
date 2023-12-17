@@ -6,29 +6,18 @@ public class Assassinate : Spells
     public override int MaxNumberOfUses => 3;
     public override int CurrentNumberOfUses { get; protected set; } = 3;
     public override TypeOfDamage SpellType { get; protected set; } = TypeOfDamage.None;
-    public override string UseSpell(Character player, Monster target)
+    protected override string SpellEffect(Character player, Monster target)
     {
-        string s = "";
-        if (CurrentNumberOfUses > 0)
+        if(new Random().NextDouble() <= 0.75 && !IsABoss(target))
         {
-            if(new Random().NextDouble() <= 0.75 && target.GetType() != typeof(Sunwukong) && target.GetType() != typeof(Cheftontaton) && 
-                target.GetType() != typeof(EternalScorpio) && target.GetType() != typeof(JoyBean) && target.GetType() != typeof(RicoChico))
-            {
-                target.TakeDamage(target.MonsterCurrentHP);
-                s += player.Name + " assassine la cible ! ";
-                CurrentNumberOfUses--;
-                SpellName = "Assassiner (" + CurrentNumberOfUses + "/" + MaxNumberOfUses + ")";
-            }
-            else
-            {
-                s += player.Name + " tente d'assassiner la cible mais échoue ! ";
-            }
+            target.TakeDamage(target.MonsterCurrentHP);
+            CurrentNumberOfUses--;
+            SpellName = "Assassiner (" + CurrentNumberOfUses + "/" + MaxNumberOfUses + ")";
+            return player.Name + " assassine la cible ! ";
         }
         else
         {
-            s += "Vous ne pouvez plus lancer ce sort !";
+            return player.Name + " tente d'assassiner la cible mais échoue ! ";
         }
-        player.SetIsRested(false);
-        return s;
     }
 }

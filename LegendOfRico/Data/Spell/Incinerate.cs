@@ -8,28 +8,18 @@ public class Incinerate : Spells
     public override TypeOfDamage SpellType { get; protected set; } = TypeOfDamage.Fire;
     public double BurnChance = 0.8;
 
-    public override string UseSpell(Character player, Monster target)
+    protected override string SpellEffect(Character player, Monster target)
     {
-        string s = "";
-        if (CurrentNumberOfUses > 0)
+        CurrentNumberOfUses--;
+        SpellName = "Incinérer (" + CurrentNumberOfUses + "/" + MaxNumberOfUses + ")";
+        if ((new Random()).NextDouble() <= BurnChance && !IsResistant(target))
         {
-            if ((new Random()).NextDouble() <= BurnChance && !target.MonsterResistance.Contains(SpellType))
-            {
-                target.Incinerate();
-                s += player.Name + " incinère votre cible ! ";
-            }
-            else
-            {
-                s += "Incinérer échoue ! ";
-            }
-            CurrentNumberOfUses--;
-            SpellName = "Incinérer (" + CurrentNumberOfUses + "/" + MaxNumberOfUses + ")";
+            target.Incinerate();
+            return player.Name + " incinère votre cible ! ";
         }
         else
         {
-            s += "Vous ne pouvez plus lancer ce sort !";
+            return "Incinérer échoue ! ";
         }
-        player.SetIsRested(false);
-        return s;
     }
 }

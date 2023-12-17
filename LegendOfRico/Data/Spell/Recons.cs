@@ -7,31 +7,20 @@ public class Recons : Spells
     public override int CurrentNumberOfUses { get; protected set; } = 1;
     public override TypeOfDamage SpellType { get; protected set; } = TypeOfDamage.Holy;
 
-    public override string UseSpell(Character player, Monster target)
+    protected override string SpellEffect(Character player, Monster target)
     {
-        string s = "";
+        CurrentNumberOfUses--;
+        SpellName = "Reconstitution (" + CurrentNumberOfUses + "/" + MaxNumberOfUses + ")";
 
-        if (CurrentNumberOfUses > 0)
+        player.ReceiveHeal(player.MaxHitPoints);
+        if (player.PartyMember != null)
         {
-            player.ReceiveHeal(player.MaxHitPoints);
-            if (player.PartyMember != null)
-            {
-                player.PartyMember.ReceiveHeal(player.PartyMember.MaxHitPoints);
-                s += player.Name + " rend tous ses points de vie au groupe ! ";
-            }
-            else
-            {
-                s += player.Name + " s'est rendu tous ses points de vie ! ";
-            }
-
-            CurrentNumberOfUses--;
-            SpellName = "Reconstitution (" + CurrentNumberOfUses + "/" + MaxNumberOfUses + ")";
+            player.PartyMember.ReceiveHeal(player.PartyMember.MaxHitPoints);
+            return player.Name + " rend tous ses points de vie au groupe ! ";
         }
         else
         {
-            s += "Vous ne pouvez plus lancer ce sort !";
+            return player.Name + " s'est rendu tous ses points de vie ! ";
         }
-        player.SetIsRested(false);
-        return s;
     }
 }

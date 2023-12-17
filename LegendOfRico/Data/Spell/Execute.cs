@@ -7,32 +7,22 @@ public class Execute : Spells
     public override int CurrentNumberOfUses { get; protected set; } = 3;
     public override TypeOfDamage SpellType { get; protected set; }
     public double CritChance = 0.1;
-    public override string UseSpell(Character player, Monster target)
+    protected override string SpellEffect(Character player, Monster target)
     {
-        string s = "";
-        if (CurrentNumberOfUses > 0)
+        if(target.MonsterCurrentHP <= target.MonsterHP / 3)
         {
-            if(target.MonsterCurrentHP <= target.MonsterHP / 3)
-            {
-                SpellType = player.CharacterWeapon.WeaponTypeOfDamage;
-                int damageRoll = new Random().Next(player.CharacterWeapon.MinimumWeaponDamage, player.CharacterWeapon.MaximumWeaponDamage + 1);
-                damageRoll *= 3;
-                target.TakeDamage(damageRoll);
-                s += player.Name + " exécute la cible et lui inflige " + damageRoll + " points de dégâts ! ";
-                CurrentNumberOfUses--;
-                SpellName = "Exécuter (" + CurrentNumberOfUses + "/" + MaxNumberOfUses + ")";
-            }
-            else
-            {
-                s += "La cible n'est pas encore à portée d'exécution. Vous attaquez normalement. ";
-                s += player.Hit(target);
-            }
+            SpellType = player.CharacterWeapon.WeaponTypeOfDamage;
+            int damageRoll = new Random().Next(player.CharacterWeapon.MinimumWeaponDamage, player.CharacterWeapon.MaximumWeaponDamage + 1);
+            damageRoll *= 3;
+            target.TakeDamage(damageRoll);
+            CurrentNumberOfUses--;
+            SpellName = "Exécuter (" + CurrentNumberOfUses + "/" + MaxNumberOfUses + ")";
+            return player.Name + " exécute la cible et lui inflige " + damageRoll + " points de dégâts ! ";
         }
         else
         {
-            s += "Vous ne pouvez plus lancer ce sort !";
+            return "La cible n'est pas encore à portée d'exécution. Vous attaquez normalement. " + player.Hit(target); 
         }
-        player.SetIsRested(false);
-        return s;
+
     }
 }

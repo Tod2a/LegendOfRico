@@ -9,41 +9,33 @@ public class IceLance : Spells
     public int MaxValue => 25;
     public override TypeOfDamage SpellType { get; protected set; } = TypeOfDamage.Cold;
 
-    public override string UseSpell(Character player, Monster target)
+    protected override string SpellEffect(Character player, Monster target)
     {
         string s = "";
 
         int damageRoll = (new Random()).Next(MinValue, MaxValue + 1);
         damageRoll += (int)((player.Statistics / 50) * damageRoll);
+      
+        if (target.IsCold)
+        {
+            damageRoll *= 2;
+            s += "Coup critique ! ";
+            target.SetIsCold(false);
+        }
+        if (IsResistant(target))
+        {
+            damageRoll /= 2;
+            s += "Peu efficace ! ";
+        }
+        else if (IsWeak(target))
+        {
+            damageRoll *= 2;
+            s += "Efficace ! ";
+        }
+        target.TakeDamage(damageRoll);
+        CurrentNumberOfUses--;
+        SpellName = "Javelot de glace (" + CurrentNumberOfUses + "/" + MaxNumberOfUses + ")";
+        return s + player.Name + " inflige " + damageRoll + " points de dégâts à la cible ! ";
 
-        if (CurrentNumberOfUses > 0)
-        {
-            if (target.IsCold)
-            {
-                damageRoll *= 2;
-                s += "Coup critique ! ";
-                target.SetIsCold(false);
-            }
-            if (target.MonsterResistance.Contains(SpellType))
-            {
-                damageRoll /= 2;
-                s += "Peu efficace ! ";
-            }
-            else if (target.MonsterWeakness.Contains(SpellType))
-            {
-                damageRoll *= 2;
-                s += "Efficace ! ";
-            }
-            target.TakeDamage(damageRoll);
-            s += player.Name + " inflige " + damageRoll + " points de dégâts à la cible ! ";
-            CurrentNumberOfUses--;
-            SpellName = "Javelot de glace (" + CurrentNumberOfUses + "/" + MaxNumberOfUses + ")";
-        }
-        else
-        {
-            s += "Vous ne pouvez plus lancer ce sort !";
-        }
-        player.SetIsRested(false);
-        return s;
     }
 }

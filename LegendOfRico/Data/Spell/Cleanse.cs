@@ -6,31 +6,20 @@ public class Cleanse : Spells
     public override int MaxNumberOfUses => 10;
     public override int CurrentNumberOfUses { get; protected set; } = 10;
     public override TypeOfDamage SpellType { get; protected set; } = TypeOfDamage.None;
-    public override string UseSpell(Character player, Monster target)
+    protected override string SpellEffect(Character player, Monster target)
     {
-        string s = "";
-
-        if (CurrentNumberOfUses > 0)
+        player.HealAffliction();
+        CurrentNumberOfUses--;
+        SpellName = "Purifier (" + CurrentNumberOfUses + "/" + MaxNumberOfUses + ")";
+        if (player.PartyMember != null)
         {
-            player.HealAffliction();
-            if (player.PartyMember != null)
-            {
-                player.PartyMember.HealAffliction();
-                s += player.Name + " purifie le groupe de ses afflictions ! ";
-            }
-            else
-            {
-                s += player.Name + " se purifie de ses afflictions ! ";
-            }
-
-            CurrentNumberOfUses--;
-            SpellName = "Purifier (" + CurrentNumberOfUses + "/" + MaxNumberOfUses + ")";
+            player.PartyMember.HealAffliction();
+            return player.Name + " purifie le groupe de ses afflictions ! ";
         }
         else
         {
-            s += "Vous ne pouvez plus lancer ce sort !";
+            return player.Name + " se purifie de ses afflictions ! ";
         }
-        player.SetIsRested(false);
-        return s;
+    
     }
 }

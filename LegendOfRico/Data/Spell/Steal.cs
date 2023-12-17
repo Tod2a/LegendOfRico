@@ -6,37 +6,27 @@ public class Steal : Spells
     public override int MaxNumberOfUses => 3;
     public override int CurrentNumberOfUses { get; protected set; } = 3;
     public override TypeOfDamage SpellType { get; protected set; } = TypeOfDamage.None;
-    public override string UseSpell(Character player, Monster target)
+    protected override string SpellEffect(Character player, Monster target)
     {
-        string s = "";
-        if(CurrentNumberOfUses > 0)
+        if (target.MonsterType == TypeOfMonster.Humanoid)
         {
-            if (target.MonsterType == TypeOfMonster.Humanoid)
+            var t = (Humanoid)target;
+            int stolenCoins = t.DropsCoins();
+            if (player.IsMainCharacter)
             {
-                var t = (Humanoid)target;
-                int stolenCoins = t.DropsCoins();
-                if (player.IsMainCharacter)
-                {
-                    player.LootGold(stolenCoins);
-                }
-                else
-                {
-                    player.PartyMember.LootGold(stolenCoins);
-                }
-                CurrentNumberOfUses--;
-                SpellName = "Voler (" + CurrentNumberOfUses + "/" + MaxNumberOfUses + ")";
-                s += player.Name + " a volé " + stolenCoins + " pièces à la cible !";
+                player.LootGold(stolenCoins);
             }
             else
             {
-                s += "Votre cible n'a pas d'argent !";
+                player.PartyMember.LootGold(stolenCoins);
             }
+            CurrentNumberOfUses--;
+            SpellName = "Voler (" + CurrentNumberOfUses + "/" + MaxNumberOfUses + ")";
+            return player.Name + " a volé " + stolenCoins + " pièces à la cible !";
         }
         else
         {
-            s += "Vous ne pouvez plus lancer ce sort !";
+            return "Votre cible n'a pas d'argent !";
         }
-        player.SetIsRested(false);
-        return s;
     }
 }

@@ -7,29 +7,19 @@ public class Sooth : Spells
     public override int CurrentNumberOfUses { get; protected set; } = 5;
     public override TypeOfDamage SpellType { get; protected set; } = TypeOfDamage.None;
 
-    public override string UseSpell(Character player, Monster target)
+    protected override string SpellEffect(Character player, Monster target)
     {
-        string s = "";
-        if (CurrentNumberOfUses > 0)
+        if (target.MonsterType == TypeOfMonster.Beast)
         {
-            if (target.MonsterType == TypeOfMonster.Beast)
-            {
-                var t = (Beast)target;
-                t.Soothed();
-                CurrentNumberOfUses--;
-                SpellName = "Apaiser (" + CurrentNumberOfUses + "/" + MaxNumberOfUses + ")";
-                s += player.Name + " a apaisé la cible !";
-            }
-            else
-            {
-                s += "Vous ne pouvez apaiser que les bêtes !";
-            }
+            var t = (Beast)target;
+            t.Soothed();
+            CurrentNumberOfUses--;
+            SpellName = "Apaiser (" + CurrentNumberOfUses + "/" + MaxNumberOfUses + ")";
+            return player.Name + " a apaisé la cible !";
         }
         else
         {
-            s += "Vous ne pouvez plus lancer ce sort !";
+            return "Vous ne pouvez apaiser que les bêtes !";
         }
-        player.SetIsRested(false);
-        return s;
     }
 }

@@ -7,21 +7,12 @@ public class FrostArmor2 : Spells
     public override int CurrentNumberOfUses { get; protected set; } = 1;
     public override TypeOfDamage SpellType { get; protected set; } = TypeOfDamage.Cold;
 
-    public override string UseSpell(Character player, Monster target)
+    protected override string SpellEffect(Character player, Monster target)
     {
-        string s = "";
-
-        if (CurrentNumberOfUses > 0)
-        {
-            player.SetHasFrostArmor(5);
-            CurrentNumberOfUses--;
-            SpellName = "Armure de givre (" + CurrentNumberOfUses + "/" + MaxNumberOfUses + ")";
-        }
-        else
-        {
-            s += "Vous ne pouvez plus lancer ce sort !";
-        }
-        player.SetIsRested(false);
-        return s;
+        player.SetHasFrostArmor(5);
+        CurrentNumberOfUses--;
+        SpellName = "Armure de givre (" + CurrentNumberOfUses + "/" + MaxNumberOfUses + ")";
+        
+        return player.Name + " s'entoure d'une armure de glace ";
     }
 }
