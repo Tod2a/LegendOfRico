@@ -506,7 +506,7 @@ namespace LegendOfRico.Data
             return monster;
         }
 
-        // Après combat, on retire le monstre de la liste et on ajoute une nouvelle insctance de celui-ci pour le remplacer
+        // Après combat, on retire le monstre de la liste et on ajoute une nouvelle instance de celui-ci pour le remplacer
         public void MonsterSwitch()
         {
             Type newmonster = MonsterFight.GetType();
