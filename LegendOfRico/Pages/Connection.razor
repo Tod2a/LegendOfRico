@@ -170,6 +170,10 @@
                         Game.Player.StuffInventory.Add(merchantstuff);
                         if (item.IsEquip)
                         {
+                            if(merchantstuff.GetType() == typeof(Weapon))
+                            {
+                                Game.Player.UnequipWeapon();
+                            }
                             Game.Player.EquipStuff(merchantstuff);
                         }
                     }
