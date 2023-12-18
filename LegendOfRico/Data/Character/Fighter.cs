@@ -3,7 +3,7 @@
     public class Fighter: Character
     {
         // Définition des points de vie de base du guerrier
-        public override int MaxHitPoints { get; protected set; } = 30;
+        public override int MaxHitPoints { get; set; } = 30;
         public override int CurrentHitPoints { get; set; } = 30;
         // Définition du stuff de base du guerrier, ce qu'il peut porter, tout ce qui est utile au combat
         public override List<TypeOfWeapon> WeaponMastery =>

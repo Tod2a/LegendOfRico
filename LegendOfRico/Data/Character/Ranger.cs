@@ -3,7 +3,7 @@ namespace LegendOfRico.Data;
 public class Ranger : Character
 {
     //Définition des Points de vie de base du Ranger
-    public override int MaxHitPoints { get; protected set; } = 20;
+    public override int MaxHitPoints { get; set; } = 20;
     public override int CurrentHitPoints { get; set; } = 20;
     //Définition du stuff de base du ranger, ce qu'il peut porter, tout ce qui est utile au combat
     public override List<TypeOfWeapon> WeaponMastery => new List<TypeOfWeapon> { TypeOfWeapon.Sword, TypeOfWeapon.Bow };

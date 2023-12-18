@@ -3,7 +3,7 @@ namespace LegendOfRico.Data;
 public class Cleric : Character
 {
     //Définition des Points de vie de base du Clerc
-    public override int MaxHitPoints { get; protected set; } = 25;
+    public override int MaxHitPoints { get; set; } = 25;
     public override int CurrentHitPoints { get; set; } = 25;
     //Définition du stuff de base du clerc, ce qu'il peut porter, tout ce qui est utile au combat
     public override Stuff CharacterWeapon { get; set; } = new Mace("Masse en bois", "(1 - 3)", 5, 1, 3, 0);

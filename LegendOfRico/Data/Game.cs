@@ -557,9 +557,9 @@ namespace LegendOfRico.Data
 
         //Fonction qui va vérifier si le joueur joue en groupe ou seul, facilite la lecture des fonctions
 
-        private bool CheckGroup()
+        public bool CheckGroup()
         {
-            return Player.PartyMember != null && Player.PartyMember.CurrentHitPoints >= 0;
+            return Player.PartyMember != null && Player.PartyMember.CurrentHitPoints > 0;
         }
 
         //Gestion de déplacement et de trigger fight ou de vérification de collecte

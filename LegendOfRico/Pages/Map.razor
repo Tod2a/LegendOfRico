@@ -18,7 +18,14 @@
                             {
                                 <td>
                                     <div style="background-image: url('@Game.GameMap.MapLayout[i][j].SquareBiome.ImageUrl');">
-                                        <img src="@Game.Player.MapSprite" alt="Image Player" class="character-image">
+                                        @if (IndexPlayer == 0)
+                                        {
+                                            <img src="@Game.Player.MapSprite" alt="Image Player" class="character-image">
+                                        }
+                                        else
+                                        {
+                                            <img src="@Game.Player.MapSprite" alt="Image Player" class="character-imageInv">
+                                        }
                                     </div>
                                 </td>
                             }
@@ -141,6 +148,7 @@
     [Parameter]
     public EventCallback TypeOfShowChange { get; set; }
     public ElementReference mapref;
+    public int IndexPlayer { get; set; } = 0;
 
     void UseConsumable(Consumable consumable, Character target)
     {
@@ -169,10 +177,12 @@
         {
             case "ArrowLeft":
                 Game.GoLeft();
+                IndexPlayer = 1;
                 TypeOfShowChange.InvokeAsync();
                 break;
             case "ArrowRight":
                 Game.GoRight();
+                IndexPlayer = 0;
                 TypeOfShowChange.InvokeAsync();
                 break;
             case "ArrowUp":

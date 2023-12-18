@@ -21,10 +21,10 @@ public abstract class Character
     public int CurrentXp { get; set; } = 0;
     public int XpToLevel { get; set; } = 1000;
     //Paramètres de gestion des points de vies
-    public abstract int MaxHitPoints { get; protected set; }
+    public abstract int MaxHitPoints { get; set; }
     public abstract int CurrentHitPoints { get; set; }
     //Paramètres nécessaire à la création des personnages à recruter à la taverne et à la gestion de groupe
-    public Character PartyMember { get; set; }
+    public Character PartyMember { get; set; } 
     public int RecruitingPrice { get; set; }
     public bool IsMainCharacter { get; set; } = true;
     //Paramètres de gestion d'inventaire, équipements, sorts, inventaire, quêtes

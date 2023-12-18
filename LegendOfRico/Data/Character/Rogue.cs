@@ -3,7 +3,7 @@ namespace LegendOfRico.Data;
 public class Rogue : Character
 {
     //Définition des Points de vie de base du rogue
-    public override int MaxHitPoints { get; protected set; } = 15;
+    public override int MaxHitPoints { get; set; } = 15;
     public override int CurrentHitPoints { get; set; } = 15;
     //Définition du stuff de base du rogue, ce qu'il peut porter, tout ce qui est utile au combat
     public override List<TypeOfWeapon> WeaponMastery => new List<TypeOfWeapon> {TypeOfWeapon.Dagger, TypeOfWeapon.Sword };

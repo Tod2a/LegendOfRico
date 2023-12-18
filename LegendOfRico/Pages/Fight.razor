@@ -90,17 +90,19 @@
                     </div>
                 }
                 <!--Si il y a un joueur deux, affichage de son menu à son tour-->
-                else if (Game.Player.PartyMember != null && Game.Player.PartyMember.CurrentHitPoints > 0)
+                @if (Game.CheckGroup() && Game.Turncount%2 == 1)
                 {
                     <div class="actions">
                         @if (Game.ShowFightSpells)
                         {
+
                             <button @onclick="() => Game.UseWeapon(Game.MonsterFight)">@Game.Player.PartyMember.CharacterWeapon.ItemName</button>
                             @foreach (var spell in Game.Player.PartyMember.SpellBook)
                             {
                                 <button @onclick="() => Game.Action(spell)">@spell.SpellName</button>
                             }
                             <button @onclick="Game.SwitchFightInventory">go to inventaire</button>
+
                         }
                         else if (Game.ShowFightInventory)
                         {
