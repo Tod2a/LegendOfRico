@@ -51,7 +51,7 @@
         </div>
         <!--Menu de droite propre à la carte-->
         <div class="mapMenu">
-            <!--Affichage de l'inventaire-->
+
             @if(Game.ShowInventory)
             {
                 <p>Inventaire consommables:</p>
@@ -85,7 +85,8 @@
                     </p>
                 }
             }
-            <!--Affichage de la liste de quêtes-->
+
+
             @if (Game.ShowQuestList)
             {
                 <div class="bossTarget">
@@ -103,7 +104,8 @@
                     </p>
                 }
             }
-            <!--Affichage du donneur de quêtes-->
+
+
             @if (Game.ShowQuestGiver)
             {
                 <p>@Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].MisterQuest.NPCName :</p>

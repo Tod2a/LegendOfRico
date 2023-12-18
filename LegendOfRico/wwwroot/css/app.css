@@ -150,7 +150,6 @@ button {
     box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     display: flex;
-    align-items: center;
     flex-direction: column;
     margin-left: 2em;
     border: 5px solid #8b4513;
