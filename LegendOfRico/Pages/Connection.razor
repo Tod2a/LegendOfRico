@@ -170,10 +170,6 @@
                         Game.Player.StuffInventory.Add(merchantstuff);
                         if (item.IsEquip)
                         {
-                            if (merchantstuff.GetType() == typeof(Weapon) && Game.Player.CharacterWeapon.ItemName == "Dague en bois")
-                            {
-                                Game.Player.UnequipWeapon();
-                            }
                             Game.Player.EquipStuff(merchantstuff);
                         }
                     }

@@ -8,9 +8,9 @@ public class Ranger : Character
     //Définition du stuff de base du ranger, ce qu'il peut porter, tout ce qui est utile au combat
     public override List<TypeOfWeapon> WeaponMastery => new List<TypeOfWeapon> { TypeOfWeapon.Sword, TypeOfWeapon.Bow };
     public override TypeOfArmor ArmorMastery => TypeOfArmor.Medium;
-    public override Stuff CharacterWeapon { get; set; } = new Bow("Arc en bois flotté", "(3 - 4)", 0, 3, 4, 0);
+    public override Stuff CharacterWeapon { get; set; } = new Fist("Poing", "un poing", 0, 1, 3, 0);
     public override Stuff CharacterShield { get; set; } = new FistShield("Poing", "poing", 0, 0);
-    public override Stuff CharacterArmor { get; set; } = new Armor("Haillons", "Des haillons", 0, TypeOfArmor.Light, 1);
+    public override Stuff CharacterArmor { get; set; } = new Topless("Rien", "Bah rien", 0, TypeOfArmor.None, 0);
     public override bool CanEquipShield { get; set; } = false;
     public override int ArmorAmount { get; set; } = 1;
     public override double ChanceToDodge { get; protected set; } = 0.15;

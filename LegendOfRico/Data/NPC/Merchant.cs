@@ -8,6 +8,17 @@
         public Merchant()
         {
             StuffStock = new List<Stuff>();
+
+            // basic gear
+
+            StuffStock.Add(new Mace("Masse en bois", "(1 - 3)", 1, 1, 3, 0));
+            StuffStock.Add(new Shield("Bouclier en bois", "Armure : 3", 1, 3));
+            StuffStock.Add(new Armor("Haillons", "Des haillons", 1, TypeOfArmor.Light, 1));
+            StuffStock.Add(new Dagger("Dague en bois", "(2 - 3)", 1, 3, 4, 0));
+            StuffStock.Add(new Sword("Epée en bois", "(2 - 3)", 1, 2, 3, 0));
+            StuffStock.Add(new Bow("Arc en bois flotté", "(3 - 4)", 1, 3, 4, 0));
+            StuffStock.Add(new Staff("Baton en bois flotté", "(1 - 5) | Stats +1", 1, 1, 5, 1));
+
             //Low level gear
 
             StuffStock.Add(new Axe("Hache en bronze", "(3 - 6)", 50, 3, 6, 0));

@@ -8,9 +8,9 @@
         //Définition du stuff de base du sorcier, ce qu'il peut porter, tout ce qui est utile au combat
         public override List<TypeOfWeapon> WeaponMastery => new List<TypeOfWeapon> { TypeOfWeapon.Staff };
         public override TypeOfArmor ArmorMastery => TypeOfArmor.Light;
-        public override Stuff CharacterWeapon { get; set; } = new Staff("Baton en bois flotté", "(1 - 5) | Stats +1", 0, 1, 5, 1);
+        public override Stuff CharacterWeapon { get; set; } = new Fist("Poing", "un poing", 0, 1, 3, 0);
         public override Stuff CharacterShield { get; set; } = new FistShield("Poing", "Poing", 0, 0);
-        public override Stuff CharacterArmor { get; set; } = new Armor("Haillons", "Des haillons", 0, TypeOfArmor.Light, 1);
+        public override Stuff CharacterArmor { get; set; } = new Topless("Rien", "Bah rien", 0, TypeOfArmor.None, 0);
         public override List<Spells> SpellBook { get; protected set; } = new List<Spells>() { new Fireball() };
         public override bool CanEquipShield { get; set; } = false;
         public override int ArmorAmount { get; set; } = 1;

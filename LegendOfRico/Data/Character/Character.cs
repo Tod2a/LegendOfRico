@@ -28,7 +28,7 @@ public abstract class Character
     public int RecruitingPrice { get; set; }
     public bool IsMainCharacter { get; set; } = true;
     //Paramètres de gestion d'inventaire, équipements, sorts, quêtes
-    public int Coins { get; private set; } = 0;
+    public int Coins { get; private set; } = 10;
     public abstract Stuff CharacterWeapon { get; set; }
     public abstract Stuff CharacterShield { get; set; }
     public abstract bool CanEquipShield { get; set; }
@@ -367,7 +367,7 @@ public abstract class Character
         {
             StuffInventory.Add(CharacterArmor);
             ArmorAmount -= CharacterArmor.ArmorOfArmor;
-            CharacterArmor = new Topless("Rien", "Bah rien", 0, TypeOfArmor.None, 0); ;
+            CharacterArmor = new Topless("Rien", "Bah rien", 0, TypeOfArmor.None, 0); 
         }
     }
     
