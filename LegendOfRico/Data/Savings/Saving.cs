@@ -18,11 +18,30 @@ namespace LegendOfRico.Data
         private List<StuffSaving> SetItemList (Character player)
         {
             List<StuffSaving> itemlist = new List<StuffSaving>();
-            if (player.CharacterWeapon.ItemName != "Epée en bois" && player.CharacterWeapon.ItemName != "Masse en bois" 
-                && player.CharacterWeapon.ItemName != "Baton en bois flotté" && player.CharacterWeapon.ItemName !=  "Dague en bois" 
-                && player.CharacterWeapon.ItemName != "Arc en bois flotté" && player.CharacterWeapon.ItemName != "Poing")
+            if (player.CharacterWeapon.GetType() == typeof(DoubleWeapon))
             {
-                itemlist.Add(new StuffSaving(player.CharacterWeapon, true));
+                DoubleWeapon doubleweapon = (DoubleWeapon)player.CharacterWeapon;
+                if (doubleweapon.Weapon1.ItemName != "Epée en bois" && doubleweapon.Weapon1.ItemName != "Masse en bois"
+                    && doubleweapon.Weapon1.ItemName != "Baton en bois flotté" && doubleweapon.Weapon1.ItemName != "Dague en bois"
+                    && doubleweapon.Weapon1.ItemName != "Arc en bois flotté" && doubleweapon.Weapon1.ItemName != "Poing")
+                {
+                    itemlist.Add(new StuffSaving(doubleweapon.Weapon1, true));
+                }
+                if (doubleweapon.Weapon2.ItemName != "Epée en bois" && doubleweapon.Weapon2.ItemName != "Masse en bois"
+                    && doubleweapon.Weapon2.ItemName != "Baton en bois flotté" && doubleweapon.Weapon2.ItemName != "Dague en bois"
+                    && doubleweapon.Weapon2.ItemName != "Arc en bois flotté" && doubleweapon.Weapon2.ItemName != "Poing")
+                {
+                    itemlist.Add(new StuffSaving(doubleweapon.Weapon2, true));
+                }
+            }
+            else
+            {
+                if (player.CharacterWeapon.ItemName != "Epée en bois" && player.CharacterWeapon.ItemName != "Masse en bois"
+                    && player.CharacterWeapon.ItemName != "Baton en bois flotté" && player.CharacterWeapon.ItemName != "Dague en bois"
+                    && player.CharacterWeapon.ItemName != "Arc en bois flotté" && player.CharacterWeapon.ItemName != "Poing")
+                {
+                    itemlist.Add(new StuffSaving(player.CharacterWeapon, true));
+                }
             }
             if (player.CharacterArmor.ItemName != "Haillons" && player.CharacterArmor.ItemName != "Rien")
             {
