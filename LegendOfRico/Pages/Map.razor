@@ -133,6 +133,7 @@
                     <button @onclick="TpJoy">Aller chez joy bean</button>
                     <button @onclick="TpWukong">Aller chez Wukong</button>
                     <button @onclick="TpAncienVillage">Aller à l'ancien village</button>
+                    <button @onclick="Rich">Etre riche</button>
                 </div>
             }
         </div>
@@ -256,6 +257,11 @@
         Game.Player.PositionJ = 248;
         Game.GameMap.UpdateMapDisplay(Game.Player);
         TypeOfShowChange.InvokeAsync();
+    }
+
+    void Rich()
+    {
+        Game.Player.SetCoins(10000);
     }
 
 }

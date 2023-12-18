@@ -18,6 +18,7 @@ namespace LegendOfRico.Data
         public bool WukongDead { get; set; }
         public bool ScorpioDead {  get; set; }
         public bool TontaDead { get; set; }
+        public bool RicoDead { get; set; }
         public string PetType {  get; set; }
 
         public PlayerSaving () { }
@@ -38,6 +39,7 @@ namespace LegendOfRico.Data
             WukongDead = player.Wukongdead;
             ScorpioDead = player.Scorpiodead;
             TontaDead = player.Tontatondead;
+            RicoDead = player.RicoDead;
             PetType = GetPetType(player);
         }
 

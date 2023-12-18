@@ -9,9 +9,9 @@
         public override List<TypeOfWeapon> WeaponMastery =>
             new List<TypeOfWeapon> { TypeOfWeapon.Axe, TypeOfWeapon.Sword, TypeOfWeapon.Greatsword };
         public override TypeOfArmor ArmorMastery => TypeOfArmor.Heavy;
-        public override Stuff CharacterWeapon { get; set; } = new Sword("Epée en bois","(2 - 3)", 5, 2, 3, 0);
+        public override Stuff CharacterWeapon { get; set; } = new Sword("Epée en bois","(2 - 3)", 0, 2, 3, 0);
         public override Stuff CharacterShield { get; set; } = new Shield("Bouclier en bois", "Armure : 3", 0, 3);
-        public override Stuff CharacterArmor { get; set; } = new Armor("Haillons", "Des haillons", 5, TypeOfArmor.Light, 1);
+        public override Stuff CharacterArmor { get; set; } = new Armor("Haillons", "Des haillons", 0, TypeOfArmor.Light, 1);
         public override bool CanEquipShield { get; set; } = true;
         public override List<Spells> SpellBook { get; protected set; } = new List<Spells>() { new Burst()};
         public override int ArmorAmount { get; set; } = 4;

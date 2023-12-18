@@ -92,6 +92,7 @@
             Game.Player.Wukongdead = save.PlayerSaving.WukongDead;
             Game.Player.Tontatondead = save.PlayerSaving.TontaDead;
             Game.Player.Scorpiodead = save.PlayerSaving.ScorpioDead;
+            Game.Player.RicoDead = save.PlayerSaving.RicoDead;
             if (save.PlayerSaving.MateName != null)
             {
                 foreach (var mates in Game.Tavernist.CharactersToRecruit)
@@ -108,6 +109,8 @@
             {
                 Game.Player.Pet = GetLoadPet(save);
             }
+            GetLoadSutff(save);
+            CheckBossVictory(Game.Player);
             Game.GameMap.UpdateMapDisplay(Game.Player);
             Game.FormShow = TypeOfShow.Map;
             TypeOfShowChange.InvokeAsync();
@@ -140,6 +143,63 @@
         else
         {
             return new Wizard() { MapSprite = "img/character/spriteWizard.png" };
+        }
+    }
+
+    private void GetLoadSutff (Saving save)
+    {
+        foreach(var item in save.ItemList)
+        {
+            if (item.ItemName == "Armure divine")
+            {
+                if (item.IsEquip)
+                {
+                    Game.Player.EquipStuff(new Armor("Armure divine", "Armure : 45", 10000, TypeOfArmor.Light, 45));
+                }
+                else
+                {
+                    Game.Player.StuffInventory.Add(new Armor("Armure divine", "Armure : 45", 10000, TypeOfArmor.Light, 45));
+                }
+            }
+            else
+            {
+                foreach (var merchantstuff in Game.Merchant.StuffStock)
+                {
+                    if (item.ItemName == merchantstuff.ItemName)
+                    {
+                        Game.Player.StuffInventory.Add(merchantstuff);
+                        if (item.IsEquip)
+                        {
+                            Game.Player.EquipStuff(merchantstuff);
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+
+    private void CheckBossVictory (Character player)
+    {
+        if(player.Wukongdead)
+        {
+            Game.GameMap.MapLayout[72][53].ChanceToTriggerFight = 0.0;
+        }
+        if (player.Tontatondead)
+        {
+            Game.GameMap.MapLayout[36][401].ChanceToTriggerFight = 0.0;
+        }
+        if (player.Joydead)
+        {
+            Game.GameMap.MapLayout[428][58].ChanceToTriggerFight = 0.0;
+        }
+        if (player.Scorpiodead)
+        {
+            Game.GameMap.MapLayout[499][499].ChanceToTriggerFight = 0.0;
+        }
+        if (player.RicoDead)
+        {
+            Game.GameMap.MapLayout[246][250].ChanceToTriggerFight = 0.0;
         }
     }
 

@@ -8,9 +8,9 @@ public class Rogue : Character
     //Définition du stuff de base du rogue, ce qu'il peut porter, tout ce qui est utile au combat
     public override List<TypeOfWeapon> WeaponMastery => new List<TypeOfWeapon> {TypeOfWeapon.Dagger, TypeOfWeapon.Sword };
     public override TypeOfArmor ArmorMastery => TypeOfArmor.Medium;
-    public override Stuff CharacterWeapon { get; set; } = new Dagger("Dague en bois", "(2 - 3)", 5, 3, 4, 0);
+    public override Stuff CharacterWeapon { get; set; } = new Dagger("Dague en bois", "(2 - 3)", 0, 3, 4, 0);
     public override Stuff CharacterShield { get; set; } = new FistShield("Poing", "poing", 0, 0);
-    public override Stuff CharacterArmor { get; set; } = new Armor("Haillons", "Des haillons", 5, TypeOfArmor.Light, 1);
+    public override Stuff CharacterArmor { get; set; } = new Armor("Haillons", "Des haillons", 0, TypeOfArmor.Light, 1);
     public override bool CanEquipShield { get; set; } = false;
     public override List<Spells> SpellBook { get; protected set; } = new List<Spells>() { new Steal() };
     public override int ArmorAmount { get; set; } = 1;

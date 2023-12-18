@@ -321,6 +321,7 @@ namespace LegendOfRico.Data
             if (MonsterFight.MonsterBreed == TypeOfBreed.RicoChico)
             {
                 GameMap.MapLayout[246][250].ChanceToTriggerFight = 0.0;
+                Player.RicoDead = true;
             }
             if (MonsterFight.MonsterBreed == TypeOfBreed.Joybean)
             {

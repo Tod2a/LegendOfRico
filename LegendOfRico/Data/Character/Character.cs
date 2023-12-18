@@ -74,6 +74,7 @@ public abstract class Character
     public bool Scorpiodead { get; set; } = false;
     public bool Wukongdead { get; set; } = false;
     public bool Tontatondead { get; set; } = false;
+    public bool RicoDead {  get; set; } = false;
 
 
 
