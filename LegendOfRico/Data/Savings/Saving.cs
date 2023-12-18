@@ -6,6 +6,7 @@ namespace LegendOfRico.Data
     {
         public PlayerSaving PlayerSaving { get; set; }
         public List<StuffSaving> ItemList { get; set; } 
+        public List<int> ConsumableQuantity { get; set; }
 
         public Saving() { }
 
@@ -13,8 +14,18 @@ namespace LegendOfRico.Data
         {
             PlayerSaving = new PlayerSaving (player);
             ItemList = SetItemList (player);
+            ConsumableQuantity = SetConsumalbeQuantity (player);
         }
 
+        private List<int> SetConsumalbeQuantity(Character player)
+        {
+            List<int> result = new List<int>();
+            foreach (var item in player.ConsumableInventory)
+            {
+                result.Add(item.Quantity);
+            }
+            return result;
+        }
         private List<StuffSaving> SetItemList (Character player)
         {
             List<StuffSaving> itemlist = new List<StuffSaving>();

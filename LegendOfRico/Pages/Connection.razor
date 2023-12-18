@@ -85,7 +85,7 @@
             }
             Game.Player.CurrentXp = save.PlayerSaving.CharactXp;
             Game.Player.CurrentHitPoints = save.PlayerSaving.CharactHp;
-            Game.Player.SetCoins(save.PlayerSaving.CharactCoins);
+            Game.Player.SetCoins(save.PlayerSaving.CharactCoins-10);
             Game.Player.PositionI = save.PlayerSaving.PositionI;
             Game.Player.PositionJ = save.PlayerSaving.PositionJ;
             Game.Player.Joydead = save.PlayerSaving.JoyDead;
@@ -111,6 +111,7 @@
             }
             GetLoadSutff(save);
             CheckBossVictory(Game.Player);
+            LoadConsumableInventory(save);
             Game.GameMap.UpdateMapDisplay(Game.Player);
             Game.FormShow = TypeOfShow.Map;
             TypeOfShowChange.InvokeAsync();
@@ -173,7 +174,6 @@
                             Game.Player.EquipStuff(merchantstuff);
                         }
                     }
-
                 }
             }
         }
@@ -200,6 +200,16 @@
         if (player.RicoDead)
         {
             Game.GameMap.MapLayout[246][250].ChanceToTriggerFight = 0.0;
+        }
+    }
+
+    private void LoadConsumableInventory(Saving save)
+    {
+        int count = 0;
+        foreach (var item in Game.Player.ConsumableInventory)
+        {
+            item.Quantity = save.ConsumableQuantity[count];
+            count++;
         }
     }
 
