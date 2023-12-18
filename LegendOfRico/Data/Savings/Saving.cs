@@ -7,6 +7,7 @@ namespace LegendOfRico.Data
         public PlayerSaving PlayerSaving { get; set; }
         public List<StuffSaving> ItemList { get; set; } 
         public List<int> ConsumableQuantity { get; set; }
+        public List<SavingQuest> QuestsInventory { get; set; }
 
         public Saving() { }
 
@@ -15,8 +16,27 @@ namespace LegendOfRico.Data
             PlayerSaving = new PlayerSaving (player);
             ItemList = SetItemList (player);
             ConsumableQuantity = SetConsumalbeQuantity (player);
+            QuestsInventory = GetQuestBook(player);
         }
 
+
+        private List<SavingQuest> GetQuestBook (Character player)
+        {
+            List<SavingQuest> book = new List<SavingQuest> ();
+            foreach (var quest in player.QuestsBook) 
+            {
+                if (quest.GetType() == typeof(CollectQuest))
+                {
+                    CollectQuest tempquest = (CollectQuest)quest;
+                    book.Add(new SavingQuest(quest, tempquest.PositionI, tempquest.PositionJ, tempquest.LocalBiome));
+                }
+                else
+                {
+                    book.Add(new SavingQuest(quest));
+                }
+            }
+            return book;
+        }
         private List<int> SetConsumalbeQuantity(Character player)
         {
             List<int> result = new List<int>();

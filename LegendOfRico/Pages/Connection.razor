@@ -112,6 +112,7 @@
             GetLoadSutff(save);
             CheckBossVictory(Game.Player);
             LoadConsumableInventory(save);
+            LoadQuestBook(save);
             Game.GameMap.UpdateMapDisplay(Game.Player);
             Game.FormShow = TypeOfShow.Map;
             TypeOfShowChange.InvokeAsync();
@@ -144,6 +145,23 @@
         {
             return new Wizard() { MapSprite = "img/character/spriteWizard.png" };
         }
+    }
+
+    private void LoadQuestBook (Saving save)
+    {
+        List<Quest> book = new List<Quest>();
+        foreach (var quest in save.QuestsInventory)
+        {
+            if(quest.Type == "collectquest")
+            {
+                book.Add(new CollectQuest(quest.Name, quest.Description, quest.Xp, quest.Coins, quest.Posi, quest.Posj, quest.Biome));
+            }
+            else
+            {
+                book.Add(new FightQuest(quest.Name, quest.Description, quest.MonsterType, quest.Xp, quest.Coins));
+            }
+        }
+        Game.Player.QuestsBook = book;
     }
 
     private void GetLoadSutff (Saving save)
