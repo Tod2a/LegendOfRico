@@ -20,14 +20,14 @@ public abstract class Character
     }
     public int CurrentXp { get; set; } = 0;
     public int XpToLevel { get; set; } = 1000;
-    //Paramètres de gestion des points de vies
+    //Paramètres de gestion des points de vie
     public abstract int MaxHitPoints { get; set; }
     public abstract int CurrentHitPoints { get; set; }
-    //Paramètres nécessaire à la création des personnages à recruter à la taverne et à la gestion de groupe
+    //Paramètres nécessaires à la création des personnages à recruter à la taverne et à la gestion de groupe
     public Character PartyMember { get; set; } 
     public int RecruitingPrice { get; set; }
     public bool IsMainCharacter { get; set; } = true;
-    //Paramètres de gestion d'inventaire, équipements, sorts, inventaire, quêtes
+    //Paramètres de gestion d'inventaire, équipements, sorts, quêtes
     public int Coins { get; private set; } = 0;
     public abstract Stuff CharacterWeapon { get; set; }
     public abstract Stuff CharacterShield { get; set; }
@@ -42,7 +42,7 @@ public abstract class Character
     public CollectQuest CollectQuest { get; set; }
     //Paramètre de familier utilisé pour le Ranger
     public virtual Beast Pet { get; set; }
-    //Paramètres utilisé pour l'affichage sur la map, en combat et en collecte
+    //Paramètres utilisés pour l'affichage sur la map, en combat et en collecte
     public virtual string fightImgUrl { get; }
     public string MapSprite {  get ; set;}
     public int CollectPosI = 0;
@@ -53,7 +53,7 @@ public abstract class Character
     public bool IsRested { get; private set; } = true;
     public int lastRestVillageI { get; set; } = 250;
     public int LastRestVillageJ { get; set; } = 250;
-    //Paramètres de gestion de statistiques utilisée pour les combats
+    //Paramètres de gestion de statistiques utilisées pour les combats
     public abstract int Statistics { get; set; }
     public abstract int ArmorAmount { get; set; }
     public abstract double ChanceToDodge { get; protected set; }
@@ -69,7 +69,7 @@ public abstract class Character
     public int PoisonDamage { get; set; } = 1;
     public bool IsBurning { get; set; } = false;
     public int BurnDuration { get; set; } = 0;
-    //Paramètres de gestion de l'avancée sur la quêtre principale du jeu, voir si le charcater à vaincu un boss
+    //Paramètres de gestion de l'avancée sur la quête principale du jeu, voir si le character a vaincu un boss
     public bool Joydead { get; set; } = false;
     public bool Scorpiodead { get; set; } = false;
     public bool Wukongdead { get; set; } = false;
@@ -102,7 +102,7 @@ public abstract class Character
         };
     }
 
-    //Fonction abstract qui sera trigger à chaque montée de niveau, contenu différent pour chaque class définit au sein de celle-ci
+    //Fonction abstract qui sera trigger à chaque montée de niveau, contenu différent pour chaque classe définie au sein de celle-ci
     protected abstract void CheckLearnSpell();
 
     //Fonctions de gestion des afflictions
@@ -146,7 +146,7 @@ public abstract class Character
         UnPoisoned();
     }
 
-    //Fonction de repos en ville qui va rechagers les sorts, soigner les Hp et les afflictions
+    //Fonction de repos en ville qui va recharger les sorts, soigner les Hp et les afflictions
     public void Rest()
     {
         CurrentHitPoints = MaxHitPoints;
@@ -167,7 +167,7 @@ public abstract class Character
 
     //Gestion des combats
 
-    //Fonction qui sert a utiliser son arme, retourne un string pour pouvoir afficher les dégats infligés au monstre
+    //Fonction qui sert à utiliser son arme, retourne un string pour pouvoir afficher les dégats infligés au monstre
     public virtual string Hit(Monster target)
     {
         string s = "";
@@ -187,7 +187,7 @@ public abstract class Character
             weaponDamageRoll *= 2;
             s += "Efficace ! ";
         }
-        //Sinon vérifie si il lui est résistant
+        //Sinon vérifie s'il lui est résistant
         else if (target.MonsterResistance.Contains(CharacterWeapon.WeaponTypeOfDamage))
         {
             weaponDamageRoll /= 2;
