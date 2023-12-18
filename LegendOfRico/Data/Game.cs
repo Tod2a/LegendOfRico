@@ -14,10 +14,12 @@ namespace LegendOfRico.Data
         public Monster MonsterFight { get; private set; } = new Bulldog { };
         public Merchant Merchant { get; private set; } = new Merchant();
         public TavernRecruits Tavernist { get; private set; } = new TavernRecruits();
+        //Parèmetre de gestion pendant les combats
         public bool IsCurrentFight { get; set; } = false;
         public string FightMessage { get; set; } = "";
         public bool PlayerDead = false;
         public bool MonsterDead = false;
+        public int Turncount = 0;
         //série de paramètres/variables qui vont gérer l'affichage des différents display du jeu
         //gestion du menu de droite
         public bool ShowInventory = true;
@@ -26,9 +28,8 @@ namespace LegendOfRico.Data
         //gestion de l'interface de combat
         public bool ShowFightSpells = true;
         public bool ShowFightInventory = false;
-        public int Turncount = 0;
+        //gestion de l'affichage de base
         public TypeOfShow FormShow { get; set; } = TypeOfShow.Connection;
-
         public void LevelUp(Character player)
         {
             if (player.Equals(Player))
@@ -100,7 +101,6 @@ namespace LegendOfRico.Data
             {
                 Player.PartyMember.CurrentXp += quest.XpReward;
             }
-
             if(Player.CurrentXp >= Player.XpToLevel)
             {
                 LevelUp(Player);
@@ -110,6 +110,16 @@ namespace LegendOfRico.Data
                 LevelUp(Player.PartyMember);
             }
             Player.QuestsBook.Remove(quest);
+        }
+
+
+        public void ValidQuestCollect()
+        {
+            Player.CollectQuest.Status = true;
+            GameMap.MapLayout[Player.PositionI][Player.PositionJ].IsACollectDestination = false;
+            Player.CollectPosI = 0;
+            Player.CollectPosJ = 5;
+            FormShow = TypeOfShow.Map;
         }
 
         public void TakeQuest(Quest quest)
@@ -123,10 +133,6 @@ namespace LegendOfRico.Data
             GameMap.MapLayout[Player.PositionI][Player.PositionJ].MisterQuest.Quests.Remove(quest);
         }
 
-        public void UseConsumable(Consumable consumable, Character target)
-        {
-            consumable.Use(target);
-        }
 
         //gestion du menu de droite pour les quetes et inventaire.
 
@@ -154,19 +160,7 @@ namespace LegendOfRico.Data
 
         //Gestion des combats
 
-        //Fonction qui va vérifier si le déplacement provoque un combat ou pas.
-
-        private void IsFight(Square localisation)
-        {
-            Random random = new Random();
-            double randomNumber = random.NextDouble();
-            if (randomNumber < localisation.ChanceToTriggerFight)
-            {
-                MonsterFight = SelectEnemy();
-                IsCurrentFight = true;
-                FormShow = TypeOfShow.Fight;
-            }
-        }
+        //Fonctions globale d'utilisation de spell    
 
         public void Action(Spells spell)
         {
@@ -197,7 +191,7 @@ namespace LegendOfRico.Data
             FightChecking();
         }
 
-        
+        //Fonction globale d'utilisation de l'arme 
         public void UseWeapon(Monster target)
         {
             if (target.MonsterBreed != TypeOfBreed.RicoChico || (Player.Wukongdead && Player.Tontatondead && Player.Joydead && Player.Scorpiodead))
@@ -227,6 +221,7 @@ namespace LegendOfRico.Data
             FightChecking();
         }
 
+        //Fonction d'utilisation de consomable pendant le combat
         public void UseConsumableFight(Consumable consumable)
         {
             if(!consumable.DodgeFight)
@@ -264,12 +259,15 @@ namespace LegendOfRico.Data
             }
         }
 
+        //Fonction qui va suivre l'action du joueur
         private void FightChecking ()
         {
+            //On vérifie si le monstre est mort
             if (MonsterFight.MonsterCurrentHP <= 0)
             {
                 FightVictory();
             }
+            //On vérifie si c'est au tout du monstre de jouer
             else if (!CheckGroup() || (CheckGroup() && Turncount%2 == 0))
             {
                 if (MonsterFight.IsBurning) //Le monstre perd 10% hp si il brûle
@@ -301,6 +299,7 @@ namespace LegendOfRico.Data
                 }
             }
         }
+        //Fonction qui va gérer la victoire du joueur en combat
         private void FightVictory()
         {
             MonsterFight.MonsterCurrentHP = 0;
@@ -360,11 +359,7 @@ namespace LegendOfRico.Data
             }
         }
 
-        private bool CheckGroup()
-        {
-            return Player.PartyMember != null && Player.PartyMember.CurrentHitPoints >= 0;
-        }
-
+        //Vérifie en cas de victoire si le monstre est la cible d'une quête présente dans le livre de quête
         private string CheckQuest()
         {
             string message = "";
@@ -379,32 +374,7 @@ namespace LegendOfRico.Data
             return message;
         }
 
-        private void CheckCollectQuest()
-        {
-            if (Player.CollectQuest.CollectMap[Player.CollectPosI][Player.CollectPosJ].HasMonsterCollectQuest)
-            {
-                Player.CollectQuest.QuestEnd = true;
-            }
-            else if (Player.CollectQuest.CollectMap[Player.CollectPosI][Player.CollectPosJ].HasQuestTarget)
-            {
-                Player.CollectQuest.CollectMap[Player.CollectPosI][Player.CollectPosJ].HasQuestTarget = false;
-                Player.CollectQuest.CurrentTarget--;
-                if (Player.CollectQuest.CurrentTarget == 0)
-                {
-                    Player.CollectQuest.QuestEnd = true;
-                }
-            }
-        }
-
-        public void ValidQuestCollect()
-        {
-            Player.CollectQuest.Status = true;
-            GameMap.MapLayout[Player.PositionI][Player.PositionJ].IsACollectDestination = false;
-            Player.CollectPosI = 0;
-            Player.CollectPosJ = 5;
-            FormShow = TypeOfShow.Map;
-        }
-
+        //Fonction d'attaque du monstre
         public void MonsterHit()
         {
             if (MonsterFight.MonsterBreed == TypeOfBreed.RicoChico && (!Player.Joydead || !Player.Scorpiodead || !Player.Tontatondead || !Player.Wukongdead))
@@ -441,6 +411,7 @@ namespace LegendOfRico.Data
             }
         }
 
+        //Vérification et mise de place de la défaite du joueur
         private void CheckCharactDead ()
         {
             if (Player.CurrentHitPoints <= 0 && !MonsterDead)
@@ -453,6 +424,7 @@ namespace LegendOfRico.Data
             }
         }
 
+        //Automatisation de la brulure d'un joueur 
         private string CharactBurn()
         {
             string s = "";
@@ -481,6 +453,7 @@ namespace LegendOfRico.Data
             return s;
         }
 
+        //Automatisation de l'empisonement d'un joueur
         public string CharacterPoisoned()
         {
             string s = "";
@@ -499,6 +472,7 @@ namespace LegendOfRico.Data
             }
             return s;
         }
+        //Fonction liée au bouton d'affichage de l'interface de combat
         public void SwitchFightSpells()
         {
             ShowFightSpells = true;
@@ -520,6 +494,7 @@ namespace LegendOfRico.Data
             return monster;
         }
 
+        // Après combat, on retire le monstre de la liste et on ajoute une nouvelle insctance de celui-ci pour le remplacer
         public void MonsterSwitch()
         {
             Type newmonster = MonsterFight.GetType();
@@ -561,8 +536,33 @@ namespace LegendOfRico.Data
             Player.PartyMember = null;
         }
 
+        //Utilisation des consommables hors combat, ne peux malheureusement pas etre dans character pour simplifier map.razor
 
-        //Gestion de déplacement et de trigger fight
+        public void UseConsumable(Consumable consumable, Character target)
+        {
+            consumable.Use(target);
+        }
+
+        //Fonction qui va vérifier si le joueur joue en groupe ou seul, facilite la lecture des fonctions
+
+        private bool CheckGroup()
+        {
+            return Player.PartyMember != null && Player.PartyMember.CurrentHitPoints >= 0;
+        }
+
+        //Gestion de déplacement et de trigger fight ou de vérification de collecte
+
+        private void IsFight(Square localisation)
+        {
+            Random random = new Random();
+            double randomNumber = random.NextDouble();
+            if (randomNumber < localisation.ChanceToTriggerFight)
+            {
+                MonsterFight = SelectEnemy();
+                IsCurrentFight = true;
+                FormShow = TypeOfShow.Fight;
+            }
+        }
         public void GoUp()
         {
             if (ShowQuestGiver)
@@ -616,6 +616,24 @@ namespace LegendOfRico.Data
                 Player.PositionJ++;
                 GameMap.UpdateMapDisplay(Player);
                 IsFight(GameMap.MapLayout[Player.PositionI][Player.PositionJ]);
+            }
+        }
+
+        //vérifie à chaque déplacement si le jouer se déplace sur un monstre ou une cible
+        private void CheckCollectQuest()
+        {
+            if (Player.CollectQuest.CollectMap[Player.CollectPosI][Player.CollectPosJ].HasMonsterCollectQuest)
+            {
+                Player.CollectQuest.QuestEnd = true;
+            }
+            else if (Player.CollectQuest.CollectMap[Player.CollectPosI][Player.CollectPosJ].HasQuestTarget)
+            {
+                Player.CollectQuest.CollectMap[Player.CollectPosI][Player.CollectPosJ].HasQuestTarget = false;
+                Player.CollectQuest.CurrentTarget--;
+                if (Player.CollectQuest.CurrentTarget == 0)
+                {
+                    Player.CollectQuest.QuestEnd = true;
+                }
             }
         }
 
