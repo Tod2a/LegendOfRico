@@ -65,12 +65,12 @@ namespace LegendOfRico.Data
         }
 
         //Fonction qui va changer les valeurs d'affichage de map à chaque déplacement
-        public void UpdateMapDisplay(Character PersoTest)
+        public void UpdateMapDisplay(Character player)
         {
-            StartI = PersoTest.PositionI - 4;
-            MaxI = PersoTest.PositionI + 5;
-            StartJ = PersoTest.PositionJ - 4;
-            MaxJ = PersoTest.PositionJ + 5;
+            StartI = player.PositionI - 4;
+            MaxI = player.PositionI + 5;
+            StartJ = player.PositionJ - 4;
+            MaxJ = player.PositionJ + 5;
             if (StartI < 0) { StartI = 0; }
             if (StartJ < 0) { StartJ = 0; }
             if (MaxI > 500) { MaxI = 500; }
@@ -147,32 +147,32 @@ namespace LegendOfRico.Data
         //contenu des pool encore à définir mais divers pool déjà créés pour faire la map
 
         //plaine
-        public List<Monster> PoolOfPlain = new List<Monster> {  new Bulldog() };
-        public List<Monster> PoolOfMediumPlain = new List<Monster> { new Americanstaff() };
-        public List<Monster> PoolOfHardPlain = new List<Monster> { new Rottweiler() };
+        public List<Monster> PoolOfPlain { get; private set; } = new List<Monster> {  new Bulldog() };
+        public List<Monster> PoolOfMediumPlain { get; private set; } = new List<Monster> { new Americanstaff() };
+        public List<Monster> PoolOfHardPlain { get; private set; } = new List<Monster> { new Rottweiler() };
         //forêt
-        public List<Monster> PoolOfForest = new List<Monster> { new SonOfAragog(), new OmegaWolf() };
-        public List<Monster> PoolOfMediumForest = new List<Monster> { new BigSonOfAragog() };
-        public List<Monster> PoolOfHardForest = new List<Monster> { new Aragog() };
-        public List<Monster> BossOfForest = new List<Monster> { new Sunwukong() };
+        public List<Monster> PoolOfForest { get; private set; } = new List<Monster> { new SonOfAragog(), new OmegaWolf() };
+        public List<Monster> PoolOfMediumForest { get; private set; } = new List<Monster> { new BigSonOfAragog() };
+        public List<Monster> PoolOfHardForest { get; private set; } = new List<Monster> { new Aragog() };
+        public List<Monster> BossOfForest { get; private set; } = new List<Monster> { new Sunwukong() };
         //désert
-        public List<Monster> PoolOfDesert = new List<Monster> { new LittleFlame(), new LittleScorpio() };
-        public List<Monster> PoolOfMediumDesert = new List<Monster> { new Flame() };
-        public List<Monster> PoolOfHardDesert = new List<Monster> { new Volcanis() };
-        public List<Monster> BossOfDesert = new List<Monster> { new EternalScorpio() };
+        public List<Monster> PoolOfDesert { get; private set; } = new List<Monster> { new LittleFlame(), new LittleScorpio() };
+        public List<Monster> PoolOfMediumDesert { get; private set; } = new List<Monster> { new Flame() };
+        public List<Monster> PoolOfHardDesert { get; private set; } = new List<Monster> { new Volcanis() };
+        public List<Monster> BossOfDesert { get; private set; } = new List<Monster> { new EternalScorpio() };
         //Ruines
-        public List<Monster> PoolOfRuined = new List<Monster> { new Racaille(), new Nosptipti(), new FlashOfLighting() };
-        public List<Monster> PoolOfMediumRuined = new List<Monster> { new Gangster(), new Nosalto(), new Thunderstorm() };
-        public List<Monster> PoolOfHardRuined = new List<Monster> { new Mafieux(), new Nosaffraid(), new Ener() };
-        public List<Monster> BossOfRuined = new List<Monster> { new JoyBean() };
+        public List<Monster> PoolOfRuined { get; private set; } = new List<Monster> { new Racaille(), new Nosptipti(), new FlashOfLighting() };
+        public List<Monster> PoolOfMediumRuined { get; private set; } = new List<Monster> { new Gangster(), new Nosalto(), new Thunderstorm() };
+        public List<Monster> PoolOfHardRuined { get; private set; } = new List<Monster> { new Mafieux(), new Nosaffraid(), new Ener() };
+        public List<Monster> BossOfRuined { get; private set; } = new List<Monster> { new JoyBean() };
         //cimetiere
-        public List<Monster> PoolOfGraveyard = new List<Monster> { new Fantominet(), new IceCube() };
-        public List<Monster> PoolOfMediumGraveyard = new List<Monster> { new Spectre(), new IceBlock() };
-        public List<Monster> PoolOfHardGraveyard = new List<Monster> { new Cauchemar(), new Iceberg() };
-        public List<Monster> BossOfGraveyard = new List<Monster> { new Cheftontaton() };
+        public List<Monster> PoolOfGraveyard { get; private set; } = new List<Monster> { new Fantominet(), new IceCube() };
+        public List<Monster> PoolOfMediumGraveyard { get; private set; } = new List<Monster> { new Spectre(), new IceBlock() };
+        public List<Monster> PoolOfHardGraveyard { get; private set; } = new List<Monster> { new Cauchemar(), new Iceberg() };
+        public List<Monster> BossOfGraveyard { get; private set; } = new List<Monster> { new Cheftontaton() };
         //village
-        public List<Monster> PoolOfVillage = new List<Monster> {  };
-        public List<Monster> BossOfVillage = new List<Monster> { new RicoChico() };
+        public List<Monster> PoolOfVillage { get; private set; } = new List<Monster> {  };
+        public List<Monster> BossOfVillage { get; private set; } = new List<Monster> { new RicoChico() };
 
         //création des différents Biomes 3 par types pour les différentes images, un pour les cases dangereuses et un pour les boss
         //sauf pour le village et la plaine
@@ -215,6 +215,7 @@ namespace LegendOfRico.Data
         public Biomes BossVillage { get; private set; }
 
 
+        //Fonction qui automatise la création de zone sur la carte, demande les coordonnées, le type de biome, un nom de zone et les chance de combats
         private void TrippleSquare(int minI, int maxI, int minJ, int maxJ, Square[][] mapLayout, TypeOfBiome tBiome, string Name, double cTrigger)
         {
             Biomes b0 = Plain;
@@ -294,7 +295,7 @@ namespace LegendOfRico.Data
         private Square[][] CreateMapLayout()
         {
             Square[][] mapLayout = new Square[500][];
-            // création de la map de base remplis de plaines
+            // création de la map de base remplie de plaines
             for (int i = 0; i < 500; i++)
             {
                 mapLayout[i] = new Square[500];
@@ -428,7 +429,7 @@ namespace LegendOfRico.Data
             //creation des donneurs de quêtes et de leurs quêtes
             QuestGiver archibald = new QuestGiver("Archibald");
             archibald.AddFightQuest("Chasse une araignée", "Va dans la forêt chasser une araignée", TypeOfBreed.Spider, 20, 20);
-            archibald.AddCollecQuest("Collectest", "Allez en 254 250", 20, 20, 254, 250, mapLayout[254][250].SquareBiome.BiomeType);
+            archibald.AddCollecQuest("CollecDemo", "Quête de collecte pour la démo", 20, 20, 254, 250, mapLayout[254][250].SquareBiome.BiomeType);
             archibald.AddFightQuest("Chasse un chien", "(CONSEILLÉ) Va dans les plaines et chasse un chien", TypeOfBreed.Dog, 950, 10);
             QuestGiver fatimaZorra = new QuestGiver("Fatima Zorra, la mystique");
             fatimaZorra.AddFightQuest("Tue un monstre", "Montre moi ton ENORME courage en allant tuer un monstre dans les ruines", TypeOfBreed.Bat, 20, 20);
