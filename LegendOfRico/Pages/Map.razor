@@ -115,6 +115,19 @@
                     }
                 }
             }
+            <!--Affichage du menu pour la demo du jeu-->
+            @if (Game.ShowDemo)
+            {
+                <div class="gameMenu">
+                    <button @onclick="Cheat">Battre les Boss</button>
+                    <button @onclick="Lvl">Gagner un niveau</button>
+                    <button @onclick="TpScorpion">Aller au scorpion</button>
+                    <button @onclick="TpTontaton">Aller chez tontaton</button>
+                    <button @onclick="TpJoy">Aller chez joy bean</button>
+                    <button @onclick="TpWukong">Aller chez Wukong</button>
+                    <button @onclick="TpAncienVillage">Aller à l'ancien village</button>
+                </div>
+            }
         </div>
     </div>
 </div>
@@ -172,6 +185,67 @@
                 break;
         }
         Game.GameMap.UpdateMapDisplay(Game.Player);
+    }
+
+
+
+    //Fonctions pour la demo du jeu, beaucoup de triche, peu de fun oO
+
+    //bouton pour rendre RicoChico vulnérable si besoin
+    void Cheat()
+    {
+        Game.Player.Wukongdead = true;
+        Game.Player.Tontatondead = true;
+        Game.Player.Scorpiodead = true;
+        Game.Player.Joydead = true;
+        TypeOfShowChange.InvokeAsync();
+    }
+
+    //fonction de cheat lvl up si besoin pour les tests
+    void Lvl()
+    {
+        Game.Player.CurrentXp = Game.Player.XpToLevel;
+        Game.LevelUp(Game.Player);
+    }
+
+    void TpScorpion()
+    {
+        Game.Player.PositionI = 498;
+        Game.Player.PositionJ = 499;
+        Game.GameMap.UpdateMapDisplay(Game.Player);
+        TypeOfShowChange.InvokeAsync();
+    }
+
+    void TpJoy()
+    {
+        Game.Player.PositionI = 428;
+        Game.Player.PositionJ = 59;
+        Game.GameMap.UpdateMapDisplay(Game.Player);
+        TypeOfShowChange.InvokeAsync();
+    }
+
+    void TpWukong()
+    {
+        Game.Player.PositionI = 72;
+        Game.Player.PositionJ = 54;
+        Game.GameMap.UpdateMapDisplay(Game.Player);
+        TypeOfShowChange.InvokeAsync();
+    }
+
+    void TpTontaton()
+    {
+        Game.Player.PositionI = 36;
+        Game.Player.PositionJ = 402;
+        Game.GameMap.UpdateMapDisplay(Game.Player);
+        TypeOfShowChange.InvokeAsync();
+    }
+
+    void TpAncienVillage()
+    {
+        Game.Player.PositionI = 196;
+        Game.Player.PositionJ = 248;
+        Game.GameMap.UpdateMapDisplay(Game.Player);
+        TypeOfShowChange.InvokeAsync();
     }
 
 }

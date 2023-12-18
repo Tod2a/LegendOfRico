@@ -196,30 +196,5 @@
         Game.SwitchShowDemo();
         TypeOfShowChange.InvokeAsync();
     }
-    //bouton pour rendre RicoChico vulnérable si besoin
-    void cheat()
-    {
-        Game.Player.Wukongdead = true;
-        Game.Player.Tontatondead = true;
-        Game.Player.Scorpiodead = true;
-        Game.Player.Joydead = true;
-        TypeOfShowChange.InvokeAsync();
-    }
-
-    //Bouton de téléportation pour tester des fonctions qu'on implémente
-    //il suffit de changer les coordonées dont vous avez besoin
-    void tp()
-    {
-        Game.Player.PositionI = 498;
-        Game.Player.PositionJ = 499;
-        Game.GameMap.UpdateMapDisplay(Game.Player);
-        TypeOfShowChange.InvokeAsync();
-    }
-
-    //fonction de cheat lvl up si besoin pour les tests
-    void Lvl()
-    {
-        Game.Player.CurrentXp = Game.Player.XpToLevel;
-        Game.LevelUp(Game.Player);
-    }
+    
 }
