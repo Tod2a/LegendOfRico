@@ -64,6 +64,7 @@
         TypeOfShowChange.InvokeAsync();
     }
 
+
     //Fonction continuer à développer soon
     async Task Continuer()
     {
@@ -99,10 +100,30 @@
                 Game.LevelUp(Game.Player);
             }
             Game.Player.CurrentXp = save.PlayerSaving.CharactXp;
+            Game.Player.CurrentHitPoints = save.PlayerSaving.CharactHp;
+            Game.Player.SetCoins(save.PlayerSaving.CharactCoins);
+            Game.Player.PositionI = save.PlayerSaving.PositionI;
+            Game.Player.PositionJ = save.PlayerSaving.PositionJ;
             Game.Player.Joydead = save.PlayerSaving.JoyDead;
             Game.Player.Wukongdead = save.PlayerSaving.WukongDead;
             Game.Player.Tontatondead = save.PlayerSaving.TontaDead;
             Game.Player.Scorpiodead = save.PlayerSaving.ScorpioDead;
+            if (save.PlayerSaving.MateName != null)
+            {
+                foreach (var mates in Game.Tavernist.CharactersToRecruit)
+                {
+                    if (mates.Name == save.PlayerSaving.MateName)
+                    {
+                        Game.Player.SetCoins(mates.RecruitingPrice);
+                        Game.Recrut(mates);
+                    }
+                }
+                Game.Player.PartyMember.CurrentHitPoints = save.PlayerSaving.MateHp;
+            }
+            if(Game.Player.GetType() == typeof(Ranger))
+            {
+                Game.Player.Pet = GetLoadPet(save);
+            }
             Game.GameMap.UpdateMapDisplay(Game.Player);
             Game.FormShow = TypeOfShow.Map;
             TypeOfShowChange.InvokeAsync();
@@ -111,7 +132,44 @@
         {
             ContinueMessage = "Pas de sauvegarde accessible";
         }
-        
+
     }
-   
+
+
+    private Beast GetLoadPet (Saving save)
+    {
+        switch (save.PlayerSaving.PetType)
+        {
+            case "rottweiler":
+                return new Rottweiler();
+            case "americanstaff":
+                return new Americanstaff();
+            case "nosaffraid":
+                return new Nosaffraid();
+            case "nosptipti":
+                return new Nosptipti();
+            case "nosalto":
+                return new Nosalto();
+            case "emperorscorpio":
+                return new EmperorScorpio();
+            case "littlescorpio":
+                return new LittleScorpio();
+            case "rockscorpio":
+                return new RockScorpio();
+            case "aragog":
+                return new Aragog();
+            case "bigsonofaragog":
+                return new BigSonOfAragog();
+            case "sonofaragog":
+                return new SonOfAragog();
+            case "alphawolf":
+                return new AlphaWolf();
+            case "betawolf":
+                return new BetaWolf();
+            case "omegawolf":
+                return new OmegaWolf();
+            default:
+                return new Bulldog();
+        }
+    }
 }
