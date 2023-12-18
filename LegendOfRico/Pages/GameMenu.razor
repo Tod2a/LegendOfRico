@@ -182,9 +182,7 @@
     {
         Saving save = new Saving(Game.Player);
         var saving = JsonSerializer.Serialize(save);
-        await JS.InvokeVoidAsync("localStorage.setItem", "SavingType", saving);
-        var player = JsonSerializer.Serialize(Game.Player);
-        await JS.InvokeVoidAsync("localStorage.setItem", "SavingPlayer", player);
+        await JS.InvokeVoidAsync("localStorage.setItem", "Saving", saving);
         Game.FormShow = TypeOfShow.Connection;
         TypeOfShowChange.InvokeAsync();
     }

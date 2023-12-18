@@ -2,39 +2,29 @@
 {
     public class Saving
     {
-        public string CharactType { get; set; }
+        public PlayerSaving PlayerSaving { get; set; }
+        //public List<StuffSaving> ItemList { get; set; } 
 
-        public Saving()
-        {
-        }
+        public Saving() { }
 
         public Saving (Character player)
         {
-            CharactType = GetStringType(player);
+            PlayerSaving = new PlayerSaving (player);
+            //ItemList = SetItemList (player);
         }
 
-        private string GetStringType(Character player)
+        private List<StuffSaving> SetItemList (Character player)
         {
-            if (player.GetType() == typeof(Rogue)) 
+            List<StuffSaving> itemlist = new List<StuffSaving>();
+            itemlist.Add(new StuffSaving(player.CharacterWeapon, true));
+            itemlist.Add(new StuffSaving(player.CharacterArmor, true));
+            itemlist.Add(new StuffSaving(player.CharacterShield, true));
+            foreach (var item in player.StuffInventory)
             {
-                return "rogue";
+                itemlist.Add(new StuffSaving(item, false));
             }
-            else if (player.GetType() == typeof(Fighter))
-            {
-                return "fighter";
-            }
-            else if (player.GetType() == typeof(Ranger))
-            {
-                return "ranger";
-            }
-            else if (player.GetType() == typeof(Cleric))
-            {
-                return "cleric";
-            }
-            else
-            {
-                return "wizard";
-            }
+            return itemlist;
         }
+        
     }
 }

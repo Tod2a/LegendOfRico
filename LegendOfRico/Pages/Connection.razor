@@ -22,7 +22,8 @@
             </select>
             <button type="submit">Créer</button>
         </EditForm>
-        <!--<button onclick="Continuer">Continuer</button>-->
+        <button @onclick="Continuer">Continuer</button>
+        <p>@ContinueMessage</p>
     </div>
     <!--Message d'introduction du jeu-->
     <div class="intro">
@@ -50,6 +51,7 @@
     public Game Game { get; set; }
     [Parameter]
     public EventCallback TypeOfShowChange { get; set; }
+    public string ContinueMessage { get; set; }
 
     //Fonction de création du personnage
     private void CreateCharacter()
@@ -65,33 +67,51 @@
     //Fonction continuer à développer soon
     async Task Continuer()
     {
-        Character player = new Wizard();
-        var value = await JS.InvokeAsync<string>("localStorage.getItem", "SavingType");
-        Saving save = JsonSerializer.Deserialize<Saving>(value);
-        var playerstring = await JS.InvokeAsync<string>("localStorage.getItem", "SavingPlayer");
-        if(save.CharactType == "wizard")
+        Character player = new Wizard() { MapSprite = "img/character/spriteWizard.png" };
+        var value = await JS.InvokeAsync<string>("localStorage.getItem", "Saving");
+
+        if (value != null)
         {
-            player = JsonSerializer.Deserialize<Wizard>(playerstring);
-        }
-        else if (save.CharactType == "ranger")
-        {
-            player = JsonSerializer.Deserialize<Ranger>(playerstring);
-        }
-        else if (save.CharactType == "cleric")
-        {
-            player = JsonSerializer.Deserialize<Cleric>(playerstring);
-        }
-        else if (save.CharactType == "fighter")
-        {
-            player = JsonSerializer.Deserialize<Fighter>(playerstring);
+            Saving save = JsonSerializer.Deserialize<Saving>(value);
+
+            if (save.PlayerSaving.CharactType == "ranger")
+            {
+                player = new Ranger() { MapSprite = "img/character/spriteRanger.png" };
+            }
+            else if (save.PlayerSaving.CharactType == "cleric")
+            {
+                player = new Cleric() { MapSprite = "img/character/spriteCleric.png" };
+            }
+            else if (save.PlayerSaving.CharactType == "fighter")
+            {
+                player = new Fighter() { MapSprite = "img/character/spriteFighter.png" };
+            }
+            else if (save.PlayerSaving.CharactType == "rogue")
+            {
+                player = new Rogue() { MapSprite = "img/character/spriteRogue.png" };
+            }
+            Game.Player = player;
+            Game.GameMap = new Data.Map();
+            Game.Player.Name = save.PlayerSaving.CharactName;
+            while(Game.Player.Level < save.PlayerSaving.CharactLevel)
+            {
+                Game.Player.CurrentXp = Game.Player.XpToLevel;
+                Game.LevelUp(Game.Player);
+            }
+            Game.Player.CurrentXp = save.PlayerSaving.CharactXp;
+            Game.Player.Joydead = save.PlayerSaving.JoyDead;
+            Game.Player.Wukongdead = save.PlayerSaving.WukongDead;
+            Game.Player.Tontatondead = save.PlayerSaving.TontaDead;
+            Game.Player.Scorpiodead = save.PlayerSaving.ScorpioDead;
+            Game.GameMap.UpdateMapDisplay(Game.Player);
+            Game.FormShow = TypeOfShow.Map;
+            TypeOfShowChange.InvokeAsync();
         }
         else
         {
-            player = JsonSerializer.Deserialize<Rogue>(playerstring);
+            ContinueMessage = "Pas de sauvegarde accessible";
         }
-        Game.Player = player;
-        Game.GameMap = new Data.Map();
-        Game.FormShow = TypeOfShow.Map;
+        
     }
    
 }
