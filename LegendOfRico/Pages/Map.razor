@@ -135,6 +135,7 @@
                     <button @onclick="TpJoy">Aller chez joy bean</button>
                     <button @onclick="TpWukong">Aller chez Wukong</button>
                     <button @onclick="TpAncienVillage">Aller à l'ancien village</button>
+                    <button @onclick="TpAstrub">Aller à Astrub</button>
                     <button @onclick="Rich">Etre riche</button>
                 </div>
             }
@@ -257,6 +258,14 @@
     {
         Game.Player.PositionI = 196;
         Game.Player.PositionJ = 248;
+        Game.GameMap.UpdateMapDisplay(Game.Player);
+        TypeOfShowChange.InvokeAsync();
+    }
+
+    void TpAstrub()
+    {
+        Game.Player.PositionI = 250;
+        Game.Player.PositionJ = 250;
         Game.GameMap.UpdateMapDisplay(Game.Player);
         TypeOfShowChange.InvokeAsync();
     }
