@@ -1,10 +1,12 @@
 ﻿@using LegendOfRico.Data
 @using BootstrapBlazor
 
+<!--composant d'affichage du combat-->
 <div class="displayGame">
+    <!--On affiche le menu classique du jeu à gauche-->
     <GameMenu Game="Game" TypeOfShowChange="TypeOfShowChange" />
     <div class="fight">
-        
+        <!--Info box située au dessus du combat avec les deux boutons qui ne s'affichent qu'en cas de victoire/défaite-->
         <div class="fightBox">
             <p>
                 @Game.FightMessage
@@ -12,8 +14,9 @@
                 <button @onclick="Defeat" style="display: @(Game.PlayerDead ? "block" : "none")">Se réveiller difficilement</button>
             </p>
         </div>
+        <!--Interface de combat-->
         <div class="fightDisplay" style="background-image: url('@Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].SquareBiome.FightUrl');">
-            
+            <!--Div de gauche avec le/les joueurs-->
             <div class="player">
                 <div class="secondplayer">
                     @if (Game.Player.PartyMember != null && Game.Player.PartyMember.CurrentHitPoints > 0)
@@ -46,6 +49,7 @@
                 </div>
                 
             </div>
+            <!--Div de droite avec le monstre-->
             <div class="opponent">
                 <div class="spriteFlex"><img class="sprite" src="@Game.MonsterFight.fightImgUrl" alt="Image fight Monster"></div>
                 <div class="stats">
@@ -55,9 +59,11 @@
 
             </div>
         </div>
+        <!--tant que le combat est en cours, on affiche le menu de combat-->
         @if (!@Game.MonsterDead && !Game.PlayerDead)
         {
             <div class="fightMenu">
+                <!--Affichage du joueur 1 à son tour-->
                 @if(Game.Turncount % 2 == 0)
                 {
                     <div class="actions">
@@ -83,6 +89,7 @@
                         }
                     </div>
                 }
+                <!--Si il y a un joueur deux, affichage de son menu à son tour-->
                 else if (Game.Player.PartyMember != null && Game.Player.PartyMember.CurrentHitPoints > 0)
                 {
                     <div class="actions">

@@ -1,10 +1,13 @@
 ﻿@using LegendOfRico.Data
 @using BootstrapBlazor
 
+<!--Composant affichant la carte du jeu-->
 <div class="layoutGame" @onkeydown="HandleKeyDown" @onkeydown:preventDefault=true>
     <div class="displayGame">
+        <!--Affichage du composant du menu de jeu classique-->
         <GameMenu Game="Game" TypeOfShowChange="TypeOfShowChange" />
         <div class="mapDisplay">
+            <!--Affichage de la map, tableau classique avec une double boucle imbriquée pour afficher les squares-->
             <table border="1" class="Map" @ref="mapref" tabindex="0" autofocus>
                 @for (int i = Game.GameMap.StartI; i < Game.GameMap.MaxI; i++)
                 {
@@ -39,8 +42,11 @@
                 }
             </table>
         </div>
+        <!--Menu de droite propre à la carte-->
         <div class="mapMenu">
-            <p style="display: @(Game.ShowInventory ? "block" : "none")">
+            <!--Affichage de l'inventaire-->
+            @if(Game.ShowInventory)
+            {
                 <p>Inventaire consommables:</p>
                 @foreach(var item in Game.Player.ConsumableInventory)
                 {
@@ -71,8 +77,10 @@
                         }
                     </p>
                 }
-            </p>
-            <p style="display: @(Game.ShowQuestList ? "block" : "none")">
+            }
+            <!--Affichage de la liste de quêtes-->
+            @if (Game.ShowQuestList)
+            {
                 <div class="bossTarget">
                     <p>JoyBean Vaincu: @if (Game.Player.Joydead) {<img src="img/layout/valide.png" /> } else {<img src="img/layout/croix.png" />}</p>
                     <p>Scorpion Vaincu: @if (Game.Player.Scorpiodead) {<img src="img/layout/valide.png" /> } else {<img src="img/layout/croix.png" />}</p>
@@ -87,10 +95,12 @@
                         @if (quest.Status) {<button @onclick="() => Game.ValidQuest(quest)">Valider</button>}
                     </p>
                 }
-            </p>
-            <p style="display: @(Game.ShowQuestGiver ? "block" : "none")">
-            <p>@Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].MisterQuest.NPCName :</p>
-                @if(Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].MisterQuest.Quests.Count == 0)
+            }
+            <!--Affichage du donneur de quêtes-->
+            @if (Game.ShowQuestGiver)
+            {
+                <p>@Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].MisterQuest.NPCName :</p>
+                @if (Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].MisterQuest.Quests.Count == 0)
                 {
                     <p>Je n'ai pas de quêtes à vous proposer</p>
                 }
@@ -98,13 +108,13 @@
                 {
                     foreach (var quest in Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].MisterQuest.Quests)
                     {
-                    <p data-toggle="tooltip" data-placement="top" title="@quest.Description" class="questTaget">
+                        <p data-toggle="tooltip" data-placement="top" title="@quest.Description" class="questTaget">
                             @quest.QuestName
                             <button @onclick="() => TakeQuest(quest)">Valider</button>                            
                     </p>
                     }
                 }
-            </p>
+            }
         </div>
     </div>
 </div>

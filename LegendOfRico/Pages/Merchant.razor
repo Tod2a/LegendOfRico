@@ -1,14 +1,18 @@
 ﻿@using LegendOfRico.Data
 @using BootstrapBlazor
 
+<!--Composant d'affichage du marchand-->
 <div class="displayGame">
+    <!--Menu de gauche classique-->
     <GameMenu Game="Game" TypeOfShowChange="TypeOfShowChange" />
     <div class="MerchantLayout">
         <div class="MerchantDisplay">
+            <!--Image du marchand avec sa bulle de dialogue et le bouton de changement d'étalage-->
             <div class="MerchantImage">
                 <p><button @onclick="Switch" class="MerchantButton">Changer l'étalage</button></p>
                 <p class="MerchantSpeak">Que puis-je faire pour vous ?</p>
             </div>
+            <!--étalage d'achat-->
             <div class="MerchantShowcase">
                 <div class="MerchantBuy">
                     <p class="MerchantActionTitle">
@@ -45,6 +49,7 @@
                         }
                     }
                 </div>
+                <!--étalage de vente-->
                 <div class="MerchantSell">
                     <p class="MerchantActionTitle">
                         Vendre

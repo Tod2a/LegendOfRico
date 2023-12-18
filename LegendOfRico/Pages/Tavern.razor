@@ -1,13 +1,17 @@
 ﻿@using LegendOfRico.Data
 @using BootstrapBlazor
 
+<!--Affichage de la taverne pour recruter un allié-->
 <div class="displayGame">
+    <!--Affichage du menu de gauche-->
     <GameMenu Game="Game" TypeOfShowChange="TypeOfShowChange" />
     <div class="TavernLayout">
         <div class="TavernDisplay">
+            <!--Image de la taverne-->
             <div class="TavernImage">
                 <p class="TavernSpeak">Vous vous sentez seul, vous trouverez peut-être de la compagnie dans cette taverne.</p>
             </div>
+            <!--Liste des personnages recrutables-->
             <div class="TavernShowcase">
                 @if (Game.Player.PartyMember != null)
                 {

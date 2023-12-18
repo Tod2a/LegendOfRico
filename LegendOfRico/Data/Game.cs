@@ -17,17 +17,19 @@ namespace LegendOfRico.Data
         //Parèmetre de gestion pendant les combats
         public bool IsCurrentFight { get; set; } = false;
         public string FightMessage { get; set; } = "";
-        public bool PlayerDead = false;
-        public bool MonsterDead = false;
-        public int Turncount = 0;
+        public bool PlayerDead { get; set; } = false;
+        public bool MonsterDead { get; set; } = false;
+        public int Turncount { get; set; } = 0;
         //série de paramètres/variables qui vont gérer l'affichage des différents display du jeu
         //gestion du menu de droite
-        public bool ShowInventory = true;
-        public bool ShowQuestList = false;
-        public bool ShowQuestGiver = false;
+        public bool ShowInventory { get; set; } = true;
+        public bool ShowQuestList { get; set; } = false;
+        public bool ShowQuestGiver { get; set; } = false;
+        //Ajouté uniquement pour la démo du jeu, n'est pas sencé être implanté dans le jeu
+        public bool ShowDemo { get; set; } = false;
         //gestion de l'interface de combat
-        public bool ShowFightSpells = true;
-        public bool ShowFightInventory = false;
+        public bool ShowFightSpells { get; set; } = true;
+        public bool ShowFightInventory { get; set; } = false;
         //gestion de l'affichage de base
         public TypeOfShow FormShow { get; set; } = TypeOfShow.Connection;
         public void LevelUp(Character player)
@@ -142,6 +144,7 @@ namespace LegendOfRico.Data
             ShowInventory = false;
             ShowQuestList = true;
             ShowQuestGiver = false;
+            ShowDemo = false;
         }
 
         public void SwitchShowInventoryList()
@@ -149,6 +152,7 @@ namespace LegendOfRico.Data
             ShowInventory = true;
             ShowQuestList = false;
             ShowQuestGiver = false;
+            ShowDemo = false;
         }
 
         public void SwitchShowQuestGiver()
@@ -156,8 +160,16 @@ namespace LegendOfRico.Data
             ShowQuestGiver = true;
             ShowQuestList = false;
             ShowInventory = false;
+            ShowDemo = false;
         }
-
+        //ne doit pas être implanté dans le jeu de base
+        public void SwitchShowDemo()
+        {
+            ShowQuestGiver = false;
+            ShowQuestList = false;
+            ShowInventory = false;
+            ShowDemo = true;
+        }
         //Gestion des combats
 
         //Fonctions globale d'utilisation de spell    

@@ -2,14 +2,16 @@
 @using System.Text.Json
 @inject IJSRuntime JS
 
+<!--Composant utilisé dans la pluspart des pages, affiche le menu de gauche du jeu-->
 <div class="gameMenu">
     @if(Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].IsACollectDestination && Game.FormShow == TypeOfShow.Map)
     {
         <button @onclick="StartCollect">Collecter</button>
     }
-    <!--<button @onclick="cheat">Cheat</button>-->
-    <!--<p><button @onclick="tp">Téléportation</button></p>-->
-    <!--<button @onclick="Lvl">Lvlup</button>-->
+    @if (Game.FormShow == TypeOfShow.Map)
+    {
+        <button @onclick="Demo">Démo</button>
+    }
     <p>Personnage: @Game.Player.Name</p>
     <p>Position: [@Game.Player.PositionI][@Game.Player.PositionJ]@Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].Name</p>
     <p>Niveau: @Game.Player.Level</p>
@@ -41,6 +43,7 @@
     <p>@Game.Player.GetStatsDisplay()</p>
     <p>Expérience: @Game.Player.GetXpDisplay()</p>
     <p>Argent: @Game.Player.Coins</p>
+    <!--Affichage de l'arme équipée avec ses stats en mouseover-->
     <p data-toggle="tooltip" data-placement="top" title="@Game.Player.CharacterWeapon.Description">
         Arme: @Game.Player.CharacterWeapon.ItemName
         @if (!(Game.Player.CharacterWeapon.GetType() == typeof(Fist)) && Game.FormShow != TypeOfShow.Fight)
@@ -48,6 +51,7 @@
             <button @onclick=UnequipWeapon>Déséquiper</button>
         }
     </p>
+    <!--affichage de l'armure équipée avec ses stats en mouseover-->
     <p data-toggle="tooltip" data-placement="top" title="@Game.Player.CharacterArmor.Description">
         Armure: @Game.Player.CharacterArmor.ItemName
         @if (!(Game.Player.CharacterArmor.GetType() == typeof(Topless)) && Game.FormShow != TypeOfShow.Fight)
@@ -55,6 +59,7 @@
             <button @onclick=UnequipArmor>Déséquiper</button>
         }
     </p>
+    <!--afficahge du bouclier avec ses stats en mouseover-->
     <p data-toggle="tooltip" data-placement="top" title="@Game.Player.CharacterShield.Description">
         Bouclier: @Game.Player.CharacterShield.ItemName
         @if (!(Game.Player.CharacterShield.GetType() == typeof(FistShield)) && Game.FormShow != TypeOfShow.Fight)
@@ -75,7 +80,6 @@
             <button @onclick="ShowQuestGiver">Donneur de quêtes</button>
         }
     }
-    
     @if (Game.GameMap.MapLayout[Game.Player.PositionI][Game.Player.PositionJ].HasNPC == true && Game.FormShow == TypeOfShow.Map)
     {
         <button @onclick="Merch">Marchand</button>
@@ -101,6 +105,7 @@
     [Parameter]
     public EventCallback TypeOfShowChange { get; set; }
 
+    //Gestion de l'affichange du menu de droite
     void ShowQuest ()
     {
         Game.SwitchShowQuestList();
@@ -119,6 +124,7 @@
         TypeOfShowChange.InvokeAsync();
     }
 
+    //Fonction qui va activer la quête de collecte
     void StartCollect ()
     {
         Game.Player.SetCollectQuest();
@@ -127,6 +133,7 @@
         TypeOfShowChange.InvokeAsync();
     }
 
+    //Gestion du déséquipement du stuff
     void UnequipWeapon ()
     {
         Game.Player.UnequipWeapon();
@@ -151,6 +158,7 @@
         TypeOfShowChange.InvokeAsync();
     }
 
+    //Gestion de l'affichage du marchand et de la taverne
     void Merch()
     {
         Game.FormShow = TypeOfShow.Merchant;
@@ -169,6 +177,7 @@
         TypeOfShowChange.InvokeAsync();
     }
 
+    //Fonction de sauvegarde
     async Task Save()
     {
         Saving save = new Saving(Game.Player);
@@ -180,6 +189,13 @@
         TypeOfShowChange.InvokeAsync();
     }
 
+
+    //Affichage du menu de démo, pas nécessaire au jeu de base
+    void Demo()
+    {
+        Game.SwitchShowDemo();
+        TypeOfShowChange.InvokeAsync();
+    }
     //bouton pour rendre RicoChico vulnérable si besoin
     void cheat()
     {

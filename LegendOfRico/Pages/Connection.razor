@@ -2,9 +2,10 @@
 @using System.Text.Json
 @inject IJSRuntime JS
 
-
+<!--Composant de connexion, affiché à l'ouverture du jeu-->
 <h1 class="gameTitle">The legend of Rico</h1>
 <div class="displayGame">
+    <!--Menu de gauche, utilisation d'un formulaire avec un model à suivre pour créer un personnage-->
     <div class="gameMenu">
         <EditForm Model="@characterModel" OnValidSubmit="CreateCharacter">
             <DataAnnotationsValidator />
@@ -23,6 +24,7 @@
         </EditForm>
         <!--<button onclick="Continuer">Continuer</button>-->
     </div>
+    <!--Message d'introduction du jeu-->
     <div class="intro">
         <h2>Bienvenue dans le monde mystique de Ricochico</h2>
         <p>Explorez ce royaume enchanteur où une aventure épique attend les courageux aventuriers. Au cœur de ce monde fantastique, le grand Ricochico, gardien légendaire, détient la clé d'une relique ancienne renfermant un pouvoir immense.</p>
@@ -49,6 +51,18 @@
     [Parameter]
     public EventCallback TypeOfShowChange { get; set; }
 
+    //Fonction de création du personnage
+    private void CreateCharacter()
+    {
+        //on recrée une nouvelle map car si on à joué avec un autre personnage il faut que tout soit remis à zéro
+        Game.GameMap = new Data.Map();
+        Game.CreateCharacter(characterModel.CharacterName, characterModel.SelectedType);
+        Game.FormShow = TypeOfShow.Map;
+        Game.GameMap.UpdateMapDisplay(Game.Player);
+        TypeOfShowChange.InvokeAsync();
+    }
+
+    //Fonction continuer à développer soon
     async Task Continuer()
     {
         Character player = new Wizard();
@@ -79,15 +93,5 @@
         Game.GameMap = new Data.Map();
         Game.FormShow = TypeOfShow.Map;
     }
-
-    private void CreateCharacter()
-    {
-        Game.GameMap = new Data.Map();
-        Game.CreateCharacter(characterModel.CharacterName, characterModel.SelectedType);
-        Game.FormShow = TypeOfShow.Map;
-        Game.GameMap.UpdateMapDisplay(Game.Player);
-        TypeOfShowChange.InvokeAsync();
-    }
-
    
 }

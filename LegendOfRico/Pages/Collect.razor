@@ -1,7 +1,9 @@
 ﻿@using LegendOfRico.Data
 
+<!--Page de collecte affichée quand on clic sur le bouton "collecte" pour tenter de compléter la quête-->
 <div class="layoutGame" @onkeydown="HandleKeyDown" @onkeydown:preventDefault=true tabindex="0">
     <div class="displayGame">
+        <!--Menu de guache-->
         <div class="gameMenu">
             <p>Nombre à collecter: @Game.Player.CollectQuest.CurrentTarget</p>
             @if (Game.Player.CollectQuest.QuestEnd && Game.Player.CollectQuest.CurrentTarget == 0)
@@ -10,6 +12,7 @@
             }
             <p><button @onclick="Quit">Quitter</button></p>
         </div>
+        <!--Affichage de la map (tableau classique dans lequel on affiche les Squares-->
         <div class="mapDisplay">
             @if (!Game.Player.CollectQuest.QuestEnd)
             {
@@ -55,13 +58,18 @@
                     }
                 </table>
             }
+            <!--Afficahge des messages si la quête est terminée (victoire/défaite)-->
             else if (Game.Player.CollectQuest.QuestEnd && Game.Player.CollectQuest.CurrentTarget > 0)
             {
+                <div class="intro">
                 <p>Vous êtes tombé sur un monstre, essayez encore</p>
+                </div>
             }
             else 
             {
+                <div class="intro">
                 <p>Vous avez tout collecté, bravo</p>
+                </div>
             }
         </div>
     </div>
@@ -74,12 +82,14 @@
     public EventCallback TypeOfShowChange { get; set; }
     public ElementReference mapref;
 
+    //Validation de la quête
     void Valid ()
     {
         Game.ValidQuestCollect();
         TypeOfShowChange.InvokeAsync();
     }
 
+    //Quitter la page de quête (utilisé si on marche sur un monstre)
     void Quit()
     {
         Game.Player.CollectPosI = 0;
@@ -90,12 +100,14 @@
         TypeOfShowChange.InvokeAsync();
     }
 
+    //Pour éviter de devoir cliquer sur la carte au chargement de la page
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
             await mapref.FocusAsync();
     }
 
+    //Fonction de lien des touches du clavier au fonctions de déplacement du personnage
     private void HandleKeyDown(KeyboardEventArgs e)
     {
 
