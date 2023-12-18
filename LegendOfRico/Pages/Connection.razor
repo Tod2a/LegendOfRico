@@ -68,30 +68,14 @@
     //Fonction continuer à développer soon
     async Task Continuer()
     {
-        Character player = new Wizard() { MapSprite = "img/character/spriteWizard.png" };
         var value = await JS.InvokeAsync<string>("localStorage.getItem", "Saving");
 
         if (value != null)
         {
+            ContinueMessage = "";
             Saving save = JsonSerializer.Deserialize<Saving>(value);
 
-            if (save.PlayerSaving.CharactType == "ranger")
-            {
-                player = new Ranger() { MapSprite = "img/character/spriteRanger.png" };
-            }
-            else if (save.PlayerSaving.CharactType == "cleric")
-            {
-                player = new Cleric() { MapSprite = "img/character/spriteCleric.png" };
-            }
-            else if (save.PlayerSaving.CharactType == "fighter")
-            {
-                player = new Fighter() { MapSprite = "img/character/spriteFighter.png" };
-            }
-            else if (save.PlayerSaving.CharactType == "rogue")
-            {
-                player = new Rogue() { MapSprite = "img/character/spriteRogue.png" };
-            }
-            Game.Player = player;
+            Game.Player = GetLoadCharacter(save);
             Game.GameMap = new Data.Map();
             Game.Player.Name = save.PlayerSaving.CharactName;
             while(Game.Player.Level < save.PlayerSaving.CharactLevel)
@@ -135,6 +119,29 @@
 
     }
 
+    private Character GetLoadCharacter (Saving save)
+    {
+        if (save.PlayerSaving.CharactType == "ranger")
+        {
+            return new Ranger() { MapSprite = "img/character/spriteRanger.png" };
+        }
+        else if (save.PlayerSaving.CharactType == "cleric")
+        {
+            return new Cleric() { MapSprite = "img/character/spriteCleric.png" };
+        }
+        else if (save.PlayerSaving.CharactType == "fighter")
+        {
+            return new Fighter() { MapSprite = "img/character/spriteFighter.png" };
+        }
+        else if (save.PlayerSaving.CharactType == "rogue")
+        {
+            return new Rogue() { MapSprite = "img/character/spriteRogue.png" };
+        }
+        else
+        {
+            return new Wizard() { MapSprite = "img/character/spriteWizard.png" };
+        }
+    }
 
     private Beast GetLoadPet (Saving save)
     {
