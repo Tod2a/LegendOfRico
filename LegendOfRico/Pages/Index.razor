@@ -1,7 +1,7 @@
 ﻿@page "/"
 @using LegendOfRico.Data
-@using Microsoft.JSInterop
-@inject IJSRuntime JSRuntime
+@using System.Text.Json
+@inject IJSRuntime JS
 
 
 
@@ -37,7 +37,7 @@ else if (Game.FormShow == TypeOfShow.Collect)
     public Game Game = new Game { };
 
 
-          
+
     //modification de la fonction de blazor pour ajouter l'update de l'affichage de la map en fonctiond de l'emplacement du personnage
 
     protected override void OnInitialized()
@@ -47,7 +47,27 @@ else if (Game.FormShow == TypeOfShow.Collect)
         base.OnInitialized();
     }
 
-  
+    protected override async Task OnInitializedAsync()
+    {
+        await GetSavings();
+
+        await base.OnInitializedAsync();
+    }
+
+    async Task GetSavings()
+    {
+        var value = await JS.InvokeAsync<string>("localStorage.getItem", "Saving");
+        if (value != null)
+        {
+            List<Saving> savings = JsonSerializer.Deserialize<List<Saving>>(value);
+            foreach (var save in savings)
+            {
+                Game.Savings.Add(save);
+                Game.GameId++;
+            }
+        }
+    }
+
 
     
 }

@@ -22,8 +22,24 @@
             </select>
             <button type="submit">Créer</button>
         </EditForm>
-        <button @onclick="Continuer">Continuer</button>
-        <p>@ContinueMessage</p>
+        @if (Game.Savings.Count() > 0)
+        {
+            <div>
+                <select @bind="selectedValue">
+                    @{
+                        int index = 0;
+                        string name = "";
+                    }
+                    @foreach (var saving in Game.Savings)
+                    {
+                        name = Game.Savings[index].PlayerSaving.CharactName;
+                        <option value="@index">@name</option>
+                        index++;
+                    }
+                </select>
+                <button @onclick="Continuer">Charger</button>
+            </div>
+        }
     </div>
     <!--Message d'introduction du jeu-->
     <div class="intro">
@@ -46,6 +62,9 @@
 
 @code {
     private CharacterModel characterModel = new CharacterModel();
+    private int selectedValue;
+    private int Count { get; set; } = 0;
+    private string name { get; set; }
 
     [Parameter]
     public Game Game { get; set; }
@@ -68,20 +87,11 @@
     //Fonction continuer à développer soon
     async Task Continuer()
     {
-        var value = await JS.InvokeAsync<string>("localStorage.getItem", "Saving");
-
-        if (value != null)
-        {
-            ContinueMessage = "";
-            Saving save = JsonSerializer.Deserialize<Saving>(value);
-            save.Connect(Game);
-            Game.FormShow = TypeOfShow.Map;
-            TypeOfShowChange.InvokeAsync();
-        }
-        else
-        {
-            ContinueMessage = "Pas de sauvegarde accessible";
-        }
+        Game.Savings[selectedValue].Connect(Game);
+        Game.FormShow = TypeOfShow.Map;
+        TypeOfShowChange.InvokeAsync();
     }
+
+    
   
 }

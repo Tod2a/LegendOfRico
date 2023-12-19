@@ -9,6 +9,10 @@ namespace LegendOfRico.Data
     //Class "main" qui va permettre de développer les interactions entre le Player et la map tel que les combats, les savings etc
     public class Game
     {
+        //Paramètre utilisé à la gestion de sauvegardes
+        public int GameId { get; set; } = 1;
+        public List<Saving> Savings { get; set; } = new List<Saving>();
+        //Paramètre de base du jeu
         public Map GameMap { get; set; } = new Map();
         public Character Player { get; set; } = new Wizard { };
         public Monster MonsterFight { get; private set; } = new Bulldog { };

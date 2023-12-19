@@ -181,7 +181,15 @@
     async Task Save()
     {
         Saving save = new Saving(Game);
-        var saving = JsonSerializer.Serialize(save);
+        if (Game.Savings.Count() == 0 || Game.GameId > Game.Savings.Count())
+        {
+            Game.Savings.Add(save);
+        }
+        else
+        {
+            Game.Savings[Game.GameId - 1] = save;
+        }
+        var saving = JsonSerializer.Serialize(Game.Savings);
         await JS.InvokeVoidAsync("localStorage.setItem", "Saving", saving);
         Game.FormShow = TypeOfShow.Connection;
         TypeOfShowChange.InvokeAsync();
