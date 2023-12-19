@@ -454,6 +454,8 @@ button {
     background-size: cover;
     background-position: center;
     border: 3px solid #8b4513;
+    max-height: 800px; 
+    overflow-y: auto;
 }
 
 .MerchantBuy {
@@ -464,6 +466,8 @@ button {
     background-position: center;
     display: flex;
     flex-direction: column;
+    max-height: 800px; 
+    overflow-y: auto;
 }
 
 .MerchantActionTitle {
