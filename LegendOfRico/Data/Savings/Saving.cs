@@ -8,15 +8,27 @@ namespace LegendOfRico.Data
         public List<StuffSaving> ItemList { get; set; } 
         public List<int> ConsumableQuantity { get; set; }
         public List<SavingQuest> QuestsInventory { get; set; }
+        public List<SavingQuestGiver> QuestGivers { get; set; }
 
         public Saving() { }
 
-        public Saving (Character player)
+        public Saving (Game game)
         {
-            PlayerSaving = new PlayerSaving (player);
-            ItemList = SetItemList (player);
-            ConsumableQuantity = SetConsumalbeQuantity (player);
-            QuestsInventory = GetQuestBook(player);
+            PlayerSaving = new PlayerSaving (game.Player);
+            ItemList = SetItemList (game.Player);
+            ConsumableQuantity = SetConsumalbeQuantity (game.Player);
+            QuestsInventory = GetQuestBook(game.Player);
+            QuestGivers = GetAllQuestGivers(game);
+        }
+
+        private List<SavingQuestGiver> GetAllQuestGivers (Game game)
+        {
+            return new List<SavingQuestGiver>()
+                {
+                    new SavingQuestGiver(game.GameMap.MapLayout[250][250].MisterQuest, 250, 250),
+                    new SavingQuestGiver(game.GameMap.MapLayout[196][249].MisterQuest, 196, 249)
+                };
+                
         }
 
 

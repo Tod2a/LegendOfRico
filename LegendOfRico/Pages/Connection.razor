@@ -113,6 +113,7 @@
             CheckBossVictory(Game.Player);
             LoadConsumableInventory(save);
             LoadQuestBook(save);
+            LoadQuestGivers(save);
             Game.GameMap.UpdateMapDisplay(Game.Player);
             Game.FormShow = TypeOfShow.Map;
             TypeOfShowChange.InvokeAsync();
@@ -144,6 +145,26 @@
         else
         {
             return new Wizard() { MapSprite = "img/character/spriteWizard.png" };
+        }
+    }
+
+    private void LoadQuestGivers(Saving save)
+    {
+        foreach (var giver in save.QuestGivers)
+        {
+            QuestGiver temp = new QuestGiver(giver.Name);
+            foreach (var quest in giver.Quests)
+            {
+                if (quest.Type == "collectquest")
+                {
+                    temp.AddCollecQuest(quest.Name, quest.Description, quest.Xp, quest.Coins, quest.Posi, quest.Posj, quest.Biome);
+                }
+                else
+                {
+                    temp.AddFightQuest(quest.Name, quest.Description, quest.MonsterType, quest.Xp, quest.Coins);
+                }
+            }
+            Game.GameMap.MapLayout[giver.PosI][giver.PosJ].MisterQuest = temp;
         }
     }
 

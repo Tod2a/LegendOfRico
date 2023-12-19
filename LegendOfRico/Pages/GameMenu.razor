@@ -180,7 +180,7 @@
     //Fonction de sauvegarde
     async Task Save()
     {
-        Saving save = new Saving(Game.Player);
+        Saving save = new Saving(Game);
         var saving = JsonSerializer.Serialize(save);
         await JS.InvokeVoidAsync("localStorage.setItem", "Saving", saving);
         Game.FormShow = TypeOfShow.Connection;
