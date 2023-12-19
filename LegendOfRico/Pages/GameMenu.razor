@@ -154,6 +154,7 @@
 
     void Deconnection()
     {
+        Game.GameId = Game.Savings.Count() + 1;
         Game.Deconnection();
         TypeOfShowChange.InvokeAsync();
     }
@@ -191,6 +192,7 @@
         }
         var saving = JsonSerializer.Serialize(Game.Savings);
         await JS.InvokeVoidAsync("localStorage.setItem", "Saving", saving);
+        Game.GameId = Game.Savings.Count() + 1;
         Game.FormShow = TypeOfShow.Connection;
         TypeOfShowChange.InvokeAsync();
     }

@@ -87,6 +87,7 @@
     //Fonction continuer à développer soon
     async Task Continuer()
     {
+        Game.GameId = selectedValue + 1;
         Game.Savings[selectedValue].Connect(Game);
         Game.FormShow = TypeOfShow.Map;
         TypeOfShowChange.InvokeAsync();
