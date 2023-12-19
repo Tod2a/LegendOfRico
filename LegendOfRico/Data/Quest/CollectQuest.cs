@@ -27,6 +27,17 @@
             TargetUrl = SetTargetUrl(localBiome);
         }
 
+        public CollectQuest(string questName, string description, int xpreward, int coinreward, int positioni, int positionj, TypeOfBiome localBiome, bool status)
+            : base(questName, description, xpreward, coinreward)
+        {
+            PositionI = positioni;
+            PositionJ = positionj;
+            LocalBiome = localBiome;
+            Imgurl = SetUrl(localBiome);
+            TargetUrl = SetTargetUrl(localBiome);
+            Status = status;
+        }
+
         //Fonction de création de la map de collect qui sera générée à chaque tentative
         public void DisplayMap ()
         {

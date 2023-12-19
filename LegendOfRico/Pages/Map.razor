@@ -98,10 +98,10 @@
                 <p class="questTitle">Liste de quêtes:</p>
                 @foreach(var quest in Game.Player.QuestsBook)
                 {
-                <p data-toggle="tooltip" data-placement="top" title="@quest.Description" class="questTaget">
+                <div data-toggle="tooltip" data-placement="top" title="@quest.Description" class="questTaget">
                     @quest.QuestName 
                         @if (quest.Status) {<button @onclick="() => Game.ValidQuest(quest)">Valider</button>}
-                    </p>
+                    </div>
                 }
             }
 

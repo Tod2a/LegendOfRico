@@ -31,6 +31,7 @@
         {
             Type = GetQuestType(quest);
             Name = quest.QuestName;
+            Description = quest.Description;
             Xp = quest.XpReward;
             Coins = quest.CoinsReward;
             Status = quest.Status;

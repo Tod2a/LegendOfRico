@@ -152,13 +152,14 @@
         List<Quest> book = new List<Quest>();
         foreach (var quest in save.QuestsInventory)
         {
-            if(quest.Type == "collectquest")
+            if (quest.Type == "collectquest")
             {
-                book.Add(new CollectQuest(quest.Name, quest.Description, quest.Xp, quest.Coins, quest.Posi, quest.Posj, quest.Biome));
+                book.Add(new CollectQuest(quest.Name, quest.Description, quest.Xp, quest.Coins, quest.Posi, quest.Posj, quest.Biome, quest.Status));
+                Game.GameMap.MapLayout[quest.Posi][quest.Posj].IsACollectDestination = true;
             }
             else
             {
-                book.Add(new FightQuest(quest.Name, quest.Description, quest.MonsterType, quest.Xp, quest.Coins));
+                book.Add(new FightQuest(quest.Name, quest.Description, quest.MonsterType, quest.Xp, quest.Coins, quest.Status));
             }
         }
         Game.Player.QuestsBook = book;

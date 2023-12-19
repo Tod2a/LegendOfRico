@@ -28,7 +28,7 @@ namespace LegendOfRico.Data
                 if (quest.GetType() == typeof(CollectQuest))
                 {
                     CollectQuest tempquest = (CollectQuest)quest;
-                    book.Add(new SavingQuest(quest, tempquest.PositionI, tempquest.PositionJ, tempquest.LocalBiome));
+                    book.Add(new SavingQuest(tempquest, tempquest.PositionI, tempquest.PositionJ, tempquest.LocalBiome));
                 }
                 else
                 {
