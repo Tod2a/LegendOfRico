@@ -21,6 +21,50 @@ namespace LegendOfRico.Data
             QuestGivers = GetAllQuestGivers(game);
         }
 
+        public void Connect(Game game)
+        {
+            game.Player = GetLoadCharacter();
+            game.GameMap = new Data.Map();
+            game.Player.Name = PlayerSaving.CharactName;
+            while (game.Player.Level < PlayerSaving.CharactLevel)
+            {
+                game.Player.CurrentXp = game.Player.XpToLevel;
+                game.LevelUp(game.Player);
+            }
+            game.Player.CurrentXp = PlayerSaving.CharactXp;
+            game.Player.CurrentHitPoints = PlayerSaving.CharactHp;
+            game.Player.SetCoins(PlayerSaving.CharactCoins - 10);
+            game.Player.PositionI = PlayerSaving.PositionI;
+            game.Player.PositionJ = PlayerSaving.PositionJ;
+            game.Player.Joydead = PlayerSaving.JoyDead;
+            game.Player.Wukongdead = PlayerSaving.WukongDead;
+            game.Player.Tontatondead = PlayerSaving.TontaDead;
+            game.Player.Scorpiodead = PlayerSaving.ScorpioDead;
+            game.Player.RicoDead = PlayerSaving.RicoDead;
+            if (PlayerSaving.MateName != null)
+            {
+                foreach (var mates in game.Tavernist.CharactersToRecruit)
+                {
+                    if (mates.Name == PlayerSaving.MateName)
+                    {
+                        game.Player.SetCoins(mates.RecruitingPrice);
+                        game.Recrut(mates);
+                    }
+                }
+                game.Player.PartyMember.CurrentHitPoints = PlayerSaving.MateHp;
+            }
+            if (game.Player.GetType() == typeof(Ranger))
+            {
+                game.Player.Pet = GetLoadPet();
+            }
+            GetLoadSutff(game);
+            CheckBossVictory(game);
+            LoadConsumableInventory(game);
+            LoadQuestBook(game);
+            LoadQuestGivers(game);
+            game.GameMap.UpdateMapDisplay(game.Player);
+        }
+
         private List<SavingQuestGiver> GetAllQuestGivers (Game game)
         {
             return new List<SavingQuestGiver>()
@@ -96,6 +140,171 @@ namespace LegendOfRico.Data
             }
             return itemlist;
         }
-        
+
+        private Character GetLoadCharacter()
+        {
+            if (PlayerSaving.CharactType == "ranger")
+            {
+                return new Ranger() { MapSprite = "img/character/spriteRanger.png" };
+            }
+            else if (PlayerSaving.CharactType == "cleric")
+            {
+                return new Cleric() { MapSprite = "img/character/spriteCleric.png" };
+            }
+            else if (PlayerSaving.CharactType == "fighter")
+            {
+                return new Fighter() { MapSprite = "img/character/spriteFighter.png" };
+            }
+            else if (PlayerSaving.CharactType == "rogue")
+            {
+                return new Rogue() { MapSprite = "img/character/spriteRogue.png" };
+            }
+            else
+            {
+                return new Wizard() { MapSprite = "img/character/spriteWizard.png" };
+            }
+        }
+
+        private Beast GetLoadPet()
+        {
+            switch (PlayerSaving.PetType)
+            {
+                case "rottweiler":
+                    return new Rottweiler();
+                case "americanstaff":
+                    return new Americanstaff();
+                case "nosaffraid":
+                    return new Nosaffraid();
+                case "nosptipti":
+                    return new Nosptipti();
+                case "nosalto":
+                    return new Nosalto();
+                case "emperorscorpio":
+                    return new EmperorScorpio();
+                case "littlescorpio":
+                    return new LittleScorpio();
+                case "rockscorpio":
+                    return new RockScorpio();
+                case "aragog":
+                    return new Aragog();
+                case "bigsonofaragog":
+                    return new BigSonOfAragog();
+                case "sonofaragog":
+                    return new SonOfAragog();
+                case "alphawolf":
+                    return new AlphaWolf();
+                case "betawolf":
+                    return new BetaWolf();
+                case "omegawolf":
+                    return new OmegaWolf();
+                default:
+                    return new Bulldog();
+            }
+        }
+
+        private void GetLoadSutff(Game game)
+        {
+            foreach (var item in ItemList)
+            {
+                if (item.ItemName == "Armure divine")
+                {
+                    if (item.IsEquip)
+                    {
+                        game.Player.EquipStuff(new Armor("Armure divine", "Armure : 45", 10000, TypeOfArmor.Light, 45));
+                    }
+                    else
+                    {
+                        game.Player.StuffInventory.Add(new Armor("Armure divine", "Armure : 45", 10000, TypeOfArmor.Light, 45));
+                    }
+                }
+                else
+                {
+                    foreach (var merchantstuff in game.Merchant.StuffStock)
+                    {
+                        if (item.ItemName == merchantstuff.ItemName)
+                        {
+                            game.Player.StuffInventory.Add(merchantstuff);
+                            if (item.IsEquip)
+                            {
+                                game.Player.EquipStuff(merchantstuff);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void CheckBossVictory(Game game)
+        {
+            if (game.Player.Wukongdead)
+            {
+               game.GameMap.MapLayout[72][53].ChanceToTriggerFight = 0.0;
+            }
+            if (game.Player.Tontatondead)
+            {
+                game.GameMap.MapLayout[36][401].ChanceToTriggerFight = 0.0;
+            }
+            if (game.Player.Joydead)
+            {
+                game.GameMap.MapLayout[428][58].ChanceToTriggerFight = 0.0;
+            }
+            if (game.Player.Scorpiodead)
+            {
+                game.GameMap.MapLayout[499][499].ChanceToTriggerFight = 0.0;
+            }
+            if (game.Player.RicoDead)
+            {
+                game.GameMap.MapLayout[246][250].ChanceToTriggerFight = 0.0;
+            }
+        }
+
+        private void LoadConsumableInventory(Game game)
+        {
+            int count = 0;
+            foreach (var item in game.Player.ConsumableInventory)
+            {
+                item.Quantity = ConsumableQuantity[count];
+                count++;
+            }
+        }
+
+        private void LoadQuestBook(Game game)
+        {
+            List<Quest> book = new List<Quest>();
+            foreach (var quest in QuestsInventory)
+            {
+                if (quest.Type == "collectquest")
+                {
+                    book.Add(new CollectQuest(quest.Name, quest.Description, quest.Xp, quest.Coins, quest.Posi, quest.Posj, quest.Biome, quest.Status));
+                    game.GameMap.MapLayout[quest.Posi][quest.Posj].IsACollectDestination = true;
+                }
+                else
+                {
+                    book.Add(new FightQuest(quest.Name, quest.Description, quest.MonsterType, quest.Xp, quest.Coins, quest.Status));
+                }
+            }
+            game.Player.QuestsBook = book;
+        }
+
+        private void LoadQuestGivers(Game game)
+        {
+            foreach (var giver in QuestGivers)
+            {
+                QuestGiver temp = new QuestGiver(giver.Name);
+                foreach (var quest in giver.Quests)
+                {
+                    if (quest.Type == "collectquest")
+                    {
+                        temp.AddCollecQuest(quest.Name, quest.Description, quest.Xp, quest.Coins, quest.Posi, quest.Posj, quest.Biome);
+                    }
+                    else
+                    {
+                        temp.AddFightQuest(quest.Name, quest.Description, quest.MonsterType, quest.Xp, quest.Coins);
+                    }
+                }
+                game.GameMap.MapLayout[giver.PosI][giver.PosJ].MisterQuest = temp;
+            }
+        }
+
     }
 }
