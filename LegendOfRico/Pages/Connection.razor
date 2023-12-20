@@ -25,7 +25,7 @@
         @if (Game.Savings.Count() > 0)
         {
             <div>
-                <select @bind="selectedValue">
+                <select @bind="selectedValue" class="form-control">
                     @{
                         int index = 0;
                         string name = "";
@@ -37,7 +37,7 @@
                         index++;
                     }
                 </select>
-                <button @onclick="Continuer">Charger</button>
+                <button @onclick="Continuer" class="LongButton">Charger</button>
             </div>
         }
     </div>
