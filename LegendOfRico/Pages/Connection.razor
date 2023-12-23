@@ -38,6 +38,7 @@
                     }
                 </select>
                 <button @onclick="Continuer" class="LongButton">Charger</button>
+                <button @onclick="Delete">Supprimer</button>
             </div>
         }
     </div>
@@ -91,6 +92,13 @@
         TypeOfShowChange.InvokeAsync();
     }
 
-    
+    async Task Delete()
+    {
+        Game.Savings.Remove(Game.Savings[selectedValue]);
+        var saving = JsonSerializer.Serialize(Game.Savings);
+        await JS.InvokeVoidAsync("localStorage.setItem", "Saving", saving);
+        TypeOfShowChange.InvokeAsync();
+    }
+
   
 }
