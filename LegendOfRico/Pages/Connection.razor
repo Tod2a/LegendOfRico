@@ -94,7 +94,14 @@
 
     async Task Delete()
     {
-        Game.Savings.Remove(Game.Savings[selectedValue]);
+        if (Game.Savings.Count() > 1)
+        {
+            Game.Savings.Remove(Game.Savings[selectedValue]);
+        }
+        else
+        {
+            Game.Savings.Remove(Game.Savings[0]);
+        }
         if (Game.Savings.Count() > 0)
         {
             var saving = JsonSerializer.Serialize(Game.Savings);
