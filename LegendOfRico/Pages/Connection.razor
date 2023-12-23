@@ -70,7 +70,6 @@
     public Game Game { get; set; }
     [Parameter]
     public EventCallback TypeOfShowChange { get; set; }
-    public string ContinueMessage { get; set; }
 
     //Fonction de création du personnage
     private void CreateCharacter()
@@ -84,7 +83,7 @@
     }
 
 
-    async Task Continuer()
+    void Continuer()
     {
         Game.GameId = selectedValue + 1;
         Game.Savings[selectedValue].Connect(Game);
