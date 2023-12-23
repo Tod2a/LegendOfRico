@@ -95,9 +95,16 @@
     async Task Delete()
     {
         Game.Savings.Remove(Game.Savings[selectedValue]);
-        var saving = JsonSerializer.Serialize(Game.Savings);
-        await JS.InvokeVoidAsync("localStorage.setItem", "Saving", saving);
-        TypeOfShowChange.InvokeAsync();
+        if (Game.Savings.Count() > 0)
+        {
+            var saving = JsonSerializer.Serialize(Game.Savings);
+            await JS.InvokeVoidAsync("localStorage.setItem", "Saving", saving);
+        }
+        else
+        {
+            await JS.InvokeVoidAsync("localStorage.removeItem", "Saving");
+        }
+        await TypeOfShowChange.InvokeAsync();
     }
 
   
