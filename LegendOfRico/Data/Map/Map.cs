@@ -434,6 +434,7 @@ namespace LegendOfRico.Data
             QuestGiver fatimaZorra = new QuestGiver("Fatima Zorra, la mystique");
             fatimaZorra.AddFightQuest("Tue un monstre", "Montre moi ton ENORME courage en allant tuer un monstre dans les ruines", TypeOfBreed.Bat, 20, 20);
             fatimaZorra.AddCollecQuest("Une beeeeellle récompense", "Un item se trouve dans les ruines, va le récupérer au péril de ta vie", 25, 25, 161, 281, mapLayout[161][281].SquareBiome.BiomeType);
+            fatimaZorra.AddCollecQuest("DemoCollectQuest", "Demo Quest", 5, 5, 196, 251, mapLayout[196][251].SquareBiome.BiomeType);
             
 
 
