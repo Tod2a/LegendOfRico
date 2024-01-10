@@ -10,6 +10,6 @@ Il n'y a, pour l'instant, pas la possibilité d'installer le jeu sur votre machi
 
 Crédits
 
-Merci à notre équipe de développeurs pour ce magnifique RPG. Notre équipe se compose de Damien Kashan alias Mani, Martin Asta alias Fifwayte, Thomas Copin alias Tod2a, et Elric Van Steenwinckel alias Ricochico.
+Merci à notre équipe de développeurs pour ce magnifique RPG. Notre équipe se compose de Damien Khashan alias Mani, Martin Asta alias Fifwayte, Thomas Copin alias Tod2a, et Elric Van Steenwinckel alias Ricochico.
 
 Merci aussi à internet et surtout Google pour les images que l'on a pu utiliser qui ne sont pas en libre de droit (sous-entendu donc que le jeu ne peut absolument pas être mis en ligne ou destiné à la vente).
